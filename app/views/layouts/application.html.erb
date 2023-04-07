@@ -22,7 +22,10 @@
   </header>
   
   <body>
-    <div class="container p-4">
+    <div class="container p-2">
+      <div id="flash" style="position:absolute; z-index: 2; right: 10px;">
+        <%= render partial: "layouts/flash" %>
+      </div>  
       <%= yield %>
     </div>
   </body>

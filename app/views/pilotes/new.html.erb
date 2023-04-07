@@ -1,13 +1,6 @@
 
 <%= turbo_frame_tag :modal do %>
   <div data-controller="hidemodal" data-action="turbo:submit-end->hidemodal#submitEnd"> 
-  
-    <div class="bloc-entete-model">
-      <div class="card card-header entete-index">
-          <strong>Nouveau pilote</strong> 
-      </div>
-    </div>
-
     <div class="list-records-item">
      <%= render "form", pilote: @pilote %>
     </div>

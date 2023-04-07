@@ -2,13 +2,13 @@
 
 <h1>Posts</h1>
 
-<div id="posts">
-  <% @posts.each do |post| %>
-    <%= render post %>
-    <p>
-      <%= link_to "Show this post", post %>
-    </p>
-  <% end %>
+<div id="new_post">
+  <%= render partial: "posts/form", locals: {post: Post.new} %>
 </div>
 
+<div id="posts">
+    <%= render @posts %>
+</div>
+
+<hr>
 <%= link_to "New post", new_post_path %>

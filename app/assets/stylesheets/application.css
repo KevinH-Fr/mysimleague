@@ -15,26 +15,93 @@
  */
 
 body {
-    background-color: rgb(92, 92, 92);
+  background-color: rgb(92, 92, 92);
+}
+
+h1{
+  color: white;
 }
 
 .cadre-record {
-    background-color: rgb(48, 47, 47);
-    color: white;
-    margin: 1em;
-    padding: 1em;
-    border-radius: .4em;
-    box-shadow: 2px 3px 4px rgba(101, 100, 100, 0.8);
+  background-color: rgb(48, 47, 47);
+  color: white;
+  margin: .5em;
+  padding: .4em;
+  border-radius: .4em;
+  box-shadow: 2px 3px 4px rgba(101, 100, 100, 0.8);
+  justify-content: center;
  }
 
+ 
+.col-data{
+  padding-left: 1em;
+  font-weight: bold;
+  font-size: large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .col-btn{
-   display: flex;
-   align-items: center;
-   justify-content: center;
+  display: flex;
+  align-items: center;
+  justify-content: end;
 }
 
 .btn-action{
   font-size: medium;
-  padding: .4em;
+  padding: .3em;
   margin: .2em;
+}
+
+.btn-nouveau{
+  font-size: medium;
+  padding: .4em;
+  margin: .5em;
+  background-color: yellow;
+  font-weight: bold;
+}
+
+.btn-valider {
+  font-size: medium;
+  background-color: rgb(7, 104, 46);
+  color: white;
+  font-weight: bold;
+  margin: .5em;
+}
+
+.label-with-format{
+  background-color: rgb(48, 47, 47);
+  color: rgb(136, 133, 133);
+  font-size: medium;
+  font-weight: bold;
+  padding-left: .4em;
+  
+}
+
+.field-with-format{
+  background-color: rgba(73, 72, 73, 0.8);
+  color: rgb(255, 255, 255);
+  padding: .1em;
+  padding-right: 1em;
+  padding-left: 1em;
+  font-size: medium;
+}
+
+.container-titre{
+  background-color: rgba(22, 22, 22, 0.8);
+  border-radius: .4em;
+  box-shadow: 2px 3px 4px rgba(101, 100, 100, 0.8);
+ 
+  padding: .4em;
+}
+
+.flash-success{
+  background-color: rgb(29, 113, 49);
+  color: aliceblue;
+  border-style: solid;
+  border-color: rgb(5, 79, 4);
+  padding: 1em;
+  border-radius: .4em;
+  box-shadow: 2px 3px 4px rgba(101, 100, 100, 0.8);
 }
