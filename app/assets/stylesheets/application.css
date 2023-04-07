@@ -13,3 +13,28 @@
  *= require_tree .
  *= require_self
  */
+
+body {
+    background-color: rgb(92, 92, 92);
+}
+
+.cadre-record {
+    background-color: rgb(48, 47, 47);
+    color: white;
+    margin: 1em;
+    padding: 1em;
+    border-radius: .4em;
+    box-shadow: 2px 3px 4px rgba(101, 100, 100, 0.8);
+ }
+
+.col-btn{
+   display: flex;
+   align-items: center;
+   justify-content: center;
+}
+
+.btn-action{
+  font-size: medium;
+  padding: .4em;
+  margin: .2em;
+}

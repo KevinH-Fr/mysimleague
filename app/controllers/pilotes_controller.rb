@@ -1,25 +1,31 @@
 class PilotesController < ApplicationController
   before_action :set_pilote, only: %i[ show edit update destroy ]
 
-  # GET /pilotes or /pilotes.json
   def index
-    @pilotes = Pilote.all
+    search_params = params.permit(:format, :page, q:[:nom_cont])
+    @q = Pilote.ransack(search_params[:q])
+    pilotes = @q.result(distinct: true).order(created_at: :desc)
+    @pagy, @pilotes = pagy_countless(pilotes, items: 2)
+
   end
 
-  # GET /pilotes/1 or /pilotes/1.json
   def show
   end
 
-  # GET /pilotes/new
   def new
-    @pilote = Pilote.new
+    @pilote = Pilote.new(pilote_params)
   end
 
-  # GET /pilotes/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.turbo_stream do  
+        render turbo_stream: turbo_stream.update(@pilote, partial: "pilotes/form", 
+          locals: {pilote: @pilote})
+      end
+    end
   end
 
-  # POST /pilotes or /pilotes.json
   def create
     @pilote = Pilote.new(pilote_params)
 
@@ -34,20 +40,28 @@ class PilotesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /pilotes/1 or /pilotes/1.json
   def update
     respond_to do |format|
       if @pilote.update(pilote_params)
-        format.html { redirect_to pilote_url(@pilote), notice: "Pilote was successfully updated." }
-        format.json { render :show, status: :ok, location: @pilote }
+        format.turbo_stream do  
+          render turbo_stream: 
+            turbo_stream.update(@pilote, partial: "pilotes/pilote", 
+              locals: {pilote: @pilote})
+        end
+
+       # format.html { redirect_to pilote_url(@pilote), notice: "Pilote was successfully updated." }
+       # format.json { render :show, status: :ok, location: @pilote }
       else
-        format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @pilote.errors, status: :unprocessable_entity }
+        format.turbo_stream do  
+          render turbo_stream: turbo_stream.update(@pilote, partial: "pilotes/form", 
+            locals: {pilote: @pilote})
+        end
+        # format.html { render :edit, status: :unprocessable_entity }
+       # format.json { render json: @pilote.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /pilotes/1 or /pilotes/1.json
   def destroy
     @pilote.destroy
 
@@ -58,13 +72,11 @@ class PilotesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_pilote
       @pilote = Pilote.find(params[:id])
     end
 
-    # Only allow a list of trusted parameters through.
     def pilote_params
-      params.require(:pilote).permit(:nom)
+      params.fetch(:pilote, {}).permit(:nom)
     end
 end

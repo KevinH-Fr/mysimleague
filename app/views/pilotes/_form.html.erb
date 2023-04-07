@@ -11,12 +11,14 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :nom, style: "display: block" %>
-    <%= form.text_field :nom %>
-  </div>
+  <div class="cadre-record">
+    <div>
+      <%= form.label :nom, style: "display: block" %>
+      <%= form.text_field :nom %>
+    </div>
 
-  <div>
-    <%= form.submit %>
+    <div>
+      <%= form.submit %>
+    </div>
   </div>
 <% end %>

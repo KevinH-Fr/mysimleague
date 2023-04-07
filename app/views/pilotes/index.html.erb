@@ -2,13 +2,18 @@
 
 <h1>Pilotes</h1>
 
-<div id="pilotes">
-  <% @pilotes.each do |pilote| %>
-    <%= render pilote %>
-    <p>
-      <%= link_to "Show this pilote", pilote %>
-    </p>
-  <% end %>
+<%= link_to "Nouveau", new_pilote_path, data: { turbo_frame: "modal" }, 
+      class:"btn btn-sm btn-warning m-1 p-1 fw-bold" %>
+
+<div class="">
+  <%= turbo_frame_tag :modal %>
 </div>
 
-<%= link_to "New pilote", new_pilote_path %>
+<%= turbo_frame_tag :results, data: {turbo_action: 'advance'} do %>
+  <div id="pilotes">  </div>
+
+  <%= turbo_frame_tag :pagination, loading: :lazy, 
+      src: pilotes_path(format: :turbo_stream,
+      q: params[:q]&.to_unsafe_h) 
+  %>
+<% end %>
