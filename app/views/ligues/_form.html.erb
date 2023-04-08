@@ -14,14 +14,15 @@
 
   <div class="cadre-record">
     <div class="row">
-      <div class="col-10 col-data mx-auto">
+
+      <div class="col-10 mx-auto ">
         <div class="input-group">
           <%= form.label :nom, class:"input-group-text label-with-format" %>
-          <%= form.text_field :nom, required: true, class:"form-control field-with-format" %>
+          <%= form.text_field :nom,  required: true, class:"form-control field-with-format" %>
         </div>
         <div class="input-group">
           <%= form.label :description, class:"input-group-text label-with-format" %>
-          <%= form.text_area :description, class:"form-control field-with-format" %>
+          <%= form.text_field :description, class:"form-control field-with-format" %>
         </div>
       </div>
 

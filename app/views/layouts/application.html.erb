@@ -22,7 +22,7 @@
   </header>
   
   <body>
-    <div class="container p-2">
+    <div class="container container-body"> 
       <div id="flash" style="position:absolute; z-index: 2; right: 10px;">
         <%= render partial: "layouts/flash" %>
       </div>  
@@ -30,4 +30,8 @@
     </div>
   </body>
   
+  <footer>  
+    <%= render "shared/footer" %>
+  </footer>
+
 </html>

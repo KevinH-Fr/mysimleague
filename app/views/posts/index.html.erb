@@ -1,14 +1,41 @@
-<p style="color: green"><%= notice %></p>
 
 <h1>Posts</h1>
 
-<div id="new_post">
-  <%= render partial: "posts/form", locals: {post: Post.new} %>
+<%= link_to "New post", new_post_path %>
+
+
+<div data-controller="newrecord" data-action="turbo:submit-end->newrecord#submitEnd">
+
+    <div id="new_post">
+      <%= render partial: "posts/form", locals: {post: Post.new} %>
+    </div>
+
+    <div data-newrecord-target="newrecordContent">
+    </div>
+
+  <div role="button" data-action="click->newrecord#openDropdown" 
+      data-newrecord-target="openButton", class="fa-solid fa-eye btn btn-outline-primary btn-action">
+  </div>
+  <div role="button" data-action="click->newrecord#closeDropdown" 
+    data-newrecord-target="closeButton", class="fa-solid fa-eye-slash btn btn-outline-primary btn-action">
+  </div>
+                
 </div>
+
+
+
+
+
+
+
+
+
+
 
 <div id="posts">
     <%= render @posts %>
 </div>
 
-<hr>
-<%= link_to "New post", new_post_path %>
+
+
+<%#= link_to "New post", new_post_path %>
