@@ -18,7 +18,10 @@ export default class extends Controller {
   }
 
   hideModal(){
-    this.element.remove()
+  //  this.element.remove()
+    this.newrecordContentTarget.hidden = true  
+    this.openButtonTarget.hidden = false
+    this.closeButtonTarget.hidden = true
   }
 
   openDropdown() {
