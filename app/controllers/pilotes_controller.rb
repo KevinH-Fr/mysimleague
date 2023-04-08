@@ -88,8 +88,6 @@ class PilotesController < ApplicationController
     respond_to do |format|
 
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@pilote) }
-      
-
       format.html { redirect_to pilotes_url, notice: "Pilote was successfully destroyed." }
       format.json { head :no_content }
     end
