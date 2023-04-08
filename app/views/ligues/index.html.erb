@@ -1,14 +1,18 @@
-<p style="color: green"><%= notice %></p>
-
-<h1>Ligues</h1>
-
-<div id="ligues">
-  <% @ligues.each do |ligue| %>
-    <%= render ligue %>
-    <p>
-      <%= link_to "Show this ligue", ligue %>
-    </p>
-  <% end %>
+<div class="container container-titre">
+  <div class="row">
+    <div class="col-2 icon-titre">
+      <i class="fa fa-people-group"></i>
+    </div>
+    <div class="col-10 d-flex align-items-center">
+      <h1>Ligues</h1>
+    </div>
+  </div>
 </div>
 
-<%= link_to "New ligue", new_ligue_path %>
+<div id="new_ligue">
+  <%= render partial: "ligues/form", locals: {ligue: Ligue.new} %>
+</div>
+
+<div id="ligues">
+    <%= render @ligues %>
+</div>

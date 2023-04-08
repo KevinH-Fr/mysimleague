@@ -6,7 +6,6 @@ class PilotesController < ApplicationController
     @q = Pilote.ransack(search_params[:q])
     pilotes = @q.result(distinct: true).order(created_at: :desc)
     @pagy, @pilotes = pagy_countless(pilotes, items: 20)
-
   end
 
   def show
@@ -42,7 +41,6 @@ class PilotesController < ApplicationController
         end
         format.html { redirect_to pilote_url(@pilote), notice: "Pilote was successfully created." }
         format.json { render :show, status: :created, location: @pilote }
-  
 
       else
         flash.now[:notice] = "erreur - le pilote n'a pas été ajouté"
@@ -53,8 +51,6 @@ class PilotesController < ApplicationController
          end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @pilote.errors, status: :unprocessable_entity }
-
-
 
       end
     end
@@ -86,7 +82,6 @@ class PilotesController < ApplicationController
     @pilote.destroy
 
     respond_to do |format|
-
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@pilote) }
       format.html { redirect_to pilotes_url, notice: "Pilote was successfully destroyed." }
       format.json { head :no_content }

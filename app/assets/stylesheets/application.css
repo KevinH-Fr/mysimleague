@@ -92,7 +92,6 @@ h1{
   background-color: rgba(22, 22, 22, 0.8);
   border-radius: .4em;
   box-shadow: 2px 3px 4px rgba(101, 100, 100, 0.8);
- 
   padding: .4em;
 }
 
@@ -104,4 +103,21 @@ h1{
   padding: 1em;
   border-radius: .4em;
   box-shadow: 2px 3px 4px rgba(101, 100, 100, 0.8);
+}
+
+.time-ago{
+  font-style: italic;
+  color: rgb(130, 130, 131);
+}
+
+.iconcolor-nav{
+  color: rgb(255, 255, 255);
+}
+
+.icon-titre{
+  color: rgb(255, 255, 255);
+  font-size: x-large;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }

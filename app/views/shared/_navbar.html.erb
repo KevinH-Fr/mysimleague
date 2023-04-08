@@ -5,18 +5,44 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="collapse navbar-collapse text-light" id="navbarNavDropdown">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <%= link_to "home", root_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "posts", posts_path %>
-        </li>
-        <li class="nav-item">
-          <%= link_to "pilotes", pilotes_path %>
-        </li>
-      </ul>
+
+    <div class="container-fluid">
+      <div class="collapse navbar-collapse" id="navbarNavDropdown">
+        <ul class="navbar-nav ms-auto mb-2">
+          <li class="nav-item ms-3">
+            <%= link_to(root_path, class:"middled btn") do %>
+              <i class="fa fa-house iconcolor-nav"></i>
+              <span class="text-light fw-bold middled"> 
+                ACCUEIL 
+              </span>
+            <% end %>
+          </li>
+          <li class="nav-item ms-3">
+            <%= link_to(pilotes_path, class:"middled btn") do %>
+              <i class="fa fa-user iconcolor-nav"></i>
+              <span class="text-light fw-bold middled"> 
+                PILOTES 
+              </span>
+            <% end %>
+          </li>
+          <li class="nav-item ms-3">
+            <%= link_to(ligues_path, class:"middled btn") do %>
+              <i class="fa fa-people-group iconcolor-nav"></i>
+              <span class="text-light fw-bold middled"> 
+                LIGUES 
+              </span>
+            <% end %>
+          </li>
+
+          <li class="nav-item ms-3">
+            <form class="d-flex" role="search">
+              <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+              <button class="btn btn-outline-success" type="submit">Search</button>
+            </form>
+          </li>
+
+        </ul>
+      </div>
     </div>
   </div>
 </nav>

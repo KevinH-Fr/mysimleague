@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :ligues
  
   root "home#index"
  
@@ -8,7 +7,13 @@ Rails.application.routes.draw do
   resources :pilotes do
     member do
       post :edit
-      get :nouveau_pilote
+     # get :nouveau_pilote
+    end
+  end
+
+  resources :ligues do
+    member do
+      post :edit
     end
   end
 

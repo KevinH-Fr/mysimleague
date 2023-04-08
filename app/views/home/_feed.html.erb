@@ -4,6 +4,6 @@ feed contents
     <div class="cadre-record"> 
         <span class=""> <%= feed.class.name %> edited </span> 
         <span class="fw-bold"> <%= link_to feed.feed_content, polymorphic_path(feed) %> </span> <hr>    
-        <small> <%= feed.updated_at %> </small>
+        <small class="time-ago"> <%= time_ago_in_words(feed.updated_at) %> </small>
     </div>
 <% end %>
