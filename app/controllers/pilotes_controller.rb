@@ -60,9 +60,12 @@ class PilotesController < ApplicationController
     respond_to do |format|
       if @pilote.update(pilote_params)
         format.turbo_stream do  
-          render turbo_stream: 
+          flash.now[:notice] = "le pilote #{@pilote.nom} a bien été modifié"
+          render turbo_stream: [
             turbo_stream.update(@pilote, partial: "pilotes/pilote", 
-              locals: {pilote: @pilote})
+              locals: {pilote: @pilote}),
+              turbo_stream.update("flash", partial: "layouts/flash")
+           ]
         end
 
         format.html { redirect_to pilote_url(@pilote), notice: "Pilote was successfully updated." }

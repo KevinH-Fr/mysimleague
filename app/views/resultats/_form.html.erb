@@ -1,0 +1,67 @@
+<%= form_with(model: resultat) do |form| %>
+  <% if resultat.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(resultat.errors.count, "error") %> prohibited this resultat from being saved:</h2>
+
+      <ul>
+        <% resultat.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :event_id, style: "display: block" %>
+    <%= form.text_field :event_id %>
+  </div>
+
+  <div>
+    <%= form.label :pilote_id, style: "display: block" %>
+    <%= form.text_field :pilote_id %>
+  </div>
+
+  <div>
+    <%= form.label :equipe_id, style: "display: block" %>
+    <%= form.text_field :equipe_id %>
+  </div>
+
+  <div>
+    <%= form.label :qualification, style: "display: block" %>
+    <%= form.number_field :qualification %>
+  </div>
+
+  <div>
+    <%= form.label :course, style: "display: block" %>
+    <%= form.number_field :course %>
+  </div>
+
+  <div>
+    <%= form.label :dotd, style: "display: block" %>
+    <%= form.check_box :dotd %>
+  </div>
+
+  <div>
+    <%= form.label :mt, style: "display: block" %>
+    <%= form.check_box :mt %>
+  </div>
+
+  <div>
+    <%= form.label :score, style: "display: block" %>
+    <%= form.number_field :score %>
+  </div>
+
+  <div>
+    <%= form.label :dnf, style: "display: block" %>
+    <%= form.check_box :dnf %>
+  </div>
+
+  <div>
+    <%= form.label :dns, style: "display: block" %>
+    <%= form.check_box :dns %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

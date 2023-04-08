@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  resources :resultats
+  resources :events
+  resources :circuits
+  resources :divisions
+  resources :saisons
+  resources :equipes
   resources :friends
  
   root "home#index"

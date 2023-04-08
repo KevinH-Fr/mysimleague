@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @circuit %>
+
+<div>
+  <%= link_to "Edit this circuit", edit_circuit_path(@circuit) %> |
+  <%= link_to "Back to circuits", circuits_path %>
+
+  <%= button_to "Destroy this circuit", @circuit, method: :delete %>
+</div>

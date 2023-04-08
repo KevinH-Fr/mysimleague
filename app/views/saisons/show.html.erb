@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @saison %>
+
+<div>
+  <%= link_to "Edit this saison", edit_saison_path(@saison) %> |
+  <%= link_to "Back to saisons", saisons_path %>
+
+  <%= button_to "Destroy this saison", @saison, method: :delete %>
+</div>

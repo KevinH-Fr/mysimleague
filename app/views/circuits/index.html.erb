@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Circuits</h1>
+
+<div id="circuits">
+  <% @circuits.each do |circuit| %>
+    <%= render circuit %>
+    <p>
+      <%= link_to "Show this circuit", circuit %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New circuit", new_circuit_path %>

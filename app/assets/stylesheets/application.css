@@ -123,15 +123,16 @@ h1{
   justify-content: center;
 }
 
+/* FLASHS */
 
 .flash-success{
-  background-color: rgb(29, 113, 49);
+  background-color: rgb(29, 113, 49, 0.7);
   color: aliceblue;
   border-style: solid;
+  border-width: 2px;
   border-color: rgb(5, 79, 4);
-  padding: 1em;
+  padding: .3em;
   border-radius: .4em;
-  box-shadow: 2px 3px 4px rgba(101, 100, 100, 0.8);
 }
 
 .time-ago{

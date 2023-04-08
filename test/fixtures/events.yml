@@ -1,0 +1,19 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  date: 2023-04-09
+  horaire: 2023-04-09 00:51:03
+  numero: 1
+  circuit: one
+  saison: one
+  division: one
+  ligue: one
+
+two:
+  date: 2023-04-09
+  horaire: 2023-04-09 00:51:03
+  numero: 1
+  circuit: two
+  saison: two
+  division: two
+  ligue: two

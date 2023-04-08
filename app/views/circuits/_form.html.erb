@@ -1,0 +1,42 @@
+<%= form_with(model: circuit) do |form| %>
+  <% if circuit.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(circuit.errors.count, "error") %> prohibited this circuit from being saved:</h2>
+
+      <ul>
+        <% circuit.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :nom, style: "display: block" %>
+    <%= form.text_field :nom %>
+  </div>
+
+  <div>
+    <%= form.label :pays, style: "display: block" %>
+    <%= form.text_field :pays %>
+  </div>
+
+  <div>
+    <%= form.label :adresse, style: "display: block" %>
+    <%= form.text_field :adresse %>
+  </div>
+
+  <div>
+    <%= form.label :latitude, style: "display: block" %>
+    <%= form.text_field :latitude %>
+  </div>
+
+  <div>
+    <%= form.label :longitude, style: "display: block" %>
+    <%= form.text_field :longitude %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
