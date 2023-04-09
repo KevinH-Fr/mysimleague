@@ -1,14 +1,34 @@
-<p style="color: green"><%= notice %></p>
+<div data-controller="newrecord" data-action="turbo:submit-end->newrecord#submitEnd">
+      
+  <div class="container container-titre">
+    <div class="row">
+      <div class="col-2 icon-titre">
+        <i class="fa fa-square-poll-horizontal"></i>
+      </div>
+      <div class="col-8 d-flex align-items-center">
+        <h1>Resultats</h1>
+      </div>
+      <div class="col-2 d-flex align-items-center">
+        <div role="button" data-action="click->newrecord#openDropdown" 
+          data-newrecord-target="openButton" 
+          class="fa-solid fa-add btn btn-warning btn-action">
+        </div>
+        <div role="button" data-action="click->newrecord#closeDropdown" 
+          data-newrecord-target="closeButton" 
+          class="fa-solid fa-close btn btn-danger btn-action">
+        </div>
+      </div>
+    </div>
+  </div>
 
-<h1>Resultats</h1>
+  <div data-newrecord-target="newrecordContent">
+    <div id="new_resultat">
+      <%= render partial: "resultats/form", locals: {resultat: Resultat.new} %>
+    </div>
+  </div>
 
-<div id="resultats">
-  <% @resultats.each do |resultat| %>
-    <%= render resultat %>
-    <p>
-      <%= link_to "Show this resultat", resultat %>
-    </p>
-  <% end %>
+  <div id="resultats">
+    <%= render @resultats %>
+  </div>
+
 </div>
-
-<%= link_to "New resultat", new_resultat_path %>

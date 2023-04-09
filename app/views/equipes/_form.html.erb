@@ -11,17 +11,25 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :nom, style: "display: block" %>
-    <%= form.text_field :nom %>
-  </div>
+  <div class="cadre-record">
+    <div class="row">
 
-  <div>
-    <%= form.label :couleur, style: "display: block" %>
-    <%= form.text_field :couleur %>
-  </div>
+      <div class="col-10 mx-auto ">
+        <div class="input-group">
+          <%= form.label :nom, class:"input-group-text label-with-format" %>
+          <%= form.text_field :nom,  required: true, class:"form-control field-with-format" %>
+        </div>
+        <div class="input-group">
+          <%= form.label :couleur, class:"input-group-text label-with-format" %>
+          <%= form.text_field :couleur, class:"form-control field-with-format" %>
+        </div>
+      </div>
 
-  <div>
-    <%= form.submit %>
+      <div class="col-2 col-btn">
+        <button type="submit" class="btn btn-valider">
+          <span><i class="fa-solid fa-square-check"></i> </span>
+        </button>
+      </div>
+    </div>
   </div>
 <% end %>

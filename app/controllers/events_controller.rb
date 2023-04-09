@@ -1,61 +1,96 @@
 class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
 
-  # GET /events or /events.json
   def index
-    @events = Event.all
+    search_params = params.permit(:format, :page, q:[:numero_cont])
+    @q = Event.ransack(search_params[:q])
+    events = @q.result(distinct: true).order(created_at: :desc)
+    @pagy, @events = pagy_countless(events, items: 20)
   end
 
-  # GET /events/1 or /events/1.json
   def show
   end
 
-  # GET /events/new
   def new
-    @event = Event.new
+    @event = Event.new(event_params)
   end
 
-  # GET /events/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.turbo_stream do  
+        render turbo_stream: turbo_stream.update(@event, partial: "events/form", 
+          locals: {event: @event})
+      end
+    end
   end
 
-  # POST /events or /events.json
   def create
     @event = Event.new(event_params)
 
     respond_to do |format|
       if @event.save
-        format.html { redirect_to event_url(@event), notice: "Event was successfully created." }
+        format.turbo_stream do
+          flash.now[:notice] = "le event #{@event.numero} a bien été ajouté"
+          render turbo_stream: [
+            turbo_stream.update('new_event', partial: "events/form", locals: {event: Event.new}),
+            turbo_stream.prepend("events", partial: "events/event",
+              locals: {event: @event }), 
+              turbo_stream.update("flash", partial: "layouts/flash"),     
+            ]
+        end
+        format.html { redirect_to event_url(@event), notice: "event was successfully created." }
         format.json { render :show, status: :created, location: @event }
+
       else
+        flash.now[:notice] = "erreur - le event n'a pas été ajouté"
+        format.turbo_stream do
+          render turbo_stream: [
+             turbo_stream.update("flash", partial: "layouts/flashError"),
+           ]
+         end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
+
       end
     end
   end
 
-  # PATCH/PUT /events/1 or /events/1.json
   def update
     respond_to do |format|
       if @event.update(event_params)
-        format.html { redirect_to event_url(@event), notice: "Event was successfully updated." }
+        format.turbo_stream do  
+          flash.now[:notice] = "le event #{@event.numero} a bien été modifié"
+          render turbo_stream: [
+            turbo_stream.update(@event, partial: "events/event", 
+              locals: {event: @event}),
+              turbo_stream.update("flash", partial: "layouts/flash")
+           ]
+        end
+
+        format.html { redirect_to event_url(@event), notice: "event was successfully updated." }
         format.json { render :show, status: :ok, location: @event }
       else
+        format.turbo_stream do  
+          render turbo_stream: turbo_stream.update(@event, partial: "events/form", 
+            locals: {event: @event})
+        end
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @event.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /events/1 or /events/1.json
   def destroy
     @event.destroy
 
     respond_to do |format|
-      format.html { redirect_to events_url, notice: "Event was successfully destroyed." }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@event) }
+      format.html { redirect_to events_url, notice: "event was successfully destroyed." }
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

@@ -1,58 +1,92 @@
 class EquipesController < ApplicationController
   before_action :set_equipe, only: %i[ show edit update destroy ]
 
-  # GET /equipes or /equipes.json
   def index
-    @equipes = Equipe.all
+    search_params = params.permit(:format, :page, q:[:nom_cont])
+    @q = Equipe.ransack(search_params[:q])
+    equipes = @q.result(distinct: true).order(created_at: :desc)
+    @pagy, @equipes = pagy_countless(equipes, items: 20)
   end
 
-  # GET /equipes/1 or /equipes/1.json
   def show
   end
 
-  # GET /equipes/new
   def new
-    @equipe = Equipe.new
+    @equipe = Equipe.new(equipe_params)
   end
 
-  # GET /equipes/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.turbo_stream do  
+        render turbo_stream: turbo_stream.update(@equipe, partial: "equipes/form", 
+          locals: {equipe: @equipe})
+      end
+    end
   end
 
-  # POST /equipes or /equipes.json
   def create
     @equipe = Equipe.new(equipe_params)
 
     respond_to do |format|
       if @equipe.save
-        format.html { redirect_to equipe_url(@equipe), notice: "Equipe was successfully created." }
+        format.turbo_stream do
+          flash.now[:notice] = "le equipe #{@equipe.nom} a bien été ajouté"
+          render turbo_stream: [
+            turbo_stream.update('new_equipe', partial: "equipes/form", locals: {equipe: Equipe.new}),
+            turbo_stream.prepend("equipes", partial: "equipes/equipe",
+              locals: {equipe: @equipe }), 
+              turbo_stream.update("flash", partial: "layouts/flash"),     
+            ]
+        end
+        format.html { redirect_to equipe_url(@equipe), notice: "equipe was successfully created." }
         format.json { render :show, status: :created, location: @equipe }
+
       else
+        flash.now[:notice] = "erreur - le equipe n'a pas été ajouté"
+        format.turbo_stream do
+          render turbo_stream: [
+             turbo_stream.update("flash", partial: "layouts/flashError"),
+           ]
+         end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @equipe.errors, status: :unprocessable_entity }
+
       end
     end
   end
 
-  # PATCH/PUT /equipes/1 or /equipes/1.json
   def update
     respond_to do |format|
       if @equipe.update(equipe_params)
-        format.html { redirect_to equipe_url(@equipe), notice: "Equipe was successfully updated." }
+        format.turbo_stream do  
+          flash.now[:notice] = "le equipe #{@equipe.nom} a bien été modifié"
+          render turbo_stream: [
+            turbo_stream.update(@equipe, partial: "equipes/equipe", 
+              locals: {equipe: @equipe}),
+              turbo_stream.update("flash", partial: "layouts/flash")
+           ]
+        end
+
+        format.html { redirect_to equipe_url(@equipe), notice: "equipe was successfully updated." }
         format.json { render :show, status: :ok, location: @equipe }
       else
+        format.turbo_stream do  
+          render turbo_stream: turbo_stream.update(@equipe, partial: "equipes/form", 
+            locals: {equipe: @equipe})
+        end
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @equipe.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /equipes/1 or /equipes/1.json
   def destroy
     @equipe.destroy
 
     respond_to do |format|
-      format.html { redirect_to equipes_url, notice: "Equipe was successfully destroyed." }
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@equipe) }
+      format.html { redirect_to equipes_url, notice: "equipe was successfully destroyed." }
       format.json { head :no_content }
     end
   end

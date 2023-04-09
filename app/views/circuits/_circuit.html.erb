@@ -1,27 +1,33 @@
+
 <div id="<%= dom_id circuit %>">
-  <p>
-    <strong>Nom:</strong>
-    <%= circuit.nom %>
-  </p>
 
-  <p>
-    <strong>Pays:</strong>
-    <%= circuit.pays %>
-  </p>
-
-  <p>
-    <strong>Adresse:</strong>
-    <%= circuit.adresse %>
-  </p>
-
-  <p>
-    <strong>Latitude:</strong>
-    <%= circuit.latitude %>
-  </p>
-
-  <p>
-    <strong>Longitude:</strong>
-    <%= circuit.longitude %>
-  </p>
-
+  <div class="cadre-record">
+    <div data-controller="dropdown" data-action="turbo:submit-end->dropdown#submitEnd">
+      <div class="row">
+        <div class="col-8 col-data">
+          <%= circuit.nom %>
+          <div data-dropdown-target="dropdownContent">
+            Pays: <%= circuit.pays %>
+            Adresse: <%= circuit.adresse %>
+            Latitude: <%= circuit.latitude %>
+            Longitude: <%= circuit.longitude %>
+          </div>
+        </div>
+        <div class="col-4 col-btn">  
+          <div role="button" data-action="click->dropdown#openDropdown" 
+              data-dropdown-target="openButton", class="fa-solid fa-eye btn btn-outline-primary btn-action">
+          </div>
+          <div role="button" data-action="click->dropdown#closeDropdown" 
+            data-dropdown-target="closeButton", class="fa-solid fa-eye-slash btn btn-outline-primary btn-action">
+          </div>
+                
+          <%= button_to "", edit_circuit_path(circuit), 
+                class:"fa-regular fa-pen-to-square btn btn-secondary btn-action", method: :post %> 
+          <%= button_to '', circuit_path(circuit), 
+                class:"fa-solid fa-trash-can btn btn-danger btn-action", method: :delete,
+                :onclick => "return confirm('Etes-vous certain de vouloir supprimer le circuit ?')" %> 
+        </div>
+      </div>
+    </div>
+  </div>
 </div>

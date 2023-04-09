@@ -11,57 +11,60 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :event_id, style: "display: block" %>
-    <%= form.text_field :event_id %>
-  </div>
+ <div class="cadre-record">
+    <div class="row">
 
-  <div>
-    <%= form.label :pilote_id, style: "display: block" %>
-    <%= form.text_field :pilote_id %>
-  </div>
+      <div class="col-10 mx-auto ">
+        <div class="input-group">
+          <%= form.label :event_id, class:"input-group-text label-with-format" %>
+          <%= form.text_field :event_id,  required: true, class:"form-control field-with-format" %>
+        </div>
+        <div class="input-group">
+          <%= form.label :pilote_id, class:"input-group-text label-with-format" %>
+          <%= form.number_field :pilote_id, class:"form-control field-with-format" %>
+        </div>
 
-  <div>
-    <%= form.label :equipe_id, style: "display: block" %>
-    <%= form.text_field :equipe_id %>
-  </div>
+        <div class="input-group">
+          <%= form.label :equipe_id, class:"input-group-text label-with-format" %>
+          <%= form.number_field :equipe_id, class:"form-control field-with-format" %>
+        </div>
+        <div class="input-group">
+          <%= form.label :qualification, class:"input-group-text label-with-format" %>
+          <%= form.number_field :qualification, class:"form-control field-with-format" %>
+        </div>
+        <div class="input-group">
+          <%= form.label :course, class:"input-group-text label-with-format" %>
+          <%= form.number_field :course, class:"form-control field-with-format" %>
+        </div>
+        <div class="input-group">
+          <%= form.label :dotd, class:"input-group-text label-with-format" %>
+          <%= form.number_field :dotd, class:"form-control field-with-format" %>
+        </div>
+        <div class="input-group">
+          <%= form.label :mt, class:"input-group-text label-with-format" %>
+          <%= form.number_field :mt, class:"form-control field-with-format" %>
+        </div>
+        <div class="input-group">
+          <%= form.label :score, class:"input-group-text label-with-format" %>
+          <%= form.number_field :score, class:"form-control field-with-format" %>
+        </div>
+        <div class="input-group">
+          <%= form.label :dnf, class:"input-group-text label-with-format" %>
+          <%= form.number_field :dnf, class:"form-control field-with-format" %>
+        </div>
+        <div class="input-group">
+          <%= form.label :dns, class:"input-group-text label-with-format" %>
+          <%= form.number_field :dns, class:"form-control field-with-format" %>
+        </div>
 
-  <div>
-    <%= form.label :qualification, style: "display: block" %>
-    <%= form.number_field :qualification %>
-  </div>
+      </div>
 
-  <div>
-    <%= form.label :course, style: "display: block" %>
-    <%= form.number_field :course %>
-  </div>
-
-  <div>
-    <%= form.label :dotd, style: "display: block" %>
-    <%= form.check_box :dotd %>
-  </div>
-
-  <div>
-    <%= form.label :mt, style: "display: block" %>
-    <%= form.check_box :mt %>
-  </div>
-
-  <div>
-    <%= form.label :score, style: "display: block" %>
-    <%= form.number_field :score %>
-  </div>
-
-  <div>
-    <%= form.label :dnf, style: "display: block" %>
-    <%= form.check_box :dnf %>
-  </div>
-
-  <div>
-    <%= form.label :dns, style: "display: block" %>
-    <%= form.check_box :dns %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+      <div class="col-2 col-btn">
+        <button type="submit" class="btn btn-valider">
+          <span><i class="fa-solid fa-square-check"></i> </span>
+        </button>
+      </div>
+    </div>
   </div>
 <% end %>
+

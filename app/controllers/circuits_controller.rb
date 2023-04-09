@@ -1,57 +1,91 @@
 class CircuitsController < ApplicationController
   before_action :set_circuit, only: %i[ show edit update destroy ]
 
-  # GET /circuits or /circuits.json
   def index
-    @circuits = Circuit.all
+    search_params = params.permit(:format, :page, q:[:nom_cont])
+    @q = Circuit.ransack(search_params[:q])
+    circuits = @q.result(distinct: true).order(created_at: :desc)
+    @pagy, @circuits = pagy_countless(circuits, items: 20)
   end
 
-  # GET /circuits/1 or /circuits/1.json
   def show
   end
 
-  # GET /circuits/new
   def new
-    @circuit = Circuit.new
+    @circuit = Circuit.new(circuit_params)
   end
 
-  # GET /circuits/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.turbo_stream do  
+        render turbo_stream: turbo_stream.update(@circuit, partial: "circuits/form", 
+          locals: {circuit: @circuit})
+      end
+    end
   end
 
-  # POST /circuits or /circuits.json
   def create
     @circuit = Circuit.new(circuit_params)
 
     respond_to do |format|
       if @circuit.save
-        format.html { redirect_to circuit_url(@circuit), notice: "Circuit was successfully created." }
+        format.turbo_stream do
+          flash.now[:notice] = "le circuit #{@circuit.nom} a bien été ajouté"
+          render turbo_stream: [
+            turbo_stream.update('new_circuit', partial: "circuits/form", locals: {circuit: Circuit.new}),
+            turbo_stream.prepend("circuits", partial: "circuits/circuit",
+              locals: {circuit: @circuit }), 
+              turbo_stream.update("flash", partial: "layouts/flash"),     
+            ]
+        end
+        format.html { redirect_to circuit_url(@circuit), notice: "circuit was successfully created." }
         format.json { render :show, status: :created, location: @circuit }
+
       else
+        flash.now[:notice] = "erreur - le circuit n'a pas été ajouté"
+        format.turbo_stream do
+          render turbo_stream: [
+             turbo_stream.update("flash", partial: "layouts/flashError"),
+           ]
+         end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @circuit.errors, status: :unprocessable_entity }
+
       end
     end
   end
 
-  # PATCH/PUT /circuits/1 or /circuits/1.json
   def update
     respond_to do |format|
       if @circuit.update(circuit_params)
-        format.html { redirect_to circuit_url(@circuit), notice: "Circuit was successfully updated." }
+        format.turbo_stream do  
+          flash.now[:notice] = "le circuit #{@circuit.nom} a bien été modifié"
+          render turbo_stream: [
+            turbo_stream.update(@circuit, partial: "circuits/circuit", 
+              locals: {circuit: @circuit}),
+              turbo_stream.update("flash", partial: "layouts/flash")
+           ]
+        end
+
+        format.html { redirect_to circuit_url(@circuit), notice: "circuit was successfully updated." }
         format.json { render :show, status: :ok, location: @circuit }
       else
+        format.turbo_stream do  
+          render turbo_stream: turbo_stream.update(@circuit, partial: "circuits/form", 
+            locals: {circuit: @circuit})
+        end
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @circuit.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /circuits/1 or /circuits/1.json
   def destroy
     @circuit.destroy
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@circuit) }
       format.html { redirect_to circuits_url, notice: "Circuit was successfully destroyed." }
       format.json { head :no_content }
     end

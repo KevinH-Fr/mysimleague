@@ -1,57 +1,91 @@
 class SaisonsController < ApplicationController
   before_action :set_saison, only: %i[ show edit update destroy ]
 
-  # GET /saisons or /saisons.json
   def index
-    @saisons = Saison.all
+    search_params = params.permit(:format, :page, q:[:nom_cont])
+    @q = Saison.ransack(search_params[:q])
+    saisons = @q.result(distinct: true).order(created_at: :desc)
+    @pagy, @saisons = pagy_countless(saisons, items: 20)
   end
 
-  # GET /saisons/1 or /saisons/1.json
   def show
   end
 
-  # GET /saisons/new
   def new
-    @saison = Saison.new
+    @saison = Saison.new(saison_params)
   end
 
-  # GET /saisons/1/edit
   def edit
+    respond_to do |format|
+      format.html
+      format.turbo_stream do  
+        render turbo_stream: turbo_stream.update(@saison, partial: "saisons/form", 
+          locals: {saison: @saison})
+      end
+    end
   end
 
-  # POST /saisons or /saisons.json
   def create
     @saison = Saison.new(saison_params)
 
     respond_to do |format|
       if @saison.save
-        format.html { redirect_to saison_url(@saison), notice: "Saison was successfully created." }
+        format.turbo_stream do
+          flash.now[:notice] = "le saison #{@saison.nom} a bien été ajouté"
+          render turbo_stream: [
+            turbo_stream.update('new_saison', partial: "saisons/form", locals: {saison: Saison.new}),
+            turbo_stream.prepend("saisons", partial: "saisons/saison",
+              locals: {saison: @saison }), 
+              turbo_stream.update("flash", partial: "layouts/flash"),     
+            ]
+        end
+        format.html { redirect_to saison_url(@saison), notice: "saison was successfully created." }
         format.json { render :show, status: :created, location: @saison }
+
       else
+        flash.now[:notice] = "erreur - le saison n'a pas été ajouté"
+        format.turbo_stream do
+          render turbo_stream: [
+             turbo_stream.update("flash", partial: "layouts/flashError"),
+           ]
+         end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @saison.errors, status: :unprocessable_entity }
+
       end
     end
   end
 
-  # PATCH/PUT /saisons/1 or /saisons/1.json
   def update
     respond_to do |format|
       if @saison.update(saison_params)
-        format.html { redirect_to saison_url(@saison), notice: "Saison was successfully updated." }
+        format.turbo_stream do  
+          flash.now[:notice] = "le saison #{@saison.nom} a bien été modifié"
+          render turbo_stream: [
+            turbo_stream.update(@saison, partial: "saisons/saison", 
+              locals: {saison: @saison}),
+              turbo_stream.update("flash", partial: "layouts/flash")
+           ]
+        end
+
+        format.html { redirect_to saison_url(@saison), notice: "saison was successfully updated." }
         format.json { render :show, status: :ok, location: @saison }
       else
+        format.turbo_stream do  
+          render turbo_stream: turbo_stream.update(@saison, partial: "saisons/form", 
+            locals: {saison: @saison})
+        end
         format.html { render :edit, status: :unprocessable_entity }
         format.json { render json: @saison.errors, status: :unprocessable_entity }
       end
     end
   end
 
-  # DELETE /saisons/1 or /saisons/1.json
   def destroy
     @saison.destroy
 
     respond_to do |format|
+      format.turbo_stream { render turbo_stream: turbo_stream.remove(@saison) }
       format.html { redirect_to saisons_url, notice: "Saison was successfully destroyed." }
       format.json { head :no_content }
     end
