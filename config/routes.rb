@@ -9,6 +9,7 @@ Rails.application.routes.draw do
  
   root "home#index"
  
+  resources :classementpilotes
   resources :posts
 
   resources :pilotes do

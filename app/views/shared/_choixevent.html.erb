@@ -1,0 +1,25 @@
+
+    
+<%# btn choix ligue %>
+<div class="m-2">
+  Ligue |
+  <% @ligues.each do |ligue| %>
+  
+      <%= button_to "#{ligue.nom}", url_for(ligueId: ligue.id), 
+          class:"btn btn-sm btn-secondary"
+            %>
+
+  <% end %>
+</div>
+
+
+<%# btn choix saison %>
+<div class="m-2">
+  Choix saison |
+  <% @saisons.each do |saison| %>
+    <%= link_to "#{saison.nom}", url_for(ligueId: @ligueId, saisonId: saison.id), 
+        class:"btn btn-sm btn-secondary", :method => :post %> 
+  <% end %>
+</div>
+
+<hr/> 
