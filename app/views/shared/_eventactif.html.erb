@@ -28,16 +28,16 @@
                       <%= Circuit.find(circuitId).pays %>
                 </td>
                 <td>
-                  <% if (Circuit.find(circuitId).drapeau).blank? %>
-                  <% else %>
-                    <%= image_tag(Circuit.find(circuitId).drapeau, style: "width: 50px; display: block", class: "img-fluid rounded") %> 
-                  <% end %>
+                  <%# if (Circuit.find(circuitId).drapeau).blank? %>
+                  <%# else %>
+                    <%#= image_tag(Circuit.find(circuitId).drapeau, style: "width: 50px; display: block", class: "img-fluid rounded") %> 
+                  <%# end %>
                 </td>
                 <td>
-                  <% if (Circuit.find(circuitId).carte).blank? %>
-                  <% else %>
-                      <%= image_tag(Circuit.find(circuitId).carte, style: "width: 50px; display: block", class: "img-fluid rounded") %>  
-                  <% end %>
+                  <%# if (Circuit.find(circuitId).carte).blank? %>
+                  <%# else %>
+                      <%#= image_tag(Circuit.find(circuitId).carte, style: "width: 50px; display: block", class: "img-fluid rounded") %>  
+                  <%# end %>
                 </td>
                  <td class="eventactif">
                     <% divisionId = Event.find(@eventId).division_id %> 

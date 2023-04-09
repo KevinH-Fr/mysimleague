@@ -1,24 +1,40 @@
 
-    
+
 <%# btn choix ligue %>
 <div class="m-2">
   Ligue |
   <% @ligues.each do |ligue| %>
-  
-      <%= button_to "#{ligue.nom}", url_for(ligueId: ligue.id), 
-          class:"btn btn-sm btn-secondary"
-            %>
-
+      <%= link_to "#{ligue.nom}", url_for(ligueId: ligue.id), 
+          class:"btn btn-sm btn-secondary"%>
   <% end %>
 </div>
 
-
 <%# btn choix saison %>
 <div class="m-2">
-  Choix saison |
+  Saison |
   <% @saisons.each do |saison| %>
-    <%= link_to "#{saison.nom}", url_for(ligueId: @ligueId, saisonId: saison.id), 
-        class:"btn btn-sm btn-secondary", :method => :post %> 
+      <%= link_to "#{saison.nom}", url_for(ligueId: @ligueId, saisonId: saison.id), 
+          class:"btn btn-sm btn-secondary"%>
+  <% end %>
+</div>
+
+<%# btn choix division %>
+<div class="m-2">
+  Division |
+  <% @divisions.each do |division| %>
+      <%= link_to "#{division.nom}", 
+        url_for(ligueId: @ligueId, saisonId: @saisonId, divisionId: division.id), 
+        class:"btn btn-sm btn-secondary"%>
+  <% end %>
+</div>
+
+<%# btn choix event %>
+<div class="m-2">
+  Event |
+  <% @events.each do |event| %>
+      <%= link_to "#{event.numero}", 
+        url_for(ligueId: @ligueId, saisonId: @saisonId, divisionId: @divisionId, eventId: event.id), 
+        class:"btn btn-sm btn-secondary"%>
   <% end %>
 </div>
 

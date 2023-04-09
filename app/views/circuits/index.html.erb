@@ -1,14 +1,34 @@
-<p style="color: green"><%= notice %></p>
+<div data-controller="newrecord" data-action="turbo:submit-end->newrecord#submitEnd">
+      
+  <div class="container container-titre">
+    <div class="row">
+      <div class="col-2 icon-titre">
+        <i class="fa fa-road"></i>
+      </div>
+      <div class="col-8 d-flex align-items-center">
+        <h1>Circuits</h1>
+      </div>
+      <div class="col-2 d-flex align-items-center">
+        <div role="button" data-action="click->newrecord#openDropdown" 
+          data-newrecord-target="openButton" 
+          class="fa-solid fa-add btn btn-warning btn-action">
+        </div>
+        <div role="button" data-action="click->newrecord#closeDropdown" 
+          data-newrecord-target="closeButton" 
+          class="fa-solid fa-close btn btn-danger btn-action">
+        </div>
+      </div>
+    </div>
+  </div>
 
-<h1>Circuits</h1>
+  <div data-newrecord-target="newrecordContent">
+    <div id="new_circuit">
+      <%= render partial: "circuits/form", locals: {circuit: Circuit.new} %>
+    </div>
+  </div>
 
-<div id="circuits">
-  <% @circuits.each do |circuit| %>
-    <%= render circuit %>
-    <p>
-      <%= link_to "Show this circuit", circuit %>
-    </p>
-  <% end %>
+  <div id="circuits">
+    <%= render @circuits %>
+  </div>
+
 </div>
-
-<%= link_to "New circuit", new_circuit_path %>
