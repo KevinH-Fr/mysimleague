@@ -1,9 +1,16 @@
-feed contents
 
 <% @feeds.each do |feed| %>
     <div class="cadre-record"> 
-        <span class=""> <%= feed.class.name %> edited </span> 
-        <span class="fw-bold"> <%= link_to feed.feed_content, polymorphic_path(feed) %> </span> <hr>    
-        <small class="time-ago"> <%= time_ago_in_words(feed.updated_at) %> </small>
+        <div class="row">
+            <div class="col-10">
+                <span class=""> <%= feed.class.name %> edited </span> 
+                <span class="fw-bold"> <%= link_to feed.feed_content, polymorphic_path(feed) %> </span>  
+                <div> <small class="time-ago"> <%= time_ago_in_words(feed.updated_at) %> </small> </div>
+            </div>
+            <div class="col-2 px-4 d-flex align-items-center justify-content-center">
+                <%= icon(feed) %>
+                <%#= feed.class %>
+            </div>
+        </div>
     </div>
 <% end %>

@@ -6,5 +6,5 @@ class Pilote < ApplicationRecord
    def feed_content
       nom
    end 
-   
+
 end
