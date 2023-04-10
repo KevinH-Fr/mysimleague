@@ -99,6 +99,6 @@ class SaisonsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def saison_params
-      params.require(:saison).permit(:nom, :numero)
+      params.require(:saison).permit(:nom, :numero, :ligue_id)
     end
 end

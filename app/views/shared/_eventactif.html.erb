@@ -3,17 +3,29 @@
   <table width="100%">
     <thead>
       <tr>
+        <th class="enteteGp">Ligue</th>
+        <th class="enteteGp">Saison</th>
+        <th class="enteteGp">Division</th>
         <th class="enteteGp">N°</th>
         <th class="enteteGp">Date</th>
         <th class="enteteGp">Pays</th>
         <th class="enteteGp">Drapeau</th>
         <th class="enteteGp">Carte</th>
-        <th class="enteteGp">Division</th>
+     
       </tr>
     </thead>
 
     <tbody>
       <tr>
+        <td class="eventactif">
+          <%= Ligue.find(@ligueId).nom %>
+        </td>
+        <td class="eventactif">
+          <%= Saison.find(@saisonId).nom %>
+        </td>
+        <td class="eventactif">
+          <%= Division.find(@divisionId).nom %>
+        </td>
         <td class="eventactif">
             <%= Event.find(@eventId).numero %>
         </td>
@@ -39,10 +51,7 @@
               <%#= image_tag(Circuit.find(circuitId).carte, style: "width: 50px; display: block", class: "img-fluid rounded") %>  
           <%# end %>
         </td>
-          <td class="eventactif">
-            <% divisionId = Event.find(@eventId).division_id %> 
-            <%= Division.find(divisionId).nom %>
-        </td>
+
       </tr>
   </tbody>
 </table>

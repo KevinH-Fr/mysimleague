@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_08_225448) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_10_155424) do
   create_table "circuits", force: :cascade do |t|
     t.string "nom"
     t.string "pays"
@@ -26,6 +26,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_225448) do
     t.integer "numero"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "saison_id"
+    t.index ["saison_id"], name: "index_divisions_on_saison_id"
   end
 
   create_table "equipes", force: :cascade do |t|
@@ -40,15 +42,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_225448) do
     t.time "horaire"
     t.integer "numero"
     t.integer "circuit_id", null: false
-    t.integer "saison_id", null: false
     t.integer "division_id", null: false
-    t.integer "ligue_id", null: false
+    t.integer "ligue_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["circuit_id"], name: "index_events_on_circuit_id"
     t.index ["division_id"], name: "index_events_on_division_id"
     t.index ["ligue_id"], name: "index_events_on_ligue_id"
-    t.index ["saison_id"], name: "index_events_on_saison_id"
   end
 
   create_table "friends", force: :cascade do |t|
@@ -102,13 +102,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_08_225448) do
     t.integer "numero"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "ligue_id"
+    t.index ["ligue_id"], name: "index_saisons_on_ligue_id"
   end
 
+  add_foreign_key "divisions", "saisons"
   add_foreign_key "events", "circuits"
   add_foreign_key "events", "divisions"
   add_foreign_key "events", "ligues"
-  add_foreign_key "events", "saisons"
   add_foreign_key "resultats", "equipes"
   add_foreign_key "resultats", "events"
   add_foreign_key "resultats", "pilotes"
+  add_foreign_key "saisons", "ligues"
 end

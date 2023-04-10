@@ -1,0 +1,7 @@
+<%# groupement choix event et event actif pour appel commun %>
+
+<%= render "shared/choixevent" %>
+
+<% if @eventId.present? %>
+  <%= render "shared/eventactif" %>
+<% end %>

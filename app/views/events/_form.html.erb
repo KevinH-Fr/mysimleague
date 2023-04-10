@@ -31,20 +31,14 @@
         </div>
         <div class="input-group">
           <%= form.label :circuit_id, class:"input-group-text label-with-format" %>
-          <%= form.number_field :circuit_id, class:"form-control field-with-format" %>
+          <%= form.collection_select :circuit_id, Circuit.all, :id, :nom_complet, {}, class:"form-control field-with-format" %>
         </div>
-        <div class="input-group">
-          <%= form.label :saison_id, class:"input-group-text label-with-format" %>
-          <%= form.number_field :saison_id, class:"form-control field-with-format" %>
-        </div>
+
         <div class="input-group">
           <%= form.label :division_id, class:"input-group-text label-with-format" %>
-          <%= form.number_field :division_id, class:"form-control field-with-format" %>
+          <%= form.collection_select :division_id, Division.all, :id, :nom, {}, class:"form-control field-with-format" %>
         </div>
-        <div class="input-group">
-          <%= form.label :ligue_id, class:"input-group-text label-with-format" %>
-          <%= form.number_field :ligue_id, class:"form-control field-with-format" %>
-        </div>
+
       </div>
 
       <div class="col-2 col-btn">
