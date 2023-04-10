@@ -2,10 +2,17 @@ class ResultatsController < ApplicationController
   before_action :set_resultat, only: %i[ show edit update destroy ]
 
   def index
-    search_params = params.permit(:format, :page, q:[:id_cont])
-    @q = Resultat.ransack(search_params[:q])
-    resultats = @q.result(distinct: true).order(created_at: :desc)
-    @pagy, @resultats = pagy_countless(resultats, items: 20)
+    @ligues = Ligue.all
+    @saisons = Saison.all
+    @divisions = Division.all
+    @events = Event.all
+    @resultats = Resultat.all
+
+    @ligueId = params[:ligueId]
+    @saisonId = params[:saisonId]
+    @divisionId = params[:divisionId]
+    @eventId = params[:eventId]
+
   end
 
   def show
