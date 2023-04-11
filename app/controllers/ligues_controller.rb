@@ -93,6 +93,6 @@ class LiguesController < ApplicationController
     end
 
     def ligue_params
-      params.require(:ligue).permit(:nom, :description)
+      params.require(:ligue).permit(:nom, :description, :icon)
     end
 end

@@ -1,18 +1,26 @@
-
 <div id="<%= dom_id circuit %>">
 
   <div class="cadre-record">
     <div data-controller="dropdown" data-action="turbo:submit-end->dropdown#submitEnd">
       <div class="row">
         <div class="col-8 col-data">
-          <%= circuit.nom %>
+          <div class="row"> 
+            <div class="col-2">
+              <%= image_tag(circuit.drapeau, class:"img-drapeau") if circuit.drapeau.attached? %>
+            </div>
+            <div class="col-10">
+              <%= circuit.nom_complet %>  
+            </div>
+          </div>
+
           <div data-dropdown-target="dropdownContent">
-            Pays: <%= circuit.pays %>
-            Adresse: <%= circuit.adresse %>
-            Latitude: <%= circuit.latitude %>
+            Adresse: <%= circuit.adresse %> <br>  
+            Latitude: <%= circuit.latitude %> <br>
             Longitude: <%= circuit.longitude %>
           </div>
+
         </div>
+
         <div class="col-4 col-btn">  
           <div role="button" data-action="click->dropdown#openDropdown" 
               data-dropdown-target="openButton", class="fa-solid fa-eye btn btn-outline-primary btn-action">

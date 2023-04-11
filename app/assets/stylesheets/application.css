@@ -51,9 +51,9 @@ h1{
   padding-left: 1em;
   font-weight: bold;
   font-size: large;
-  display: flex;
+ /* display: flex;
   align-items: center;
-  justify-content: center;
+  justify-content: center;*/
 }
 
 .col-btn{
@@ -137,6 +137,13 @@ h1{
   background-color: rgb(24, 24, 24);
   align-items: center;
   justify-content: center;
+}
+
+
+/* IMAGES */
+
+.img-drapeau{
+  width: 2em;
 }
 
 /* FLASHS */
