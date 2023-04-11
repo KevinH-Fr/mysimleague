@@ -23,27 +23,24 @@
 
 <% if @eventId.present? %>
     
-  <div data-controller="newrecord" data-action="turbo:submit-end->newrecord#submitEnd">
 
-    <div id="resultats">
-      <%= render @resultats %>
+  <div id="resultats">
+    <%= render @resultats %>
+  </div>
+  <div class="container text-end">
+    <div role="button" data-action="click->newrecord#openDropdown" 
+      data-newrecord-target="openButton" 
+      class="fa-solid fa-add btn btn-warning btn-action">
     </div>
-    <div class="container text-end">
-      <div role="button" data-action="click->newrecord#openDropdown" 
-        data-newrecord-target="openButton" 
-        class="fa-solid fa-add btn btn-warning btn-action">
-      </div>
-      <div role="button" data-action="click->newrecord#closeDropdown" 
-        data-newrecord-target="closeButton" 
-        class="fa-solid fa-close btn btn-danger btn-action">
-      </div>
+    <div role="button" data-action="click->newrecord#closeDropdown" 
+      data-newrecord-target="closeButton" 
+      class="fa-solid fa-close btn btn-danger btn-action">
     </div>
-    <div data-newrecord-target="newrecordContent">
-      <div id="new_resultat">
-        <%= render partial: "resultats/form", locals: {resultat: Resultat.new} %>
-      </div>
+  </div>
+  <div data-newrecord-target="newrecordContent">
+    <div id="new_resultat">
+      <%= render partial: "resultats/form", locals: {resultat: Resultat.new} %>
     </div>
-
   </div>
 
 <% end %>

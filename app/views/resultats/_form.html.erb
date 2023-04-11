@@ -21,7 +21,7 @@
         </div>
         <div class="input-group">
           <%= form.label :pilote_id, class:"input-group-text label-with-format" %>
-          <%= form.number_field :pilote_id, class:"form-control field-with-format" %>
+          <%= form.collection_select :pilote_id, Pilote.all, :id, :nom, {}, class:"form-select field-with-format" %>
         </div>
 
         <div class="input-group">

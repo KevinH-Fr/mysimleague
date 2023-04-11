@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_11_123447) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_11_154706) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -58,6 +58,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_123447) do
     t.index ["saison_id"], name: "index_divisions_on_saison_id"
   end
 
+  create_table "divisions_pilotes", id: false, force: :cascade do |t|
+    t.integer "pilote_id", null: false
+    t.integer "division_id", null: false
+    t.index ["division_id"], name: "index_divisions_pilotes_on_division_id"
+    t.index ["pilote_id", "division_id"], name: "index_divisions_pilotes_on_pilote_id_and_division_id", unique: true
+    t.index ["pilote_id"], name: "index_divisions_pilotes_on_pilote_id"
+  end
+
   create_table "equipes", force: :cascade do |t|
     t.string "nom"
     t.string "couleur"
@@ -92,6 +100,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_123447) do
     t.text "description"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "pilote_divisions", force: :cascade do |t|
+    t.integer "pilote_id", null: false
+    t.integer "division_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["division_id"], name: "index_pilote_divisions_on_division_id"
+    t.index ["pilote_id"], name: "index_pilote_divisions_on_pilote_id"
   end
 
   create_table "pilotes", force: :cascade do |t|
@@ -137,9 +154,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_123447) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "divisions", "saisons"
+  add_foreign_key "divisions_pilotes", "divisions"
+  add_foreign_key "divisions_pilotes", "pilotes"
   add_foreign_key "events", "circuits"
   add_foreign_key "events", "divisions"
   add_foreign_key "events", "ligues"
+  add_foreign_key "pilote_divisions", "divisions"
+  add_foreign_key "pilote_divisions", "pilotes"
   add_foreign_key "resultats", "equipes"
   add_foreign_key "resultats", "events"
   add_foreign_key "resultats", "pilotes"

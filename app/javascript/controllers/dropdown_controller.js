@@ -22,6 +22,7 @@ export default class extends Controller {
   }
 
   openDropdown() {
+
     this.dropdownContentTarget.hidden = false
     this.openButtonTarget.hidden = true
     this.closeButtonTarget.hidden = false

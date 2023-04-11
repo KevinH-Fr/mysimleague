@@ -8,6 +8,13 @@
           <%= division.nom %>
           <%= division.numero %>
             <div data-dropdown-target="dropdownContent">
+
+                    listePilotes de la div:
+
+                    <%= Pilote.in_division(division.numero).ids %>
+                    <%= @pilotes.ids %>
+
+
             </div>
         </div>
         <div class="col-4 col-btn">  

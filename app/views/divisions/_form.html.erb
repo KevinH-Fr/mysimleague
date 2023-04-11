@@ -26,7 +26,17 @@
 
         <div class="input-group">
           <%= form.label :saison_id, class:"input-group-text label-with-format" %>
-          <%= form.number_field :saison_id, value: @saisonId, class:"form-control field-with-format" %>
+          <% if division.persisted? %>
+            <%= form.text_field :saison_id %>
+          <% else %>
+            <%= form.text_field :saison_id, value: @saisonId %>
+          <% end %>
+        </div>
+
+
+        <div class="input-group">
+          <%= form.label :pilote_ids, 'Pilotes' %>
+          <%= form.collection_select :pilote_ids, @pilotes, :id, :nom, {}, { multiple: true } %>
         </div>
 
       </div>

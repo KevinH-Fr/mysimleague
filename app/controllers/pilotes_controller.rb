@@ -2,10 +2,24 @@ class PilotesController < ApplicationController
   before_action :set_pilote, only: %i[ show edit update destroy ]
 
   def index
-    search_params = params.permit(:format, :page, q:[:nom_cont])
-    @q = Pilote.ransack(search_params[:q])
-    pilotes = @q.result(distinct: true).order(created_at: :desc)
-    @pagy, @pilotes = pagy_countless(pilotes, items: 20)
+
+    @ligueId = params[:ligueId]
+    @saisonId = params[:saisonId]
+    @divisionId = params[:divisionId]
+
+    @ligues = Ligue.all
+    @saisons = Saison.ligue_courante(@ligueId)
+    @divisions = Division.saison_courante(@saisonId)
+
+    @pilotes = Pilote.all
+
+    # association divisions pilotes
+    #if @divisionId.present?
+    #  @division = Division.find(params[:divisionId])
+    #  @pilotes = @division.pilotes
+    #end
+
+
   end
 
   def show

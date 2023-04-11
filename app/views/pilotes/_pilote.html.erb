@@ -7,6 +7,13 @@
         <div class="col-8 col-data">
           <%= pilote.nom %>
             <div data-dropdown-target="dropdownContent">
+
+                                listeDivisions du pilote:
+
+                    <%#= Division.with_pilote(pilote.id).ids %>
+                    <%#= @pilotes.ids %>
+
+
             </div>
         </div>
         <div class="col-4 col-btn">  
@@ -16,7 +23,8 @@
           <div role="button" data-action="click->dropdown#closeDropdown" 
             data-dropdown-target="closeButton", class="fa-solid fa-eye-slash btn btn-outline-primary btn-action">
           </div>
-                
+
+         
           <%= button_to "", edit_pilote_path(pilote), 
                 class:"fa-regular fa-pen-to-square btn btn-secondary btn-action", method: :post %> 
           <%= button_to '', pilote_path(pilote), 
