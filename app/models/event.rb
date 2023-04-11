@@ -5,7 +5,7 @@ class Event < ApplicationRecord
 
   has_many :resultats
 
-  #scope :division_courante, -> (division_courante) { where("division_id = ?", division_courante)}
+  scope :division_courante, -> (division_courante) { where("division_id = ?", division_courante)}
 
   def feed_content
     id

@@ -2,15 +2,10 @@ class SaisonsController < ApplicationController
   before_action :set_saison, only: %i[ show edit update destroy ]
 
   def index
-    @saisons = Saison.all
 
     @ligues = Ligue.all
     @ligueId = params[:ligueId]
-
-    if @ligueId.present?
-      @ligue = Ligue.find(params[:ligueId]) 
-      @saisons = @ligue.saisons
-    end
+    @saisons = Saison.ligue_courante(@ligueId)
 
   end
 

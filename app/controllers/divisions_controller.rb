@@ -8,15 +8,8 @@ class DivisionsController < ApplicationController
     @ligueId = params[:ligueId]
     @saisonId = params[:saisonId]
 
-    if @ligueId.present?
-      @ligue = Ligue.find(params[:ligueId]) 
-      @saisons = @ligue.saisons
-    end
-
-    if @saisonId.present?
-      @saison = Saison.find(params[:saisonId]) 
-      @divisions = @saison.divisions
-    end
+    @saisons = Saison.ligue_courante(@ligueId)
+    @divisions = Division.saison_courante(@saisonId)
 
   end
 

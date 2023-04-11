@@ -9,24 +9,10 @@ class EventsController < ApplicationController
     @eventId = params[:eventId]
 
     @ligues = Ligue.all
-    @saisons = Saison.all
-    @divisions = Division.all
-    @events = Event.all
 
-    if @ligueId.present?
-      @ligue = Ligue.find(params[:ligueId]) 
-      @saisons = @ligue.saisons
-    end
-
-    if @saisonId.present?
-      @saison = Saison.find(params[:saisonId]) 
-      @divisions = @saison.divisions
-    end
-
-    if @eventId.present?
-      @event = Event.find(params[:eventId]) 
-      @resultats = @event.resultats
-    end
+    @saisons = Saison.ligue_courante(@ligueId)
+    @divisions = Division.saison_courante(@saisonId)
+    @events = Event.division_courante(@divisionId)
 
   end
   
