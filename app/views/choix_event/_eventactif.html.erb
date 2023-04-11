@@ -1,5 +1,8 @@
   <%# afficher les détails de l'event selectionné %>
-  
+
+<% if @eventId.present? %>
+
+<div class="container container-eventactif">   
   <table width="100%">
     <thead>
       <tr>
@@ -53,7 +56,8 @@
         </td>
 
       </tr>
-  </tbody>
-</table>
+    </tbody>
+  </table>
+</div>
 
-<hr/>
+<% end %>

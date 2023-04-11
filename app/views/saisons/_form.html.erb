@@ -26,7 +26,7 @@
 
         <div class="input-group">
           <%= form.label :ligue_id, class:"input-group-text label-with-format" %>
-          <%= form.collection_select :ligue_id, Ligue.all, :id, :nom, {}, class:"form-control field-with-format" %>
+          <%= form.number_field :ligue_id, value: @ligueId , class:"form-control field-with-format" %>
         </div>
 
       </div>

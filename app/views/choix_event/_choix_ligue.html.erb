@@ -1,0 +1,8 @@
+<%# btn choix ligue %>
+<div class="m-2">
+  Ligue |
+  <% @ligues.each do |ligue| %>
+      <%= link_to "#{ligue.nom}", url_for(ligueId: ligue.id), 
+          class:"btn btn-choix-event"%>
+  <% end %>
+</div>

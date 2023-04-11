@@ -2,10 +2,16 @@ class SaisonsController < ApplicationController
   before_action :set_saison, only: %i[ show edit update destroy ]
 
   def index
-    search_params = params.permit(:format, :page, q:[:nom_cont])
-    @q = Saison.ransack(search_params[:q])
-    saisons = @q.result(distinct: true).order(created_at: :desc)
-    @pagy, @saisons = pagy_countless(saisons, items: 20)
+    @saisons = Saison.all
+
+    @ligues = Ligue.all
+    @ligueId = params[:ligueId]
+
+    if @ligueId.present?
+      @ligue = Ligue.find(params[:ligueId]) 
+      @saisons = @ligue.saisons
+    end
+
   end
 
   def show

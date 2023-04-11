@@ -2,16 +2,36 @@ class ResultatsController < ApplicationController
   before_action :set_resultat, only: %i[ show edit update destroy ]
 
   def index
-    @ligues = Ligue.all
-    @saisons = Saison.all
-    @divisions = Division.all
-    @events = Event.all
-    @resultats = Resultat.all
 
     @ligueId = params[:ligueId]
     @saisonId = params[:saisonId]
     @divisionId = params[:divisionId]
     @eventId = params[:eventId]
+
+    @ligues = Ligue.all
+    @saisons = Saison.all
+    @divisions = Division.all
+    @events = Event.all
+
+    if @ligueId.present?
+      @ligue = Ligue.find(params[:ligueId]) 
+      @saisons = @ligue.saisons
+    end
+
+    if @saisonId.present?
+      @saison = Saison.find(params[:saisonId]) 
+      @divisions = @saison.divisions
+    end
+
+    if @divisionId.present?
+      @division = Division.find(params[:divisionId]) 
+      @events = @division.events
+    end
+
+    if @eventId.present?
+      @event = Event.find(params[:eventId]) 
+      @resultats = @event.resultats
+    end
 
   end
 

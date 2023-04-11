@@ -16,7 +16,6 @@ class HomeController < ApplicationController
     @feeds.concat(feed_ligues)
     @feeds.concat(feed_saisons)
     @feeds.concat(feed_divisions)
-    @feeds.concat(feed_circuits)
 
     @feeds.concat(feed_circuits)
     @feeds.concat(feed_ecuries)

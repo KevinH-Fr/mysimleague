@@ -3,15 +3,30 @@ class EventsController < ApplicationController
 
   def index
 
+    @ligueId = params[:ligueId]
+    @saisonId = params[:saisonId]
+    @divisionId = params[:divisionId]
+    @eventId = params[:eventId]
+
     @ligues = Ligue.all
     @saisons = Saison.all
     @divisions = Division.all
     @events = Event.all
 
-    @ligueId = params[:ligueId]
-    @saisonId = params[:saisonId]
-    @divisionId = params[:divisionId]
-    @eventId = params[:eventId]
+    if @ligueId.present?
+      @ligue = Ligue.find(params[:ligueId]) 
+      @saisons = @ligue.saisons
+    end
+
+    if @saisonId.present?
+      @saison = Saison.find(params[:saisonId]) 
+      @divisions = @saison.divisions
+    end
+
+    if @eventId.present?
+      @event = Event.find(params[:eventId]) 
+      @resultats = @event.resultats
+    end
 
   end
   

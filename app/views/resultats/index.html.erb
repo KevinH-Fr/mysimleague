@@ -1,40 +1,49 @@
-<%= render "shared/choixevent" %>
+<div class="container container-titre">
+  <div class="row">
+    <div class="col-2 icon-titre">
+      <i class="fa fa-square-poll-horizontal"></i>
+    </div>
+    <div class="col-8 d-flex align-items-center">
+      <h1>Resultats</h1>
+    </div>
+    <div class="col-2 d-flex align-items-center">
+
+    </div>
+  </div>
+</div>
+
+<%# ajouter un mini feed avec les derneirs resultats saisis %>
+
+<%= render "choix_event/choix_ligue" %>
+<%= render "choix_event/choix_saison" %>
+<%= render "choix_event/choix_division" %>
+<%= render "choix_event/choix_event" %>
+
+<%= render "choix_event/eventactif" %>
 
 <% if @eventId.present? %>
-  <%= render "shared/eventactif" %>
+    
+  <div data-controller="newrecord" data-action="turbo:submit-end->newrecord#submitEnd">
+
+    <div id="resultats">
+      <%= render @resultats %>
+    </div>
+    <div class="container text-end">
+      <div role="button" data-action="click->newrecord#openDropdown" 
+        data-newrecord-target="openButton" 
+        class="fa-solid fa-add btn btn-warning btn-action">
+      </div>
+      <div role="button" data-action="click->newrecord#closeDropdown" 
+        data-newrecord-target="closeButton" 
+        class="fa-solid fa-close btn btn-danger btn-action">
+      </div>
+    </div>
+    <div data-newrecord-target="newrecordContent">
+      <div id="new_resultat">
+        <%= render partial: "resultats/form", locals: {resultat: Resultat.new} %>
+      </div>
+    </div>
+
+  </div>
+
 <% end %>
-
-<div data-controller="newrecord" data-action="turbo:submit-end->newrecord#submitEnd">
-      
-  <div class="container container-titre">
-    <div class="row">
-      <div class="col-2 icon-titre">
-        <i class="fa fa-square-poll-horizontal"></i>
-      </div>
-      <div class="col-8 d-flex align-items-center">
-        <h1>Resultats</h1>
-      </div>
-      <div class="col-2 d-flex align-items-center">
-        <div role="button" data-action="click->newrecord#openDropdown" 
-          data-newrecord-target="openButton" 
-          class="fa-solid fa-add btn btn-warning btn-action">
-        </div>
-        <div role="button" data-action="click->newrecord#closeDropdown" 
-          data-newrecord-target="closeButton" 
-          class="fa-solid fa-close btn btn-danger btn-action">
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div data-newrecord-target="newrecordContent">
-    <div id="new_resultat">
-      <%= render partial: "resultats/form", locals: {resultat: Resultat.new} %>
-    </div>
-  </div>
-
-  <div id="resultats">
-    <%= render @resultats %>
-  </div>
-
-</div>

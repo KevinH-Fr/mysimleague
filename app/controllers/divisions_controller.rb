@@ -2,10 +2,22 @@ class DivisionsController < ApplicationController
   before_action :set_division, only: %i[ show edit update destroy ]
 
   def index
-    search_params = params.permit(:format, :page, q:[:nom_cont])
-    @q = Division.ransack(search_params[:q])
-    divisions = @q.result(distinct: true).order(created_at: :desc)
-    @pagy, @divisions = pagy_countless(divisions, items: 20)
+    @divisions = Division.all
+
+    @ligues = Ligue.all
+    @ligueId = params[:ligueId]
+    @saisonId = params[:saisonId]
+
+    if @ligueId.present?
+      @ligue = Ligue.find(params[:ligueId]) 
+      @saisons = @ligue.saisons
+    end
+
+    if @saisonId.present?
+      @saison = Saison.find(params[:saisonId]) 
+      @divisions = @saison.divisions
+    end
+
   end
 
   def show
@@ -16,6 +28,7 @@ class DivisionsController < ApplicationController
   end
 
   def edit
+
     respond_to do |format|
       format.html
       format.turbo_stream do  
@@ -57,6 +70,7 @@ class DivisionsController < ApplicationController
   end
 
   def update
+
     respond_to do |format|
       if @division.update(division_params)
         format.turbo_stream do  

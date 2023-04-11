@@ -1,0 +1,11 @@
+  <% if (@saisonId).present? %>
+    <%# btn choix division %>
+    <div class="m-2">
+      Division |
+      <% @divisions.each do |division| %>
+          <%= link_to "#{division.nom}", 
+            url_for(ligueId: @ligueId, saisonId: @saisonId, divisionId: division.id), 
+            class:"btn btn-choix-event"%>
+      <% end %>
+    </div>
+<% end %>

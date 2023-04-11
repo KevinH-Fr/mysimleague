@@ -7,4 +7,8 @@ class Resultat < ApplicationRecord
     id
   end 
 
+  def pilote_nom
+    pilote.nom
+  end
+
 end
