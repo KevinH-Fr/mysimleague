@@ -25,6 +25,7 @@ class EventsController < ApplicationController
   end
 
   def edit
+    @divisionId = params[:divisionId]
     respond_to do |format|
       format.html
       format.turbo_stream do  

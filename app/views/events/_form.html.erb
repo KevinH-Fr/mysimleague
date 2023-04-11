@@ -36,7 +36,7 @@
 
         <div class="input-group">
           <%= form.label :division_id, class:"input-group-text label-with-format" %>
-          <%= form.collection_select :division_id, Division.all, :id, :nom, {}, class:"form-control field-with-format" %>
+          <%= form.number_field :division_id, value: @divisionId, class:"form-control field-with-format" %>
         </div>
 
       </div>

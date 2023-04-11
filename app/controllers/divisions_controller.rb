@@ -21,7 +21,7 @@ class DivisionsController < ApplicationController
   end
 
   def edit
-
+    @saisonId = params[:saisonId]
     respond_to do |format|
       format.html
       format.turbo_stream do  

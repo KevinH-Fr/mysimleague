@@ -17,6 +17,7 @@ class SaisonsController < ApplicationController
   end
 
   def edit
+    @ligueId = params[:ligueId]
     respond_to do |format|
       format.html
       format.turbo_stream do  

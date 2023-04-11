@@ -37,7 +37,7 @@
             data-dropdown-target="closeButton", class="fa-solid fa-eye-slash btn btn-outline-primary btn-action">
           </div>
                 
-          <%= button_to "", edit_event_path(event), 
+          <%= button_to "", edit_event_path(event, divisionId: @divisionId), 
                 class:"fa-regular fa-pen-to-square btn btn-secondary btn-action", method: :post %> 
           <%= button_to '', event_path(event), 
                 class:"fa-solid fa-trash-can btn btn-danger btn-action", method: :delete,

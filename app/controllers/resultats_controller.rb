@@ -25,6 +25,7 @@ class ResultatsController < ApplicationController
   end
 
   def edit
+    @eventId = params[:eventId]
     respond_to do |format|
       format.html
       format.turbo_stream do  
