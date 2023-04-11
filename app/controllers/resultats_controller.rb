@@ -15,6 +15,15 @@ class ResultatsController < ApplicationController
     @events = Event.division_courante(@divisionId)
     @resultats = Resultat.event_courant(@eventId)
 
+    @ligue = Ligue.find(@ligueId) if @ligueId.present?
+    @saison = Saison.find(@saisonId) if @saisonId.present?
+    @division = Division.find(@divisionId) if @divisionId.present?
+    @event = Event.find(@eventId) if @eventId.present?
+
+    @circuitId = Event.find(@eventId).circuit_id if @eventId.present?
+    @circuit = Circuit.find(@circuitId) if @circuitId.present?
+
+
   end
 
   def show

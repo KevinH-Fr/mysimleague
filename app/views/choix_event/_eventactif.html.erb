@@ -2,62 +2,38 @@
 
 <% if @eventId.present? %>
 
-<div class="container container-eventactif">   
-  <table width="100%">
-    <thead>
-      <tr>
-        <th class="enteteGp">Ligue</th>
-        <th class="enteteGp">Saison</th>
-        <th class="enteteGp">Division</th>
-        <th class="enteteGp">N°</th>
-        <th class="enteteGp">Date</th>
-        <th class="enteteGp">Pays</th>
-        <th class="enteteGp">Drapeau</th>
-        <th class="enteteGp">Carte</th>
-     
-      </tr>
-    </thead>
+  <div class="container container-eventactif">   
+    <table width="100%">
+      <thead>
+        <tr class="enteteGp">
+          <th> Ligue </th>
+          <th> Saison </th>
+          <th> Division </th>
+          <th> N° </th>
+          <th> Date </th>
+          <th> Pays </th>
+          <th> Drapeau </th>
+          <th> Carte </th>
+        </tr>
+      </thead>
 
-    <tbody>
-      <tr>
-        <td class="eventactif">
-          <%= Ligue.find(@ligueId).nom %>
-        </td>
-        <td class="eventactif">
-          <%= Saison.find(@saisonId).nom %>
-        </td>
-        <td class="eventactif">
-          <%= Division.find(@divisionId).nom %>
-        </td>
-        <td class="eventactif">
-            <%= Event.find(@eventId).numero %>
-        </td>
-          <td class="eventactif">
-          <% if Event.find(@eventId).date.present? %>
-            <% datetime = Event.find(@eventId).date.to_date %>
-            <%= datetime.strftime("%d/%m/%y") %>
-          <% end %>
-        </td>
-        <td class="eventactif">
-              <% circuitId = Event.find(@eventId).circuit_id %> 
-              <%= Circuit.find(circuitId).pays %>
-        </td>
-        <td>
-          <%# if (Circuit.find(circuitId).drapeau).blank? %>
-          <%# else %>
-            <%#= image_tag(Circuit.find(circuitId).drapeau, style: "width: 50px; display: block", class: "img-fluid rounded") %> 
-          <%# end %>
-        </td>
-        <td>
-          <%# if (Circuit.find(circuitId).carte).blank? %>
-          <%# else %>
-              <%#= image_tag(Circuit.find(circuitId).carte, style: "width: 50px; display: block", class: "img-fluid rounded") %>  
-          <%# end %>
-        </td>
-
-      </tr>
-    </tbody>
-  </table>
-</div>
+      <tbody>
+        <tr class="eventactif">
+          <td> <%= @ligue.nom %> </td>
+          <td> <%= @saison.nom %> </td>
+          <td> <%= @division.nom %> </td>
+          <td> <%= @event.numero %> </td>
+          <td> <%= @event.date %> </td>
+          <td> <%= @circuit.pays %> </td>
+          <td>
+            <%= image_tag(@event.icon_drapeau, class:"img-drapeau") if @event.icon_drapeau.attached? %>
+          </td>
+          <td>
+            <%= image_tag(@event.icon_carte, class:"img-drapeau") if @event.icon_carte.attached? %>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
 
 <% end %>

@@ -1,5 +1,8 @@
 class Equipe < ApplicationRecord
-    def feed_content
-        nom
-      end 
+
+  has_one_attached :logo
+
+  def feed_content
+    nom
+  end 
 end

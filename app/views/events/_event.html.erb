@@ -5,6 +5,7 @@
     <div data-controller="dropdown" data-action="turbo:submit-end->dropdown#submitEnd">
       <div class="row">
         <div class="col-8 col-data">
+          <%= image_tag(event.icon_drapeau, class:"img-drapeau") if event.icon_drapeau.attached? %>
           <%= event.nom_complet %>
             <div data-dropdown-target="dropdownContent">
                 <strong>Date:</strong>

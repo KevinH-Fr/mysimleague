@@ -8,6 +8,7 @@ class Circuit < ApplicationRecord
       "#{nom} #{pays}"
     end 
 
+
     def feed_content
       nom
     end 
