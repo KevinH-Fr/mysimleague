@@ -15,7 +15,7 @@ class PilotesController < ApplicationController
 
     # association divisions pilotes
     #if @divisionId.present?
-    #  @division = Division.find(params[:divisionId])
+    #  @divisio = Division.find(params[:divisionId])
     #  @pilotes = @division.pilotes
     #end
 
