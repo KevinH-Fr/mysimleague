@@ -23,7 +23,11 @@ class PilotesController < ApplicationController
   end
 
   def show
+   # @pilote = Pilote.find(params[:id])
+    #@pilote = Pilote.includes(:divisions).find(params[:id])
+    #@divisions = @pilote.divisions
   end
+  
 
   def new
     @pilote = Pilote.new(pilote_params)
@@ -71,6 +75,9 @@ class PilotesController < ApplicationController
   end
 
   def update
+    @pilote = Pilote.find(params[:id])
+    @pilote.divisions << Division.find(params[:pilote][:division_ids])
+
     respond_to do |format|
       if @pilote.update(pilote_params)
         format.turbo_stream do  
@@ -111,6 +118,6 @@ class PilotesController < ApplicationController
     end
 
     def pilote_params
-      params.fetch(:pilote, {}).permit(:nom)
+      params.fetch(:pilote, {}).permit(:nom, {division_ids: []})
     end
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_04_11_154706) do
+ActiveRecord::Schema[7.0].define(version: 2023_04_12_124451) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -102,6 +102,15 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_154706) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "participations", force: :cascade do |t|
+    t.integer "pilote_id", null: false
+    t.integer "division_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["division_id"], name: "index_participations_on_division_id"
+    t.index ["pilote_id"], name: "index_participations_on_pilote_id"
+  end
+
   create_table "pilote_divisions", force: :cascade do |t|
     t.integer "pilote_id", null: false
     t.integer "division_id", null: false
@@ -159,6 +168,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_11_154706) do
   add_foreign_key "events", "circuits"
   add_foreign_key "events", "divisions"
   add_foreign_key "events", "ligues"
+  add_foreign_key "participations", "divisions"
+  add_foreign_key "participations", "pilotes"
   add_foreign_key "pilote_divisions", "divisions"
   add_foreign_key "pilote_divisions", "pilotes"
   add_foreign_key "resultats", "equipes"

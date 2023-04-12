@@ -1,10 +1,32 @@
-<p style="color: green"><%= notice %></p>
 
 <%= render @pilote %>
 
-<div>
-  <%#= link_to "Edit this pilote", edit_pilote_path(@pilote) %> 
-  <%#= link_to "Back to pilotes", pilotes_path %>
+<hr>  
+divisions du pilote: <br> 
+<%#= render @divisions %>
 
-  <%#= button_to "Destroy this pilote", @pilote, method: :delete %>
-</div>
+
+<%#= link_to "ajouter div au pilote", root_path %>
+
+<%
+=begin%>
+ <div id="divisions-form">
+  <%= form_for @pilote do |f| %>
+    <div class="field">
+      <%= f.label :division_id %>
+      <%= f.select :division_ids, Division.all.collect {|d| [d.nom, d.id]}, prompt: "Select a division" %>
+    </div>
+    <%= f.submit "Add division to pilote" %>
+  <% end %>
+</div> 
+<%
+=end%>
+
+ <%= form_for @pilote do |f| %>
+      <%= f.label :divisions %><br />
+      <% for division in Division.all %>
+        <%= check_box_tag "pilote[division_ids][]", division.id, @pilote.divisions.include?(division) %>
+        <%= division.nom %><br />
+      <% end %>
+      <%= f.submit "Add division to pilote" %>
+<% end %>
