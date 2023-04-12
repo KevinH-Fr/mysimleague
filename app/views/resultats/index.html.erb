@@ -18,29 +18,36 @@
 <%= render "choix_event/choix_saison" %>
 <%= render "choix_event/choix_division" %>
 <%= render "choix_event/choix_event" %>
-
 <%= render "choix_event/eventactif" %>
 
 <% if @eventId.present? %>
-    
 
-  <div id="resultats">
-    <%= render @resultats %>
-  </div>
-  <div class="container text-end">
-    <div role="button" data-action="click->newrecord#openDropdown" 
-      data-newrecord-target="openButton" 
-      class="fa-solid fa-add btn btn-warning btn-action">
+  <div data-controller="newrecord" data-action="turbo:submit-end->newrecord#submitEnd">
+    <div id="resultats">
+      <%= render @resultats %>
     </div>
-    <div role="button" data-action="click->newrecord#closeDropdown" 
-      data-newrecord-target="closeButton" 
-      class="fa-solid fa-close btn btn-danger btn-action">
+
+    <div class="container text-end">
+      <div role="button" data-action="click->newrecord#openDropdown" 
+        data-newrecord-target="openButton" 
+        class="fa-solid fa-add btn btn-warning btn-action">
+      </div>
+      <div role="button" data-action="click->newrecord#closeDropdown" 
+        data-newrecord-target="closeButton" 
+        class="fa-solid fa-close btn btn-danger btn-action">
+      </div>
     </div>
-  </div>
-  <div data-newrecord-target="newrecordContent">
-    <div id="new_resultat">
-      <%= render partial: "resultats/form", locals: {resultat: Resultat.new} %>
+
+    <div class="container text-light">
+      nb: <%= @resultats.count %>
     </div>
+
+    <div data-newrecord-target="newrecordContent">
+      <div id="new_resultat">
+        <%= render partial: "resultats/form", locals: {resultat: Resultat.new} %>
+      </div>
+    </div>
+
   </div>
 
 <% end %>

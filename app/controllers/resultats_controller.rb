@@ -26,8 +26,6 @@ class ResultatsController < ApplicationController
     @circuitId = Event.find(@eventId).circuit_id if @eventId.present?
     @circuit = Circuit.find(@circuitId) if @circuitId.present?
 
-
-
   end
 
   def show

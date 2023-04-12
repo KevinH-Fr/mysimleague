@@ -16,8 +16,12 @@
 
       <div class="col-10 mx-auto ">
         <div class="input-group">
-          <%= form.label :event_id, class:"input-group-text label-with-format" %>
-          <%= form.number_field :event_id,  value: @eventId, class:"form-control field-with-format" %>
+          <% form.label :event_id, class:"input-group-text label-with-format" %>
+          <% if resultat.persisted? %>
+            <%= form.hidden_field :event_id %>
+          <% else %>
+            <%= form.hidden_field :event_id, value: @eventId %>
+          <% end %>
         </div>
         <div class="input-group">
           <%= form.label :pilote_id, class:"input-group-text label-with-format" %>
@@ -30,31 +34,54 @@
         </div>
         <div class="input-group">
           <%= form.label :qualification, class:"input-group-text label-with-format" %>
-          <%= form.number_field :qualification, class:"form-control field-with-format" %>
+          <%= form.select :qualification, @liste_positions, {include_blank: true}, 
+              class:"form-select field-with-format" %>
         </div>
         <div class="input-group">
           <%= form.label :course, class:"input-group-text label-with-format" %>
-          <%= form.number_field :course, class:"form-control field-with-format" %>
+          <%= form.select :course, @liste_positions, {include_blank: true}, 
+              class:"form-select field-with-format" %>
         </div>
-        <div class="input-group">
-          <%= form.label :dotd, class:"input-group-text label-with-format" %>
-          <%= form.number_field :dotd, class:"form-control field-with-format" %>
-        </div>
-        <div class="input-group">
-          <%= form.label :mt, class:"input-group-text label-with-format" %>
-          <%= form.number_field :mt, class:"form-control field-with-format" %>
-        </div>
+
         <div class="input-group">
           <%= form.label :score, class:"input-group-text label-with-format" %>
           <%= form.number_field :score, class:"form-control field-with-format" %>
         </div>
+
         <div class="input-group">
-          <%= form.label :dnf, class:"input-group-text label-with-format" %>
-          <%= form.number_field :dnf, class:"form-control field-with-format" %>
+          <div class="form-check form-switch">
+            <div class="custom-control custom-switch">
+              <%= form.check_box :dotd, class:"form-check-input", id: "" %>
+              <label class="text-light" for="">DOTD</label>
+            </div>
+          </div>
         </div>
+
         <div class="input-group">
-          <%= form.label :dns, class:"input-group-text label-with-format" %>
-          <%= form.number_field :dns, class:"form-control field-with-format" %>
+          <div class="form-check form-switch">
+            <div class="custom-control custom-switch">
+              <%= form.check_box :mt, class:"form-check-input", id: "" %>
+              <label class="text-light" for="">MT</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="form-check form-switch">
+            <div class="custom-control custom-switch">
+              <%= form.check_box :dnf, class:"form-check-input", id: "" %>
+              <label class="text-light" for="">DNF</label>
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group">
+          <div class="form-check form-switch">
+            <div class="custom-control custom-switch">
+              <%= form.check_box :dns, class:"form-check-input", id: "" %>
+              <label class="text-light" for="">DNS</label>
+            </div>
+          </div>
         </div>
 
       </div>
