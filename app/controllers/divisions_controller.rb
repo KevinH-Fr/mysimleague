@@ -21,7 +21,7 @@ class DivisionsController < ApplicationController
   end
 
   def show
-
+    @pilotes = @division.pilotes
   end
 
   def new

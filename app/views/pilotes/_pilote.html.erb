@@ -7,13 +7,7 @@
         <div class="col-8 col-data">
           <%= pilote.nom %>
             <div data-dropdown-target="dropdownContent">
-
-                                listeDivisions du pilote:
-
-                    <%#= Division.with_pilote(pilote.id).ids %>
-                    <%#= @pilotes.ids %>
-
-
+             <small>  détails sur le pilote </small>
             </div>
         </div>
         <div class="col-4 col-btn">  
@@ -25,7 +19,8 @@
           </div>
 
           
-          <%= link_to "show", pilote_path(pilote) %>
+          <%= link_to "", pilote_path(pilote), 
+                class:"fa-solid fa-square-arrow-up-right btn btn-success btn-action" %>
 
          
           <%= button_to "", edit_pilote_path(pilote), 

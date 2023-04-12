@@ -2,31 +2,38 @@
 <%= render @pilote %>
 
 <hr>  
-divisions du pilote: <br> 
-<%#= render @divisions %>
 
+ <div class="container bg-secondary" data-controller="newrecord">
+      <div role="button" data-action="click->newrecord#openDropdown" 
+        data-newrecord-target="openButton" 
+        class="btn btn-warning btn-action">
+        voir divisions liées
+      </div>
+      <div role="button" data-action="click->newrecord#closeDropdown" 
+        data-newrecord-target="closeButton" 
+        class="fa-solid fa-close btn btn-danger btn-action">
+        
+      </div>
 
-<%#= link_to "ajouter div au pilote", root_path %>
+      <div  data-newrecord-target="newrecordContent">
 
-<%
-=begin%>
- <div id="divisions-form">
-  <%= form_for @pilote do |f| %>
-    <div class="field">
-      <%= f.label :division_id %>
-      <%= f.select :division_ids, Division.all.collect {|d| [d.nom, d.id]}, prompt: "Select a division" %>
-    </div>
+        <div class="container bg-secondary">
+          liste des divisions liées : <br>
+          <% @divisions.each do | division | %>
+            <%= division.nom %> <br>
+          <% end %>
+        </div>
+      </div>
+<hr>
+</div>
+<div class="container bg-secondary">
+  Edition des divisions liées <br>
+<%= form_for @pilote do |f| %>
+  <%= f.label :divisions %><br />
+    <% for division in Division.all %>
+      <%= check_box_tag "pilote[division_ids][]", division.id, @pilote.divisions.include?(division) %>
+      <%= division.nom %><br />
+    <% end %>
     <%= f.submit "Add division to pilote" %>
   <% end %>
-</div> 
-<%
-=end%>
-
- <%= form_for @pilote do |f| %>
-      <%= f.label :divisions %><br />
-      <% for division in Division.all %>
-        <%= check_box_tag "pilote[division_ids][]", division.id, @pilote.divisions.include?(division) %>
-        <%= division.nom %><br />
-      <% end %>
-      <%= f.submit "Add division to pilote" %>
-<% end %>
+</div>

@@ -1,10 +1,27 @@
-<p style="color: green"><%= notice %></p>
 
 <%= render @division %>
 
-<div>
-  <%= link_to "Edit this division", edit_division_path(@division) %> |
-  <%= link_to "Back to divisions", divisions_path %>
+<hr>  
 
-  <%= button_to "Destroy this division", @division, method: :delete %>
+<div class="container bg-secondary">
+  liste des pilotes liés : <br>
+  <% @pilotes.each do | pilote | %>
+    <%= pilote.nom %> <br>
+  <% end %>
+
+
+</div>
+
+<hr>
+
+<div class="container bg-secondary">
+  Edition des pilotes liés <br>
+  <%= form_for @division do |f| %>
+    <%= f.label :divisions %><br/>
+    <% for pilote in Pilote.all %>
+      <%= check_box_tag "division[pilote_ids][]", pilote.id, @division.pilotes.include?(pilote) %>
+      <%= pilote.nom %><br/>
+    <% end %>
+    <%= f.submit "Add pilote to division" %>
+  <% end %>
 </div>

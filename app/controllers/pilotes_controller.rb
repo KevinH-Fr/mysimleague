@@ -13,19 +13,11 @@ class PilotesController < ApplicationController
 
     @pilotes = Pilote.all
 
-    # association divisions pilotes
-    #if @divisionId.present?
-    #  @divisio = Division.find(params[:divisionId])
-    #  @pilotes = @division.pilotes
-    #end
-
 
   end
 
   def show
-   # @pilote = Pilote.find(params[:id])
-    #@pilote = Pilote.includes(:divisions).find(params[:id])
-    #@divisions = @pilote.divisions
+    @divisions = @pilote.divisions
   end
   
 
