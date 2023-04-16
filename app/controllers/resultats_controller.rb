@@ -6,6 +6,8 @@ class ResultatsController < ApplicationController
     @ligueId = params[:ligueId]
     @saisonId = params[:saisonId]
     @divisionId = params[:divisionId]
+    session[:divisionId] = @divisionId
+
     @eventId = params[:eventId]
 
     @ligues = Ligue.all
@@ -43,8 +45,8 @@ class ResultatsController < ApplicationController
     @circuit = Circuit.find(@circuitId) if @circuitId.present?
 
     # filtre pilotes division courante
-    if @divisionId.present?
-      @division = Division.find(@divisionId) 
+    if session[:divisionId].present?
+      @division = Division.find(session[:divisionId]) 
       @pilotes = @division.pilotes
     end
     
@@ -61,16 +63,16 @@ class ResultatsController < ApplicationController
 
     @event = Event.find(params[:eventId])
     @division = @event.division
-
     @pilotes = @division.pilotes
     
     @equipes = Equipe.all
   end
 
   def edit
-    @event = Event.find(params[:eventId])
-    @division = @event.division
-    @pilotes = @division.pilotes
+    if session[:divisionId].present?
+      @division = Division.find(session[:divisionId]) 
+      @pilotes = @division.pilotes
+    end
 
     @equipes = Equipe.all
 

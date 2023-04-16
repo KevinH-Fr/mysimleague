@@ -16,6 +16,10 @@ class Event < ApplicationRecord
     "n°#{numero} " " #{circuit.pays} " " #{circuit.nom}"
   end
 
+  def nom_court
+    "n°#{numero} " " #{circuit.nom}"
+  end
+
   def icon_drapeau
     circuit.drapeau 
   end 

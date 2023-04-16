@@ -13,8 +13,4 @@ class Resultat < ApplicationRecord
     pilote.nom
   end
 
-  def dotd
-
-  end
-
 end

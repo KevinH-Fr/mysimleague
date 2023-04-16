@@ -3,10 +3,11 @@
   <div class="m-2">
     Event |
     <% @events.each do |event| %>
-        <%= link_to "#{event.nom_complet}", 
-          url_for(ligueId: @ligueId, saisonId: @saisonId, divisionId: @divisionId, eventId: event.id), 
-          class:"btn btn-choix-event"%>
-    <% end %>
+      <%= link_to url_for(ligueId: @ligueId, saisonId: @saisonId, divisionId: @divisionId, eventId: event.id), class: "btn btn-choix-event" do %>
+        <% concat image_tag(event.icon_drapeau, class: "img-drapeau") if event.icon_drapeau.attached? %>
+        <%= event.nom_court %>
+      <% end %>
+    <% end%>
   </div>
   
 <% end %>

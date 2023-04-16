@@ -83,6 +83,16 @@ small{
   justify-content: center;
 }
 
+.col-score{
+  background-color: rgb(255, 255, 255);
+  color: black;
+  outline: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* BOUTONS */
 
 .btn-action{
@@ -223,3 +233,17 @@ small{
   font-weight: bold;
   color: rgb(209, 206, 206);
  }
+
+ .enteteGp{
+  font-size: small;
+  font-weight: normal;
+  color: rgb(38, 32, 32);
+  
+ }
+
+ .bodyEvent{
+  font-size: small;
+  font-weight: bold;
+  color: rgb(214, 197, 197);
+ }
+

@@ -61,17 +61,17 @@
                     class:"form-select field-with-format" %>  
             </div>
 
-            <div class="input-group">
+             <div class="input-group">
               <div class="form-check form-switch">
                 <div class="custom-control custom-switch">
-                  <%= form.check_box :dotd, class:"form-check-input", data: {
-                    action: "change->score#calculateScore", 
+                  <%= form.check_box :dotd, class:"form-check-input", id: "", data: {
+                      action: "change->score#calculateScore", 
                       target: "score.dotd", 
                       score_target: "dotd" }  %> 
-                  <label class="text-light" for="">DOTD</label>
+                  <label class="text-light" for="">dotd</label>
                 </div>
               </div>
-            </div>
+            </div> 
 
             <div class="input-group">
               <div class="form-check form-switch">
@@ -111,6 +111,7 @@
             <span><i class="fa-solid fa-square-check"></i> </span>
           </button>
         </div>
+        
       </div>
     </div>
   </div>

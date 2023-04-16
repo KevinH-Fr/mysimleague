@@ -6,20 +6,18 @@
         <div class="col-1 col-position">
           <%= resultat.course %>
         </div>
-        <div class="col-3">
+        <div class="col-4">
           <%= resultat.pilote_nom %>
         </div>
-        <div class="col-3">
-        dotd: <%= resultat.dotd %>
-          <% if resultat.dotd == 1 %>
-            <%= image_tag("dotd_white.png", class:"w-50") %>
+        <div class="col-3 col-centered">
+           <% if resultat.dotd == true %>
+            <%= image_tag("dotd_white.png", class:"w-25 col-centered mx-1") %>
           <% end %>
-
-
-            <%#= image_tag("mt_white.png", class:"w-50") %>
-  
+           <% if resultat.mt == true %>
+            <%= image_tag("mt_white.png", class:"w-25 col-centered mx-1") %>
+          <% end %>
         </div>
-        <div class="col-2">
+        <div class="col-1 col-score">
           <%= resultat.score %>
         </div>
 

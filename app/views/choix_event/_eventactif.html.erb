@@ -2,38 +2,38 @@
 
 <% if @eventId.present? %>
 
-  <div class="container container-eventactif">   
-    <table width="100%">
-      <thead>
-        <tr class="enteteGp">
-          <th> Ligue </th>
-          <th> Saison </th>
-          <th> Division </th>
-          <th> N° </th>
-          <th> Date </th>
-          <th> Pays </th>
-          <th> Drapeau </th>
-          <th> Carte </th>
-        </tr>
-      </thead>
-
-      <tbody>
-        <tr class="eventactif">
-          <td> <%= @ligue.nom %> </td>
-          <td> <%= @saison.nom %> </td>
-          <td> <%= @division.nom %> </td>
-          <td> <%= @event.numero %> </td>
-          <td> <%= @event.date %> </td>
-          <td> <%= @circuit.pays %> </td>
-          <td>
-            <%= image_tag(@event.icon_drapeau, class:"img-drapeau") if @event.icon_drapeau.attached? %>
-          </td>
-          <td>
-            <%= image_tag(@event.icon_carte, class:"img-drapeau") if @event.icon_carte.attached? %>
-          </td>
-        </tr>
-      </tbody>
-    </table>
+  <div class="container container-eventactif">
+    <div class="table-responsive">
+      <table class="table" width="100%">
+        <thead class="enteteGp">
+          <tr>
+            <th> Ligue </th>
+            <th> Saison </th>
+            <th> Div </th>
+            <th> N° </th>
+            <th> Date </th>
+            <th colspan="2"> Pays </th>
+            <th> Carte </th>
+          </tr>
+        </thead>
+        <tbody class="bodyEvent">
+          <tr>
+            <td> <%= @ligue.nom %> </td>
+            <td> <%= @saison.nom %> </td>
+            <td> <%= @division.nom %> </td>
+            <td> <%= @event.numero %> </td>
+            <td> <%= @event.date %> </td>
+            <td> <%= @circuit.pays %> </td>
+            <td>
+              <%= image_tag(@event.icon_drapeau, class:"img-drapeau") if @event.icon_drapeau.attached? %>
+            </td>
+            <td>
+              <%= image_tag(@event.icon_carte, class:"img-drapeau") if @event.icon_carte.attached? %>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
 <% end %>
