@@ -86,6 +86,12 @@ class ResultatsController < ApplicationController
   def create
     @resultat = Resultat.new(resultat_params)
 
+        # filtre pilotes division courante
+        if @divisionId.present?
+          @division = Division.find(@divisionId) 
+          @pilotes = @division.pilotes
+        end
+
     respond_to do |format|
       if @resultat.save
         format.turbo_stream do

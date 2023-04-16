@@ -11,10 +11,9 @@
     </div>
   <% end %>
 
-<div data-controller="score">
-  <div class="cadre-record">
+  <div data-controller="score">
+    <div class="cadre-record">
       <div class="row">
-
         <div class="col-10 mx-auto ">
           <div class="input-group">
             <% form.label :event_id, class:"input-group-text label-with-format" %>
@@ -24,6 +23,7 @@
               <%= form.hidden_field :event_id, value: @eventId %>
             <% end %>
           </div>
+
           <div class="input-group">
             <%= form.label :pilote_id, class:"input-group-text label-with-format" %>
             <%= form.collection_select :pilote_id, @pilotes, :id, :nom, {include_blank: true}, 
@@ -35,75 +35,75 @@
             <%= form.collection_select :equipe_id, @equipes, :id, :nom, {include_blank: true}, 
                   class:"form-select field-with-format" %>
           </div>
+
           <div class="input-group">
             <%= form.label :qualification, class:"input-group-text label-with-format" %>
             <%= form.select :qualification, @liste_positions, {include_blank: true}, 
                 class:"form-select field-with-format" %>
           </div>
 
-<div data-controller="score">  
-
-           <div class="input-group">
-            <%= form.label :course, class:"input-group-text label-with-format" %>
-            <%= form.select :course,  @liste_positions, {}, data: {
-                  action: "change->score#calculateScore", 
-                    target: "score.course", 
-                    score_target: "course" }  %> 
-          </div>
-          
-          <div class="input-group">
-            <%= form.label :score, class:"input-group-text label-with-format" %>
-            <%= form.number_field :score, data: {
-                  action: "change->score#calculateScore", 
-                    target: "score.score", 
-                    score_target: "score" }  %> 
-          </div>
-
-          <div class="input-group">
-            <div class="form-check form-switch">
-              <div class="custom-control custom-switch">
-                <%= form.check_box :dotd, class:"form-check-input", data: {
-                  action: "change->score#calculateScore", 
-                    target: "score.dotd", 
-                    score_target: "dotd" }  %> 
-
-
-                <label class="text-light" for="">DOTD</label>
-              </div>
-            </div>
-          </div>
-
-          <div class="input-group">
-            <div class="form-check form-switch">
-              <div class="custom-control custom-switch">
-                <%= form.check_box :mt, class:"form-check-input", id: "", data: {
+          <div data-controller="score">  
+            <div class="input-group">
+              <%= form.label :course, class:"input-group-text label-with-format" %>
+              <%= form.select :course,  @liste_positions, {}, data: {
                     action: "change->score#calculateScore", 
-                    target: "score.mt", 
-                    score_target: "mt" }  %> 
+                    target: "score.course", 
+                    score_target: "course" }, 
+                    class:"form-select field-with-format" %>  
+            </div>
+          
+            <div class="input-group">
+              <%= form.label :score, class:"input-group-text label-with-format" %>
+              <%= form.number_field :score, data: {
+                    action: "change->score#calculateScore", 
+                    target: "score.score", 
+                    score_target: "score" }, 
+                    class:"form-select field-with-format" %>  
+            </div>
 
-                <label class="text-light" for="">MT</label>
+            <div class="input-group">
+              <div class="form-check form-switch">
+                <div class="custom-control custom-switch">
+                  <%= form.check_box :dotd, class:"form-check-input", data: {
+                    action: "change->score#calculateScore", 
+                      target: "score.dotd", 
+                      score_target: "dotd" }  %> 
+                  <label class="text-light" for="">DOTD</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="input-group">
-            <div class="form-check form-switch">
-              <div class="custom-control custom-switch">
-                <%= form.check_box :dnf, class:"form-check-input", id: "" %>
-                <label class="text-light" for="">DNF</label>
+            <div class="input-group">
+              <div class="form-check form-switch">
+                <div class="custom-control custom-switch">
+                  <%= form.check_box :mt, class:"form-check-input", id: "", data: {
+                      action: "change->score#calculateScore", 
+                      target: "score.mt", 
+                      score_target: "mt" }  %> 
+                  <label class="text-light" for="">MT</label>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="input-group">
-            <div class="form-check form-switch">
-              <div class="custom-control custom-switch">
-                <%= form.check_box :dns, class:"form-check-input", id: "" %>
-                <label class="text-light" for="">DNS</label>
+            <div class="input-group">
+              <div class="form-check form-switch">
+                <div class="custom-control custom-switch">
+                  <%= form.check_box :dnf, class:"form-check-input", id: "" %>
+                  <label class="text-light" for="">DNF</label>
+                </div>
               </div>
             </div>
-          </div>
 
+            <div class="input-group">
+              <div class="form-check form-switch">
+                <div class="custom-control custom-switch">
+                  <%= form.check_box :dns, class:"form-check-input", id: "" %>
+                  <label class="text-light" for="">DNS</label>
+                </div>
+              </div>
+            </div>
+
+          </div>
         </div>
 
         <div class="col-2 col-btn">
@@ -114,5 +114,5 @@
       </div>
     </div>
   </div>
-<% end %>
 
+<% end %>

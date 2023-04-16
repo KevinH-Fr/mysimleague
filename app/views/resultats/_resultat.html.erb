@@ -1,57 +1,71 @@
 
 <div id="<%= dom_id resultat %>">
-
-  <div class="cadre-record">
-    <div data-controller="dropdown" data-action="turbo:submit-end->dropdown#submitEnd">
-      <div class="row">
-        <div class="col-8 col-data">
-          <%= resultat.pilote_nom %>
+  <div data-controller="dropdown" data-action="turbo:submit-end->dropdown#submitEnd">
+    <div class="cadre-record">
+      <div class="row col-data col-centered m-0 p-0">
+        <div class="col-1 col-position">
           <%= resultat.course %>
-
-          <small>
-            <div data-dropdown-target="dropdownContent">
-              <strong>Event:</strong>
-              <%= resultat.event_id %>
-
-              <strong>Equipe:</strong>
-              <%= resultat.equipe_id %>
-
-              <strong>Qualification:</strong>
-              <%= resultat.qualification %>
-
-              <strong>Dotd:</strong>
-              <%= resultat.dotd %>
-
-              <strong>Mt:</strong>
-              <%= resultat.mt %>
-
-              <strong>Score:</strong>
-              <%= resultat.score %>
-
-              <strong>Dnf:</strong>
-              <%= resultat.dnf %>
-
-              <strong>Dns:</strong>
-              <%= resultat.dns %>
-            </div>
-          </small>
         </div>
-        <div class="col-4 col-btn">  
+        <div class="col-3">
+          <%= resultat.pilote_nom %>
+        </div>
+        <div class="col-3">
+        dotd: <%= resultat.dotd %>
+          <% if resultat.dotd == 1 %>
+            <%= image_tag("dotd_white.png", class:"w-50") %>
+          <% end %>
+
+
+            <%#= image_tag("mt_white.png", class:"w-50") %>
+  
+        </div>
+        <div class="col-2">
+          <%= resultat.score %>
+        </div>
+
+        <div class="col-3 col-btn m-0 p-0">
           <div role="button" data-action="click->dropdown#openDropdown" 
               data-dropdown-target="openButton", class="fa-solid fa-eye btn btn-outline-primary btn-action">
           </div>
           <div role="button" data-action="click->dropdown#closeDropdown" 
             data-dropdown-target="closeButton", class="fa-solid fa-eye-slash btn btn-outline-primary btn-action">
           </div>
-                
           <%= button_to "", edit_resultat_path(resultat, eventId: @eventId), 
-                class:"fa-regular fa-pen-to-square btn btn-secondary btn-action", method: :post %> 
+              class:"fa-regular fa-pen-to-square btn btn-secondary btn-action", method: :post %> 
           <%= button_to '', resultat_path(resultat), 
-                class:"fa-solid fa-trash-can btn btn-danger btn-action", method: :delete,
-                :onclick => "return confirm('Etes-vous certain de vouloir supprimer le resultat ?')" %> 
+              class:"fa-solid fa-trash-can btn btn-danger btn-action", method: :delete,
+              :onclick => "return confirm('Etes-vous certain de vouloir supprimer le resultat ?')" %> 
+        </div>
+      </div>
+      <div data-dropdown-target="dropdownContent">
+        <div class="row">
+          <small>
+            <strong>Event:</strong>
+            <%= resultat.event_id %>
+
+            <strong>Equipe:</strong>
+            <%= resultat.equipe_id %>
+
+            <strong>Qualification:</strong>
+            <%= resultat.qualification %>
+
+            <strong>Dotd:</strong>
+            <%= resultat.dotd %>
+
+            <strong>Mt:</strong>
+            <%= resultat.mt %>
+
+            <strong>Score:</strong>
+            <%= resultat.score %>
+
+            <strong>Dnf:</strong>
+            <%= resultat.dnf %>
+
+            <strong>Dns:</strong>
+            <%= resultat.dns %>
+          </small>
         </div>
       </div>
     </div>
   </div>
 </div>
-

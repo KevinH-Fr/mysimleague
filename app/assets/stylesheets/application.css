@@ -31,6 +31,11 @@ h1{
   color: white;
 }
 
+small{
+  font-size: small;
+  font-weight: normal;
+}
+
 .container-body{
   padding: .5em;
   margin-bottom: 32px; /* hauteur du footer */
@@ -56,16 +61,32 @@ h1{
   justify-content: center;*/
 }
 
+.col-centered{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .col-btn{
   display: flex;
   align-items: center;
   justify-content: end;
 }
 
+.col-position{
+  background-color: rgb(255, 255, 255);
+  color: black;
+  outline: 2px solid black;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 /* BOUTONS */
 
 .btn-action{
-  font-size: medium;
+  font-size: small;
   padding: .3em;
   margin: .2em;
 }
