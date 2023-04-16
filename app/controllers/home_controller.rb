@@ -23,7 +23,14 @@ class HomeController < ApplicationController
     @feeds.concat(feed_resultats)
 
     @feeds.sort_by!(&:updated_at).reverse!
-  
+
+
+
+    #tests models chainés
+    # ligue division :
+    @ligue = Ligue.find(5)
+    @saisons = @ligue.saisons
+    @divisions = @ligue.divisions
   end
 
 end

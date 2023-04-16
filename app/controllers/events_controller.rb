@@ -9,10 +9,26 @@ class EventsController < ApplicationController
     @eventId = params[:eventId]
 
     @ligues = Ligue.all
+    @circuits = Circuit.all
 
-    @saisons = Saison.ligue_courante(@ligueId)
-    @divisions = Division.saison_courante(@saisonId)
-    @events = Event.division_courante(@divisionId)
+
+    # filtre saisons ligue courante
+    if @ligueId.present?
+      @ligue = Ligue.find(@ligueId) 
+      @saisons = @ligue.saisons
+    end
+
+     # filtre divisions saison courante
+    if @saisonId.present?
+      @saison = Saison.find(@saisonId) 
+      @divisions = @saison.divisions
+    end
+
+    # filtre events division courante
+    if @divisionId.present?
+      @division = Division.find(@divisionId) 
+      @events = @division.events
+    end
 
   end
   
@@ -22,9 +38,13 @@ class EventsController < ApplicationController
 
   def new
     @event = Event.new(event_params)
+    @circuits = Circuit.all
+
   end
 
   def edit
+    @circuits = Circuit.all
+
     @divisionId = params[:divisionId]
     respond_to do |format|
       format.html
@@ -37,6 +57,7 @@ class EventsController < ApplicationController
 
   def create
     @event = Event.new(event_params)
+    @circuits = Circuit.all
 
     respond_to do |format|
       if @event.save

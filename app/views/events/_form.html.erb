@@ -31,12 +31,16 @@
         </div>
         <div class="input-group">
           <%= form.label :circuit_id, class:"input-group-text label-with-format" %>
-          <%= form.collection_select :circuit_id, Circuit.all, :id, :nom_complet, {}, class:"form-control field-with-format" %>
+          <%= form.collection_select :circuit_id, @circuits, :id, :nom_complet, 
+              {include_blank: true}, class:"form-control field-with-format" %>
         </div>
 
         <div class="input-group">
-          <%= form.label :division_id, class:"input-group-text label-with-format" %>
-          <%= form.number_field :division_id, value: @divisionId, class:"form-control field-with-format" %>
+          <% if event.persisted? %>
+            <%= form.hidden_field :division_id %>
+          <% else %>
+            <%= form.hidden_field :division_id, value: @divisionId %>
+          <% end %>
         </div>
 
       </div>

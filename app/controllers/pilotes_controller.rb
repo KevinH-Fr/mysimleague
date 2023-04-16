@@ -8,12 +8,24 @@ class PilotesController < ApplicationController
     @divisionId = params[:divisionId]
 
     @ligues = Ligue.all
-    @saisons = Saison.ligue_courante(@ligueId)
-    @divisions = Division.saison_courante(@saisonId)
 
-    @pilotes = Pilote.all
+    # filtre saisons ligue courante
+    if @ligueId.present?
+      @ligue = Ligue.find(@ligueId) 
+      @saisons = @ligue.saisons
+    end
 
+     # filtre divisions saison courante
+    if @saisonId.present?
+      @saison = Saison.find(@saisonId) 
+      @divisions = @saison.divisions
+    end
 
+    # filtre pilotes division courante
+    if @divisionId.present?
+      @division = Division.find(@divisionId) 
+      @pilotes = @division.pilotes
+    end
   end
 
   def show
@@ -23,6 +35,8 @@ class PilotesController < ApplicationController
 
   def new
     @pilote = Pilote.new(pilote_params)
+
+
   end
 
   def edit
@@ -37,9 +51,14 @@ class PilotesController < ApplicationController
 
   def create
     @pilote = Pilote.new(pilote_params)
+    @divisionId = params[:divisionId]
+   # puts "____division id depuis new: #{@divisionId}"
 
     respond_to do |format|
       if @pilote.save
+        
+       Participation.create(pilote_id: @pilote.id, division_id:   @divisionId)
+
         format.turbo_stream do
           flash.now[:notice] = "le pilote #{@pilote.nom} a bien été ajouté"
           render turbo_stream: [
@@ -49,8 +68,8 @@ class PilotesController < ApplicationController
               turbo_stream.update("flash", partial: "layouts/flash"),     
             ]
         end
-        format.html { redirect_to pilote_url(@pilote), notice: "Pilote was successfully created." }
-        format.json { render :show, status: :created, location: @pilote }
+       # format.html { redirect_to pilote_url(@pilote), notice: "Pilote was successfully created." }
+       # format.json { render :show, status: :created, location: @pilote }
 
       else
         flash.now[:notice] = "erreur - le pilote n'a pas été ajouté"
@@ -68,7 +87,7 @@ class PilotesController < ApplicationController
 
   def update
     @pilote = Pilote.find(params[:id])
-    @pilote.divisions << Division.find(params[:pilote][:division_ids])
+#    @pilote.divisions << Division.find(params[:pilote][:division_ids])
 
     respond_to do |format|
       if @pilote.update(pilote_params)
@@ -81,7 +100,7 @@ class PilotesController < ApplicationController
            ]
         end
 
-        format.html { redirect_to pilote_url(@pilote), notice: "Pilote was successfully updated." }
+        format.html  { redirect_to pilote_url(@pilote), notice: "Pilote was successfully updated." }
         format.json { render :show, status: :ok, location: @pilote }
       else
         format.turbo_stream do  
@@ -110,6 +129,6 @@ class PilotesController < ApplicationController
     end
 
     def pilote_params
-      params.fetch(:pilote, {}).permit(:nom, {division_ids: []})
+      params.fetch(:pilote, {}).permit(:nom)#, :divisionId, {division_ids: []})
     end
 end

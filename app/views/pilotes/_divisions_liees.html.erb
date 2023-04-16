@@ -1,0 +1,18 @@
+
+<div class="container bg-secondary" data-controller="newrecord">
+  <div role="button" data-action="click->newrecord#openDropdown" 
+    data-newrecord-target="openButton" class="btn btn-primary btn-action">
+    voir divisions liées
+  </div>
+  <div role="button" data-action="click->newrecord#closeDropdown" 
+    data-newrecord-target="closeButton" class="fa-solid fa-close btn btn-danger btn-action">
+  </div>
+  <div  data-newrecord-target="newrecordContent">
+    <div class="container bg-secondary">
+      liste des divisions liées : <br>
+      <% @divisions.each do | division | %>
+        <%= division.nom %> <br>
+      <% end %>
+    </div>
+  </div>  <hr>
+</div>

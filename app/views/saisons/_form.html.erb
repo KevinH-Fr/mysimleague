@@ -25,8 +25,11 @@
         </div>
 
         <div class="input-group">
-          <%= form.label :ligue_id, class:"input-group-text label-with-format" %>
-          <%= form.number_field :ligue_id, value: @ligueId , class:"form-control field-with-format" %>
+          <% if saison.persisted? %>
+            <%= form.hidden_field :ligue_id %>
+          <% else %>
+            <%= form.hidden_field :ligue_id, value: @ligueId %>
+          <% end %>
         </div>
 
       </div>

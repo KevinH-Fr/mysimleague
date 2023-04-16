@@ -9,10 +9,15 @@ class DivisionsController < ApplicationController
     @saisonId = params[:saisonId]
     @divisionId = params[:divisionId]
 
-    @saisons = Saison.ligue_courante(@ligueId)
-    @divisions = Division.saison_courante(@saisonId)
+    if @ligueId.present?
+      @ligue = Ligue.find(@ligueId) 
+      @saisons = @ligue.saisons
+    end
 
-    
+    if @saisonId.present?
+      @saison = Saison.find(@saisonId) 
+      @divisions = @saison.divisions
+    end
 
     @ligue = params[:ligueId]
 
@@ -47,25 +52,25 @@ class DivisionsController < ApplicationController
 
     respond_to do |format|
       if @division.save
-        #format.turbo_stream do
-        #  flash.now[:notice] = "le division #{@division.nom} a bien été ajouté"
-        #  render turbo_stream: [
-        #    turbo_stream.update('new_division', partial: "divisions/form", locals: {division: Division.new}),
-        #    turbo_stream.prepend("divisions", partial: "divisions/division",
-        #      locals: {division: @division }), 
-        #      turbo_stream.update("flash", partial: "layouts/flash"),     
-        #    ]
-        #end
+        format.turbo_stream do
+          flash.now[:notice] = "le division #{@division.nom} a bien été ajouté"
+          render turbo_stream: [
+            turbo_stream.update('new_division', partial: "divisions/form", locals: {division: Division.new}),
+            turbo_stream.prepend("divisions", partial: "divisions/division",
+              locals: {division: @division }), 
+              turbo_stream.update("flash", partial: "layouts/flash"),     
+            ]
+        end
         format.html { redirect_to division_url(@saison), notice: "division was successfully created." }
         format.json { render :show, status: :created, location: @division }
 
       else
-        #flash.now[:notice] = "erreur - le division n'a pas été ajouté"
-        #format.turbo_stream do
-        #  render turbo_stream: [
-        #     turbo_stream.update("flash", partial: "layouts/flashError"),
-        #   ]
-        # end
+        flash.now[:notice] = "erreur - le division n'a pas été ajouté"
+        format.turbo_stream do
+          render turbo_stream: [
+             turbo_stream.update("flash", partial: "layouts/flashError"),
+           ]
+         end
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @division.errors, status: :unprocessable_entity }
 

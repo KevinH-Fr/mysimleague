@@ -6,9 +6,12 @@ class LiguesController < ApplicationController
     @q = Ligue.ransack(search_params[:q])
     ligues = @q.result(distinct: true).order(created_at: :desc)
     @pagy, @ligues = pagy_countless(ligues, items: 20)
+
   end
 
   def show
+    @saisons = @ligue.saisons
+    @divisions = @ligue.divisions
   end
 
   def new

@@ -1,9 +1,7 @@
 class Saison < ApplicationRecord
 
-    belongs_to :ligue
-    has_many :divisions
-
-    scope :ligue_courante, -> (ligue_courante) { where("ligue_id = ?", ligue_courante)}
+    belongs_to :ligue, optional: true
+    has_many :divisions, dependent: :delete_all
 
     def feed_content
         nom

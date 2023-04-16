@@ -1,5 +1,5 @@
 class Circuit < ApplicationRecord
-    has_many :events
+    has_many :events, dependent: :delete_all
 
     has_one_attached :drapeau
     has_one_attached :carte

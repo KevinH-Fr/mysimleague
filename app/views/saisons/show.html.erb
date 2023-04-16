@@ -1,10 +1,11 @@
-<p style="color: green"><%= notice %></p>
+<h1> Saisons </h1>
+
+ligue: <%= @ligue.nom %>
 
 <%= render @saison %>
 
-<div>
-  <%= link_to "Edit this saison", edit_saison_path(@saison) %> |
-  <%= link_to "Back to saisons", saisons_path %>
+<hr>  
 
-  <%= button_to "Destroy this saison", @saison, method: :delete %>
-</div>
+<%= render "shared/divisions_liees" %>
+
+

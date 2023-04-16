@@ -10,13 +10,29 @@ class ResultatsController < ApplicationController
 
     @ligues = Ligue.all
 
-    @saisons = Saison.ligue_courante(@ligueId)
-    @divisions = Division.saison_courante(@saisonId)
-    @events = Event.division_courante(@divisionId)
-    @resultats = Resultat.event_courant(@eventId)
+    # filtre saisons ligue courante
+    if @ligueId.present?
+      @ligue = Ligue.find(@ligueId) 
+      @saisons = @ligue.saisons
+    end
 
+     # filtre divisions saison courante
+    if @saisonId.present?
+      @saison = Saison.find(@saisonId) 
+      @divisions = @saison.divisions
+    end
 
-   # @pilotes = division.pilotes
+    # filtre events division courante
+    if @divisionId.present?
+      @division = Division.find(@divisionId) 
+      @events = @division.events
+    end
+
+    # filtre resultats event courant
+    if @eventId.present?
+      @event = Event.find(@eventId) 
+      @resultats = @event.resultats
+    end
 
     @ligue = Ligue.find(@ligueId) if @ligueId.present?
     @saison = Saison.find(@saisonId) if @saisonId.present?
@@ -26,6 +42,15 @@ class ResultatsController < ApplicationController
     @circuitId = Event.find(@eventId).circuit_id if @eventId.present?
     @circuit = Circuit.find(@circuitId) if @circuitId.present?
 
+    # filtre pilotes division courante
+    if @divisionId.present?
+      @division = Division.find(@divisionId) 
+      @pilotes = @division.pilotes
+    end
+    
+    @equipes = Equipe.all
+
+    
   end
 
   def show
@@ -33,10 +58,22 @@ class ResultatsController < ApplicationController
 
   def new
     @resultat = Resultat.new(resultat_params)
+
+    @event = Event.find(params[:eventId])
+    @division = @event.division
+
+    @pilotes = @division.pilotes
+    
+    @equipes = Equipe.all
   end
 
   def edit
-    @eventId = params[:eventId]
+    @event = Event.find(params[:eventId])
+    @division = @event.division
+    @pilotes = @division.pilotes
+
+    @equipes = Equipe.all
+
     respond_to do |format|
       format.html
       format.turbo_stream do  

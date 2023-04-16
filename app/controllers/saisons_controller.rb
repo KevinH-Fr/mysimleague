@@ -5,11 +5,17 @@ class SaisonsController < ApplicationController
 
     @ligues = Ligue.all
     @ligueId = params[:ligueId]
-    @saisons = Saison.ligue_courante(@ligueId)
+
+    if @ligueId.present?
+      @ligue = Ligue.find(@ligueId) 
+      @saisons = @ligue.saisons
+    end
 
   end
 
   def show
+    @saison = Saison.find(params[:id])
+    @ligue = @saison.ligue
   end
 
   def new

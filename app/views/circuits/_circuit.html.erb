@@ -9,7 +9,8 @@
               <%= image_tag(circuit.drapeau, class:"img-drapeau") if circuit.drapeau.attached? %>
             </div>
             <div class="col-10">
-              <%= circuit.nom_complet %>  
+              <%= circuit.nom %>  
+              <small><%= circuit.nom %> </small> 
             </div>
           </div>
 

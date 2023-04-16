@@ -8,31 +8,33 @@
           <%= resultat.pilote_nom %>
           <%= resultat.course %>
 
+          <small>
             <div data-dropdown-target="dropdownContent">
-                <strong>Event:</strong>
-                <%= resultat.event_id %>
+              <strong>Event:</strong>
+              <%= resultat.event_id %>
 
-                <strong>Equipe:</strong>
-                <%= resultat.equipe_id %>
+              <strong>Equipe:</strong>
+              <%= resultat.equipe_id %>
 
-                <strong>Qualification:</strong>
-                <%= resultat.qualification %>
+              <strong>Qualification:</strong>
+              <%= resultat.qualification %>
 
-                <strong>Dotd:</strong>
-                <%= resultat.dotd %>
+              <strong>Dotd:</strong>
+              <%= resultat.dotd %>
 
-                <strong>Mt:</strong>
-                <%= resultat.mt %>
+              <strong>Mt:</strong>
+              <%= resultat.mt %>
 
-                <strong>Score:</strong>
-                <%= resultat.score %>
+              <strong>Score:</strong>
+              <%= resultat.score %>
 
-                <strong>Dnf:</strong>
-                <%= resultat.dnf %>
+              <strong>Dnf:</strong>
+              <%= resultat.dnf %>
 
-                <strong>Dns:</strong>
-                <%= resultat.dns %>
+              <strong>Dns:</strong>
+              <%= resultat.dns %>
             </div>
+          </small>
         </div>
         <div class="col-4 col-btn">  
           <div role="button" data-action="click->dropdown#openDropdown" 

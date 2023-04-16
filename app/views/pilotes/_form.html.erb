@@ -11,6 +11,7 @@
     </div>
   <% end %>
 
+
   <div class="cadre-record">
 
     <div class="row">
@@ -21,12 +22,26 @@
         </div>
       </div>
 
-      <div class="col-2 col-btn">
+<div class="col-2 col-btn">
+  <%= form_for pilote do |o| %>
+    <%= hidden_field_tag(:divisionId, params[:divisionId]) %>
+    <%= o.button "", class: "btn btn-valider" do %>
+      <span><i class="fa fa-solid fa-square-check"></i></span>
+    <% end %>
+  <% end %>
+</div>
+
+
+<%
+=begin%>
+       <div class="col-2 col-btn">
         <button type="submit" class="btn btn-valider">
           <span><i class="fa-solid fa-square-check"></i> </span>
         </button>
       </div>
-    </div>
+    </div> 
+<%
+=end%>
 
   </div>
 <% end %>

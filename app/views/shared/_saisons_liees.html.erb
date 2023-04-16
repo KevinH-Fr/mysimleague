@@ -1,0 +1,7 @@
+
+<div class="container bg-secondary">
+  <strong>  liste des saisons liées : </strong> <br>
+  <% @saisons.each do | saison | %>
+    <%= link_to saison.nom, saison_path(saison), class:"btn btn-dark m-1" %>
+  <% end %>
+</div>

@@ -26,12 +26,22 @@ export default class extends Controller {
     this.dropdownContentTarget.hidden = false
     this.openButtonTarget.hidden = true
     this.closeButtonTarget.hidden = false
+
+    this.getId()
   }
 
   closeDropdown() {
     this.dropdownContentTarget.hidden = true
     this.openButtonTarget.hidden = false
     this.closeButtonTarget.hidden = true
+  }
+
+
+  getId() {
+   // event.preventDefault()
+   let ligueId = this.data.get("ligueId")
+    console.log("show id: " + ligueId)
+    //this.visit(`/ligues/${id}?show_ligue=${id}`)
   }
 
 }

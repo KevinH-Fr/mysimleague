@@ -25,11 +25,11 @@
         </div>
 
         <div class="input-group">
-          <%= form.label :saison_id, class:"input-group-text label-with-format" %>
+          <%#= form.label :saison_id, class:"input-group-text label-with-format" %>
           <% if division.persisted? %>
-            <%= form.text_field :saison_id %>
+            <%= form.hidden_field :saison_id %>
           <% else %>
-            <%= form.text_field :saison_id, value: @saisonId %>
+            <%= form.hidden_field :saison_id, value: @saisonId %>
           <% end %>
         </div>
 

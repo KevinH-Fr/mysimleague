@@ -1,9 +1,9 @@
 class Resultat < ApplicationRecord
-  belongs_to :event
-  belongs_to :pilote
-  belongs_to :equipe
+  belongs_to :event, optional: true
+  belongs_to :pilote, optional: true
+  belongs_to :equipe, optional: true
 
-  scope :event_courant, -> (event_courant) { where("event_id = ?", event_courant)}
+#  scope :event_courant, -> (event_courant) { where("event_id = ?", event_courant)}
 
   def feed_content
     id

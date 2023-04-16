@@ -1,0 +1,9 @@
+
+<% if @divisions.present? %>
+  <div class="container bg-secondary">
+    <strong>  liste des divisions liées : </strong> <br>
+    <% @divisions.each do | division | %>
+      <%= link_to division.nom, division_path(division), class:"btn btn-primary m-1" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,24 @@
+
+<div class="container bg-secondary" data-controller="newrecord">
+  <div role="button" data-action="click->newrecord#openDropdown" 
+    data-newrecord-target="openButton" class="btn btn-warning btn-action">
+    Edit divisions liées
+  </div>
+  <div role="button" data-action="click->newrecord#closeDropdown" 
+    data-newrecord-target="closeButton" class="fa-solid fa-close btn btn-danger btn-action">
+  </div>
+
+    <div  data-newrecord-target="newrecordContent">
+        <div class="container bg-secondary">
+        Edition des divisions liées <br>
+            <%= form_for @pilote do |f| %>
+                <%= f.label :divisions %><br />
+                    <% for division in Division.all %>
+                        <%= check_box_tag "pilote[division_ids][]", division.id, @pilote.divisions.include?(division) %>
+                        <%= division.nom %><br />
+                    <% end %>
+                <%= f.submit "Add division to pilote" %>
+            <% end %>
+        </div>
+    </div>
+</div>

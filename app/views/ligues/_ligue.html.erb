@@ -14,19 +14,24 @@
           </div>
 
           <div data-dropdown-target="dropdownContent">
-            <%= ligue.description %>  
+            <%= ligue.description %>  <br>  
           </div>
 
         </div>
 
         <div class="col-4 col-btn">  
+
           <div role="button" data-action="click->dropdown#openDropdown" 
-              data-dropdown-target="openButton", class="fa-solid fa-eye btn btn-outline-primary btn-action">
+            data-dropdown-target="openButton" 
+            class="fa-solid fa-eye btn btn-outline-primary btn-action">
           </div>
           <div role="button" data-action="click->dropdown#closeDropdown" 
             data-dropdown-target="closeButton", class="fa-solid fa-eye-slash btn btn-outline-primary btn-action">
           </div>
-                
+
+          <%= link_to "", ligue_path(ligue), 
+                class:"fa-solid fa-square-arrow-up-right btn btn-success btn-action" %>
+
           <%= button_to "", edit_ligue_path(ligue), 
                 class:"fa-regular fa-pen-to-square btn btn-secondary btn-action", method: :post %> 
           <%= button_to '', ligue_path(ligue), 

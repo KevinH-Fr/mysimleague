@@ -17,6 +17,9 @@
           <div role="button" data-action="click->dropdown#closeDropdown" 
             data-dropdown-target="closeButton", class="fa-solid fa-eye-slash btn btn-outline-primary btn-action">
           </div>
+
+          <%= link_to "", saison_path(saison), 
+                class:"fa-solid fa-square-arrow-up-right btn btn-success btn-action" %>
                 
           <%= button_to "", edit_saison_path(saison, ligueId: @ligueId), 
                 class:"fa-regular fa-pen-to-square btn btn-secondary btn-action", method: :post %> 

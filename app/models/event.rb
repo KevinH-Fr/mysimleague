@@ -1,12 +1,12 @@
 class Event < ApplicationRecord
 
-  belongs_to :circuit
-  belongs_to :division
+  belongs_to :circuit, optional: true
+  belongs_to :division, optional: true
 
-  has_many :pilotes
-  has_many :resultats
+  has_many :pilotes, dependent: :delete_all
+  has_many :resultats, dependent: :delete_all
 
-  scope :division_courante, -> (division_courante) { where("division_id = ?", division_courante)}
+ # scope :division_courante, -> (division_courante) { where("division_id = ?", division_courante)}
 
   def feed_content
     id
