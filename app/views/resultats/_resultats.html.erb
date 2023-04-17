@@ -1,0 +1,74 @@
+
+<%# liste des resultats maj par turbo stream depuis le controller %>
+<% @resultats.each do |resultat| %>
+
+  <div id="<%= dom_id resultat %>">
+    <div data-controller="dropdown" data-action="turbo:submit-end->dropdown#submitEnd">
+      <div class="cadre-record">
+        <div class="row col-data col-centered m-0 p-0">
+          <div class="col-1 col-position">
+            <%= resultat.course %>
+          </div>
+          <div class="col-4">
+            <%= resultat.pilote_nom %>
+          </div>
+          <div class="col-3 col-centered">
+            <% if resultat.dotd == true %>
+              <%= image_tag("dotd_white.png", class:"w-25 col-centered mx-1") %>
+            <% end %>
+            <% if resultat.mt == true %>
+              <%= image_tag("mt_white.png", class:"w-25 col-centered mx-1") %>
+            <% end %>
+          </div>
+          <div class="col-1 col-score">
+            <%= resultat.score %>
+          </div> 
+
+          <div class="col-3 col-btn m-0 p-0">
+            <div role="button" data-action="click->dropdown#openDropdown" 
+                data-dropdown-target="openButton", class="fa-solid fa-eye btn btn-outline-primary btn-action">
+            </div>
+            <div role="button" data-action="click->dropdown#closeDropdown" 
+              data-dropdown-target="closeButton", class="fa-solid fa-eye-slash btn btn-outline-primary btn-action">
+            </div>
+            <%= button_to "", edit_resultat_path(resultat, eventId: @eventId), 
+                class:"fa-regular fa-pen-to-square btn btn-secondary btn-action", method: :post %> 
+            <%= button_to '', resultat_path(resultat), 
+                class:"fa-solid fa-trash-can btn btn-danger btn-action", method: :delete,
+                :onclick => "return confirm('Etes-vous certain de vouloir supprimer le resultat ?')" %> 
+          </div>
+        </div>
+        <div data-dropdown-target="dropdownContent">
+          <div class="row">
+            <small>
+              <strong>Event:</strong>
+              <%= resultat.event_id %>
+
+              <strong>Equipe:</strong>
+              <%= resultat.equipe_id %>
+
+              <strong>Qualification:</strong>
+              <%= resultat.qualification %>
+
+              <strong>Dotd:</strong>
+              <%= resultat.dotd %>
+
+              <strong>Mt:</strong>
+              <%= resultat.mt %>
+
+              <strong>Score:</strong>
+              <%= resultat.score %>
+
+              <strong>Dnf:</strong>
+              <%= resultat.dnf %>
+
+              <strong>Dns:</strong>
+              <%= resultat.dns %> 
+            </small>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+<% end %>

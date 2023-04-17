@@ -9,6 +9,7 @@ class ResultatsController < ApplicationController
     session[:divisionId] = @divisionId
 
     @eventId = params[:eventId]
+    session[:eventId] = @eventId
 
     @ligues = Ligue.all
 
@@ -33,7 +34,7 @@ class ResultatsController < ApplicationController
     # filtre resultats event courant
     if @eventId.present?
       @event = Event.find(@eventId) 
-      @resultats = @event.resultats
+      @resultats = @event.resultats.order(:course)
     end
 
     @ligue = Ligue.find(@ligueId) if @ligueId.present?
@@ -86,13 +87,21 @@ class ResultatsController < ApplicationController
   end
 
   def create
-    @resultat = Resultat.new(resultat_params)
 
-        # filtre pilotes division courante
-        if @divisionId.present?
-          @division = Division.find(@divisionId) 
-          @pilotes = @division.pilotes
-        end
+    if session[:divisionId].present?
+      @division = Division.find(session[:divisionId]) 
+      @pilotes = @division.pilotes
+    end
+
+    @equipes = Equipe.all
+
+    # filtre resultats event courant
+    if session[:eventId].present?
+      @event = Event.find(session[:eventId]) 
+      @resultats = @event.resultats.order(:course)
+    end
+
+    @resultat = Resultat.new(resultat_params)
 
     respond_to do |format|
       if @resultat.save
@@ -102,7 +111,13 @@ class ResultatsController < ApplicationController
             turbo_stream.update('new_resultat', partial: "resultats/form", locals: {resultat: Resultat.new}),
             turbo_stream.prepend("resultats", partial: "resultats/resultat",
               locals: {resultat: @resultat }), 
-              turbo_stream.update("flash", partial: "layouts/flash"),     
+            
+            # maj pour ordre des resultats
+            turbo_stream.update(
+                'resultats', partial: 'resultats', locals: { resultats: @resultats }),
+
+            turbo_stream.update("flash", partial: "layouts/flash"),
+            turbo_stream.update("resultat_counter", @resultats.count)
             ]
         end
         format.html { redirect_to resultat_url(@resultat), notice: "resultat was successfully created." }
@@ -123,6 +138,13 @@ class ResultatsController < ApplicationController
   end
 
   def update
+
+    # filtre resultats event courant
+    if session[:eventId].present?
+      @event = Event.find(session[:eventId]) 
+      @resultats = @event.resultats.order(:course)
+    end
+
     respond_to do |format|
       if @resultat.update(resultat_params)
         format.turbo_stream do  
@@ -130,6 +152,10 @@ class ResultatsController < ApplicationController
           render turbo_stream: [
             turbo_stream.update(@resultat, partial: "resultats/resultat", 
               locals: {resultat: @resultat}),
+            # maj pour ordre des resultats
+            turbo_stream.update(
+              'resultats', partial: 'resultats', locals: { resultats: @resultats }),
+          
               turbo_stream.update("flash", partial: "layouts/flash")
            ]
         end
@@ -148,10 +174,23 @@ class ResultatsController < ApplicationController
   end
 
   def destroy
+
     @resultat.destroy
 
+    if session[:eventId].present?
+      @event = Event.find(session[:eventId]) 
+      @resultats = @event.resultats
+    end
+
     respond_to do |format|
-      format.turbo_stream { render turbo_stream: turbo_stream.remove(@resultat) }
+      
+      format.turbo_stream do 
+        render turbo_stream: [
+          turbo_stream.remove(@resultat),
+          turbo_stream.update("resultat_counter", @resultats.count)
+        ]
+      end
+      
       format.html { redirect_to resultats_url, notice: "resultat was successfully destroyed." }
       format.json { head :no_content }
     end
