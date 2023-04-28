@@ -1,19 +1,16 @@
 
-<% points_by_pilote.each_with_index  do |(pilote, points), index | %>
-
-    <div class="cadre-record">
-        <div class="row col-data col-centered m-0 p-0">
-            <div class="col-1 col-position">
-               <%= index + 1  %>
-            </div>
-            <div class="col-10 ps-4">
-                <%= pilote.nom %>
-            </div>
-            <div class="col-1 col-score">
-                <%= points %>
-            </div>
-        </div>
+<% points_by_pilote.each do |pilote, data| %>
+  <div class="cadre-record">
+    <div class="row col-data col-centered m-0 p-0">
+      <div class="col-1 col-position">
+        <%= data[:index] %>
+      </div>
+      <div class="col-10 ps-4">
+        <%= pilote.nom %>
+      </div>
+      <div class="col-1 col-score">
+        <%= data[:score] %>
+      </div>
     </div>
+  </div>
 <% end %>
-
-<%#= listePilotes().ids %>
