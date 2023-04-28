@@ -24,7 +24,7 @@
 
 <div class="col-2 col-btn">
   <%= form_for pilote do |o| %>
-    <%= hidden_field_tag(:divisionId, params[:divisionId]) %>
+    <%= hidden_field_tag(:divisionId, divisionCourante) %>
     <%= o.button "", class: "btn btn-valider" do %>
       <span><i class="fa fa-solid fa-square-check"></i></span>
     <% end %>

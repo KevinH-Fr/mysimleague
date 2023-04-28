@@ -32,7 +32,7 @@ module ChoixEventHelper
     def filtreSaisonCouranteDivisions()
         # filtre divisions saison courante
         if saisonCourante.present?
-            saison = Saison.find(saisonCourante) 
+            saison =Saison.find(saisonCourante) 
             saison.divisions
         end
     end

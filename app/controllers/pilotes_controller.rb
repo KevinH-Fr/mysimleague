@@ -3,29 +3,11 @@ class PilotesController < ApplicationController
 
   def index
 
-    @ligueId = params[:ligueId]
-    @saisonId = params[:saisonId]
-    @divisionId = params[:divisionId]
-
-    @ligues = Ligue.all
-
-    # filtre saisons ligue courante
-    if @ligueId.present?
-      @ligue = Ligue.find(@ligueId) 
-      @saisons = @ligue.saisons
-    end
-
-     # filtre divisions saison courante
-    if @saisonId.present?
-      @saison = Saison.find(@saisonId) 
-      @divisions = @saison.divisions
-    end
-
-    # filtre pilotes division courante
-    if @divisionId.present?
-      @division = Division.find(@divisionId) 
+    if params[:divisionId].present?
+      @division = Division.find(params[:divisionId]) 
       @pilotes = @division.pilotes
     end
+
   end
 
   def show

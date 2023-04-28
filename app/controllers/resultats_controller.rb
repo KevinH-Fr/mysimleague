@@ -11,7 +11,11 @@ class ResultatsController < ApplicationController
   #  end
     
     @equipes = Equipe.all
-    @pilotes = Pilote.all
+
+    if params[:divisionId].present?
+      @division = Division.find(params[:divisionId]) 
+      @pilotes = @division.pilotes
+    end
 
   end
 
@@ -21,22 +25,16 @@ class ResultatsController < ApplicationController
   def new
     @resultat = Resultat.new(resultat_params)
 
-   # @event = Event.find(params[:eventId])
-   # @division = @event.division
-   # @pilotes = @division.pilotes
-    
-    @equipes = Equipe.all
   end
 
   def edit
-#    if params[:divisionId].present?
-#      @division = Division.find(session[:divisionId]) 
-#      @pilotes = @division.pilotes
-#    end
-  
+      @event = Event.find(@resultat.event_id)
+      @division = Division.find(@event.division_id) 
+      @pilotes = @division.pilotes
+
 
     @equipes = Equipe.all
-    @pilotes = Pilote.all
+   # @pilotes = Pilote.all
 
     respond_to do |format|
       format.html
@@ -54,14 +52,15 @@ class ResultatsController < ApplicationController
    #   @pilotes = @division.pilotes
    # end
 
-    @equipes = Equipe.all
-    @pilotes = Pilote.all
 
     # filtre resultats event courant
    # if session[:eventId].present?
     #@event = Event.find(1) 
     #@resultats = @event.resultats.order(:course)
    # end
+
+     @equipes = Equipe.all
+     @pilotes = Pilote.all
 
     @resultat = Resultat.new(resultat_params)
 
@@ -70,7 +69,11 @@ class ResultatsController < ApplicationController
 
         @event = Event.find(@resultat.event_id) 
         @resultats = @event.resultats.order(:course)
-
+       
+        @equipes = Equipe.all
+        @division = Division.find(@event.division_id) 
+        @pilotes = @division.pilotes
+    
         format.turbo_stream do
           flash.now[:notice] = "le resultat #{@resultat.id} a bien été ajouté"
           render turbo_stream: [
