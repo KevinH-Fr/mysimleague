@@ -4,7 +4,7 @@ module PilotesHelper
     	params[:divisionId]
     end
 
-    def filtreDivisionCourante()
+    def pilotesFiltreDivisionCourante()
         if divisionCourante.present?
             division = Division.find(divisionCourante) 
             division.pilotes
