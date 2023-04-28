@@ -29,7 +29,7 @@
           <% if division.persisted? %>
             <%= form.hidden_field :saison_id %>
           <% else %>
-            <%= form.hidden_field :saison_id, value: @saisonId %>
+            <%= form.hidden_field :saison_id, value: saisonCourante %>
           <% end %>
         </div>
 

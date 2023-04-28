@@ -45,11 +45,11 @@ module ChoixEventHelper
         end
     end
 
-    def filtreEventCouranteResultats()
+    def filtreEventCourantResultats()
         # filtre resultats event courant
         if eventCourant.present?
             event = Event.find(eventCourant) 
-            event.resultats
+            event.resultats.order(:course)
         end
     end
 

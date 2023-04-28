@@ -3,6 +3,7 @@ class ResultatsController < ApplicationController
 
   def index
 
+
     # filtre pilotes division courante
   #  if session[:divisionId].present?
   #    @division = Division.find(session[:divisionId]) 
@@ -10,6 +11,7 @@ class ResultatsController < ApplicationController
   #  end
     
     @equipes = Equipe.all
+    @pilotes = Pilote.all
 
   end
 
@@ -19,20 +21,22 @@ class ResultatsController < ApplicationController
   def new
     @resultat = Resultat.new(resultat_params)
 
-    @event = Event.find(params[:eventId])
-    @division = @event.division
-    @pilotes = @division.pilotes
+   # @event = Event.find(params[:eventId])
+   # @division = @event.division
+   # @pilotes = @division.pilotes
     
     @equipes = Equipe.all
   end
 
   def edit
-    if session[:divisionId].present?
-      @division = Division.find(session[:divisionId]) 
-      @pilotes = @division.pilotes
-    end
+#    if params[:divisionId].present?
+#      @division = Division.find(session[:divisionId]) 
+#      @pilotes = @division.pilotes
+#    end
+  
 
     @equipes = Equipe.all
+    @pilotes = Pilote.all
 
     respond_to do |format|
       format.html
@@ -45,23 +49,28 @@ class ResultatsController < ApplicationController
 
   def create
 
-    if session[:divisionId].present?
-      @division = Division.find(session[:divisionId]) 
-      @pilotes = @division.pilotes
-    end
+   # if session[:divisionId].present?
+   #   @division = Division.find(session[:divisionId]) 
+   #   @pilotes = @division.pilotes
+   # end
 
     @equipes = Equipe.all
+    @pilotes = Pilote.all
 
     # filtre resultats event courant
-    if session[:eventId].present?
-      @event = Event.find(session[:eventId]) 
-      @resultats = @event.resultats.order(:course)
-    end
+   # if session[:eventId].present?
+    #@event = Event.find(1) 
+    #@resultats = @event.resultats.order(:course)
+   # end
 
     @resultat = Resultat.new(resultat_params)
 
     respond_to do |format|
       if @resultat.save
+
+        @event = Event.find(@resultat.event_id) 
+        @resultats = @event.resultats.order(:course)
+
         format.turbo_stream do
           flash.now[:notice] = "le resultat #{@resultat.id} a bien été ajouté"
           render turbo_stream: [
@@ -96,11 +105,14 @@ class ResultatsController < ApplicationController
 
   def update
 
+    @resultat = Resultat.find(params[:id])
     # filtre resultats event courant
-    if session[:eventId].present?
-      @event = Event.find(session[:eventId]) 
+ #   if session[:eventId].present?
+      @event = Event.find(@resultat.event_id) 
       @resultats = @event.resultats.order(:course)
-    end
+  #  end
+
+ #  @resultats = filtreEventCourantResultats()
 
     respond_to do |format|
       if @resultat.update(resultat_params)
@@ -134,10 +146,10 @@ class ResultatsController < ApplicationController
 
     @resultat.destroy
 
-    if session[:eventId].present?
+  #  if session[:eventId].present?
       @event = Event.find(session[:eventId]) 
       @resultats = @event.resultats
-    end
+  #  end
 
     respond_to do |format|
       

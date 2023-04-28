@@ -1,10 +1,10 @@
 module PilotesHelper
 
     def divisionCourante()
-        params[:divisionId]
+    	params[:divisionId]
     end
 
-    def filtreDivisionCourante
+    def filtreDivisionCourante()
         if divisionCourante.present?
             division = Division.find(divisionCourante) 
             division.pilotes

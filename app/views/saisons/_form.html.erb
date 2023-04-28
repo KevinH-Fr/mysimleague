@@ -28,7 +28,7 @@
           <% if saison.persisted? %>
             <%= form.hidden_field :ligue_id %>
           <% else %>
-            <%= form.hidden_field :ligue_id, value: @ligueId %>
+            <%= form.hidden_field :ligue_id, value: ligueCourante %>
           <% end %>
         </div>
 

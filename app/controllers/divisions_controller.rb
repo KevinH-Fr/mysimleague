@@ -2,9 +2,7 @@ class DivisionsController < ApplicationController
   before_action :set_division, only: %i[ show edit update destroy ]
 
   def index
-
     @pilotes = Pilote.all
-
   end
 
   def show
