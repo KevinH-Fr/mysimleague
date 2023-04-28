@@ -3,14 +3,6 @@ class SaisonsController < ApplicationController
 
   def index
 
-    @ligues = Ligue.all
-    @ligueId = params[:ligueId]
-
-    if @ligueId.present?
-      @ligue = Ligue.find(@ligueId) 
-      @saisons = @ligue.saisons
-    end
-
   end
 
   def show

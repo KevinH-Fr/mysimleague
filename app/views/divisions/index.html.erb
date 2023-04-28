@@ -15,7 +15,8 @@
 <%= render "choix_event/choix_ligue" %>
 <%= render "choix_event/choix_saison" %>
 
-<% if @saisonId.present? %>
+<% if saisonCourante().present? %>
+  <% @divisions = filtreSaisonCouranteDivisions()  %>
 
   <div data-controller="newrecord" data-action="turbo:submit-end->newrecord#submitEnd">
     <div id="divisions">

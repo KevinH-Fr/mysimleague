@@ -2,37 +2,9 @@ class EventsController < ApplicationController
   before_action :set_event, only: %i[ show edit update destroy ]
 
   def index
-
-    @ligueId = params[:ligueId]
-    @saisonId = params[:saisonId]
-    @divisionId = params[:divisionId]
-    @eventId = params[:eventId]
-
-    @ligues = Ligue.all
     @circuits = Circuit.all
-
-
-    # filtre saisons ligue courante
-    if @ligueId.present?
-      @ligue = Ligue.find(@ligueId) 
-      @saisons = @ligue.saisons
-    end
-
-     # filtre divisions saison courante
-    if @saisonId.present?
-      @saison = Saison.find(@saisonId) 
-      @divisions = @saison.divisions
-    end
-
-    # filtre events division courante
-    if @divisionId.present?
-      @division = Division.find(@divisionId) 
-      @events = @division.events
-    end
-
   end
   
-
   def show
   end
 

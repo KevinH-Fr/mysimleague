@@ -1,7 +1,13 @@
   <%# afficher les détails de l'event selectionné %>
 
-<% if @eventId.present? %>
+<% if eventCourant.present? %>
 
+   <% @ligue = Ligue.find(ligueCourante) %> 
+   <% @saison = Saison.find(saisonCourante)  %> 
+   <% @division  = Division.find(divisionCourante) %> 
+   <% @event = Event.find(eventCourant)  %> 
+   <% @circuit = @event.circuit  %> 
+  
   <div class="container container-eventactif">
     <div class="table-responsive">
       <table class="table" width="100%">

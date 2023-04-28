@@ -3,57 +3,14 @@ class ResultatsController < ApplicationController
 
   def index
 
-    @ligueId = params[:ligueId]
-    @saisonId = params[:saisonId]
-    @divisionId = params[:divisionId]
-    session[:divisionId] = @divisionId
-
-    @eventId = params[:eventId]
-    session[:eventId] = @eventId
-
-    @ligues = Ligue.all
-
-    # filtre saisons ligue courante
-    if @ligueId.present?
-      @ligue = Ligue.find(@ligueId) 
-      @saisons = @ligue.saisons
-    end
-
-     # filtre divisions saison courante
-    if @saisonId.present?
-      @saison = Saison.find(@saisonId) 
-      @divisions = @saison.divisions
-    end
-
-    # filtre events division courante
-    if @divisionId.present?
-      @division = Division.find(@divisionId) 
-      @events = @division.events
-    end
-
-    # filtre resultats event courant
-    if @eventId.present?
-      @event = Event.find(@eventId) 
-      @resultats = @event.resultats.order(:course)
-    end
-
-    @ligue = Ligue.find(@ligueId) if @ligueId.present?
-    @saison = Saison.find(@saisonId) if @saisonId.present?
-    @division = Division.find(@divisionId) if @divisionId.present?
-    @event = Event.find(@eventId) if @eventId.present?
-
-    @circuitId = Event.find(@eventId).circuit_id if @eventId.present?
-    @circuit = Circuit.find(@circuitId) if @circuitId.present?
-
     # filtre pilotes division courante
-    if session[:divisionId].present?
-      @division = Division.find(session[:divisionId]) 
-      @pilotes = @division.pilotes
-    end
+  #  if session[:divisionId].present?
+  #    @division = Division.find(session[:divisionId]) 
+  #    @pilotes = @division.pilotes
+  #  end
     
     @equipes = Equipe.all
 
-    
   end
 
   def show

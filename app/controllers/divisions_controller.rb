@@ -2,24 +2,6 @@ class DivisionsController < ApplicationController
   before_action :set_division, only: %i[ show edit update destroy ]
 
   def index
-    @divisions = Division.all
-
-    @ligues = Ligue.all
-    @ligueId = params[:ligueId]
-    @saisonId = params[:saisonId]
-    @divisionId = params[:divisionId]
-
-    if @ligueId.present?
-      @ligue = Ligue.find(@ligueId) 
-      @saisons = @ligue.saisons
-    end
-
-    if @saisonId.present?
-      @saison = Saison.find(@saisonId) 
-      @divisions = @saison.divisions
-    end
-
-    @ligue = params[:ligueId]
 
     @pilotes = Pilote.all
 

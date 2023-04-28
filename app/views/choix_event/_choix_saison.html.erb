@@ -1,9 +1,10 @@
-<% if (@ligueId).present? %>
+<% if ligueCourante().present? %>
   <%# btn choix saison %>
+  <% @saisons = filtreLigueCouranteSaisons() %>
   <div class="m-2">
     Saison |
     <% @saisons.each do |saison| %>
-        <%= link_to "#{saison.nom}", url_for(ligueId: @ligueId, saisonId: saison.id), 
+        <%= link_to "#{saison.nom}", url_for(ligueId: ligueCourante(), saisonId: saison.id), 
             class:"btn btn-choix-event"%>
     <% end %>
   </div>
