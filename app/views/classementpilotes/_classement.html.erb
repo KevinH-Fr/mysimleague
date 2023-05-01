@@ -36,8 +36,8 @@
           <%= data[:delta_score] %>
         </div>
 
-        <div class="col-1 text-danger">
-          <%= scores_by_pilote_id_n_1(pilote.id) %>
+        <div class="col-1">
+          <%= render "delta", pilote: pilote %>
         </div>
 
       </div>
@@ -45,14 +45,5 @@
   <% end %>
 <% end %>
 
-<%# limiter les resultats a la division courante, et au num inferieur ou egal ) courant %>
-<%#= pilotesFiltreDivisionCourante.includes(:resultats => :event).where('events.division_id = ?', divisionCourante).ids %>
-<%#= Event.find(params[:eventId]).numero %>
-
-
-<hr>  
-
-pos n-1: <%= scores_by_pilote_id_n_1(80) %>
 
 <hr>
-

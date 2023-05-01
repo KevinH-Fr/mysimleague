@@ -73,16 +73,33 @@ module ClassementpilotesHelper
   
     sorted_scores
   end
-    
-  # factorisation classement n-1 et courant ? passer en param les resultats (n ou n-1)
 
+    # trouver position pilote x dans classement n
+    def rank_by_pilote_id(pilote_id)
+      if numeroCourant == 1
+        0
+      else
+        sorted_scores = ordered_points_by_pilote
+        pilote_scores = sorted_scores.select { |pilote, _| pilote.id == pilote_id }.values.first
+        pilote_scores[:index]
+      end
+    end
 
   # trouver position pilote x dans classement n-1
-  def scores_by_pilote_id_n_1(pilote_id)
-    sorted_scores = ordered_points_by_pilote_n_1
-    pilote_scores = sorted_scores.select { |pilote, _| pilote.id == pilote_id }.values.first
-    pilote_scores[:index]
+  def rank_by_pilote_id_n_1(pilote_id)
+    if numeroCourant == 1
+      0
+    else
+      sorted_scores = ordered_points_by_pilote_n_1
+      pilote_scores = sorted_scores.select { |pilote, _| pilote.id == pilote_id }.values.first
+      pilote_scores[:index]
+    end
   end
+
+  def delta_rank_pilote_id(pilote_id)
+     rank_by_pilote_id(pilote_id) - rank_by_pilote_id_n_1(pilote_id)
+  end
+
   
     
 end

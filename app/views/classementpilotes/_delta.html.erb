@@ -1,0 +1,16 @@
+
+
+<% delta = delta_rank_pilote_id(pilote.id) %>
+<% if delta < 0 %>
+    <div class="bg-success">
+        <%= delta %>
+    </div>
+<% elsif delta > 0 %>
+    <div class="bg-danger">
+        <%= delta %>
+    </div> 
+<% elsif %> 
+    <div class="bg-dark">
+       =
+    </div>
+<% end %>
