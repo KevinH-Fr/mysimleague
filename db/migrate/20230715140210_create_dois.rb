@@ -11,7 +11,6 @@ class CreateDois < ActiveRecord::Migration[7.0]
       t.integer :penalite
       t.string :penalite_temps
       t.text :commentaire
-      t.references :association_admin, null: true, foreign_key: true
 
 
       t.timestamps

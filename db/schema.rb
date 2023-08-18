@@ -123,10 +123,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_141955) do
     t.integer "penalite"
     t.string "penalite_temps"
     t.text "commentaire"
-    t.integer "association_admin_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["association_admin_id"], name: "index_dois_on_association_admin_id"
     t.index ["demandeur_id"], name: "index_dois_on_demandeur_id"
     t.index ["event_id"], name: "index_dois_on_event_id"
     t.index ["implique_id"], name: "index_dois_on_implique_id"
@@ -291,7 +289,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_141955) do
   add_foreign_key "association_users", "ligues"
   add_foreign_key "association_users", "users"
   add_foreign_key "divisions", "saisons"
-  add_foreign_key "dois", "association_admins"
   add_foreign_key "dois", "association_users", column: "demandeur_id"
   add_foreign_key "dois", "association_users", column: "implique_id"
   add_foreign_key "dois", "events"
