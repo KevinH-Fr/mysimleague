@@ -155,6 +155,10 @@ Rails.application.routes.draw do
 
   get 'generate_image_licences', to: 'synthese_licences#generate_image', as: 'generate_image_licences'
 
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
+
   #devise_for :users
   devise_for :users, controllers: { registrations: 'users/registrations' }
   get 'users' => 'users#index', as: 'users'
