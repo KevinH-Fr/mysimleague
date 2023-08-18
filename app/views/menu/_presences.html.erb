@@ -1,0 +1,11 @@
+<h4> Présences</h4>
+
+<%= turbo_frame_tag :content_new_presence do %>
+  <%= render "presences/new_presence" %>
+<% end %>
+
+<div id="presences">
+  <% @presences.each do |presence| %>
+      <%= render presence %>
+  <% end %>
+</div>

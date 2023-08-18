@@ -1,0 +1,19 @@
+<h4>Pilotes</h4>
+
+<% if current_user && verif_admin_ligue(current_user, @division.saison.ligue)  %>
+    <button class="btn btn-sm btn-primary my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNew" aria-expanded="false">
+        <span>Nouveau</span>
+    </button>
+<% end %>
+    
+<div class="collapse" id="collapseNew">
+    <div id="new_association_user">
+        <%= render partial: "association_users/form", locals: { association_user: AssociationUser.new } %>
+    </div>
+</div>
+
+<div id="association_users">
+    <% @division.association_users.each do |pilote| %>
+        <%= render pilote %>
+    <% end %>
+</div>

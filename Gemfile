@@ -69,3 +69,19 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+gem "devise", "~> 4.9"
+
+gem 'requestjs-rails'
+gem 'jquery-rails'
+gem 'wicked_pdf'
+
+gem "wkhtmltopdf-binary", group: :development
+gem "wkhtmltopdf-heroku", group: :production
+
+gem 'imgkit'
+gem 'wkhtmltoimage-binary'
+
+gem 'activeadmin'
+
+gem 'sassc-rails'

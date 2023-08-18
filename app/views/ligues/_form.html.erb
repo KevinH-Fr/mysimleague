@@ -1,0 +1,48 @@
+<div class="card record-with-effect m-0 my-1 p-2">  
+
+  <%= form_with(model: ligue) do |form| %>
+    <% if ligue.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(ligue.errors.count, "error") %> prohibited this ligue from being saved:</h2>
+        <ul>
+          <% ligue.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :nom, class: "input-group-text" %>
+      <%= form.text_field :nom, class: "form-control"%>
+    </div>
+
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :logo, class: "input-group-text" %>
+      <%= form.file_field :logo, class: "form-control"%>
+    </div>
+
+    <div>
+      <%#= form.label :proprietaire, style: "display: block" %>
+      <%= form.hidden_field :user_id, value: current_user.id if current_user %>
+    </div>
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="input-group input-group-sm">
+          <%= form.label :points_initial_licence, class: "input-group-text" %>
+          <%= form.text_field :points_initial, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="form-check form-switch">
+          <%= form.label :reglement_defaut, class: "form-check-label" %>
+          <%= form.check_box :reglement_defaut, class: "form-check-input" %>
+        </div>
+      </div>
+    </div>
+
+    <%= custom_submit_button("Ligue") %>
+
+  <% end %>
+</div>

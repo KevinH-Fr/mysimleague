@@ -1,0 +1,72 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<%= stylesheet_link_tag "document" %>
+
+<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+ 
+  <body>
+
+    <%= render partial: "documents/entete",  locals: { titre: "Résultats" } %>
+
+    <%#= tableau data resultats %>
+        
+    <table style="margin-left:auto;margin-right:auto">
+      <tbody>
+        <% @resultats.each do |resultat| %>
+          <% nom = User.find(resultat.association_user.user_id).nom %>
+          <% equipe = AssociationUser.find(resultat.equipe_id).equipe %>
+
+          <tr>
+            <td>
+              <% if resultat.dotd == true %>
+                <%= image_tag asset_url('/images/dotd_gold.png'), style: "width: 28px; margin-top: 4px; margin-left: 2px;" %> 
+              <% end %>
+            </td>
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= resultat.course %> 
+              </div>
+            </td>
+
+            <td>
+              <div class="img-banniere-doc">
+                <%= equipe_banner_with_pilote_document(equipe, nom) %> 
+              </div>  
+            </td>
+
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                 <%= resultat.score %> 
+              </div>
+            </td>
+            <td style= "width: 28px; margin-top: 4px;">
+                <% if resultat.mt == true %>
+                  <%= image_tag asset_url('/images/mt_violet.png'), style: "max-width: 100%; max-height: 100%;" %>
+                <% end %>
+            </td>
+          </tr>
+        <% end %> 
+      </tbody>  
+    </table>
+
+  </body>
+
+  <br><br>
+
+</div>
+
+<hr>
+
+<button data-controller="screenshot" 
+        data-nom-ligue="<%= @event.division.saison.ligue.nom %>" 
+        data-nom-saison="<%= @event.division.saison.nom %>" 
+        data-nom-division="<%= @event.division.nom %>" 
+        data-event-numero="<%= @event.numero %>" 
+        data-nom-doc="resultats" 
+        data-action="click->screenshot#capture" class="btn btn-success">
+  Image
+</button>

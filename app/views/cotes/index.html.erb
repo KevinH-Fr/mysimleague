@@ -1,0 +1,17 @@
+<h1>Cotes#index</h1>
+
+<%= render "shared/selection_events" %>
+
+<% if @event_n %>
+  event num : <%= @event_n.numero %> <br>
+
+  <% cotes_pilotes(@event_n).each do |user, values| %>
+    <%= user %>: 
+    Victoire: <%= values[:victoire] %>
+    Pole: <%= values[:pole] %>
+    Podium: <%= values[:podium] %>
+    Top10:  <%= values[:top10] %>
+     <hr>
+  <% end %>
+
+<% end %>

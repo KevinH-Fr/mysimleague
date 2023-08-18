@@ -1,0 +1,45 @@
+<div class="card p-2">
+
+  <%= form_with(model: equipe) do |form| %>
+    <% if equipe.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(equipe.errors.count, "error") %> prohibited this equipe from being saved:</h2>
+
+        <ul>
+          <% equipe.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="input-group input-group-sm my-1">
+      <%= form.label :nom, class: "input-group-text" %>
+      <%= form.text_field :nom, class: "form-control"%>
+    </div>
+
+    <div class="input-group input-group-sm my-1">
+      <%= form.label :couleurs, class: "input-group-text" %>
+      <%= form.text_field :couleurs, class: "form-control"%>
+    </div>
+
+    <div class="input-group input-group-sm my-1">
+      <%= form.label :logo, class: "input-group-text" %>
+      <%= form.file_field :logo, class: "form-control"%>
+    </div>
+    <br>
+
+    <div class="input-group input-group-sm my-1">
+      <%= form.label :voiture, class: "input-group-text" %>
+      <%= form.file_field :voiture, class: "form-control"%>
+    </div>
+
+    <div class="input-group input-group-sm my-1">
+      <%= form.label :banniere, class: "input-group-text" %>
+      <%= form.file_field :banniere, class: "form-control"%>
+    </div>
+
+    <%= custom_submit_button("Equipe") %>
+
+  <% end %>
+</div>

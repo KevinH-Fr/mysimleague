@@ -1,0 +1,33 @@
+
+  <h4 class="mx-1">
+    <span>Résultats </span>
+
+    <% if current_user && verif_admin_ligue(current_user, @event.division.saison.ligue) %>
+
+      <button class="btn btn-sm btn-warning m-2" type="button" 
+        data-bs-toggle="collapse" data-bs-target="#collapseNewEvent" aria-expanded="false">
+          <i class="fa-solid fa-square-plus fa-xl"></i>
+      </button>
+
+    <% end %>
+
+  </h4>
+
+  <div class="collapse" id="collapseNewEvent">
+    <div id="new_resultat" class="d-flex align-items-center justify-content-center">
+      <%= render partial: "resultats/form", locals: { resultat: Resultat.new } %>
+    </div>
+  </div>
+
+  <div id="resultats" class="d-flex flex-column align-items-center justify-content-center">
+    <% @resultats.each do |resultat| %>
+        <%= render resultat %>
+    <% end %>
+  </div>
+
+  <hr>  
+  
+  <%= link_to "Generate PNG", generate_image_resultats_path(event: @event.id), class: 'btn btn-success' %>
+  <%= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+
+<hr>

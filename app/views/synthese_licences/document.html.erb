@@ -1,0 +1,68 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<%= stylesheet_link_tag "document" %>
+
+<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+ 
+  <body>
+
+    <%= render partial: "documents/entete",  locals: { titre: "Synth. Licences" } %>
+
+    <%#= tableau data class pilotes %>
+        
+    <table style="margin-left:auto;margin-right:auto">
+      <tbody>
+        <% cumul_licence_user(@event).each do |user| %>
+
+          <% pilote = User.find(user[:user_id]).nom %>
+          <% equipe = AssociationUser.find(user[:association_user_id]).equipe %>
+          <tr>
+
+            <td>
+              <div class="img-banniere-doc">
+                <%= equipe_banner_with_pilote_document(equipe, pilote) %> 
+              </div>  
+            </td>
+ 
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= user[:perte_total] %> 
+              </div>
+            </td>
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= user[:gain_total] %> 
+              </div>
+            </td>
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= user[:solde] %> 
+              </div>
+            </td>
+
+          </tr>
+        <% end %> 
+      </tbody>  
+    </table>
+
+  </body>
+
+  <br><br>
+
+</div>
+
+<hr>
+
+<button data-controller="screenshot" 
+        data-nom-ligue="<%= @event.division.saison.ligue.nom %>" 
+        data-nom-saison="<%= @event.division.saison.nom %>" 
+        data-nom-division="<%= @event.division.nom %>" 
+        data-event-numero="<%= @event.numero %>" 
+        data-nom-doc="licences" 
+        data-action="click->screenshot#capture" class="btn btn-success">
+  Image
+</button>

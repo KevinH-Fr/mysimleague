@@ -1,0 +1,29 @@
+
+<div id="<%= dom_id dotd %>">
+
+  <div class="card m-0 my-1">  
+
+    <div class="row align-items-center">
+      <div class="col-10">
+          Votant: <strong> <%= dotd.user.nom %> </strong> 
+          Pilote: <strong> <%= dotd.association_user.user.nom %> </strong>
+      </div>
+      <div class="col-2 text-center">
+        <div class="d-flex align-items-center"> 
+
+        <% if current_user && verif_user_dotd(current_user, dotd.user_id) && verif_delai_dotd(session[:event]) %>
+
+          <%= button_to "", edit_dotd_path(dotd), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+          <%= button_to "", dotd, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        
+        <% end %>
+        
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

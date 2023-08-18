@@ -1,0 +1,25 @@
+
+<table width="480" style="margin-left:auto;margin-right:auto">
+
+    <tr>
+        <td class="">
+            <h2 class="doc-titre">
+                <%= image_tag(@event.division.saison.ligue.logo, class: "imgLogoLigueDoc" ) if @event.division.saison.ligue.logo.present? %>  <br>
+                <%= titre %>
+            </h2>
+        </td>
+        <td class="text-end">  
+            <h6 class="doc-sous-titre">  
+                <%= @event.division.saison.nom %>
+                <%= @event.division.nom %> <br>
+                <span class="fw-bold">  
+                    GP <%= @event.numero %> - 
+                    <%= Circuit.find(@event.circuit_id).pays %> 
+                    <%= image_tag(Circuit.find(@event.circuit_id).drapeau, 
+                    style: "width: 40px; display: inline", 
+                    class: "img-fluid rounded") %> 
+                </span>
+            </h6>
+        </td>
+    </tr>
+</table>

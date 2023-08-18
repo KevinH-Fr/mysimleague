@@ -1,0 +1,48 @@
+<div class="card record-with-effect m-0 my-1 p-2">  
+
+  <%= form_with(model: association_user, 
+        data: { controller: "reset-form", 
+        action: "turbo:submit-end->reset-form#reset"}) do |form| %>
+
+    <% if association_user.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(association_user.errors.count, "error") %> prohibited this association_user from being saved:</h2>
+
+        <ul>
+          <% association_user.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :user_id, class: "input-group-text" %>
+      <%= form.collection_select :user_id, User.all, :id, :nom, 
+       { include_blank: 'Select a pilote' }, class: "form-select" %>
+    </div>
+
+    <%= form.hidden_field :ligue_id, value: @division.saison.ligue.id if @division %>
+    <%= form.hidden_field :division_id, value: @division.id if @division %>
+
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :equipe_id, class: "input-group-text" %>
+      <%= form.collection_select :equipe_id, Equipe.all, :id, :nom, 
+       { include_blank: 'Select a team' }, class: "form-select" %>
+    </div>
+
+    <div class="form-check form-switch">
+      <%= form.label :valide, class: "form-check-label" %>
+      <%= form.check_box :valide, class: "form-check-input" %>
+    </div>
+
+    <div class="form-check form-switch">
+      <%= form.label :actif, class: "form-check-label" %>
+      <%= form.check_box :actif, class: "form-check-input" %>
+    </div>
+
+    <%= custom_submit_button("Pilote") %>
+
+  <% end %>
+
+</div>

@@ -1,0 +1,120 @@
+<div data-controller="form-new-doi">
+<%# data-form-new-doi-record-id="<%= doi.id %>
+
+  <div class="card record-with-effect m-0 my-1 p-2">  
+
+    <%= form_with(model: doi) do |form| %>
+
+      <% if doi.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(doi.errors.count, "error") %> prohibited this doi from being saved:</h2>
+
+          <ul>
+            <% doi.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form.hidden_field :event_id, value: @event.id if @event %>
+
+      <div class="card p-2">  
+        <h4> dépôt </h4>  
+
+        <div class="row g-2">
+          <div class="col-md">
+            <div class="input-group input-group-sm my-2">
+              <%= form.label :demandeur, class: "input-group-text" %>     
+              <% if doi.persisted? %>
+                <%= form.hidden_field :demandeur_id, value: doi.demandeur_id, class: "form-control disable" %> 
+                  <div class="form-control text-center">
+                    <%= AssociationUser.find(doi.demandeur_id).user.nom if doi.demandeur_id %>
+                  </div>   
+              <% else %>
+                <%= form.hidden_field :demandeur_id, value: association_user_from_user(current_user, session[:division]).id, class: "form-control disable" %>     
+                  <div class="form-control text-center">
+                    <%= User.find(association_user_from_user(current_user, session[:division]).user_id).nom %>
+                  </div>  
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="input-group input-group-sm my-2">
+              <%= form.label :implique, class: "input-group-text" %>
+              <%= form.collection_select :implique_id, pilotes_division_named(Division.find(session[:division])), 
+                      :first, :second, { include_blank: 'Select impliqué'},  class: "form-select" %> 
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm my-2">
+          <%= form.label :description, class: "input-group-text" %>
+          <%= form.text_area :description, class: "form-control" %>
+        </div>
+
+        <div class="input-group input-group-sm my-2">
+          <%= form.label :lien, class: "input-group-text" %>
+          <%= form.text_field :lien, class: "form-control" %>
+        </div>
+
+      </div>
+
+      <% if current_user&.admin %> <%# passer en admin ligue plutot que admin tout court %>
+
+        <div class="input-group input-group-sm my-2">
+          <%= form.label :decision, class: "input-group-text" %>
+          <%= form.select :decision, Doi.responsables.keys, { include_blank: true }, class: "form-select" %>
+        </div>
+
+        <div class="card p-2">
+          <h4> jugement </h4>  
+            
+            <div class="row g-2">
+              <div class="col-md">
+                <div class="input-group input-group-sm my-2">
+                  <%= form.label :reglement_id, class: "input-group-text" %>
+                  <%= form.collection_select :reglement_id,
+                        articles_reglement_ligue(session[:ligue]), :first, :second,
+                        { include_blank: 'Select article' },
+                        data: { action: "change->form-new-doi#update_penalite", form_new_doi_target: "reglement" }, 
+                        class: "form-select" %>     
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="input-group input-group-sm my-2">
+                  <%= form.label :penalite, class: "input-group-text" %>
+                  <%= form.number_field :penalite, class: "form-control",
+                  data: { form_new_doi_target: "penalite_points" } %>
+                </div>
+                <div class="input-group input-group-sm my-2">
+                  <%= form.label :penalite_temps, class: "input-group-text" %>
+                  <%= form.text_field :penalite_temps, class: "form-control",
+                  data: { form_new_doi_target: "penalite_temps" } %>
+                </div>
+              </div>
+            </div>
+
+        </div>
+
+        <div class="input-group input-group-sm my-2">
+          <%= form.label :commentaire, class: "input-group-text" %>
+          <%= form.text_area :commentaire, class: "form-control" %>
+        </div>
+
+        <div class="input-group input-group-sm my-2">
+          <%= form.label :responsable_commissaire, class: "input-group-text" %>
+          <%= form.select :responsable_commissaire_id, 
+                options_from_collection_for_select(liste_admins_ligue(session[:ligue]), 'id', 'user_nom'), 
+                  { include_blank: 'Select commissaire' }, class: "form-select" %>
+        </div>
+
+      <% end %>
+
+        <%= custom_submit_button("DOI") %>
+
+    <% end %>
+
+  </div>
+
+ </div>

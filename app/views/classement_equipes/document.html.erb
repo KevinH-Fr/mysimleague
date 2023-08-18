@@ -1,0 +1,66 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<%= stylesheet_link_tag "document" %>
+
+<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+ 
+  <body>
+
+    <%= render partial: "documents/entete",  locals: { titre: "Class. Equipes" } %>
+
+    <%#= tableau data class pilotes %>
+        
+    <table style="margin-left:auto;margin-right:auto">
+      <tbody>
+        <% somme_equipe(@event).each do |equipe| %>
+          <tr>
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= equipe[:rank] %>
+              </div>
+            </td>
+            <td>  
+              <div class="img-banniere-doc">
+                 <%=  equipe_banner_without_pilote_document(Equipe.find(equipe[:equipe_id])) %> 
+              </div>
+            </td> 
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= equipe[:score_sum] %> 
+              </div>
+            </td>
+            <td>
+              <% comparison_data = compare_equipe_ranks(@previous_event, @event) %>
+              <% if comparison_data %>
+                  <% comparison = comparison_data[equipe[:nom]] %>
+                  <% if comparison %>
+                    Delta rank: <%= comparison[:delta_rank] %>
+                  <% end %>
+              <% end %>
+            </td>
+          </tr>
+        <% end %> 
+      </tbody>  
+    </table>
+
+  </body>
+
+  <br><br>
+
+</div>
+
+<hr>
+
+<button data-controller="screenshot" 
+        data-nom-ligue="<%= @event.division.saison.ligue.nom %>" 
+        data-nom-saison="<%= @event.division.saison.nom %>" 
+        data-nom-division="<%= @event.division.nom %>" 
+        data-event-numero="<%= @event.numero %>" 
+        data-nom-doc="class equipes" 
+        data-action="click->screenshot#capture" class="btn btn-success">
+  Image
+</button>

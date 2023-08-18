@@ -1,0 +1,38 @@
+<div class="card my-2">
+  <h2 class="text-center fw-bold my-2">Log in</h2>
+
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+
+
+    <div class="container p-4 my-4"> 
+
+      <div class="input-group mb-2">
+        <%= f.label :email, class:"input-group-text label-with-format label-colored" %>
+        <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control " %>
+      </div>
+
+      <div class="input-group mb-2">
+        <%= f.label :password, class:"input-group-text label-with-format label-colored" %>
+        <%= f.password_field :password, autocomplete: "current-password", class:"form-control " %>
+      </div>
+
+      <% if devise_mapping.rememberable? %>
+        <div class="form-check form-switch">
+          <%= f.check_box :remember_me, class: "form-check-input" %>
+          <%= f.label :remember_me,  class: "form-check-label fs-6" %>
+        </div>
+      <% end %>
+
+      <button type="submit" class="btn btn-primary container-fluid my-4">
+        <i class="fa-solid fa-xl fa-square-check"></i> 
+        <span class="fw-bold ms-2"> Log in</span>
+      </button>
+
+    </div>
+  <% end %>
+
+  <div class="container ">
+    <%= render "devise/shared/links" %>
+  </div>
+
+</div>

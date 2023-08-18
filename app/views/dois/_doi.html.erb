@@ -1,0 +1,39 @@
+<div id="<%= dom_id doi %>">
+
+  <div class="card record-with-effect m-0 my-1 p-2">  
+
+    <div class="row align-items-center">
+      <div class="col-9">
+        demandeur: <strong><%= User.find(AssociationUser.find(doi.demandeur_id).id).nom %></strong>
+        impliqué: <strong><%= User.find(AssociationUser.find(doi.implique_id).id).nom %></strong> 
+        Description: <%= doi.description %>
+        Lien:   <%= doi.lien %>
+        Decision: <%= doi.decision %>
+        Reglement:   <%= Reglement.find(doi.reglement_id).titre_article if doi.reglement_id %>
+        <% if doi.penalite.present? %>
+          Penalité licence:<strong class="text-danger"> <%= doi.penalite %> points </strong>
+        <% end %>
+
+        <% if doi.penalite_temps.present? %>
+          Penalité temps: <strong class="text-danger"> <%= doi.penalite_temps %> secondes </strong> 
+        <% end %>
+
+        Commentaire:  <%= doi.commentaire %>
+        Resp. commissaire: <strong> <%= AssociationAdmin.find(doi.responsable_commissaire_id).user.nom if doi.responsable_commissaire_id %> </strong>
+
+      </div>
+      <div class="col-3 text-center">
+        <div class="d-flex align-items-center">  
+          <%= link_to "Image", generate_image_dois_path(doi: doi), class: 'btn btn-success' %>
+
+          <%= button_to "", edit_doi_path(doi), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+          <%= button_to "", doi, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

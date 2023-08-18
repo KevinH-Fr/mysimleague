@@ -1,0 +1,30 @@
+
+<div id="<%= dom_id equipe %>">
+
+  <div class="card record-with-effect m-0 my-2">  
+
+    <div class="row align-items-center">
+      <div class="col-10">
+        <%= image_tag(equipe.banniere, class: "img-fluid rounded w-50") if equipe.banniere.present? %>
+        Nom:   <%= equipe.nom %>
+        Couleurs:  <%= equipe.couleurs %>
+      </div>
+      <div class="col-2 text-center">
+        <div class="d-flex align-items-center"> 
+          
+          <% if current_user && current_user.admin %>
+
+            <%= button_to "", edit_equipe_path(equipe), method: :post, 
+                  class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+            <%= button_to "", equipe, method: :delete, 
+                  class: "btn btn-sm btn-danger fa-solid fa-trash",
+                  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+            
+          <% end %>
+        
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>

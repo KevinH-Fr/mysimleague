@@ -1,0 +1,15 @@
+<h4>DOTDS</h4>
+
+<%= turbo_frame_tag :content_new_dotd do %>
+  <%= render  "dotds/new_dotd" %>
+<% end %>
+  
+<div id="dotds">
+  <% @dotds.each do |dotd| %>
+    <%= render dotd %>
+  <% end %>
+</div>
+
+<div id="partial-dotds-stats-container" class="my-1">
+  <%= render "dotds/stats" %>
+</div>

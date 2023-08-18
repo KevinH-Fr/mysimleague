@@ -1,0 +1,82 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<%= stylesheet_link_tag "document" %>
+
+<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+ 
+  <body>
+
+    <%= image_tag asset_url('/images/fia.png'), style: "width: 100px;", class: "img-fluid rounded" %>
+    <%= render partial: "documents/entete",  locals: { titre: "DOIS" } %>
+
+    <br>
+
+    <h5 class="mx-2 text-decoration-underline"> Rapport DOI n° <%= @doi.id %>  </h5> <br>
+
+    <strong> Déposé par : </strong> <%= AssociationUser.find(@doi.demandeur_id).user.nom %> <br>
+
+    <%# if piloteDemandeurNom == "Commissaires" %>
+    <br>
+    <%# else %>
+    <strong> Ecurie : </strong> <%= AssociationUser.find(@doi.demandeur_id).equipe.nom %> <br> <br>
+    <%# end %>
+
+    <strong> Pilote impliqué : </strong> <%= AssociationUser.find(@doi.implique_id).user.nom %> <br>
+    <strong> Ecurie : </strong> <%= AssociationUser.find(@doi.implique_id).user.nom %> <br>
+    <hr>
+
+    
+    <strong> Décision : </strong> <%= decision = @doi.decision %> <br> <br>
+
+    <% if decision == "responsable" %>
+    <strong> Article enfreint : </strong> <br>
+        <% reglementId = @doi.reglement_id %> 
+        article :  <%= @doi.reglement.num_article %>  <%= @doi.reglement.titre_article %> <br>
+        description : <%= @doi.reglement.contenu_article %> <br> <br>
+    <% end %>
+
+    <strong> Commentaires : </strong> <br>
+    <%= @doi.commentaire %>
+    <br><br>
+
+    <% if decision == "responsable" %>
+        <strong> Sanctions : </strong> <br>
+        licence :
+        <strong style="color: red;">
+            <%= @doi.penalite %> points <br>
+        </strong>
+
+        <% if @doi.penalite_temps.present? %>
+            temps : 
+            <strong style="color: red;">
+            <%= @doi.penalite_temps %> secondes <br>
+            </strong>
+        <% end %>
+    <% end %>
+
+    <strong> Décision prise suite à la réunion des commissaires </strong> <br> <br>
+    <strong> Responsable commissaire : </strong> <%= User.find(@doi.responsable_commissaire_id).nom if @doi.responsable_commissaire_id %> <br> <br>
+
+  </body>
+
+  <br><br>
+
+</div>
+
+<hr>
+
+<button data-controller="screenshot" 
+        data-nom-ligue="<%= @event.division.saison.ligue.nom %>" 
+        data-nom-saison="<%= @event.division.saison.nom %>" 
+        data-nom-division="<%= @event.division.nom %>" 
+        data-event-numero="<%= @event.numero %>" 
+        data-nom-doc="doi" 
+        data-action="click->screenshot#capture" class="btn btn-success">
+  Image
+</button>
+
+<hr>

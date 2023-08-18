@@ -1,0 +1,37 @@
+    
+<% if verif_delai_pari(@event.id) %>
+
+    <% if current_user %>
+
+        <%= boolean_container(true, "Les paris sont ouverts") %>                
+      
+        <button class="btn btn-primary my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePari" aria-expanded="<%= @expand_pari ? 'true' : 'false' %>">
+            <span>Nouveau</span>
+        </button>
+
+        <div class="collapse" id="collapsePari">
+
+            <div id="new_pari">
+                <%= render 'paris/form', pari: Pari.new() %>
+            </div>
+            
+        </div>
+    
+    <% end %>
+    
+<% else %>
+
+    <%= boolean_container(false, "Les paris sont fermés") %>
+
+<% end %>
+
+<% if @event %>
+
+    <div id="paris">
+        <% @paris.each do |pari| %>
+            <%= render pari %>
+        <% end %>
+    </div>
+
+<% end %>
+    

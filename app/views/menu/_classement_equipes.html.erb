@@ -1,0 +1,40 @@
+<h4>classement equipes </h4>
+
+<% somme_equipe(@event).each do |equipe| %>
+
+  <div class="d-flex flex-column align-items-center justify-content-center">
+
+    <div class="card record-with-effect my-1 record-banniere-max-width">  
+      <div class="row m-0 p-0">
+        <div class="col-1 m-0 p-0 badge-pos rounded d-flex align-items-center justify-content-center record-max-height">
+          <%= equipe[:rank] %>
+        </div>
+        <div class="col-8 m-0 px-2 rounded record-max-height">
+          <%= equipe_banner_without_pilote(Equipe.find(equipe[:equipe_id])) %> 
+        </div>
+
+        <div class="col m-0 p-0 badge-pos rounded d-flex align-items-center justify-content-center record-max-height">
+           <%= equipe[:score_sum] %> 
+        </div>
+
+        <% comparison_data = compare_equipe_ranks(@previous_event, @event) %>
+        <% if comparison_data %>
+            <% comparison = comparison_data[equipe[:nom]] %>
+            <% if comparison %>
+            Delta rank: <%= comparison[:delta_rank] %>
+            <% end %>
+        <% end %>
+        
+      </div>
+    </div>
+  </div>
+
+<% end %> 
+
+<hr>
+
+  <%= link_to "Generate PNG", generate_image_class_equipes_path(event: @event.id), class: 'btn btn-success' %>
+  <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+
+
+<hr>

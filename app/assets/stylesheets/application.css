@@ -1,15 +1,113 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
  *= require_self
  */
+
+ @font-face {
+  font-family: 'F1regular';
+  src: url('Formula1-Regular_web_0.ttf');
+}
+
+body, select {
+  font-family: "F1regular";
+  font-size: small;
+}
+
+::-webkit-scrollbar {
+  width: 4px; /* Width of the vertical scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #7b7c7d; /* Color of the scrollbar thumb */
+  border-radius: 8px; /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color of the thumb on hover */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #f1f1f1; /* Color of the scrollbar track */
+}
+
+#flash {
+  margin-top: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav{
+  box-shadow:  5px 5px 10px #535356,
+  -5px -10px 0px #ffffff;
+}
+
+select, input{
+  text-align: center;
+}
+
+.no-underline{
+  text-decoration: none;
+}
+
+ .page-max-widthed{
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 60px;
+ }
+
+ .record-banniere-max-width{
+  width: 100%;
+  max-width: 700px;
+ }
+
+.flex-element{
+    display: flex;
+    align-items: center; 
+    justify-content:space-between;
+}
+
+.card-with-effect{
+  border-radius: 10px;
+  background: #fffefe;
+  box-shadow:  10px 10px 20px #b5b5b5,
+              -10px -20px 20px #fffdfd;
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+
+.record-with-effect{
+  border-radius: 10px;
+  background: #fffefe;
+  box-shadow:  2px 2px 5px #dddbdb,
+              -2px -5px 5px #ffffff;
+  padding: 5px;
+  margin-top: 10px;
+  margin-bottom: 10px;
+
+
+}
+
+.badge-pos{
+
+  background-color: rgb(0, 0, 0);
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  /*width: 40px;
+ /* max-width: 40px;
+ /* margin: 10px;*/
+
+} 
+
+.text-mt-colored{
+  color: rgb(162, 26, 162);
+}
+
+.record-max-height{
+  max-height: 35px;
+}
+
+.btn-event{
+  font-size: x-small;
+}

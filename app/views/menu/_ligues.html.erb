@@ -1,0 +1,30 @@
+<div class="card-with-effect">
+
+    <div class="d-flex">
+        <h4 class="mx-1"> Ligues </h4>
+
+        <% if current_user %>    
+            <%= link_to "#", class: "btn btn-sm btn-warning m-1", "data-bs-toggle": "collapse", "data-bs-target": "#collapseLigue", "aria-expanded": "false" do %>
+                <i class="fa-solid fa-square-plus fa-xl"></i>
+            <% end %>
+        <% end %>
+
+        <% liste_ligues.each do |ligue| %>
+            <%= link_to url_for(ligue: ligue), class: "btn btn-outline-primary btn-sm m-1 px-1
+                #{'fw-bold text-light btn-primary'  if params[:ligue] == ligue.id.to_s}" do %>
+                <%= truncate(ligue.nom, length: 7) %> 
+            <% end %>
+        <% end %>
+    </div>
+
+    <div class="collapse" id="collapseLigue">
+        <div id="new_ligue">
+            <%= render partial: "ligues/form", locals: { ligue: Ligue.new } %>
+        </div>
+    </div>
+
+    <% if @ligue %>
+        <%= render @ligue  %> 
+    <% end %>
+
+</div>

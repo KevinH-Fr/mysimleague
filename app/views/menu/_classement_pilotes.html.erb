@@ -1,0 +1,40 @@
+<h4>classement pilotes </h4>
+  <% somme_user(@event).each do |user| %>
+    <% nom = User.find(user[:user_id]).nom %>
+    <% equipe = AssociationUser.find(user[:association_user_id]).equipe %>
+
+    <div class="d-flex flex-column align-items-center justify-content-center">
+
+      <div class="card record-with-effect my-1 record-banniere-max-width">  
+        <div class="row m-0 p-0">
+          <div class="col-1 m-0 p-0 badge-pos rounded d-flex align-items-center justify-content-center record-max-height">
+            <%= user[:rank] %>
+          </div>
+          <div class="col-8 m-0 px-2 rounded record-max-height">
+            <%= equipe_banner_with_pilote(equipe, nom) %> 
+          </div>
+
+          <div class="col m-0 p-0 badge-pos rounded d-flex align-items-center justify-content-center record-max-height">
+            <%= user[:score] %> 
+          </div>
+
+            <% comparison_data = compare_ranks(@previous_event, @event) %>
+            <% if comparison_data %>
+              <% comparison = comparison_data[user[:user_id]] %>
+              <% if comparison %>
+                <div class="col-1 m-0 p-0 badge-pos rounded d-flex align-items-center justify-content-center record-max-height">
+                  Delta rank: <%= comparison[:delta_rank] %>
+                </div>
+              <% end %>
+            <% end %> 
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <% end %>
+
+<hr>
+
+  <%= link_to "Generate PNG", generate_image_class_pilotes_path(event: @event.id), class: 'btn btn-success' %>
+  <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>

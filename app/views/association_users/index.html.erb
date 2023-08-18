@@ -1,0 +1,27 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>
+  Associations
+  <% if @division %>
+    <% if current_user && verif_admin_ligue(current_user, @division.saison.ligue)  %>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAssociationUser" aria-expanded="false">
+        <span>Nouveau</span>
+      </button>
+    <% end %>
+  <% end %>
+  
+</h1>
+
+
+<div class="collapse" id="collapseAssociationUser">
+  <div id="new_assocation_user">
+    <%= render partial: "association_users/form", locals: { association_user: AssociationUser.new } %>
+  </div>
+</div>
+
+<div id="association_users">
+  <% @association_users.each do |association| %>
+    <%= render association %>
+  <% end %>
+</div>
+

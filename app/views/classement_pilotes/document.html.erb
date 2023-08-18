@@ -1,0 +1,64 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<%= stylesheet_link_tag "document" %>
+
+<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+ 
+  <body>
+
+    <%= render partial: "documents/entete",  locals: { titre: "Class. Pilotes" } %>
+
+    <%#= tableau data class pilotes %>
+        
+    <table style="margin-left:auto;margin-right:auto">
+      <tbody>
+        <% somme_user(@event).each do |user| %>
+          <% nom = User.find(user[:user_id]).nom %>
+          <% equipe = AssociationUser.find(user[:association_user_id]).equipe %>
+
+          <tr>
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= user[:rank] %>
+              </div>
+            </td>
+
+            <td>  
+              <div class="contenant img-banniere-doc">
+                 <%= equipe_banner_with_pilote_document(equipe, nom)%> 
+              </div>
+            </td> 
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= user[:score] %> 
+              </div>
+            </td>
+            <td style= "width: 28px; margin-top: 4px;">
+
+            </td>
+          </tr>
+        <% end %> 
+      </tbody>  
+    </table>
+
+  </body>
+
+  <br><br>
+
+</div>
+
+<hr>
+
+<button data-controller="screenshot" 
+        data-nom-ligue="<%= @event.division.saison.ligue.nom %>" 
+        data-nom-saison="<%= @event.division.saison.nom %>" 
+        data-nom-division="<%= @event.division.nom %>" 
+        data-event-numero="<%= @event.numero %>" 
+        data-nom-doc="class pilotes" 
+        data-action="click->screenshot#capture" class="btn btn-success">
+  Image
+</button>

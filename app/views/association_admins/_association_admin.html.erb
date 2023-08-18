@@ -1,0 +1,35 @@
+
+<div id="<%= dom_id association_admin %>">
+
+  <div class="card record-with-effect m-0 my-2">  
+
+    <div class="row align-items-center">
+      <div class="col-8">
+        <strong class="me-2"> <%= association_admin.user.nom %> </strong>
+
+        <%= status_badge(association_admin.valide) %>
+        <%= activity_badge(association_admin.actif) %>
+        
+        <% if association_admin.user_id == Ligue.find(session[:ligue]).user_id %>
+          <span class="badge bg-warning">createur</span>
+        <% end %>
+                
+
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+        
+        <% if current_user && verif_admin_ligue(current_user, association_admin.ligue) %>
+
+          <%= button_to "", edit_association_admin_path(association_admin), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+          <%= button_to "", association_admin, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        
+        <% end %>
+        
+      </div>
+    </div>
+
+  </div>
+</div>

@@ -1,0 +1,39 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>
+  Dotds
+</h1>
+
+<%= render "shared/selection_events" %>
+
+<% if @event && current_user %>
+
+  <% if verif_delai_dotd(@event.id) %>
+    <% unless verif_presence_dotd(current_user, @event.id)  %>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <span>Nouveau</span>
+      </button>
+
+      <div class="collapse" id="collapseExample">
+        <div id="new_dotd">
+          <%= render partial: "dotds/form", locals: { dotd: Dotd.new } %>
+        </div>
+      </div>
+
+    <% end %>
+  <% end %>
+  
+
+  
+  <div id="dotds">
+    <% @dotds.each do |dotd| %>
+      <%= render dotd %>
+    <% end %>
+  </div>
+
+  stats: <hr> 
+  nb votes: <%= nb_votes_dotd_event(@event.id) %> <br>
+
+  <%= resultat_dotd_courant(@event.id) %>
+
+<% end %>

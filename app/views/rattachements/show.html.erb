@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @rattachement %>
+
+<div>
+  <%= link_to "Edit this rattachement", edit_rattachement_path(@rattachement) %> |
+  <%= link_to "Back to rattachements", rattachements_path %>
+
+  <%= button_to "Destroy this rattachement", @rattachement, method: :delete %>
+</div>

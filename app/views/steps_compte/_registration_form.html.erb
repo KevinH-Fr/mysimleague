@@ -1,0 +1,63 @@
+
+  <div class="card">
+    <h2 class="text-center fw-bold">Sign up</h2>
+
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { multipart: true }) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      
+      <div class="container p-4"> 
+
+        <div class="input-group mb-2">
+          <%= f.label :email, class:"input-group-text label-with-format label-colored" %>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control " %>
+        </div>
+
+        <div class="input-group mb-2">
+          <%= f.label :nom, class:"input-group-text label-with-format label-colored" %>
+          <%= f.text_field :nom, class:"form-control " %>
+        </div>
+        
+        <div class="input-group mb-2">
+          <%= f.label :password, class:"input-group-text label-with-format label-colored" %>
+          <%= f.password_field :password, autocomplete: "new-password", class:"form-control " %>
+        </div>
+
+        <div class="input-group mb-2">
+          <%= f.label :confirmation, class:"input-group-text label-with-format label-colored" %>
+          <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control " %>
+        </div>
+
+
+        <div class="input-group mb-2">
+          <%#= f.label :visiteur, class:"input-group-text label-with-format label-colored" %>
+          <%#= f.check_box :visiteur, class:"" %>
+        </div>
+
+        <div class="input-group mb-2">
+          <%#= f.label :pilote, class:"input-group-text label-with-format label-colored" %>
+          <%#= f.check_box :pilote, class:"" %>
+        </div>
+
+        <div class="input-group mb-2">
+          <%#= f.label :admin, class:"input-group-text label-with-format label-colored" %>
+          <%#= f.check_box :admin, class:"" %>
+        </div>
+
+      </div>
+
+      <button type="submit" class="btn btn-primary container-fluid my-4">
+      <i class="fa-solid fa-xl fa-square-check"></i> 
+        <span class="fw-bold ms-2"> SIGN UP</span>
+      </button>
+
+      <div class="text-dark fw-bold text-center">
+        <small>you already have an account ?</small>
+        <%= link_to "Log in", new_session_path(resource_name) %><br />
+      </div>
+    <% end %>
+
+
+  </div>
+
+  
+</div>

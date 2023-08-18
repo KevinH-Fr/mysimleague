@@ -1,0 +1,17 @@
+
+<h4 id="infos-event"> <%= @event.event_full_name %> </h4>
+
+<div data-controller="animation" data-action="connect" data-animation-resultats-value="<%= @resultats.to_json %>">
+
+    <% @resultats.each do |resultat| %>
+        <%= image_tag resultat[:banniere], id: "banniere-#{resultat[:equipe_id]}", style: "display: none;" if resultat[:banniere].attached? %>
+    <% end %>
+
+    <div class="container mt-1 text-center">
+        <canvas id="myCanvas" width="400" height="680" style="border: 2px solid grey;" data-animation-target="myCanvas"></canvas>
+    </div>
+
+</div>
+
+<button id="startAnimationBtn" class="btn btn-success">Start</button>
+<button id="recordAnimationBtn" class="btn btn-warning">Record</button>

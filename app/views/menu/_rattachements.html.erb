@@ -1,0 +1,20 @@
+<h4> Rattachements</h4>
+
+<% if current_user  %>
+    <button class="btn btn-sm btn-primary my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseRattachement" aria-expanded="false">
+    <span>Nouveau</span>
+    </button>
+<% end %>
+
+<div class="collapse" id="collapseRattachement">
+    <div id="new_rattachement">
+        <%= render partial: "rattachements/form", 
+            locals: { rattachement: Rattachement.new(user: current_user, ligue: @ligue) } %>
+    </div>
+</div>   
+
+<div id="rattachements">
+    <% @rattachements.each do |rattachement| %>
+        <%= render rattachement %>
+    <% end %>
+</div>

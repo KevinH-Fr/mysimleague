@@ -1,0 +1,19 @@
+<h4> Admins</h4>
+
+<% if current_user && verif_admin_ligue(current_user, @ligue.id)  %>
+    <button class="btn btn-sm btn-primary my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseAssociationAdmin" aria-expanded="false">
+    <span>Nouveau</span>
+    </button>
+<% end %>
+
+<div class="collapse" id="collapseAssociationAdmin">
+    <div id="new_association_admin">
+        <%= render partial: "association_admins/form", locals: { association_admin: AssociationAdmin.new } %>
+    </div>
+</div>   
+
+<div id="association_admins">
+    <% @admins_ligue.each do |admin| %>
+        <%= render admin %>
+    <% end %>
+</div>

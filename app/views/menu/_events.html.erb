@@ -1,0 +1,94 @@
+<div class="card-with-effect">
+
+  <div class="d-flex">
+
+    <h4 class="mx-1"> Events </h4>
+      
+      <% if current_user && verif_admin_ligue(current_user, session[:ligue])  %>
+        <%= link_to "#", class: "btn btn-sm btn-warning m-2", "data-bs-toggle": "collapse", "data-bs-target": "#collapseEvent", "aria-expanded": "false" do %>
+          <i class="fa-solid fa-square-plus fa-xl"></i>
+        <% end %>
+      <% end %>
+
+      <% @division.events.each do |event| %>
+          <%= link_to url_for(ligue: @ligue.id, saison: @saison.id, division: @division.id, event: event), class: "btn btn-outline-primary btn-sm btn-event m-1 p-1
+              #{'fw-bold text-light btn-primary'  if params[:event] == event.id.to_s}" do %>
+                <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded", width: "20") if event.circuit.drapeau.present? %>
+                <%= event.short_name %> 
+          <% end %>
+      <% end %>
+  </div>
+
+  <div class="collapse" id="collapseEvent">
+    <div id="new_event">
+      <%= render partial: "events/form", locals: { event: Event.new } %>
+    </div>
+  </div>
+
+  <% if @event && @division %>
+
+    <%# détail event courante %>
+    <%= render @event %>
+
+    <hr>  
+    <div class="d-flex flex-wrap justify-content-center align-items-center">
+      
+      <%= button_to display_resultats_menu_index_path, class: "btn btn-sm btn-primary m-1" do %>
+        <i class="fa fa-solid fa-xl fa-square-poll-horizontal"></i>
+        <span class="ms-2 fw-bold">Résultats</span>
+      <% end %>
+
+      <%= button_to display_presences_menu_index_path, class: "btn btn-sm btn-success m-1" do %>
+        <i class="fa fa-solid fa-xl fa-street-view"></i>
+        <span class="ms-2 fw-bold">Présences</span>
+      <% end %>
+
+      <%= button_to display_dotds_menu_index_path, class: "btn btn-sm btn-warning m-1" do %>
+        <i class="fa fa-solid fa-xl fa-star"></i>
+        <span class="ms-2 fw-bold">DOTD</span>
+      <% end %>
+
+      <%= button_to display_dois_menu_index_path, class: "btn btn-sm btn-danger m-1" do %>
+        <i class="fa fa-solid fa-xl fa-magnifying-glass"></i>
+        <span class="ms-2 fw-bold">DOI</span>
+      <% end %>
+
+      <%= button_to display_paris_menu_index_path, class: "btn btn-sm btn-success m-1" do %>
+        <i class="fa fa-solid fa-xl fa-money-bill-wave"></i>
+        <span class="ms-2 fw-bold">Paris</span>
+      <% end %>
+
+      <%= button_to display_synthese_licences_menu_index_path, class: "btn btn-sm btn-danger m-1" do %>
+        <i class="fa fa-solid fa-xl fa-id-card"></i>
+        <span class="ms-2 fw-bold">Licences</span>
+      <% end %>
+
+
+      <div class="dropdown">
+        <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <i class="fa fa-solid fa-xl fa-ranking-star"></i>
+            <span class="ms-2 fw-bold"> Classements</span>
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark">
+          <%= button_to display_classement_pilotes_menu_index_path, class: "dropdown-item" do %>
+            <span class="ms-2 fw-bold">Class. pilotes</span>
+          <% end %>
+
+          <%= button_to display_classement_equipes_menu_index_path, class: "dropdown-item" do %>
+            <span class="ms-2 fw-bold">Class. equipes</span>
+          <% end %>
+
+        </ul>
+      </div>
+
+
+
+    </div>
+
+    <div id="partial-container" class="my-2">
+      <%# recoit le turbo stream avec elements cliqués %>
+    </div>
+
+  <% end %>
+
+</div>

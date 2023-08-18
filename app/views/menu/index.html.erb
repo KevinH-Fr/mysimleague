@@ -1,0 +1,20 @@
+<div class="overflow-auto p-2" style="max-height: 90vh;">
+
+    <%= render "menu/ligues" %>
+
+    <% if @ligue %>
+        <%= render "menu/saisons" %>
+
+        <% if @saison %>
+            <%= render "menu/divisions" %>
+            
+            <% if @division %>
+                <%= render "menu/events" %>
+            <% end %>
+            
+        <% end %>
+    
+    
+    <% end %>
+
+</div>

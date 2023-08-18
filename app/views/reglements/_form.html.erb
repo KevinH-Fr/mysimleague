@@ -1,0 +1,64 @@
+<div class="card record-with-effect m-0 my-1 p-2">  
+
+  <%= form_with(model: reglement) do |form| %>
+    <% if reglement.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(reglement.errors.count, "error") %> prohibited this reglement from being saved:</h2>
+
+        <ul>
+          <% reglement.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= form.hidden_field :ligue_id, value: session[:ligue] %>
+
+    <div class="form-check form-switch">
+      <% if current_user && current_user.admin %>
+        <%= form.label :defaut, class: "form-check-label" %>
+        <%= form.check_box :defaut, class: "form-check-input" %>
+      <% end %>
+    </div>
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="input-group input-group-sm my-1">
+          <%= form.label :num_article, class: "input-group-text" %>
+          <%= form.text_field :num_article, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="input-group input-group-sm my-1">
+          <%= form.label :titre_article, class: "input-group-text" %>
+          <%= form.text_field :titre_article, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="row g-2">
+      <div class="col-md">
+        <div class="input-group input-group-sm my-1">
+          <%= form.label :penalite_temps, class: "input-group-text" %>
+          <%= form.text_field :penalite_temps, class: "form-control" %>
+        </div>
+      </div>
+      <div class="col-md">
+        <div class="input-group input-group-sm my-1">
+          <%= form.label :penalite, class: "input-group-text" %>
+          <%= form.number_field :penalite, class: "form-control" %>
+        </div>
+      </div>
+    </div>
+
+    <div class="input-group input-group-sm my-1">
+      <%= form.label :contenu_article, class: "input-group-text" %>
+      <%= form.text_area :contenu_article, class: "form-control" %>
+    </div>
+    
+
+    <%= custom_submit_button("règlement") %>
+
+  <% end %>
+</div>

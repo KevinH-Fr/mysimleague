@@ -1,0 +1,18 @@
+  <% if verif_delai_dotd(session[:event]) && current_user %>
+    <% unless verif_presence_dotd(current_user, session[:event])  %>
+     
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+        <span>Nouveau</span>
+      </button>
+
+      <div class="collapse" id="collapseExample">
+        <div id="new_dotd">
+          <%= render partial: "dotds/form", locals: { dotd: Dotd.new } %>
+        </div>
+      </div>
+
+    <% end %>
+  <% else %>
+    <%= boolean_container(false, "Les votes sont fermés") %>
+  <% end %>
+  

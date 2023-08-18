@@ -1,0 +1,31 @@
+<h4>DOIS </h4>
+
+  <% if current_user %>
+    <% if verif_admin_ligue(current_user, @event.division.saison.ligue.id) || verif_appartenance_division(current_user, @division.id) %>
+      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNew" aria-expanded="false">
+        <span>Nouveau</span>
+      </button>
+    <% end %>
+    
+  <hr>
+
+  <div class="collapse" id="collapseNew">
+    <div id="new_doi">
+      <%= render partial: "dois/form", locals: { doi: Doi.new } %>
+    </div>
+  </div>
+
+  <% end %>
+
+  <div id="dois">
+    <% @dois.each do |doi| %>
+      <%= render doi %>
+    <% end %>
+  </div>
+
+<hr>
+
+  <%= link_to "Generate PNG", generate_image_dois_path(event: @event.id), class: 'btn btn-success' %>
+  <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+
+<hr>

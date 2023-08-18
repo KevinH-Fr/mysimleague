@@ -1,0 +1,31 @@
+<div class="card-with-effect">
+
+  <div class="d-flex">
+
+    <h4 class="mx-1">Saisons</h4>
+
+    <% if current_user && verif_admin_ligue(current_user, session[:ligue])  %>
+      <%= link_to "#", class: "btn btn-sm btn-warning m-1", "data-bs-toggle": "collapse", "data-bs-target": "#collapseSaison", "aria-expanded": "false" do %>
+        <i class="fa-solid fa-square-plus fa-xl"></i>
+      <% end %>
+    <% end %>
+
+    
+    <% @ligue.saisons.each do |saison| %>
+      <%= link_to url_for(ligue: @ligue.id, saison: saison), class: "btn btn-outline-primary btn-sm m-1
+          #{'fw-bold text-light btn-primary'  if params[:saison] == saison.id.to_s}" do %>
+          <%= saison.nom %> 
+        <% end %>
+    <% end %>
+  </div>
+
+  <div class="collapse" id="collapseSaison">
+    <div id="new_saison">
+      <%= render partial: "saisons/form", locals: { saison: Saison.new } %>
+    </div>
+  </div>
+
+  <%# détail saison courante %>
+  <%= render @saison if @saison %>
+
+</div>
