@@ -80,3 +80,7 @@ gem 'wkhtmltoimage-binary'
 gem 'activeadmin'
 
 gem 'sassc-rails'
+
+gem 'cloudinary'
+
+gem 'dotenv-rails', groups: [:development, :test]
