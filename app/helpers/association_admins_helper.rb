@@ -1,14 +1,14 @@
 module AssociationAdminsHelper
 
     def verif_admin_ligue(user, ligue)
-        association_users_admins = AssociationAdmin.where(
-            ligue_id: ligue, 
-            user_id: user,
-            actif: true, 
-            valide: true)
-            .group(:user_id)
-                                                
-        association_users_admins.present?
+      association_users_admins = AssociationAdmin.where(
+        ligue_id: ligue,
+        user_id: user,
+        actif: true,
+        valide: true
+      ).exists?
+    
+      association_users_admins
     end
     
     def liste_admins_ligue(ligue)
