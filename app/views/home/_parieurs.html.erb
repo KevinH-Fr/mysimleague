@@ -1,0 +1,32 @@
+
+<div class="card card-with-effect">
+  <h4>Parieurs</h4>
+
+  <%# selection de l'année %>
+  <% annees_paris.each do |annee| %>
+    <%= button_to annee, display_parieurs_annee_home_index_path, params: { annee: annee }, class: "btn btn-sm btn-warning m-1" %>
+  <% end %>
+
+  <% if @annee %>
+    <% somme_paris_user(@annee, User.all).each do |user_id, data| %>
+
+      <div class="card record-with-effect my-2 p-1">  
+        <div class="row m-0 p-0">
+          <div class="col-1 m-0 p-0 badge-pos rounded d-flex align-items-center justify-content-center record-max-height">
+            <%= data[:rank] %>
+          </div>
+          <div class="col-10 m-0 px-2 rounded record-max-height">
+            <div class="container-fluid bg-dark text-light rounded"><%= User.find(user_id).nom %></div>
+          </div>
+
+          <div class="col-1 m-0 p-0 badge-pos rounded d-flex align-items-center justify-content-center record-max-height">
+            <%= data[:sum]  %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+    
+  <% end %>
+
+</div>

@@ -1,0 +1,19 @@
+<canvas id="myCanvas" width="300" height="100" class="bg-secondary">
+  Désolé, votre navigateur ne prend pas en charge &lt;canvas&gt;.
+</canvas>
+
+<script>
+  var canvas = document.getElementById('myCanvas');
+  var ctx = canvas.getContext('2d');
+
+  function generatePNG() {
+    var image = canvas.toDataURL('image/png'); // generate the PNG image
+    var link = document.createElement('a');
+    link.href = image;
+    link.download = 'canvas_image.png';
+    link.click();
+  }
+
+  // Call the generatePNG() function when the page loads
+  generatePNG();
+</script>
