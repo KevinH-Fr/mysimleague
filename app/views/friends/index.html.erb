@@ -1,0 +1,22 @@
+
+<h1>Friends
+
+  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+    <span>Nouveau</span>
+  </button>
+
+</h1>
+
+<hr>
+
+<div class="collapse" id="collapseExample">
+  <div id="new_friend">
+    <%= render partial: "friends/form", locals: { friend: Friend.new } %>
+  </div>
+</div>
+
+<div id="friends">
+  <% @friends.each do |friend| %>
+    <%= render friend %>
+  <% end %>
+</div>
