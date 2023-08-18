@@ -82,7 +82,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_141955) do
     t.integer "ligue_id", null: false
     t.integer "division_id"
     t.integer "equipe_id"
-    t.integer "rattachement_id"
     t.boolean "pilote"
     t.boolean "admin"
     t.boolean "valide"
@@ -92,7 +91,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_141955) do
     t.index ["division_id"], name: "index_association_users_on_division_id"
     t.index ["equipe_id"], name: "index_association_users_on_equipe_id"
     t.index ["ligue_id"], name: "index_association_users_on_ligue_id"
-    t.index ["rattachement_id"], name: "index_association_users_on_rattachement_id"
     t.index ["user_id"], name: "index_association_users_on_user_id"
   end
 
@@ -291,7 +289,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_14_141955) do
   add_foreign_key "association_users", "divisions"
   add_foreign_key "association_users", "equipes"
   add_foreign_key "association_users", "ligues"
-  add_foreign_key "association_users", "rattachements"
   add_foreign_key "association_users", "users"
   add_foreign_key "divisions", "saisons"
   add_foreign_key "dois", "association_admins"

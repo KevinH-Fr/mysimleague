@@ -5,7 +5,6 @@ class CreateAssociationUsers < ActiveRecord::Migration[7.0]
       t.references :ligue, null: false, foreign_key: true
       t.references :division, null: true, foreign_key: true
       t.references :equipe, null: true, foreign_key: true
-      t.references :rattachement, null: true, foreign_key: true
 
       t.boolean :pilote
       t.boolean :admin
