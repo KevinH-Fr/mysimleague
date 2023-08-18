@@ -18,7 +18,7 @@
       <tbody>
         <% @resultats.each do |resultat| %>
           <% nom = User.find(resultat.association_user.user_id).nom %>
-          <% equipe = AssociationUser.find(resultat.equipe_id).equipe %>
+          <% equipe = resultat.equipe %>
 
           <tr>
             <td>
