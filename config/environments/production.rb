@@ -3,6 +3,22 @@ require "active_support/core_ext/integer/time"
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
 
+  config.action_mailer.default_url_options = {host: "mysimleague-38a099218a23.herokuapp.com", protocol: "https"}
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'mysimleague-38a099218a23.herokuapp.com',
+  user_name:            ENV["GMAIL_USERNAME"],
+  password:             ENV["GMAIL_PASSWORD"],
+  authentication:       'plain',
+  enable_starttls_auto: true,
+  open_timeout:         5,
+  read_timeout:         5,
+  openssl_verify_mode: 'none'
+ }
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 
