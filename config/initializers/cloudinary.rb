@@ -8,7 +8,5 @@ Cloudinary.config do |config|
     config.type = "authenticated"
 
     
-    # Optional, ensures HTTPS URLs
-    # Add more configuration options as needed
-  end
+end
   
