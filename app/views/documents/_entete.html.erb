@@ -5,6 +5,10 @@
         <td class="">
             <h2 class="doc-titre">
                 <%#= image_tag(@event.division.saison.ligue.logo, class: "imgLogoLigueDoc" ) if @event.division.saison.ligue.logo.present? %>  <br>
+                <%= cl_image_tag(@event.division.saison.ligue.logo.url, 
+                        :sign_url => true,
+                        class: "imgLogoLigueDoc" ) if @event.division.saison.ligue.logo.present? %>  <br>
+
                 <%= titre %>
             </h2>
         </td>
