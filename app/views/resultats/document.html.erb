@@ -6,13 +6,12 @@
 
 <%= stylesheet_link_tag "document" %>
 
-<div id="captureContainer" class=" my-2" style="width: 600px; margin: 0 auto;">
+<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
  <%# class="doc-background %>
 
 <%# tempo image cl signed : <br> %>
-<%# @equipeFirst = Equipe.first %>
-<%#= cl_image_tag(@equipeFirst.banniere.url, 
-                   :sign_url => true ) %>
+<% @equipeFirst = Equipe.first %>
+<%= image_tag(@equipeFirst.banniere) %>
 
   <body>
 
