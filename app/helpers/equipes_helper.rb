@@ -16,9 +16,10 @@ module EquipesHelper
     # margin differente pour documents
     def equipe_banner_with_pilote_document(equipe, pilote)
       if equipe.banniere.present?
-        image_tag = image_tag(equipe.banniere, 
-          class: "position-relative rounded m-0 p-0 img-fluid",
-          style: "object-fit: cover; width: 100%; height: 100%; object-position: left;")
+        image_tag = cl_image_tag(equipe.banniere.key, 
+          :sign_url => true,
+          :class => "position-relative rounded m-0 p-0 img-fluid",
+          :style => "object-fit: cover; width: 100%; height: 100%; object-position: left;")
         
         pilote_span = content_tag(:span, pilote, 
           class: "text-light fw-bold fs-5 position-absolute",
@@ -27,6 +28,7 @@ module EquipesHelper
         [image_tag, pilote_span].join.html_safe
       end
     end
+    
     
 
     def equipe_banner_without_pilote(equipe)
