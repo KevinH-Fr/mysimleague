@@ -9,9 +9,6 @@
 <div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
  <%# class="doc-background %>
 
-<%# tempo image cl signed : <br> %>
-<% @equipeFirst = Equipe.first %>
-<%= image_tag(@equipeFirst.banniere) %>
 
   <body>
 
@@ -40,6 +37,11 @@
             <td>
               <div class="img-banniere-doc">
                 <%#= equipe_banner_with_pilote_document(equipe, nom) %> 
+              
+                <% if equipe.nom == "Ferrari" %>
+                  <%= image_tag asset_url('/images/equipes/ferrari.png') %>
+                <% end %>
+              
               </div>  
             </td>
 
