@@ -12,34 +12,47 @@ module EquipesHelper
         [image_tag, pilote_span].join.html_safe
       end
     end
-# margin differente pour documents
-def equipe_banner_with_pilote_document(equipe, pilote)
-  if equipe.present?
-    common_attributes = {
-      class: "position-relative rounded m-0 p-0 img-fluid",
-      style: "object-fit: cover; width: 100%; height: 100%; object-position: left;"
-    }
 
-    image_tag = case equipe.nom
-                when "Ferrari"
-                  image_tag(asset_url('/images/equipes/fer.png'), common_attributes)
-                when "Mercedes"
-                  image_tag(asset_url('/images/equipes/mer.png'), common_attributes)
-                when "RedBull"
-                  image_tag(asset_url('/images/equipes/red.png'), common_attributes)
-                when "McLaren"
-                  image_tag(asset_url('/images/equipes/mcl.png'), common_attributes)
-                else
-                  image_tag(asset_url('/images/equipes/def.png'), common_attributes)
-                end
-    
-    pilote_span = content_tag(:span, pilote,
-                              class: "text-light fw-bold fs-5 position-absolute",
-                              style: "left: 120px; top: 15px; transform: translate(-50%, -50%); z-index: 1;") # Adjust the values as needed
-        
-    [image_tag, pilote_span].join.html_safe
+  # margin differente pour documents
+  def equipe_banner_with_pilote_document(equipe, pilote)
+    if equipe.present?
+      common_attributes = {
+        class: "position-relative rounded m-0 p-0 img-fluid",
+        style: "object-fit: cover; width: 100%; height: 100%; object-position: left;"
+      }
+
+      image_tag = case equipe.nom
+                  when "Ferrari"
+                    image_tag(asset_url('/images/equipes/fer.png'), common_attributes)
+                  when "Mercedes"
+                    image_tag(asset_url('/images/equipes/mer.png'), common_attributes)
+                  when "RedBull"
+                    image_tag(asset_url('/images/equipes/red.png'), common_attributes)
+                  when "McLaren"
+                    image_tag(asset_url('/images/equipes/mcl.png'), common_attributes)
+                  when "AstonMartin"
+                    image_tag(asset_url('/images/equipes/ast.png'), common_attributes)
+                  when "Alpine"
+                    image_tag(asset_url('/images/equipes/alp.png'), common_attributes)
+                  when "AlfaRomeo"
+                    image_tag(asset_url('/images/equipes/alf.png'), common_attributes)
+                  when "AlphaTauri"
+                    image_tag(asset_url('/images/equipes/at.png'), common_attributes)
+                  when "Williams"
+                    image_tag(asset_url('/images/equipes/wil.png'), common_attributes)
+                  when "Haas"
+                    image_tag(asset_url('/images/equipes/haa.png'), common_attributes)
+                  else
+                    image_tag(asset_url('/images/equipes/def.png'), common_attributes)
+                  end
+      
+      pilote_span = content_tag(:span, pilote,
+                                class: "text-light fw-bold fs-5 position-absolute",
+                                style: "left: 120px; top: 15px; transform: translate(-50%, -50%); z-index: 1;") # Adjust the values as needed
+          
+      [image_tag, pilote_span].join.html_safe
+    end
   end
-end
 
     
     
