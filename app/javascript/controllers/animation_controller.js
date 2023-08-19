@@ -6,7 +6,7 @@ export default class extends Controller {
     capturer;
 
     connect() {
-        console.log("Hello from animation controller js");
+       // console.log("Hello from animation controller js");
 
         this.loadCCapture();
         this.reloadAnimation();
@@ -34,7 +34,7 @@ export default class extends Controller {
     
     startAnimation(resultats, canvas, ctx, infosEventValue) {
 
-        console.log(resultats);
+       // console.log(resultats);
         
         var currentStep = 0;
         var currentFrame = 0;
@@ -110,7 +110,7 @@ export default class extends Controller {
                   drawAnimation(step, frame);
                 };
             } else {
-                console.log('put background')
+          //      console.log('put background')
 
                 // If the background image is already stored, restore it using putImageData()
                 ctx.putImageData(background, 0, 0);
@@ -129,14 +129,15 @@ export default class extends Controller {
                 // Create image objects
                 const imageMT = new Image();
                 imageMT.src = "/images/mt_violet.png";
-                console.log("load image mt");
+            //    console.log("load image mt");
 
                 const imageDOTD = new Image();
                 imageDOTD.src = "/images/dotd_gold.png";
-                console.log("load image dotd");
+            //    console.log("load image dotd");
 
             resultats.forEach(function(resultat, index) {
                 
+            //    console.log(resultats);
                 var labelPilote = resultat.pilote;
                 var equipe_id = resultat.equipe_id;
 
@@ -412,7 +413,7 @@ export default class extends Controller {
     }
 
     reloadAnimation(){
-        console.log("call depuis bouton reload");
+    //    console.log("call depuis bouton reload");
         const canvas = this.myCanvasTarget;
         const ctx = canvas.getContext('2d');
 

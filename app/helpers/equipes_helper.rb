@@ -17,6 +17,7 @@ module EquipesHelper
   def equipe_banner_with_pilote_document(equipe, pilote)
     if equipe.present?
       common_attributes = {
+        id: "banniere-#{equipe.id}",
         class: "position-relative rounded m-0 p-0 img-fluid",
         style: "object-fit: cover; width: 100%; height: 100%; object-position: left;"
       }

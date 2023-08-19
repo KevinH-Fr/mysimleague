@@ -166,8 +166,9 @@ class ResultatsController < ApplicationController
       {
         id: resultat.id,
         equipe_id: resultat.equipe_id,
+        equipe_nom: resultat.equipe.nom,
         couleur: resultat.equipe.couleurs,
-        banniere: resultat.equipe.banniere, # Retrieve the logo attachment
+       # banniere: resultat.equipe.banniere, # Retrieve the logo attachment
         pilote: resultat.association_user.user.nom,
         qualification: resultat.qualification,
         course: resultat.course,
