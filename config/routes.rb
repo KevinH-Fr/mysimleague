@@ -147,6 +147,8 @@ Rails.application.routes.draw do
   get 'animation', to: 'resultats#animation', as: 'animation'
 
   get 'generate_image_resultats', to: 'resultats#generate_image', as: 'generate_image_resultats'
+  get 'generate_image_resultats_bis', to: 'resultats#generate_image_bis', as: 'generate_image_resultats_bis'
+
   get 'generate_image_class_pilotes', to: 'classement_pilotes#generate_image', as: 'generate_image_class_pilotes'
 
   get 'generate_image_class_equipes', to: 'classement_equipes#generate_image', as: 'generate_image_class_equipes'

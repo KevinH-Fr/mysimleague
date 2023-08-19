@@ -15,6 +15,10 @@ export default class extends Controller {
 
         html2canvas(elementToCapture, {
           scale: 2, // Increase the rendering scale
+          logging: true,
+          letterRendering: 1,
+          allowTaint: false,
+          useCORS: true
         }).then(function (canvas) {
           var screenshot = canvas.toDataURL("image/jpeg");
           var a = document.createElement("a");

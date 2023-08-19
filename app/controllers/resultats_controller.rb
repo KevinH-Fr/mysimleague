@@ -158,6 +158,15 @@ class ResultatsController < ApplicationController
 
   end
 
+  def generate_image_bis
+
+    @event = Event.find(params[:event])
+    @resultats = @event.resultats if @event.present?
+
+    render "resultats/document_bis"
+
+  end
+
   def animation
     @event = Event.find(params[:event])
     @resultats = @event.resultats if @event.present?
