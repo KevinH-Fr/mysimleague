@@ -1,5 +1,6 @@
 module ApplicationHelper
-    
+    include CloudinaryHelper
+
     def resource_name
         :user
     end
