@@ -34,7 +34,7 @@ export default class extends Controller {
     
     startAnimation(resultats, canvas, ctx, infosEventValue) {
 
-       // console.log(resultats);
+     //   console.log(resultats);
         
         var currentStep = 0;
         var currentFrame = 0;
@@ -98,7 +98,7 @@ export default class extends Controller {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
 
             if (!background) {
-                console.log('set background')
+              //  console.log('set background')
                 const backgroundImage = new Image();
                 backgroundImage.src = "/images/bg_grey.jpg";
             
@@ -129,28 +129,31 @@ export default class extends Controller {
                 // Create image objects
                 const imageMT = new Image();
                 imageMT.src = "/images/mt_violet.png";
-            //    console.log("load image mt");
 
                 const imageDOTD = new Image();
                 imageDOTD.src = "/images/dotd_gold.png";
-            //    console.log("load image dotd");
 
             resultats.forEach(function(resultat, index) {
                 
             //    console.log(resultats);
                 var labelPilote = resultat.pilote;
-                var equipe_id = resultat.equipe_id;
+             //   var equipe_id = resultat.equipe_id;
+              //  const banniere_element_id = `banniere-${equipe_id}`;
+              //  const imageElement = resultat.banniere_url;
+                //console.log(imageElement);
 
-                const banniere_element_id = `banniere-${equipe_id}`;
-                const imageElement = document.getElementById(banniere_element_id);
                 const image = new Image();
-
-                image.src = imageElement.src;
-        
+                image.crossOrigin = 'anonymous';
+                image.src = resultat.banniere_url;
+ 
+              // image.src = 'https://res-2.cloudinary.com/dukne3lhz/image/upload/s---5z1fsIu--/exhk9ph2gjpsmnvb6bkc0tjc5fcy.png';
+               
                 imageObjects.push({
                     image: image,
                     positionY: 0
                 });
+
+               // console.log(imageObjects);
 
                 switch (step) {
                     case 0:  // Step 1: Position at the bottom of the canvas
@@ -392,7 +395,9 @@ export default class extends Controller {
                 quality: 80,
                 framerate: 60,
                 verbose: true,
-                name: "video_if1"
+                name: "video_if1",
+                allowTaint: false,
+                useCORS: true
             });
             this.capturer.start(); // Start recording
             console.log("Recording started.");
@@ -415,6 +420,8 @@ export default class extends Controller {
     reloadAnimation(){
     //    console.log("call depuis bouton reload");
         const canvas = this.myCanvasTarget;
+        canvas.allowTaint = false;
+        canvas.useCORS = true;
         const ctx = canvas.getContext('2d');
 
         const infosEvent = document.getElementById("infos-event");

@@ -5,13 +5,14 @@
 
     <% @resultats.each do |resultat| %>
 
+        <%#= equipe_banner_with_pilote_document(Equipe.find(resultat[:equipe_id]), resultat[:pilote]) %>            
+        <%#= image_tag resultat[:banniere], id: "banniere-#{resultat[:equipe_id]}", style: "display: block;" if resultat[:banniere].attached? %>
+        
         <div style="display: none;">
-            <%= equipe_banner_with_pilote_document(Equipe.find(resultat[:equipe_id]), resultat[:pilote]) %>            
-            <%#= image_tag resultat[:banniere], id: "banniere-#{resultat[:equipe_id]}", style: "display: none;" if resultat[:banniere].attached? %>
-        </div>    
-
+            <%= resultat[:banniere].url %>
+        </div>
+    
     <% end %>
-
 
     <div class="container mt-1 text-center">
         <canvas id="myCanvas" width="400" height="680" style="border: 2px solid grey;" data-animation-target="myCanvas"></canvas>
