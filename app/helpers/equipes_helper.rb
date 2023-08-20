@@ -28,8 +28,6 @@ module EquipesHelper
       end
     end
     
-    
-    
 
     def equipe_banner_without_pilote(equipe)
       if equipe.banniere.present?
