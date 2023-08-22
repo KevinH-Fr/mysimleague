@@ -27,7 +27,7 @@ module SyntheseLicencesHelper
       end
 
       user_licences.each do |_user_id, user_licence|
-        user_licence[:solde] = points_initial - user_licence[:perte_total] + user_licence[:gain_total]
+        user_licence[:solde] = points_initial.to_i  - user_licence[:perte_total].to_i + user_licence[:gain_total].to_i 
       end
     end
 
