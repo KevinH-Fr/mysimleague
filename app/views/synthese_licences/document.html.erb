@@ -57,6 +57,8 @@
 
 <hr>
 
+<%= back_button_on_event(@event.id) %>
+
 <button data-controller="screenshot" 
         data-nom-ligue="<%= @event.division.saison.ligue.nom %>" 
         data-nom-saison="<%= @event.division.saison.nom %>" 

@@ -45,7 +45,7 @@ module EquipesHelper
 
     def equipe_banner_without_pilote_document(equipe)
       if equipe.banniere.present?
-        image_tag = image_tag(equipe.banniere, 
+        image_tag = cl_image_tag(equipe.banniere.url, 
           class: "position-relative rounded m-0 p-0 img-fluid",
           style: "object-fit: cover; width: 100%; height: 100%; object-position: left;")
         

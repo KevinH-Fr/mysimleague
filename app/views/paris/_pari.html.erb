@@ -7,7 +7,7 @@
       <div class="col-12">
         parieur: <strong>  <%= pari.user.nom %> </strong>
         pilote: <strong> <%= pari.association_user.user.nom %> </strong>
-        montant: <%= number_with_delimiter(pari.montant.to_i, delimiter: ' ', precision: 0)  %> <br> 
+        montant: <%= number_with_delimiter(pari.montant.to_i, delimiter: ' ', precision: 0)  %> 
         type: <%= pari.typepari %>
         cote: <%= pari.cote %>
         <%= boolean_icon(pari.resultat) %>
