@@ -4,8 +4,9 @@
 
     <div class="row align-items-center">
       <div class="col-9">
-        demandeur: <strong><%= User.find(AssociationUser.find(doi.demandeur_id).id).nom %></strong>
-        impliqué: <strong><%= User.find(AssociationUser.find(doi.implique_id).id).nom %></strong> 
+        demandeur: <strong> <%= AssociationUser.find(doi.demandeur_id).user.nom %></strong>
+       
+        impliqué: <strong><%= AssociationUser.find(doi.implique_id).user.nom %></strong> 
         Description: <%= doi.description %>
         Lien:   <%= doi.lien %>
         Decision: <%= doi.decision %>
@@ -19,17 +20,18 @@
         <% end %>
 
         Commentaire:  <%= doi.commentaire %>
-        Resp. commissaire: <strong> <%= AssociationAdmin.find(doi.responsable_commissaire_id).user.nom if doi.responsable_commissaire_id %> </strong>
+        Resp. commissaire: <strong> <%= AssociationAdmin.find(doi.association_admin_id).user.nom  if doi.association_admin_id %> </strong>
 
       </div>
       <div class="col-3 text-center">
         <div class="d-flex align-items-center">  
-          <%= link_to "Image", generate_image_dois_path(doi: doi), class: 'btn btn-success' %>
+          <%= link_to "", generate_image_dois_path(doi: doi), 
+                class: 'btn btn-sm btn-success fa-solid fa-image m-1' %>
 
           <%= button_to "", edit_doi_path(doi), method: :post, 
                 class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
           <%= button_to "", doi, method: :delete, 
-                class: "btn btn-sm btn-danger fa-solid fa-trash",
+                class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
         </div>
       </div>

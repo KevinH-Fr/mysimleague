@@ -67,7 +67,7 @@ class EquipesController < ApplicationController
   def update
     respond_to do |format|
       if @equipe.update(equipe_params)
-        flash.now[:success] = "circuit was successfully updated"
+        flash.now[:success] = "Equipe was successfully updated"
 
         format.turbo_stream do
           render turbo_stream: [

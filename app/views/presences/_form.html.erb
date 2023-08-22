@@ -17,12 +17,13 @@
 
     <%= form.hidden_field :association_user_id, value: association_user_from_user(current_user.id, session[:division]).id %>
 
-    <div class="form-check form-switch">
-      <%= form.label :status, class: "form-check-label" %>
-      <%= form.check_box :status, class: "form-check-input" %>
+    <div class="form-check form-switch h5">
+      <%= form.label "Présent!", class: "form-check-label text-center" %>
+      <%= form.check_box :status, class: "form-check-input text-center" %>
     </div>
 
-    <%= custom_submit_button("Présence") %>
+
+      <%= custom_submit_button("Présence") %>
 
   <% end %> 
 

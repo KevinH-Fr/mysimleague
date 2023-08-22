@@ -15,7 +15,7 @@
 
     <div class="input-group input-group-sm my-2">
       <%= form.label :circuit_id, class: "input-group-text" %>
-      <%= form.collection_select :circuit_id, Circuit.all, :id, :nom,
+      <%= form.collection_select :circuit_id, @circuits, :id, :circuit_nom_complet,
         { include_blank: 'Select a circuit' }, class: "form-select" %>
     </div>
 

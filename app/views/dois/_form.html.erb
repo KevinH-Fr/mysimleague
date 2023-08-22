@@ -104,9 +104,10 @@
 
         <div class="input-group input-group-sm my-2">
           <%= form.label :responsable_commissaire, class: "input-group-text" %>
-          <%= form.select :responsable_commissaire_id, 
-                options_from_collection_for_select(liste_admins_ligue(session[:ligue]), 'id', 'user_nom'), 
-                  { include_blank: 'Select commissaire' }, class: "form-select" %>
+        <%= form.select :association_admin_id, 
+                options_from_collection_for_select(liste_admins_ligue(session[:ligue]), 'id', 'user_nom', form.object.association_admin_id), 
+                { include_blank: 'Select commissaire' }, class: "form-select" %>
+
         </div>
 
       <% end %>

@@ -13,12 +13,16 @@ class MenuController < ApplicationController
     @division = Division.find(params[:division]) if params[:division]
     session[:division] = @division.id if @division
 
-    @events = @division.events if @division
+    @circuits = Circuit.all if @division
+
+    @events = @division.events.order(:numero) if @division
     @show_buttons = true #pour afficher les btns de event que depuis ce controller, pas depuis home index 
     @event = Event.find(params[:event]) if params[:event]
     session[:event] = @event.id if @event
 
     @previous_event = Event.where(division_id: @event.division_id, numero: @event.numero - 1).first if @event
+
+
   
   end
 

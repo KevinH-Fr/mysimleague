@@ -125,6 +125,6 @@ class DoisController < ApplicationController
     end
 
     def doi_params
-      params.fetch(:doi, {}).permit(:demandeur_id, :implique_id, :event_id, :description, :lien, :decision, :reglement_id, :penalite, :penalite_temps, :commentaire, :responsable_commissaire_id)
+      params.fetch(:doi, {}).permit(:demandeur_id, :implique_id, :event_id, :description, :lien, :decision, :reglement_id, :penalite, :penalite_temps, :commentaire, :association_admin_id)
     end
 end

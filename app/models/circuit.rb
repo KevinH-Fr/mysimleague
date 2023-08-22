@@ -7,6 +7,10 @@ class Circuit < ApplicationRecord
         id
     end 
 
+    def circuit_nom_complet
+        "#{pays} - #{nom}" # Assuming 'nom' is the circuit's name attribute and 'pays' is the country attribute
+      end
+
     def self.ransackable_attributes(auth_object = nil)
         ["carte", "created_at", "id", "latitude", "longitude", "nom", "pays", "updated_at"]
     end

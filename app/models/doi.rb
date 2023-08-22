@@ -2,6 +2,8 @@ class Doi < ApplicationRecord
  # belongs_to :association_user
   belongs_to :event
   belongs_to :reglement, optional: true
+  belongs_to :association_admin, optional: true
+
 
   enum responsable: [ :responsable, :fait_de_course ]
 

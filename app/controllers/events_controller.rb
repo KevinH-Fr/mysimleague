@@ -16,6 +16,9 @@ class EventsController < ApplicationController
   end
 
   def edit
+
+    @circuits = Circuit.all.order(:pays) 
+
     respond_to do |format|
       format.turbo_stream do  
         render turbo_stream: turbo_stream.update(@event, 
@@ -26,8 +29,11 @@ class EventsController < ApplicationController
   end
 
   def create
+  
     @event = Event.new(event_params)
 
+    @circuits = Circuit.all.order(:pays) 
+    
     respond_to do |format|
 
       
