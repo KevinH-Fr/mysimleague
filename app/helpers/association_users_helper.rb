@@ -5,9 +5,9 @@ module AssociationUsersHelper
         division_id: division, 
         actif: true, 
         valide: true)
-        .group(:user_id)
                                             
       association_users
+      
   end
 
   def verif_appartenance_division(user, division)
