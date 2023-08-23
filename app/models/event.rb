@@ -46,4 +46,7 @@ class Event < ApplicationRecord
     ["circuit", "division", "dois", "dotds", "licences", "paris", "presences", "resultats"]
   end
 
+  def nom_doc(document)
+    "#{document}_#{division.saison.ligue.nom}_#{division.saison.nom}_#{division.nom}_n#{numero}" 
+  end
 end
