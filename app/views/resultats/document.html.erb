@@ -62,10 +62,10 @@
 
 <hr>
 
-<%= back_button_on_event(@event.id) %>
-<%# remplacer par un full_name_doc pour passer une seule var? %>
-
-<button class="fa fa-solid fa-image btn btn-primary" data-controller="screenshot" 
-        data-nom-doc="<%= @event.nom_doc("resultat") %>" 
-        data-action="click->screenshot#capture" class="btn btn-success">
-</button>
+<div class="d-flex">
+  <%= back_button_on_event(@event.id) %>
+  <button class="fa fa-solid fa-image btn btn-primary m-1" data-controller="screenshot" 
+          data-nom-doc="<%= @event.nom_doc("resultat") %>" 
+          data-action="click->screenshot#capture">
+  </button>
+</div>

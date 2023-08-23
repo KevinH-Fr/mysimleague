@@ -57,9 +57,11 @@
 
 <hr>
 
-<%= back_button_on_event(@event.id) %>
+<div class="d-flex">
+  <%= back_button_on_event(@event.id) %>
 
-<button class="fa fa-solid fa-image btn btn-primary" data-controller="screenshot" 
-        data-nom-doc="<%= @event.nom_doc("licences") %>" 
-        data-action="click->screenshot#capture" class="btn btn-success">
-</button>
+  <button class="fa fa-solid fa-image btn btn-primary m-1" data-controller="screenshot" 
+          data-nom-doc="<%= @event.nom_doc("licences") %>" 
+          data-action="click->screenshot#capture" class="btn btn-success">
+  </button>
+</div>

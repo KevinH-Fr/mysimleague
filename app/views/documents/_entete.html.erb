@@ -6,7 +6,7 @@
             <h2 class="doc-titre">
                 <%= cl_image_tag(@event.division.saison.ligue.logo.url, 
                     :class => "position-relative rounded m-0 p-0 img-fluid",
-                    :style => "width: 100px;") if @event.division.saison.ligue.logo.present? %>
+                    :style => "width: 80px; display: block;") if @event.division.saison.ligue.logo.present? %>
 
                 <%= titre %>
             </h2>

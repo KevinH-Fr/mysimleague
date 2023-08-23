@@ -55,14 +55,12 @@
 
 <hr>
 
-<%= back_button_on_event(@event.id) %>
+<div class="d-flex">
 
-<button data-controller="screenshot" 
-        data-nom-ligue="<%= @event.division.saison.ligue.nom %>" 
-        data-nom-saison="<%= @event.division.saison.nom %>" 
-        data-nom-division="<%= @event.division.nom %>" 
-        data-event-numero="<%= @event.numero %>" 
-        data-nom-doc="class equipes" 
-        data-action="click->screenshot#capture" class="btn btn-success">
-  Image
-</button>
+  <%= back_button_on_event(@event.id) %>
+
+  <button class="fa fa-solid fa-image btn btn-primary m-1" data-controller="screenshot" 
+          data-nom-doc="<%= @event.nom_doc("class_equipes") %>" 
+          data-action="click->screenshot#capture">
+  </button>
+</div>
