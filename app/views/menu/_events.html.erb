@@ -1,6 +1,6 @@
 <div class="card-with-effect">
 
-  <div class="d-flex">
+  <div class="d-flex align-items-center">
 
     <h4 class="mx-1"> Events </h4>
       
@@ -11,12 +11,15 @@
       <% end %>
 
       <% @events.each do |event| %>
-          <%= link_to url_for(ligue: @ligue.id, saison: @saison.id, division: @division.id, event: event), 
-          class: "btn btn-outline-primary btn-sm btn-event m-1 p-1 
-                #{'fw-bold text-light btn-primary'  if params[:event] == event.id.to_s}" do %>
-                <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded", width: "20") if event.circuit.drapeau.present? %>
-                <%= truncate(event.short_name, length: 18) %>
-          <% end %>
+        <%= link_to url_for(ligue: @ligue.id, saison: @saison.id, division: @division.id, event: event), 
+                  class: "btn btn-outline-primary btn-sm btn-event m-1 p-1 
+                        #{'fw-bold text-light btn-primary'  if params[:event] == event.id.to_s}" do %>
+
+            <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-2", width: "20") if event.circuit.drapeau.present? %>
+            <%= truncate(event.short_name, length: 18) %>
+     
+        <% end %>
+
       <% end %>
   </div>
 

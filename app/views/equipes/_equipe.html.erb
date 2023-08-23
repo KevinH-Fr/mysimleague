@@ -6,6 +6,8 @@
     <div class="row align-items-center">
       <div class="col-10">
         <%= image_tag(equipe.banniere, class: "img-fluid rounded w-50") if equipe.banniere.present? %>
+        <%= image_tag(equipe.voiture, class: "img-fluid rounded w-50") if equipe.voiture.present? %>
+
         Nom:   <%= equipe.nom %>
         Couleurs:  <%= equipe.couleurs %>
       </div>

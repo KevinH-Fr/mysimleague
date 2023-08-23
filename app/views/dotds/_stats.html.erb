@@ -1,2 +1,6 @@
-  nb votes: <%= nb_votes_dotd_event(session[:event]) %> <br>
-  <%= resultat_dotd_courant(session[:event]) %>
+<strong>
+  <%= nb_votes_dotd_event(session[:event]) %>
+  <%= "vote".pluralize(nb_votes_dotd_event(session[:event])) %>
+</strong> <br>
+
+<%= resultat_dotd_courant(session[:event]) %>

@@ -12,4 +12,8 @@ module DivisionsHelper
         Division.where(saison_id: saison)
     end
 
+    def nb_pilotes_division(division)
+       AssociationUser.where(division: division, actif: true, valide: true).count
+    end
+
 end

@@ -22,8 +22,8 @@
       <% division = Division.find(session[:division]) %>
 
       <% pilotes_division_named(division).each_slice(2) do |pilote1, pilote2| %>
-        <div class="row flex-wrap mb-3">
-          <div class="col-md-5 border align-middle m-1">
+        <div class="row flex-wrap m-1">
+          <div class="col-md-5 rounded border align-middle m-1">
             <label for="pilote_<%= pilote1 %>" class="form-check-label d-flex align-items-center mb-0">
               <div class="form-check me-2">
                 <input class="form-check-input" type="radio" name="dotd[association_user_id]" id="pilote_<%= pilote1 %>" value="<%= pilote1.first %>">
@@ -35,7 +35,7 @@
             </label>
           </div>
           <% if pilote2.present? %>
-            <div class="col-md-5 border align-middle m-1">
+            <div class="col-md-5 rounded border align-middle m-1">
               <label for="pilote_<%= pilote2 %>" class="form-check-label d-flex align-items-center mb-0">
                 <div class="form-check me-2">
                   <input class="form-check-input" type="radio" name="dotd[association_user_id]" id="pilote_<%= pilote2 %>" value="<%= pilote2.first %>">

@@ -20,10 +20,12 @@ module EquipesHelper
           class: "position-relative rounded m-0 p-0 img-fluid",
           style: "object-fit: cover; width: 100%; height: 100%; object-position: left;")
         
-        pilote_span = content_tag(:span, pilote, 
-          class: "text-light fw-bold fs-5 position-absolute",
-          style: "left: 120px; top: 15px; transform: translate(-50%, -50%); z-index: 1;") # Adjust the values as needed
-        
+          truncated_pilote = truncate(pilote, length: 20) # Adjust the length as needed
+    
+          pilote_span = content_tag(:span, truncated_pilote, 
+            class: "text-light fw-bold fs-5 position-absolute top-50 start-0 translate-middle-y",
+            style: "margin-left: 100px;") # Adjust the value as needed
+                  
         [image_tag, pilote_span].join.html_safe
       end
     end

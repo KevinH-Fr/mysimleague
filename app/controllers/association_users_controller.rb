@@ -50,7 +50,11 @@ class AssociationUsersController < ApplicationController
   
             turbo_stream.append('association_users',
                                  partial: "association_users/association_user",
-                                 locals: { association_user: @association_user })
+                                 locals: { association_user: @association_user }),
+
+            turbo_stream.update(
+            'partial-pilotes-division-stats-container', partial: 'divisions/stats'
+            ),
           ]
         end
 
@@ -82,7 +86,12 @@ class AssociationUsersController < ApplicationController
             turbo_stream.update(@association_user, 
                     partial: 'association_users/association_user', 
                     locals: { association_user: @association_user }),
-            turbo_stream.remove('new_association_user')
+            turbo_stream.remove('new_association_user'),
+
+            turbo_stream.update(
+              'partial-pilotes-division-stats-container', partial: 'divisions/stats'
+             ),
+   
           ]
         end
 
@@ -107,7 +116,13 @@ class AssociationUsersController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.remove(@association_user)
+        render turbo_stream: [
+          turbo_stream.remove(@association_user),
+          
+          turbo_stream.update(
+            'partial-pilotes-division-stats-container', partial: 'divisions/stats'
+           )
+          ]
       end
 
       format.html { redirect_to association_users_url, notice: "Association was successfully destroyed." }

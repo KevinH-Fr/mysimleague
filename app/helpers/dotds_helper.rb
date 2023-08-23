@@ -23,7 +23,7 @@ module DotdsHelper
               "#{AssociationUser.find(pilote_id).user.nom} (#{max_count} votes)"
             }.join("<br>").html_safe
         else
-          "#{AssociationUser.find(max_pilote_ids.first).user.nom} (#{max_count} votes)"
+           "#{AssociationUser.find(max_pilote_ids.first).user.nom} (#{max_count} #{'vote'.pluralize(max_count)})"
         end
 
       end

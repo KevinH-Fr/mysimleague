@@ -4,9 +4,6 @@
 <div data-controller="animation" data-action="connect" data-animation-resultats-value="<%= @resultats.to_json %>">
 
     <% @resultats.each do |resultat| %>
-
-        <%#= equipe_banner_with_pilote_document(Equipe.find(resultat[:equipe_id]), resultat[:pilote]) %>            
-        <%#= image_tag resultat[:banniere], id: "banniere-#{resultat[:equipe_id]}", style: "display: block;" if resultat[:banniere].attached? %>
         
         <div style="display: none;">
             <%= resultat[:banniere].url %>

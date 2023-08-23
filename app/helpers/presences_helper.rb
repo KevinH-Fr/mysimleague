@@ -16,4 +16,9 @@ module PresencesHelper
       user.association_users.ids.include?(association_user)
     end
 
+  
+    def nb_presences_event(event)
+      Presence.where(event_id: event).count
+    end
+
 end

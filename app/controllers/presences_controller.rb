@@ -28,6 +28,10 @@ class PresencesController < ApplicationController
             turbo_stream.update(@presence, 
                     partial: 'presences/presence', 
                     locals: { presence: @presence }),
+
+          turbo_stream.update(
+            'partial-presences-stats-container', partial: 'presences/stats'
+            ),
           
             # Include a Turbo Stream command to display the flash notice
             turbo_stream.prepend('flash',
@@ -69,9 +73,10 @@ class PresencesController < ApplicationController
                                  partial: "presences/presence",
                                  locals: { presence: @presence }),
 
-            #maj de la partial new_presence pour affichage conditionnel btn nouveau
             turbo_stream.update(:content_new_presence, 
-              partial: 'presences/new_presence'),
+              partial: 'presences/new_presence'),          turbo_stream.update(
+                'partial-presences-stats-container', partial: 'presences/stats'
+                ),
 
             # Include a Turbo Stream command to display the flash notice
             turbo_stream.prepend('flash',
@@ -101,7 +106,11 @@ class PresencesController < ApplicationController
           turbo_stream.remove(@presence),
           turbo_stream.update(:content_new_presence, 
             partial: 'presences/new_presence'),
-        
+  
+          turbo_stream.update(
+           'partial-presences-stats-container', partial: 'presences/stats'
+          ),
+
           turbo_stream.prepend('flash',
             partial: 'layouts/flash',
             locals: { flash: flash })

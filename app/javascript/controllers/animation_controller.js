@@ -137,17 +137,11 @@ export default class extends Controller {
                 
             //    console.log(resultats);
                 var labelPilote = resultat.pilote;
-             //   var equipe_id = resultat.equipe_id;
-              //  const banniere_element_id = `banniere-${equipe_id}`;
-              //  const imageElement = resultat.banniere_url;
-                //console.log(imageElement);
 
                 const image = new Image();
                 image.crossOrigin = 'anonymous';
                 image.src = resultat.banniere_url;
- 
-              // image.src = 'https://res-2.cloudinary.com/dukne3lhz/image/upload/s---5z1fsIu--/exhk9ph2gjpsmnvb6bkc0tjc5fcy.png';
-               
+                
                 imageObjects.push({
                     image: image,
                     positionY: 0
@@ -162,7 +156,7 @@ export default class extends Controller {
                         textColor = 'white';
                         positionY = basePositionY;
                         labelStep = "début";
-                        textContent.push(labelPilote  );
+                        textContent.push(labelPilote);
                         posContent.push( "" );
                         break;
 
@@ -281,7 +275,7 @@ export default class extends Controller {
                 ctx.fillRect(5, 5, canvas.width - 10, 30);
 
                 ctx.fillStyle = "white";
-                ctx.font = "24px F1regular";
+                ctx.font = "20px F1regular";
                 //var text = `Step ${step + 1} of ${animationSteps} ${labelStep}`;
                 var text = labelStep;
                 var textWidth = ctx.measureText(text).width;
@@ -292,7 +286,7 @@ export default class extends Controller {
                 ctx.fillStyle = "grey";
                 ctx.fillRect(5, canvas.height - 35, canvas.width - 10, 30);
                 ctx.fillStyle = "white";
-                ctx.font = "42px";
+               // ctx.font = "42px";
                 text = infosEventValue;
                 textWidth = ctx.measureText(text).width;
                 x = (canvas.width - textWidth) / 2;
@@ -300,8 +294,7 @@ export default class extends Controller {
                 ctx.fillText(text, x, canvas.height - 12);
 
                 // draw position pilote 
-                var fontSize = 40;
-              //  var fontFamily = '';
+                var fontSize = 30;
                 ctx.font = fontSize + 'px ' ;
                 ctx.fillStyle = bgColor;
 
@@ -343,10 +336,24 @@ export default class extends Controller {
 
                 // draw label pilote
                 ctx.fillStyle = "white";
-                ctx.fillText( textContent[index], 160, positionY + 10 );
+                
+                // Maximum length for the text content
+                const maxLength = 10; // Adjust the maximum length as needed
+
+                // Get the original text content
+                const originalText = textContent[index];
+
+                // Check if the text length exceeds the maximum length
+                if (originalText.length > maxLength) {
+                // Truncate the text and add ellipsis
+                const truncatedText = originalText.substring(0, maxLength) + "...";
+                ctx.fillText(truncatedText, 140, positionY + 10);
+                } else {
+                ctx.fillText(originalText, 140, positionY + 10);
+                }
 
                 if (mtContent == true) {
-                    ctx.drawImage(imageMT, canvas.width - 28, positionY - 10, sizeMtDotd, sizeMtDotd); // Draw imageMT on the canvas at (10, 10) with width 50 and height 50
+                    ctx.drawImage(imageMT, 0, positionY - 10, sizeMtDotd, sizeMtDotd); // Draw imageMT on the canvas at (10, 10) with width 50 and height 50
                 }
 
                 if (dotdContent == true) {
