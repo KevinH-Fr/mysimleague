@@ -8,7 +8,7 @@ export default class extends Controller {
  static targets = ["course", "sprint", "mt", "dotd", "dnf", "dns", "score", "pilote", "equipe", "label"]; 
 
   connect() {
-    console.log("Hello from resultat controller js");
+   // console.log("Hello from resultat controller js");
   }
 
   update_score() {
@@ -27,7 +27,7 @@ export default class extends Controller {
     this.calculateSprintValue(sprint) + mtValue + dotdValue;
 
     this.scoreTarget.value = totalScore; // Update the score field value
-    console.log("call update score : " + totalScore);
+  //  console.log("call update score : " + totalScore);
 
   }
 
@@ -89,14 +89,14 @@ export default class extends Controller {
     // Check if piloteTarget has a value (is not empty)
 
     if (pilote) {
-      console.log("call update equipe - pilote association id: " + pilote );
+      //console.log("call update equipe - pilote association id: " + pilote );
       $.ajax({
         url: `/association_users/${pilote}`,
         type: 'GET',
         dataType: 'json',
         success: function(response) {
           const equipeId = response.equipe_id;
-          console.log("Equipe ID:", equipeId);
+         // console.log("Equipe ID:", equipeId);
           controller.equipeTarget.value = equipeId || ''; // Use the stored controller reference
         },
         error: function(xhr, status, error) {

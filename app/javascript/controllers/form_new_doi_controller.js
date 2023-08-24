@@ -6,12 +6,12 @@ export default class extends Controller {
  static targets = ["decision", "reglement", "penalite_points", "penalite_temps"]; 
 
   connect() {
-    console.log("Hello from new doi controller js");
+  //  console.log("Hello from new doi controller js");
   }
 
   update_penalite() {
     const reglement = this.reglementTarget.value;
-    console.log("reglement", reglement);
+  //  console.log("reglement", reglement);
   
     const controller = this; // Store the reference to the controller instance
   
@@ -25,8 +25,8 @@ export default class extends Controller {
           const penalite_points = response.penalite_points; 
           const penalite_temps = response.penalite_temps; 
 
-          console.log("reglement ID:", reglement);
-          console.log("penalite points:", penalite_points);
+        //  console.log("reglement ID:", reglement);
+         // console.log("penalite points:", penalite_points);
   
           controller.penalite_pointsTarget.value = penalite_points || '';
           controller.penalite_tempsTarget.value = penalite_temps || '';

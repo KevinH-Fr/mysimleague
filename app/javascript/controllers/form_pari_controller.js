@@ -7,7 +7,7 @@ export default class extends Controller {
   "output"];
   
   connect() {
-    console.log("js form element connected")
+   // console.log("js form element connected")
     this.submitbtnTarget.hidden = true
   } 
 
@@ -16,7 +16,7 @@ export default class extends Controller {
   }
 
   setField(event) {
-    console.log("call set field");
+   // console.log("call set field");
     const button = event.target;
 
     const coureur = button.dataset.coureur;
@@ -36,9 +36,9 @@ export default class extends Controller {
   }
 
   update_values() {
-    console.log("call update value");
+  //  console.log("call update value");
     const parieur = this.parieurTarget.value;
-    console.log(parieur);
+  //  console.log(parieur);
     const coureur = this.coureurTarget.value;
     const montant = parseFloat(this.montantTarget.value);
     const cote = parseFloat(this.coteTarget.value);
@@ -49,7 +49,7 @@ export default class extends Controller {
                           " montant: " + montant + " cote: " + cote + " typepari: " + typepari +
                           " gain possible: " + gainPossible;
 
-    console.log(outputContent );
+    //console.log(outputContent );
     this.outputTarget.textContent = outputContent;
   }
 

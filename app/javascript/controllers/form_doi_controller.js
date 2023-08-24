@@ -2,11 +2,11 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
   connect() {
-    console.log("js form doi connected");
+  //  console.log("js form doi connected");
   }
 
   remotesubmit(event) {
-    console.log("call remote submit doi");
+  //  console.log("call remote submit doi");
 
     const formElement = this.element;
     const recordId = formElement.dataset.formDoiRecordId;

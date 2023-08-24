@@ -1,0 +1,5 @@
+
+tempo partial rattachement
+
+<%= render partial: "rattachements/form", 
+    locals: { rattachement: Rattachement.new(user: current_user, ligue: @ligue) } %>

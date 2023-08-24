@@ -12,14 +12,16 @@
   <% end %>
 
   <div>
-    <%#= form.label :user_id, style: "display: block" %>
     <%= form.hidden_field :user_id %>
   </div>
 
-  <div>
-    <%#= form.label :ligue_id, style: "display: block" %>
-    <%= form.hidden_field :ligue_id %>
-  </div>
+  <%= form.hidden_field :ligue_id %>
+
+  <% unless @ligue %>
+    <%= form.select :ligue_id, options_for_select(Ligue.all.map { |ligue| [ligue.nom, ligue.id] }) %>
+
+  <% end %>
+
 
   <div class="input-group input-group-sm my-2">
     <%= form.label :message, class: "input-group-text" %>

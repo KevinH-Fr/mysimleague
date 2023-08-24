@@ -6,7 +6,7 @@ module ClassementPilotesHelper
   
     if event.present?
       association_users = pilotes_division(event.division)
-      puts "------------------------ #{association_users.ids}"
+      # puts "------------------------ #{association_users.ids}"
   
       association_users.each do |association_user|
         user_scores[association_user.user.id] ||= { association_user_id: association_user.id, user_id: association_user.user.id, score: 0, course_positions: Hash.new(0) }

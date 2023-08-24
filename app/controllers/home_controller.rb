@@ -36,6 +36,17 @@ class HomeController < ApplicationController
         end
       end
     end
+
+    def display_demande_rattachement
+  
+      respond_to do |format|
+        format.turbo_stream do
+          render turbo_stream: turbo_stream.update(
+            'partial-container', partial: 'home/rattachements'
+          )
+        end
+      end
+    end
     
   end
     

@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
   <div class="container-fluid">
-    <%= link_to image_tag("brandlogo.png", width: 40), root_path, class: "" %>
+    <%= link_to image_tag("brandlogo.png", width: 40), root_path, class: "me-2" %>
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -28,8 +28,20 @@
           </li>
         <% end %>    
 
-        <%= render "shared/connexion" %>
-                                                            
+        <% unless current_user %>
+          
+          <%= link_to new_user_session_path, class: "text-warning no-underline m-2" do %>
+            <i class="fa fa-solid fa-lg fa-user-lock"></i>
+            <span class="ms-2 fw-bold">Se connecter</span>
+          <% end %>
+
+          <%= link_to steps_compte_step1_path, class: "text-primary no-underline m-2" do %>
+            <i class="fa fa-solid fa-lg fa-user-plus"></i>
+            <span class="ms-2 fw-bold">Creer compte</span>
+          <% end %>
+
+        <% end %>  
+                                                  
        
       </ul>
     </div>

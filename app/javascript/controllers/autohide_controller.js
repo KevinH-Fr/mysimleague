@@ -8,7 +8,7 @@ export default class extends Controller {
     }, 4000)
   }
   dismiss() {
-    console.log("call dismiss auto hide")
+   // console.log("call dismiss auto hide")
     this.element.remove()
   }
 }
