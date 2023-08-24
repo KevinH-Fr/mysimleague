@@ -7,6 +7,7 @@ class Ligue < ApplicationRecord
     belongs_to :user
 
     validates :nom, presence: true
+    validate :medias_format_and_size
 
     has_one_attached :logo
 
@@ -15,6 +16,17 @@ class Ligue < ApplicationRecord
     def feed_content
         id
     end 
+
+    def medias_format_and_size
+	    if logo.attached?
+	        unless logo.blob.content_type.in?(%w(image/jpeg image/png image/gif))
+	            errors.add(:logo, 'must be a JPEG, PNG, or GIF image')
+	        end
+            unless drapeau.blob.byte_size <= 1.megabytes
+	            errors.add(:logo, 'size should be less than 1MB')
+            end
+	    end
+    end
 
     private
 

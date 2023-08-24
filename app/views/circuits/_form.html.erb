@@ -35,7 +35,7 @@
 
     <div class="input-group input-group-sm my-1">
       <%= form.label :drapeau, class: "input-group-text" %>
-      <%= form.file_field :drapeau, class: "form-control"%>
+      <%= form.file_field :drapeau, accept: "image/jpeg, image/png", class:"form-control" %>
     </div>
 
     <%= custom_submit_button("Circuit") %>
