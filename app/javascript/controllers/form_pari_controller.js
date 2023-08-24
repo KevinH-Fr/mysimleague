@@ -16,11 +16,15 @@ export default class extends Controller {
   }
 
   setField(event) {
-   // console.log("call set field");
+    
     const button = event.target;
 
+   // console.log(button);
+    const coureurNom = button.getAttribute('data-coureur-nom');
+   // console.log(coureurNom);
+
     const coureur = button.dataset.coureur;
-    const coureurNom = button.dataset.coureurNom;
+
     const typePari = button.dataset.typepari;
     const cote = button.value;
 
@@ -31,29 +35,25 @@ export default class extends Controller {
     const divElement = document.getElementById("div-montant");
     divElement.style.display = "block";
     
-    this.update_values();
+    this.update_values(coureurNom);
 
   }
 
-  update_values() {
-  //  console.log("call update value");
+  update_values(coureurNom) {
     const parieur = this.parieurTarget.value;
-  //  console.log(parieur);
     const coureur = this.coureurTarget.value;
+
     const montant = parseFloat(this.montantTarget.value);
     const cote = parseFloat(this.coteTarget.value);
     const typepari = this.typepariTarget.value;
     const gainPossible = (montant * cote).toFixed(2);
  
-  const outputContent = "parieur: " + parieur + " coureur: " + coureur + 
+    const outputContent = "coureur: " + coureurNom + 
                           " montant: " + montant + " cote: " + cote + " typepari: " + typepari +
                           " gain possible: " + gainPossible;
 
-    //console.log(outputContent );
     this.outputTarget.textContent = outputContent;
   }
-
-
 
 
 

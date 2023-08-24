@@ -34,9 +34,9 @@
           </thead>
 
           <tbody>
-            <% cotes_pilotes(Event.find(session[:event])).each do |user_id, values| %>
+            <% cotes_pilotes(Event.find(session[:event])).each do |association_user_id, values| %>
               <tr>
-                <th scope="row"><%= User.find(values[:user_id]).nom %> </th>
+                <th scope="row"><%= AssociationUser.find(values[:association_user_id]).user.nom %> </th>
                 <td>
                   <%# victoire %>
                   <%= form.button values[:victoire], 
@@ -44,7 +44,10 @@
                       value: values[:victoire], 
                       type: "button", 
                     data: { action: "click->form-pari#setField", 
-                    coureur: user_id, coureur_nom: User.find(user_id).nom, typepari: "victoire", cote: values[:victoire] },
+                      coureur: values[:association_user_id], 
+                      coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
+                      typepari: "victoire", 
+                      cote: values[:victoire] },
                     class: "btn btn-warning" %>
                 </td>
 
@@ -55,7 +58,10 @@
                       value: values[:pole], 
                       type: "button", 
                     data: { action: "click->form-pari#setField", 
-                      coureur: user_id, coureur_nom: User.find(user_id).nom, typepari: "pole", cote: values[:pole] },
+                      coureur: values[:association_user_id], 
+                      coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
+                      typepari: "pole", 
+                      cote: values[:pole] },
                     class: "btn btn-warning" %>
                 </td>
 
@@ -66,7 +72,10 @@
                       value: values[:podium], 
                       type: "button", 
                     data: { action: "click->form-pari#setField", 
-                      coureur: user_id, coureur_nom: User.find(user_id).nom, typepari: "podium", cote: values[:podium] },
+                      coureur: values[:association_user_id], 
+                      coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
+                      typepari: "podium", 
+                      cote: values[:podium] },
                     class: "btn btn-warning" %>
                 </td>
 
@@ -77,7 +86,10 @@
                       value: values[:top10], 
                       type: "button", 
                     data: { action: "click->form-pari#setField", 
-                    coureur: user_id, coureur_nom: User.find(user_id).nom, typepari: "top10", cote: values[:top10] },
+                      coureur: values[:association_user_id], 
+                      coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
+                      typepari: "top10", 
+                      cote: values[:top10] },
                     class: "btn btn-warning" %>
                 </td>
               </tr>
@@ -88,13 +100,14 @@
         <div id="div-montant"  style="display: none;">
 
           <%= form.hidden_field :association_user_id, data: { form_pari_target: "coureur" } %>
+      
           <%= form.hidden_field :typepari, data: { form_pari_target: "typepari" } %>
           <%= form.hidden_field :cote, data: { form_pari_target: "cote" } %>
           <%= form.hidden_field :user_id, value: current_user.id, data: { form_pari_target: "parieur" } %>
           <%= form.hidden_field :event_id, value: session[:event] %>
 
 
-          <div class="badge bg-dark">
+          <div class="badge bg-dark fs-6 p-1 my-2">
             solde avant <%= somme_paris_user(Time.now.year, User.all)[current_user.id][:sum] %>
           </div>
 

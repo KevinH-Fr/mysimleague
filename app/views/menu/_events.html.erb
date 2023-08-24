@@ -12,7 +12,7 @@
 
       <% @events.each do |event| %>
         <%= link_to url_for(ligue: @ligue.id, saison: @saison.id, division: @division.id, event: event), 
-                  class: "btn btn-outline-primary btn-sm btn-event m-1 p-1 
+                  class: "btn btn-outline-primary btn-sm btn-event m-1 p-1
                         #{'fw-bold text-light btn-primary'  if params[:event] == event.id.to_s}" do %>
 
             <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-2", width: "20") if event.circuit.drapeau.present? %>
