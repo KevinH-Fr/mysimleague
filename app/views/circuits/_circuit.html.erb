@@ -2,17 +2,20 @@
 
   <div class="card record-with-effect m-0 my-2">  
 
-    <div class="row align-items-center">
-      <div class="col-10">
-          Nom:  <%= circuit.nom %>
-          Pays: <%= circuit.pays %>
-          Latitude: <%= circuit.latitude %>
-          Longitude: <%= circuit.longitude %>
-          <%= image_tag(circuit.drapeau, class: "img-fluid rounded", width: "50") if circuit.drapeau.present? %>
+    <div class="row align-items-center justicy-content-center">
+      <div class="col-9">
+        <%= image_tag(circuit.drapeau, class: "img-fluid rounded", width: "50") if circuit.drapeau.present? %>
 
+        Nom:  <%= circuit.nom %>
+        Pays: <%= circuit.pays %>
+
+        <% @data = weather_data(circuit.latitude, circuit.longitude) %>
+        <%= render  "meteo", locals: {data: @data} %>
+              
       </div>
-      <div class="col-2 text-center">
-        <div class="d-flex align-items-center">  
+      
+      <div class="col-3">
+        <div class="d-flex align-items-center justify-content-end">  
 
           <% if current_user && current_user.admin %>
 
@@ -28,5 +31,6 @@
       </div>
     </div>
   </div>
+
 
 </div>

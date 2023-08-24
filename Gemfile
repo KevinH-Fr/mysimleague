@@ -55,4 +55,4 @@ gem 'cloudinary'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
-gem 'activeadmin'
+gem 'open-weather-ruby-client'

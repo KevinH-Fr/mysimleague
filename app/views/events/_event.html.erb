@@ -4,11 +4,16 @@
   <div class="card record-with-effect">  
     <div class="row p-1">
       <div class="col">
-        <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-2", width: "35") if event.circuit.drapeau.present? %>
+        <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35") if event.circuit.drapeau.present? %>
 
         N°<strong> <%= event.numero %> </strong>
         <strong> <%= event.circuit.nom %> </strong>
-        <%= event.horaire.strftime('%d %b %Y - %Hh%M') %>
+        <%= event.horaire.strftime('%d %b %Y - %Hh%M') %> 
+
+
+        <% @data = weather_data(event.circuit.latitude, event.circuit.longitude) %>
+        <%= render  "circuits/meteo", locals: {data: @data} %>
+
       </div>
 
       <% if @show_buttons && current_user && verif_admin_ligue(current_user, event.division.saison.ligue) %>

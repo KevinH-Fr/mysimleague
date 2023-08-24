@@ -111,3 +111,7 @@ select, input{
 .btn-event{
   font-size: x-small;
 }
+
+.text-meteo{
+  font-size: xx-small;
+}
