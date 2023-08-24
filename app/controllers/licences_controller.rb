@@ -35,7 +35,7 @@ class LicencesController < ApplicationController
         previous_events = Event.where("numero <= ?", @event.numero)
                                .where("division_id = ?", @event.division_id)
                                .order(numero: :desc).limit(3)
-        user_licences = Licence.joins(:event).where(association_user_id: user_id, events: { id: previous_events }).pluck(:penalite)
+        user_licences = Licence.joins(:event).where(association_user_id: user_id, events: { id: previous_events }).pluck(:perte)
        
         user_licences = user_licences.map(&:to_i)
     
