@@ -64,7 +64,7 @@
       <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
 
 
-        <div class="card p-2">
+        <div class="card my-2 p-2">
           <h4> jugement </h4>  
               
             <div class="input-group input-group-sm my-2">
@@ -94,7 +94,18 @@
                   <%= form.text_field :penalite_temps, class: "form-control",
                   data: { form_new_doi_target: "penalite_temps" } %>
                 </div>
+              
+
               </div>
+
+              <span
+                data-controller="new-doi"
+                data-form-new-doi-target="contenu_article">
+                <!-- Display other content if needed -->
+              </span>
+
+
+
             </div>
 
         </div>

@@ -14,7 +14,8 @@ class ReglementsController < ApplicationController
       format.json { render json: { 
         reglement_id: @reglement.id, 
         penalite_points: @reglement.penalite,
-        penalite_temps: @reglement.penalite_temps
+        penalite_temps: @reglement.penalite_temps,
+        contenu_article: @reglement.contenu_article
       } } # This will respond with JSON data
     end
   end

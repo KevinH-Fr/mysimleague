@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 
 export default class extends Controller {
 
- static targets = ["decision", "reglement", "penalite_points", "penalite_temps"]; 
+ static targets = ["decision", "reglement", "penalite_points", "penalite_temps", "contenu_article"]; 
 
   connect() {
   //  console.log("Hello from new doi controller js");
@@ -24,12 +24,14 @@ export default class extends Controller {
         success: function(response) {
           const penalite_points = response.penalite_points; 
           const penalite_temps = response.penalite_temps; 
+          const contenu_article = response.contenu_article; 
 
         //  console.log("reglement ID:", reglement);
          // console.log("penalite points:", penalite_points);
   
           controller.penalite_pointsTarget.value = penalite_points || '';
           controller.penalite_tempsTarget.value = penalite_temps || '';
+          controller.contenu_articleTarget.textContent  = contenu_article || '';
 
         },
         error: function(xhr, status, error) {
@@ -39,6 +41,7 @@ export default class extends Controller {
     } else {
       controller.penalite_pointsTarget.value = '';
       controller.penalite_tempsTarget.value = '';
+      controller.contenu_articleTarget.textContent  = '';
 
     }
   }
