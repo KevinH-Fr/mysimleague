@@ -9,26 +9,36 @@
         Nom:  <%= circuit.nom %>
         Pays: <%= circuit.pays %>
 
-        <% @data = weather_data(circuit.latitude, circuit.longitude) %>
-        <%= render  "meteo", locals: {data: @data} %>
+          <button class="btn btn-sm btn-outline-primary fa-solid fa-cloud-sun-rain m-1" type="button" 
+                  data-bs-toggle="collapse" data-bs-target="#collapseWeather<%= circuit.id %>" aria-expanded="false">
+          </button>
+
+          <button class="btn btn-sm btn-outline-success fa-solid fa-map m-1" type="button" 
+                  data-bs-toggle="collapse" data-bs-target="#collapseMap<%= circuit.id %>" aria-expanded="false">
+          </button>
               
       </div>
       
-      <div class="col-3">
-        <div class="d-flex align-items-center justify-content-end">  
-
-          <% if current_user && current_user.admin %>
-
-            <%= button_to "", edit_circuit_path(circuit), method: :post, 
-                  class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
-            <%= button_to "", circuit, method: :delete, 
-                  class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
-                  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
-        
-          <% end %>
-        
-        </div>
+      <div class="col-3 d-flex align-items-center justify-content-end">  
+        <% if current_user && current_user.admin %>
+          <%= button_to "", edit_circuit_path(circuit), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+          <%= button_to "", circuit, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        <% end %>
       </div>
+      
+      <div class="collapse" id="collapseWeather<%= circuit.id %>">
+        <% @data = weather_data(circuit.latitude, circuit.longitude) %>
+        <%= render "meteo", locals: { data: @data } %>
+      </div>
+
+      <div class="collapse" id="collapseMap<%= circuit.id %>">
+        <% @circuit_nom = circuit.nom %>
+        <%= render  "map", locals: {circuit_nom: @circuit_nom} %>
+      </div>
+
     </div>
   </div>
 

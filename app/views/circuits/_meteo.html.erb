@@ -1,9 +1,9 @@
 <% if @data  %>
-  <span class="bg-secondary text-light text-meteo rounded ms-1 p-1">
+  <div class="ms-1 p-1">
     <img src="https://openweathermap.org/img/wn/<%= @data["weather"].first["icon"]%>@2x.png"
-            style="width: 30px; height: auto;" /> 
+            style="size: large; height: auto;" /> 
     <%= number_with_precision(@data["main"]["temp"], precision: 1) %> °C |
     <%= @data["main"]["humidity"] %> <small class="small_info"> % hum </small> 
     <%#= @data["weather"].first["description"] %> 
-  </span>
+  </div>
 <% end %>

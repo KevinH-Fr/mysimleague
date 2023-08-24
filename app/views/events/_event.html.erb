@@ -3,22 +3,25 @@
 
   <div class="card record-with-effect">  
     <div class="row p-1">
-      <div class="col">
+      <div class="col-8">
         <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35") if event.circuit.drapeau.present? %>
 
         N°<strong> <%= event.numero %> </strong>
         <strong> <%= event.circuit.nom %> </strong>
         <%= event.horaire.strftime('%d %b %Y - %Hh%M') %> 
-
-
-        <% @data = weather_data(event.circuit.latitude, event.circuit.longitude) %>
-        <%= render  "circuits/meteo", locals: {data: @data} %>
+        <% if @show_buttons %>
+          <button class="btn btn-sm btn-outline-primary fa-solid fa-cloud-sun-rain m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeather" aria-expanded="false">
+          </button> 
+          <button class="btn btn-sm btn-outline-success fa-solid fa-map-location-dot m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false">
+          </button>
+        <% end %> 
 
       </div>
 
-      <% if @show_buttons && current_user && verif_admin_ligue(current_user, event.division.saison.ligue) %>
+      <div class="col d-flex justify-content-end align-items-center">
 
-        <div class="col d-flex justify-content-end align-items-center">
+        <% if @show_buttons && current_user && verif_admin_ligue(current_user, event.division.saison.ligue) %>
+
           <button class="btn btn-sm btn-primary fa-solid fa-eye m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetailsEvent" aria-expanded="false">
           </button>
 
@@ -28,12 +31,22 @@
               class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
               data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
             
-        </div>
-      <% end %>        
+        <% end %>  
+      </div>
     </div>
-
+      
     <div class="collapse" id="collapseDetailsEvent">
       more content
     </div>
 
+    <div class="collapse" id="collapseWeather">
+      <% @data = weather_data(event.circuit.latitude, event.circuit.longitude) %>
+      <%= render  "circuits/meteo", locals: {data: @data} %>
+    </div>
+ 
+    <div class="collapse" id="collapseMap">
+      <% @circuit_nom = event.circuit.nom %>
+      <%= render  "circuits/map", locals: {circuit_nom: @circuit_nom} %>
+    </div>
+  </div>
 </div>
