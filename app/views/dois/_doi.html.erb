@@ -4,19 +4,34 @@
 
     <div class="row align-items-center">
       <div class="col-9">
-        demandeur: <strong> <%= AssociationUser.find(doi.demandeur_id).user.nom %></strong>
+
+        <% if doi.doicommissaire %>
+          <span class="badge bg-danger">
+            <i class="fa fa-solid fa-person-military-pointing"></i>
+            <span> DOI commissaire </span>
+          </span>
+        <% else %>
+          demandeur: <strong> <%= AssociationUser.find(doi.demandeur_id).user.nom %></strong>        
+        <% end %>
        
         impliqué: <strong><%= AssociationUser.find(doi.implique_id).user.nom %></strong> 
-        Description: <%= doi.description %>
-        Lien:   <%= doi.lien %>
-        Decision: <%= doi.decision %>
-        Reglement:   <%= Reglement.find(doi.reglement_id).titre_article if doi.reglement_id %>
-        <% if doi.penalite.present? %>
-          Penalité licence:<strong class="text-danger"> <%= doi.penalite %> points </strong>
+
+        <%= "Description: #{doi.description}" if doi.description.present? %>
+        <%= "Lien: #{doi.lien}" if doi.lien.present? %>
+        <%= status_badge_decision_doi(doi.decision) %>
+        <% if doi.penalite.present? || doi.penalite_temps.present? %>
+          <span class="badge bg-danger">
+            Penalité licence: <%= doi.penalite %> points
+            Penalité temps: <%= doi.penalite_temps %> secondes 
+          </span>
         <% end %>
 
-        <% if doi.penalite_temps.present? %>
-          Penalité temps: <strong class="text-danger"> <%= doi.penalite_temps %> secondes </strong> 
+        <% if doi.reglement_id %>
+          <span class="badge bg-dark">
+            article: <%= Reglement.find(doi.reglement_id).num_article  %>
+            <%= Reglement.find(doi.reglement_id).titre_article  %>
+            <%= Reglement.find(doi.reglement_id).contenu_article  %>
+          </span>
         <% end %>
 
         Commentaire:  <%= doi.commentaire %>

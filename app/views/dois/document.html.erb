@@ -6,7 +6,7 @@
 
 <%= stylesheet_link_tag "document" %>
 
-<div id="captureContainer" class="doc-background my-2 p-2" style="width: 600px; margin: 0 auto;">
+<div id="captureContainer" class="doc-background my-2 p-4" style="width: 600px; margin: 0 auto;">
  
   <body>
 
@@ -15,20 +15,27 @@
 
     <br>
 
-    <h5 class="mx-2 text-decoration-underline"> Rapport DOI n° <%= @doi.id %>  </h5> <br>
+    <h5 class="text-decoration-underline"> Rapport DOI n° <%= @doi.id %>  </h5> 
 
-    <strong> Déposé par : </strong> <%= AssociationUser.find(@doi.demandeur_id).user.nom %> <br>
-    <strong> Ecurie : </strong> <%= AssociationUser.find(@doi.demandeur_id).equipe.nom %> <br> <br>
-    <%# end %>
+    <% if @doi.doicommissaire %>
+      <span class="badge bg-danger my-2" style="font-size: medium;">
+        <i class="fa fa-solid fa-person-military-pointing"></i>
+        <span> DOI commissaire </span>
+      </span>
+    <% else %>
+      <strong> Déposé par : </strong> <%= AssociationUser.find(@doi.demandeur_id).user.nom %> <br>
+      <strong> Ecurie : </strong> <%= AssociationUser.find(@doi.demandeur_id).equipe.nom %> <br>     
+    <% end %>
 
+    <br>
     <strong> Pilote impliqué : </strong> <%= AssociationUser.find(@doi.implique_id).user.nom %> <br>
-    <strong> Ecurie : </strong> <%= AssociationUser.find(@doi.implique_id).user.nom %> <br>
+    <strong> Ecurie : </strong> <%= AssociationUser.find(@doi.implique_id).equipe.nom %> <br>
     <hr>
 
     
-    <strong> Décision : </strong> <%= decision = @doi.decision %> <br> <br>
+    <strong> Décision : </strong>  <%= status_badge_decision_doi(@doi.decision) %> <br> <br>
 
-    <% if decision == "responsable" && @doi.reglement_id %>
+    <% if @doi.decision == "responsable" && @doi.reglement_id %>
     <strong> Article enfreint : </strong> <br>
         <% reglementId = @doi.reglement_id %> 
         article :  <%= @doi.reglement.num_article %>  <%= @doi.reglement.titre_article %> <br>
@@ -39,7 +46,7 @@
     <%= @doi.commentaire %>
     <br><br>
 
-    <% if decision == "responsable" %>
+    <% if @decision == "responsable" %>
         <strong> Sanctions : </strong> <br>
         licence :
         <strong style="color: red;">
@@ -53,7 +60,6 @@
             </strong>
         <% end %>
     <% end %>
-    <br>
 
     <strong> Décision prise suite à la réunion des commissaires </strong> <br> 
     <strong> Responsable commissaire : </strong> <%= AssociationAdmin.find(@doi.association_admin_id).user.nom  if @doi.association_admin_id  %> <br> <br>
@@ -66,11 +72,14 @@
 
 <hr>
 
-<%= back_button_on_event(@event.id) %>
+<div class="d-flex">
+  <%= back_button_on_event(@event.id) %>
 
-<button class="fa fa-solid fa-image btn btn-primary" data-controller="screenshot" 
-        data-nom-doc="<%= @event.nom_doc("doi") + '_' + @doi.id.to_s %>" 
-        data-action="click->screenshot#capture" class="btn btn-success">
-</button>
+  <button class="fa fa-solid fa-image btn btn-primary m-1" data-controller="screenshot" 
+          data-nom-doc="<%= @event.nom_doc("doi") + '_' + @doi.id.to_s %>" 
+          data-action="click->screenshot#capture" class="btn btn-success">
+  </button>
 
-<hr>
+</div>
+
+<br>

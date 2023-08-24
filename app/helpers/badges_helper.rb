@@ -1,7 +1,7 @@
 module BadgesHelper
 
   def status_badge(value)
-    if value
+    if value || value == "fait_de_course"
       content_tag(:span, "valide", class: "badge bg-success")
     else
       content_tag(:span, "non-valide", class: "badge bg-danger")
@@ -31,6 +31,16 @@ module BadgesHelper
   def boolean_container(value, text)
     content_tag(:div, class: "container-fluid rounded border my-2 p-1 text-center #{value ? 'border-success text-success' : 'border-danger text-danger'}") do
       text
+    end
+  end
+
+
+  
+  def status_badge_decision_doi(value)
+    if value == "fait_de_course"
+      content_tag(:span, "fait de course", class: "badge bg-success")
+    else
+      content_tag(:span, "responsable", class: "badge bg-danger")
     end
   end
 

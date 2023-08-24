@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_18_135818) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_24_215009) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -128,6 +128,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_18_135818) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "association_admin_id"
+    t.boolean "doicommissaire"
     t.index ["association_admin_id"], name: "index_dois_on_association_admin_id"
     t.index ["demandeur_id"], name: "index_dois_on_demandeur_id"
     t.index ["event_id"], name: "index_dois_on_event_id"
