@@ -32,7 +32,8 @@
                     <%= AssociationUser.find(doi.demandeur_id).user.nom if doi.demandeur_id %>
                   </div>   
               <% else %>
-                <%= form.hidden_field :demandeur_id, value: association_user_from_user(current_user, session[:division]).id, class: "form-control disable" %>     
+              <%# donne erreur si pas de pilotes %>
+                <%= form.hidden_field :demandeur_id, value: association_user_from_user(current_user, session[:division]).id %>     
                   <div class="form-control text-center">
                     <%= User.find(association_user_from_user(current_user, session[:division]).user_id).nom %>
                   </div>  

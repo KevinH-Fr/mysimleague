@@ -1,6 +1,6 @@
 class ReglementsController < ApplicationController
   before_action :set_reglement, only: %i[ show edit update destroy ]
-  before_action :authorize_admin, only: %i[ show index new create edit update destroy ]
+  before_action :authorize_admin, only: %i[ index new create edit update destroy ]
 
   def index
     @reglements = Reglement.all
@@ -35,7 +35,7 @@ class ReglementsController < ApplicationController
 
   def create
 
-    @ligue = Ligue.find(session[:ligue])
+    @ligue = Ligue.find(session[:ligue]) if session[:ligue]
 
     @reglement = Reglement.new(reglement_params)
 
