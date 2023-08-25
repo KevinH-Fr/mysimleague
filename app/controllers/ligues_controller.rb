@@ -4,8 +4,6 @@ class LiguesController < ApplicationController
   before_action :set_ligue, only: %i[ edit update destroy ]
   before_action :authorize_admin_ligue, only: %i[ edit update destroy ]
 
-
-
   def new
     @ligue = Ligue.order(created_at: :desc)
   end

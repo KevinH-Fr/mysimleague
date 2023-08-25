@@ -4,6 +4,7 @@ class AssociationUsersController < ApplicationController
 
   before_action :set_association_user, only: %i[ show edit update destroy ]
   before_action :authorize_admin_ligue, only: %i[ new show index create edit update destroy ]
+  
 
   def index
     @association_users = AssociationUser.all
@@ -37,6 +38,9 @@ class AssociationUsersController < ApplicationController
   end
 
   def create
+
+    @division = Division.find(session[:division])
+
     @association_user = AssociationUser.new(association_user_params)
 
     respond_to do |format|
@@ -53,7 +57,7 @@ class AssociationUsersController < ApplicationController
                                  locals: { association_user: @association_user }),
 
             turbo_stream.update(
-            'partial-pilotes-division-stats-container', partial: 'divisions/stats'
+            'partial-pilotes-division-stats-container', partial: 'divisions/new_pilote_division'
             ),
           ]
         end
@@ -78,6 +82,9 @@ class AssociationUsersController < ApplicationController
   
 
   def update
+
+    @division = @association_user.division
+
     respond_to do |format|
       if @association_user.update(association_user_params)
 
@@ -88,9 +95,10 @@ class AssociationUsersController < ApplicationController
                     locals: { association_user: @association_user }),
             turbo_stream.remove('new_association_user'),
 
+
             turbo_stream.update(
-              'partial-pilotes-division-stats-container', partial: 'divisions/stats'
-             ),
+              'partial-pilotes-division-stats-container', partial: 'divisions/new_pilote_division'
+             )
    
           ]
         end
@@ -112,6 +120,9 @@ class AssociationUsersController < ApplicationController
   end
 
   def destroy
+
+    @division = Division.find(session[:division])
+
     @association_user.destroy
 
     respond_to do |format|
@@ -120,7 +131,7 @@ class AssociationUsersController < ApplicationController
           turbo_stream.remove(@association_user),
           
           turbo_stream.update(
-            'partial-pilotes-division-stats-container', partial: 'divisions/stats'
+            'partial-pilotes-division-stats-container', partial: 'divisions/new_pilote_division'
            )
           ]
       end

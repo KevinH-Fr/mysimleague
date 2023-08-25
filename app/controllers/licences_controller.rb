@@ -23,7 +23,7 @@ class LicencesController < ApplicationController
         perte: doi.penalite )
     end
 
-    
+    # creer licences avec gain recup point selon condition de l'helper synth licence
     calcul_recup_licence(@event).each do |pilote|
       if pilote[:recup_applicable] == true
         Licence.create(association_user_id: pilote[:id], event_id: @event.id, gain: pilote[:nb_points_recup])
