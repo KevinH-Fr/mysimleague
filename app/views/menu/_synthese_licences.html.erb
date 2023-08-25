@@ -21,24 +21,24 @@
   </div>
 </div>
 
-<% cumul_licence_user(@event).each do |user| %>
+<% cumul_licence_user(@event).each do |pilote| %>
 
   <div class="card record-with-effect my-2 p-1">  
     <div class="row m-0 p-0 fw-bold">
       <div class="col-6 m-0 px-2 rounded record-max-height">
-        <%= equipe_banner_with_pilote(AssociationUser.find(user[:association_user_id]).equipe , User.find(user[:user_id]).nom) %> 
+        <%= equipe_banner_with_pilote(AssociationUser.find(pilote[:association_user_id]).equipe , User.find(pilote[:user_id]).nom) %> 
       </div>
 
       <div class="col-2 m-0 p-0 bg-light text-danger rounded d-flex align-items-center justify-content-center record-max-height">
-        <%= user[:perte_total] %> 
+        <%= pilote[:perte_total] %> 
       </div>
 
       <div class="col-2 m-0 p-0 bg-light text-success rounded d-flex align-items-center justify-content-center record-max-height">
-        <%= user[:gain_total] %> 
+        <%= pilote[:gain_total] %> 
       </div>
 
       <div class="col-2 m-0 p-0 bg-light text-dark rounded d-flex align-items-center justify-content-center record-max-height">
-        <%= user[:solde] %> 
+        <%= pilote[:solde] %> 
       </div>
     </div>
   </div>
@@ -46,3 +46,4 @@
 
 <%= link_to "", generate_image_licences_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
 <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+
