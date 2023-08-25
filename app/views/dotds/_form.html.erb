@@ -23,25 +23,25 @@
 
       <% pilotes_division_named(division).each_slice(2) do |pilote1, pilote2| %>
         <div class="row flex-wrap m-1">
-          <div class="col-md-5 rounded border align-middle m-1">
+          <div class="col-md-5 rounded border align-middle mb-1">
             <label for="pilote_<%= pilote1 %>" class="form-check-label d-flex align-items-center mb-0">
               <div class="form-check me-2">
                 <input class="form-check-input" type="radio" name="dotd[association_user_id]" id="pilote_<%= pilote1 %>" value="<%= pilote1.first %>">
               </div>
 
               <% equipe = Equipe.find(AssociationUser.find(pilote1.first).equipe_id) %>
-              <%= image_tag equipe.voiture, style: "width: 150px;", class: "img-fluid rounded me-2" if equipe.voiture.present? %>
+              <%= image_tag equipe.voiture, style: "width: 100px;", class: "img-fluid rounded me-2" if equipe.voiture.present? %>
               <span class="fw-bold"> <%= pilote1.last %> </span>
             </label>
           </div>
           <% if pilote2.present? %>
-            <div class="col-md-5 rounded border align-middle m-1">
+            <div class="col-md-5 rounded border align-middle mb-1">
               <label for="pilote_<%= pilote2 %>" class="form-check-label d-flex align-items-center mb-0">
                 <div class="form-check me-2">
                   <input class="form-check-input" type="radio" name="dotd[association_user_id]" id="pilote_<%= pilote2 %>" value="<%= pilote2.first %>">
                 </div>
                 <% equipe = Equipe.find(AssociationUser.find(pilote1.first).equipe_id) %>
-                <%= image_tag equipe.voiture, style: "width: 150px;", class: "img-fluid rounded me-2" if equipe.voiture.present? %>
+                <%= image_tag equipe.voiture, style: "width: 100px;", class: "img-fluid rounded me-2" if equipe.voiture.present? %>
                 <span class="fw-bold"> <%= pilote2.last %> </span>
               </label>
             </div>

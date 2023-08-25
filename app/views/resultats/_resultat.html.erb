@@ -1,29 +1,29 @@
 <div id="<%= dom_id resultat %>">
 
-  <div class="card record-with-effect my-1 record-banniere-max-width">  
-    <div class="row m-0 p-0">
+  <div class="card record-with-effect my-1 ">  
+    <div class="row m-0 p-0 ">
       <div class="col-1 m-0 p-0 badge-pos rounded d-flex align-items-center justify-content-center record-max-height">
         <%= resultat.course %> 
       </div>
-      <div class="col-8 m-0 px-2 rounded record-max-height d-flex flex-column align-items-end">
+      <div class="col-7 m-0 px-2 rounded record-max-height d-flex flex-column align-items-end">
         <%= equipe_banner_pilote_and_indicators(resultat.equipe, resultat.association_user.user.nom, resultat.dotd?, resultat.mt?, resultat.dnf?, resultat.dns?) %>         
       </div>
 
       <div class="col m-0 p-0 badge-pos m-0 p-0 rounded d-flex align-items-center justify-content-center record-max-height">
         
-        <span class=""><%= resultat.score %> </span>
+       <div class="me-1"> <%= resultat.score %> </div>
 
         <% if current_user && verif_admin_ligue(current_user, resultat.event.division.saison.ligue) %>
 
             <%= button_to "", edit_resultat_path(resultat), method: :post, 
-                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square me-1 p-1" %>
 
             <%= button_to "", resultat, method: :delete, 
-                class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
+                class: "btn btn-sm btn-danger fa-solid fa-trash me-1 p-1",
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
-
         <% end %>
       </div>
+
     </div>
   </div>
 </div>

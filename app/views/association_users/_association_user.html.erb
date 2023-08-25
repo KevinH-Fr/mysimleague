@@ -13,14 +13,14 @@
       </div>
     
       <div class="col-4 d-flex justify-content-end align-items-center">
-          <%= link_to  "", association_user_path(association_user), class: "btn btn-sm btn-primary fa-solid fa-eye m-1" %> 
+          <%#= link_to  "", association_user_path(association_user), class: "btn btn-sm btn-primary fa-solid fa-eye m-1" %> 
 
           <% if current_user && verif_admin_ligue(current_user, association_user.ligue) %>
 
             <%= button_to "", edit_association_user_path(association_user), method: :post, 
-                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square me-1" %>
             <%= button_to "", association_user, method: :delete, 
-                class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
+                class: "btn btn-sm btn-danger fa-solid fa-trash me-1",
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
           
           <% end %>

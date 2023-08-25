@@ -48,7 +48,7 @@
                       coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
                       typepari: "victoire", 
                       cote: values[:victoire] },
-                    class: "btn btn-warning" %>
+                    class: "btn btn-sm btn-warning" %>
                 </td>
 
                 <%# pole %>
@@ -62,7 +62,7 @@
                       coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
                       typepari: "pole", 
                       cote: values[:pole] },
-                    class: "btn btn-warning" %>
+                    class: "btn btn-sm btn-warning" %>
                 </td>
 
                 <%# podium %>
@@ -76,7 +76,7 @@
                       coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
                       typepari: "podium", 
                       cote: values[:podium] },
-                    class: "btn btn-warning" %>
+                    class: "btn btn-sm btn-warning" %>
                 </td>
 
                 <%# top10 %>
@@ -90,7 +90,7 @@
                       coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
                       typepari: "top10", 
                       cote: values[:top10] },
-                    class: "btn btn-warning" %>
+                    class: "btn btn-sm btn-warning" %>
                 </td>
               </tr>
             <% end %>

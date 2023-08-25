@@ -1,11 +1,12 @@
   <% if verif_delai_dotd(session[:event]) && current_user %>
     <% unless verif_presence_dotd(current_user, session[:event])  %>
      
-      <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-        <span>Nouveau</span>
-      </button>
+    <button class="btn btn-sm btn-warning m-2" type="button" 
+        data-bs-toggle="collapse" data-bs-target="#collapseNewDotd" aria-expanded="false">
+          <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
 
-      <div class="collapse" id="collapseExample">
+      <div class="collapse" id="collapseNewDotd">
         <div id="new_dotd">
           <%= render partial: "dotds/form", locals: { dotd: Dotd.new } %>
         </div>
