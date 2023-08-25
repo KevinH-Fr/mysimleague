@@ -1,5 +1,4 @@
-
-tempo partial rattachement
-
-<%= render partial: "rattachements/form", 
-    locals: { rattachement: Rattachement.new(user: current_user, ligue: @ligue) } %>
+<div class="card card-with-effect p-4 my-4" id="home-rattachement">
+    <%= render partial: "rattachements/form", 
+        locals: { rattachement: Rattachement.new(user: current_user) } %>
+</div>

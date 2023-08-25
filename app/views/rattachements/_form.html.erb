@@ -11,22 +11,40 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.hidden_field :user_id %>
-  </div>
+  <%= form.hidden_field :user_id %>
 
-  <%= form.hidden_field :ligue_id %>
+  <% if controller.controller_name == "menu" %> <%# pour rattachement depuis ligue %>
+    <%= form.hidden_field :ligue_id %>
 
-  <% unless @ligue %>
-    <%= form.select :ligue_id, options_for_select(Ligue.all.map { |ligue| [ligue.nom, ligue.id] }) %>
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :message, class: "input-group-text" %>
+      <%= form.text_area :message, class: "form-control"%>
+    </div>
+
+  <% end %> <%# pour rattachement depuis home %>
+
+  <% if controller.controller_name == "home" %> <%# pour rattachement depuis ligue %>
+
+    <div data-controller="form-rattachement">
+      <% Ligue.all.each do |ligue| %>
+        <%= form.button ligue.nom, ligue: ligue.id, type: "button", 
+          data: { action: "click->form-rattachement#setField", ligue: ligue.id, ligue_nom: ligue.nom },
+          class: "btn btn-warning" %>
+      <% end %>
+      
+      <%= form.hidden_field :ligue_id, data: { form_rattachement_target: "ligue" } %>
+
+      <div class="input-group input-group-sm my-2">
+        <%= form.label :message, class: "input-group-text" %>
+        <%= form.text_area :message, data: { form_rattachement_target: "message" }, 
+              class: "form-control"%>
+      </div>
+      
+    </div>
 
   <% end %>
 
 
-  <div class="input-group input-group-sm my-2">
-    <%= form.label :message, class: "input-group-text" %>
-    <%= form.text_area :message, class: "form-control"%>
-  </div>
 
   <% if rattachement.persisted? %>
         <% if verif_appartenance_ligue(rattachement.user_id, rattachement.ligue_id) %>

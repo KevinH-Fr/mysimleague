@@ -15,6 +15,9 @@ class RattachementsController < InheritedResources::Base
 
         format.turbo_stream do
           render turbo_stream: [
+
+            turbo_stream.remove("home-rattachement"),
+
             turbo_stream.update('new_rattachement',
                                 partial: "rattachements/form",
                                 locals: { rattachement: Rattachement.new }),
@@ -40,7 +43,6 @@ class RattachementsController < InheritedResources::Base
 
   def edit
 
-    puts "_______________cal controller edit rattachement"
     respond_to do |format|
       format.turbo_stream do  
         render turbo_stream: turbo_stream.update(@rattachement, 

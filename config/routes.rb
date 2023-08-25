@@ -25,6 +25,7 @@ Rails.application.routes.draw do
   resources :home do
     post 'display_parieurs', on: :collection
     post 'display_demande_rattachement', on: :collection
+    post 'display_creer_ligue', on: :collection
 
     post 'display_parieurs_annee', on: :collection
 
