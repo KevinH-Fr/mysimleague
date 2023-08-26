@@ -13,21 +13,28 @@
 
   </h4>
 
-  <div class="collapse" id="collapseNewEvent">
-    <div id="new_resultat" class="d-flex align-items-center justify-content-center">
-      <%= render partial: "resultats/form", locals: { resultat: Resultat.new } %>
+  <div class="d-flex align-items-center justify-content-center m-0 p-0">
+    <div class="collapse my-2" id="collapseNewEvent">
+      <div id="new_resultat">
+        <%= render partial: "resultats/form", locals: { resultat: Resultat.new } %>
+      </div>
     </div>
   </div>
 
-  <div id="resultats" class="d-flex flex-column align-items-center justify-content-center">
-    <% @resultats.each do |resultat| %>
-        <%= render resultat %>
-    <% end %>
+  <div class="d-flex align-items-center justify-content-center m-0 p-0">
+    <div id="resultats" class="overflow-auto pb-4">
+      <% @resultats.each do |resultat| %>
+        <div class="">
+          <%= render resultat %>
+        </div>
+      <% end %>
+    </div>
   </div>
 
-  <hr>  
+ <hr>  
   
-  <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
-  <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-film btn-primary' %>
+  <div class="container">
+    <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
+    <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-film btn-primary' %>
+  </div>
 
-<hr>

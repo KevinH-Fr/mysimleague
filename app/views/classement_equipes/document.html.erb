@@ -25,7 +25,9 @@
             </td>
             <td>  
               <div class="img-banniere-doc">
-                 <%=  equipe_banner_without_pilote_document(Equipe.find(equipe[:equipe_id])) %> 
+                 <%=  equipe_banner_with_data_document(
+                  Equipe.find(equipe[:equipe_id]),
+                  Equipe.find(equipe[:equipe_id]).nom) %> 
               </div>
             </td> 
             <td>

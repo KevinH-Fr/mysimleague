@@ -1,52 +1,22 @@
 <h4> synthèse licences </h4>
-<%= link_to  "update licences", update_licences_path(@event), class: "btn btn-primary" %>
+<%= link_to  "update licences", update_licences_path(@event), class: "btn btn-sm btn-primary" %>
 <%#= link_to  "supprimer licences", supprimer_licences_path(@event), class: "btn btn-danger" %>
 
-<hr>
-
-
-
-<div class="overflow-auto">
-  <div class="card container record-with-effect my-2 p-1" style="min-width: 400px;">
-    <div class="row m-0 p-0 fw-bold">
-      <div class="col-6 m-0 px-2 rounded record-max-height">
-        <strong>Pilote</strong>
-      </div>
-      <div class="col-2 m-0 p-0 bg-light text-danger rounded d-flex align-items-center justify-content-center record-max-height">
-        <strong>Perte</strong>
-      </div>
-      <div class="col-2 m-0 p-0 bg-light text-success rounded d-flex align-items-center justify-content-center record-max-height">
-        <strong>Gain</strong>
-      </div>
-      <div class="col-2 m-0 p-0 bg-light text-dark rounded d-flex align-items-center justify-content-center record-max-height">
-        <strong>Solde</strong>
-      </div>
+<% cumul_licence_user(@event).each do |pilote| %>
+  <div class="record-with-effect d-flex align-items-center justify-content-center">
+    <%= equipe_banner_with_data(
+         AssociationUser.find(pilote[:association_user_id]).equipe, 
+         User.find(pilote[:user_id]).nom) %> 
+    <div class="d-flex align-items-center justify-content-center">
+      <%= badge_points_licence(pilote[:perte_total].to_s, "perte") %> 
+      <%= badge_points_licence(pilote[:gain_total].to_s, "gain") %> 
+      <%= badge_points_licence(pilote[:solde].to_s, "solde") %> 
     </div>
   </div>
-  
-  <% cumul_licence_user(@event).each do |pilote| %>
-    <div class="card container record-with-effect my-2 p-1" style="min-width: 400px;">  
-      <div class="row m-0 p-0 fw-bold">
-        <div class="col-6 m-0 px-2 rounded record-max-height">
-          <%= equipe_banner_with_pilote(AssociationUser.find(pilote[:association_user_id]).equipe , User.find(pilote[:user_id]).nom) %> 
-        </div>
-        <div class="col-2 m-0 p-0 bg-light text-danger rounded d-flex align-items-center justify-content-center record-max-height">
-          <%= pilote[:perte_total] %> 
-        </div>
-        <div class="col-2 m-0 p-0 bg-light text-success rounded d-flex align-items-center justify-content-center record-max-height">
-          <%= pilote[:gain_total] %> 
-        </div>
-        <div class="col-2 m-0 p-0 bg-light text-dark rounded d-flex align-items-center justify-content-center record-max-height">
-          <%= pilote[:solde] %> 
-        </div>
-      </div>
-    </div>
-  <% end %>
-</div>
-
+<% end %>
 
 <%= link_to "", generate_image_licences_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
 <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
 
-<hr>
+<%#= display_data_in_table(cumul_licence_user(@event), ['Pilote', 'Perte', 'Gain', 'Solde']) %>
 

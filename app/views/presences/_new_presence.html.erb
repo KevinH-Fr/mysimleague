@@ -1,15 +1,16 @@
-<% if verif_appartenance_division(current_user, session[:division] ) %>
-  <% unless verif_presence_existe(current_user, session[:event]) %>
 
-    <button class="btn btn-sm btn-warning m-2" type="button" 
-        data-bs-toggle="collapse" data-bs-target="#collapseNewPresence" aria-expanded="false">
-          <i class="fa-solid fa-square-plus fa-xl"></i>
-    </button>
-        
-    <div class="collapse" id="collapseNewPresence">
-      <div id="new_presence">
-        <%= render partial: "presences/form", locals: { presence: Presence.new } %>
+  <% if verif_appartenance_division(current_user, session[:division] ) %>
+    <% unless verif_presence_existe(current_user, session[:event]) %>
+
+      <button class="btn btn-sm btn-warning m-2" type="button" 
+          data-bs-toggle="collapse" data-bs-target="#collapseNewPresence" aria-expanded="false">
+            <i class="fa-solid fa-square-plus fa-xl"></i>
+      </button>
+          
+      <div class="collapse" id="collapseNewPresence">
+        <div id="new_presence">
+          <%= render partial: "presences/form", locals: { presence: Presence.new } %>
+        </div>
       </div>
-    </div>
+    <% end %>
   <% end %>
-<% end %>

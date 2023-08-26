@@ -1,6 +1,6 @@
 <div data-controller="resultat">
 
-  <div class="card record-with-effect m-0 p-1" style="max-width: 700px;">
+  <div class="card record-with-effect m-0 p-1" style="max-width: 480px;">
 
     <%= form_with(model: resultat, 
         data: { controller: "reset-form", 
@@ -74,7 +74,7 @@
         </div>
       </div>
 
-      <div class="row g-2 p-2">
+      <div class="row g-2 px-2">
         <div class="col">
           <div class="form-check form-switch">
             <%= form.label :dotd, class: "form-check-label fs-6" %>
@@ -93,7 +93,7 @@
         </div>
       </div>
 
-      <div class="row g-2">
+      <div class="row g-2 px-2">
         <div class="col">
           <div class="form-check form-switch">
             <%= form.label :dnf, class: "form-check-label fs-6" %>

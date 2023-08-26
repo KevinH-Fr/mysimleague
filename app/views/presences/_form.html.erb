@@ -1,4 +1,4 @@
-<div class="card record-with-effect m-0 my-1 p-2">  
+<div class="record-with-effect m-0 my-1 p-2">  
 
   <%= form_with(model: presence) do |form| %>
     <% if presence.errors.any? %>
@@ -17,13 +17,16 @@
 
     <%= form.hidden_field :association_user_id, value: association_user_from_user(current_user.id, session[:division]).id %>
 
-    <div class="form-check form-switch h5">
-      <%= form.label "Présent!", class: "form-check-label text-center" %>
-      <%= form.check_box :status, class: "form-check-input text-center" %>
+
+  <div class="d-flex align-items-center justify-content-evenly">
+    <div class="form-check form-switch h6">
+      <%= form.label "Présent!", class: "form-check-label text-center me-2" %>
+      <%= form.check_box :status, class: "form-check-input text-center me-2" %>
     </div>
 
+    <%= custom_submit_button("Présence") %>
 
-      <%= custom_submit_button("Présence") %>
+  </div>
 
   <% end %> 
 

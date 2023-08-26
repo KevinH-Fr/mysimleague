@@ -22,13 +22,13 @@
         <%= form.button "Validate", formaction:  new_pari_path, formmethod: :get, 
               data: { turbo_frame: :contents_field, form_pari_target: "submitbtn"} %>
 
-        <table class="table table-striped">
+        <table class="table table-striped table-form-pari">
           <thead>
             <tr>
-              <th scope="col">Pilote</th>
-              <th scope="col">Victoire</th>
+              <th scope="col"></th>
+              <th scope="col">Vict.</th>
               <th scope="col">Pole</th>
-              <th scope="col">Podium</th>
+              <th scope="col">Pod.</th>
               <th scope="col">Top10</th>
             </tr>
           </thead>
@@ -36,10 +36,10 @@
           <tbody>
             <% cotes_pilotes(Event.find(session[:event])).each do |association_user_id, values| %>
               <tr>
-                <th scope="row"><%= AssociationUser.find(values[:association_user_id]).user.nom %> </th>
-                <td>
+                <th scope="row"><%= truncate(AssociationUser.find(values[:association_user_id]).user.nom, length: 10 ) %> </th>
+                <td class="text-center p-1 m-1">
                   <%# victoire %>
-                  <%= form.button values[:victoire], 
+                  <%= form.button number_with_precision(values[:victoire], precision: 2), 
                       name: "pari[option]", 
                       value: values[:victoire], 
                       type: "button", 
@@ -48,12 +48,12 @@
                       coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
                       typepari: "victoire", 
                       cote: values[:victoire] },
-                    class: "btn btn-sm btn-warning" %>
+                    class: "btn btn-warning btn-cote" %>
                 </td>
 
                 <%# pole %>
-                <td>
-                  <%= form.button values[:pole], 
+                <td class="text-center p-1 m-1">
+                  <%= form.button number_with_precision(values[:pole], precision: 2), 
                       name: "pari[option]", 
                       value: values[:pole], 
                       type: "button", 
@@ -62,35 +62,35 @@
                       coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
                       typepari: "pole", 
                       cote: values[:pole] },
-                    class: "btn btn-sm btn-warning" %>
+                    class: "btn btn-warning btn-cote" %>
                 </td>
 
                 <%# podium %>
-                <td>
-                  <%= form.button values[:podium], 
+                <td class="text-center p-1 m-1">
+                  <%= form.button number_with_precision(values[:podium], precision: 2), 
                       name: "pari[option]", 
-                      value: values[:podium], 
+                      value: values[:podium],
                       type: "button", 
                     data: { action: "click->form-pari#setField", 
                       coureur: values[:association_user_id], 
                       coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
                       typepari: "podium", 
                       cote: values[:podium] },
-                    class: "btn btn-sm btn-warning" %>
+                    class: "btn btn-warning btn-cote" %>
                 </td>
 
                 <%# top10 %>
-                <td>
-                  <%= form.button values[:top10], 
+                <td class="text-center p-1 m-1">
+                  <%= form.button number_with_precision(values[:top10], precision: 2), 
                       name: "pari[option]", 
-                      value: values[:top10], 
+                      value: values[:top10],
                       type: "button", 
                     data: { action: "click->form-pari#setField", 
                       coureur: values[:association_user_id], 
                       coureur_nom: AssociationUser.find(values[:association_user_id]).user.nom, 
                       typepari: "top10", 
                       cote: values[:top10] },
-                    class: "btn btn-sm btn-warning" %>
+                    class: "btn btn-warning btn-cote" %>
                 </td>
               </tr>
             <% end %>

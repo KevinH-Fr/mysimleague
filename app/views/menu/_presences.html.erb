@@ -1,13 +1,16 @@
 <h4 class="d-inline"> Présences</h4>
 
-<%= turbo_frame_tag :content_new_presence do %>
-  <%= render "presences/new_presence" %>
-<% end %>
 
-<div id="presences">
-  <% @presences.each do |presence| %>
-      <%= render presence %>
+  <%= turbo_frame_tag :content_new_presence do %>
+    <%= render "presences/new_presence" %>
   <% end %>
+
+<div class="d-flex align-items-center justify-content-center m-0 p-0">
+  <div id="presences">
+    <% @presences.each do |presence| %>
+        <%= render presence %>
+    <% end %>
+  </div>
 </div>
 
 <div id="partial-presences-stats-container" class="my-1">

@@ -1,15 +1,16 @@
-<h4 class="d-inline">DOTDS</h4>
+<h4 class="titre-topic">
+  DOTDS
+  <%= turbo_frame_tag :content_new_dotd do %>
+    <%= render  "dotds/new_dotd" %>
+  <% end %>
+</h4>
 
-<%= turbo_frame_tag :content_new_dotd do %>
-  <%= render  "dotds/new_dotd" %>
-<% end %>
-  
 <div id="dotds">
   <% @dotds.each do |dotd| %>
     <%= render dotd %>
   <% end %>
 </div>
 
-<div id="partial-dotds-stats-container" class="my-1">
+<div id="partial-dotds-stats-container" class="my-1 text-center">
   <%= render "dotds/stats" %>
 </div>

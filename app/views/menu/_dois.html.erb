@@ -1,5 +1,5 @@
-  <h4 class="mx-1">
-    <span>DOI </span>
+  <h4 class="titre-topic mx-1">
+    DOI 
 
     <% if current_user %>
       <% if verif_admin_ligue(current_user, @event.division.saison.ligue.id) || verif_appartenance_division(current_user, @division.id) %>
@@ -9,14 +9,14 @@
         </button>
       <% end %>
         
-      <div class="collapse" id="collapseNewDoi">
-        <div id="new_doi">
-          <%= render partial: "dois/form", locals: { doi: Doi.new } %>
-        </div>
-      </div>
-
     <% end %>
   </h4>
+
+  <div class="collapse" id="collapseNewDoi">
+    <div id="new_doi">
+      <%= render partial: "dois/form", locals: { doi: Doi.new } %>
+    </div>
+  </div>
 
   <div id="dois">
     <% @dois.each do |doi| %>

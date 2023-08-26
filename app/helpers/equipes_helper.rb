@@ -1,65 +1,43 @@
 module EquipesHelper
-    def equipe_banner_with_pilote(equipe, pilote)
+
+    #new banner unique pour faciliter gestion image 
+    def equipe_banner_with_data(equipe, label)
       if equipe.banniere.present?
         image_tag = image_tag(equipe.banniere, 
-          class: "position-relative rounded m-0 p-0 img-fluid",
-          style: "object-fit: cover; width: 100%; height: 100%; object-position: left;")
+          class: "position-relative rounded m-0 p-0 img-fluid max-record-height",
+          style: "object-fit: cover; object-position: left center;")
         
-        truncated_pilote = truncate(pilote, length: 14) 
+        truncated_label = truncate(label, length: 14) 
 
-        pilote_span = content_tag(:span, truncated_pilote, 
-            class: "text-light fw-bold fs-6 position-absolute top-50 start-0 translate-middle-y",
-            style: "margin-left: 25%;") # Adjust the value as needed
+        label_span = content_tag(:span, truncated_label, 
+            class: "text-banniere position-absolute top-50 start-0 translate-middle-y",
+            style: "margin-left: 70px;") # Adjust the value as needed
         
-        [image_tag, pilote_span].join.html_safe
+        content_tag(:div, class: "equipe-banner-wrapper", style: "position: relative;") do
+          [image_tag, label_span].join.html_safe
+        end
       end
+
     end
 
+
   # margin differente pour documents
-    def equipe_banner_with_pilote_document(equipe, pilote)
+    def equipe_banner_with_data_document(equipe, label)
       if equipe.banniere.present?
         image_tag = cl_image_tag(equipe.banniere.url, 
           class: "position-relative rounded m-0 p-0 img-fluid",
           style: "object-fit: cover; width: 100%; height: 100%; object-position: left;")
         
-          truncated_pilote = truncate(pilote, length: 20) # Adjust the length as needed
+          truncated_label = truncate(label, length: 20) # Adjust the length as needed
     
-          pilote_span = content_tag(:span, truncated_pilote, 
+          label_span = content_tag(:span, truncated_label, 
             class: "text-light fw-bold fs-5 position-absolute top-50 start-0 translate-middle-y",
             style: "margin-left: 100px;") # Adjust the value as needed
                   
-        [image_tag, pilote_span].join.html_safe
-      end
-    end
-    
-
-    def equipe_banner_without_pilote(equipe)
-      if equipe.banniere.present?
-        image_tag = image_tag(equipe.banniere, 
-          class: "position-relative rounded m-0 p-0 img-fluid",
-          style: "object-fit: cover; width: 100%; height: 100%; object-position: left;")
-        
-        equipe_span = content_tag(:span, equipe.nom, 
-            class: "text-light fw-bold position-absolute top-50 start-0 translate-middle-y",
-            style: "margin-left: 300px;") # Adjust the value as needed
-        
-        [image_tag, equipe_span].join.html_safe
+        [image_tag, label_span].join.html_safe
       end
     end
 
-    def equipe_banner_without_pilote_document(equipe)
-      if equipe.banniere.present?
-        image_tag = cl_image_tag(equipe.banniere.url, 
-          class: "position-relative rounded m-0 p-0 img-fluid",
-          style: "object-fit: cover; width: 100%; height: 100%; object-position: left;")
-        
-        equipe_span = content_tag(:span, equipe.nom, 
-          class: "text-light fw-bold fs-5 position-absolute",
-            style: "left: 140px; top: 0px; z-index: 1;") # Adjust the values as needed  
-        
-        [image_tag, equipe_span].join.html_safe
-      end
-    end
 
 
   end

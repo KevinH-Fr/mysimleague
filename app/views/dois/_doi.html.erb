@@ -2,8 +2,7 @@
 
   <div class="card record-with-effect m-0 my-1 p-2">  
 
-    <div class="row align-items-center">
-      <div class="col-9">
+    <div class="d-inline align-items-center justify-content-center m-0 p-0">
 
         <% if doi.doicommissaire %>
           <span class="badge bg-danger">
@@ -20,14 +19,14 @@
         <%= "Lien: #{doi.lien}" if doi.lien.present? %>
         <%= status_badge_decision_doi(doi.decision) %>
         <% if doi.penalite.present? || doi.penalite_temps.present? %>
-          <span class="badge bg-danger">
+          <span class="text-danger">
             Penalité licence: <%= doi.penalite %> points
             Penalité temps: <%= doi.penalite_temps %> secondes 
           </span>
         <% end %>
 
         <% if doi.reglement_id %>
-          <span class="badge bg-dark">
+          <span class="">
             article: <%= Reglement.find(doi.reglement_id).num_article  %>
             <%= Reglement.find(doi.reglement_id).titre_article  %>
             <%= Reglement.find(doi.reglement_id).contenu_article  %>
@@ -37,8 +36,6 @@
         Commentaire:  <%= doi.commentaire %>
         Resp. commissaire: <strong> <%= AssociationAdmin.find(doi.association_admin_id).user.nom  if doi.association_admin_id %> </strong>
 
-      </div>
-      <div class="col-3 text-center">
         <div class="d-flex align-items-center">  
           <%= link_to "", generate_image_dois_path(doi: doi), 
                 class: 'btn btn-sm btn-success fa-solid fa-image m-1' %>
@@ -49,7 +46,7 @@
                 class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
         </div>
-      </div>
+
     </div>
   </div>
 

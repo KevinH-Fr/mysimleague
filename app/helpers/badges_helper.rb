@@ -33,8 +33,6 @@ module BadgesHelper
       text
     end
   end
-
-
   
   def status_badge_decision_doi(value)
     if value == "fait_de_course"
@@ -43,6 +41,33 @@ module BadgesHelper
       content_tag(:span, "responsable", class: "badge bg-danger")
     end
   end
+
+
+
+  def badge_score_position(value)
+    content_tag(:div, class: "badge-pos max-record-height rounded d-flex align-items-center justify-content-center mx-1") do 
+      [value].join.html_safe
+    end
+  end
+
+  def badge_points_licence(value, nature)
+    text_class =
+      case nature
+      when "perte"
+        "text-danger"
+      when "gain"
+        "text-success"
+      when "solde"
+        "text-light"
+      else
+        ""  # Default class or no class if nature doesn't match any condition
+      end
+  
+    content_tag(:div, class: "badge-pos max-record-height rounded d-flex align-items-center justify-content-center ms-1 #{text_class}") do 
+      value
+    end
+  end
+  
 
 end
   
