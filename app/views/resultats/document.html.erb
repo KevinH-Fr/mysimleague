@@ -34,9 +34,7 @@
             </td>
 
             <td>
-              <div class="img-banniere-doc">
                 <%= equipe_banner_with_data_document(equipe, nom) %>               
-              </div>  
             </td>
 
             <td>
@@ -45,9 +43,9 @@
               </div>
             </td>
             <td style= "width: 28px; margin-top: 4px;">
-                <% if resultat.mt == true %>
-                  <%= image_tag asset_url('/images/mt_violet.png'), style: "max-width: 100%; max-height: 100%;" %>
-                <% end %>
+              <% if resultat.mt == true %>
+                <%= image_tag asset_url('/images/mt_violet.png'), style: "max-width: 100%; max-height: 100%;" %>
+              <% end %>
             </td>
           </tr>
         <% end %> 

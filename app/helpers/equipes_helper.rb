@@ -31,11 +31,14 @@ module EquipesHelper
           truncated_label = truncate(label, length: 20) # Adjust the length as needed
     
           label_span = content_tag(:span, truncated_label, 
-            class: "text-light fw-bold fs-5 position-absolute top-50 start-0 translate-middle-y",
+            class: "text-light fw-bold fs-5 position-absolute start-0",
             style: "margin-left: 100px;") # Adjust the value as needed
                   
-        [image_tag, label_span].join.html_safe
-      end
+            content_tag(:div, class: "img-banniere-doc", style: "position: relative;")  do
+              [image_tag, label_span].join.html_safe
+            end
+
+          end
     end
 
 

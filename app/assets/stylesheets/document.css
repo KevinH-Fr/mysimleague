@@ -50,5 +50,9 @@ body, div, h2 {
   margin: 2px;
   height: 35px;
   max-width: 450px; 
-  position: relative; /* Add this line */
+ /* position: relative; /* Add this line */
+}
+
+.max-record-height{
+  height: 30px; 
 }
