@@ -22,7 +22,7 @@ class Ligue < ApplicationRecord
 	        unless logo.blob.content_type.in?(%w(image/jpeg image/png image/gif))
 	            errors.add(:logo, 'must be a JPEG, PNG, or GIF image')
 	        end
-            unless drapeau.blob.byte_size <= 1.megabytes
+            unless logo.blob.byte_size <= 1.megabytes
 	            errors.add(:logo, 'size should be less than 1MB')
             end
 	    end

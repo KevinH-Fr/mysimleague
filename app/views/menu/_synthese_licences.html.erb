@@ -1,22 +1,24 @@
-<h4> synthèse licences </h4>
-<%= link_to  "update licences", update_licences_path(@event), class: "btn btn-sm btn-primary" %>
+<h4 class="titre-topic">
+  synthèse licences 
+  <%= link_to  "update", update_licences_path(@event), class: "btn btn-sm btn-primary" %>
+</h4>
 <%#= link_to  "supprimer licences", supprimer_licences_path(@event), class: "btn btn-danger" %>
 
 <% cumul_licence_user(@event).each do |pilote| %>
-  <div class="record-with-effect d-flex align-items-center justify-content-center">
-    <%= equipe_banner_with_data(
-         AssociationUser.find(pilote[:association_user_id]).equipe, 
-         User.find(pilote[:user_id]).nom) %> 
-    <div class="d-flex align-items-center justify-content-center">
-      <%= badge_points_licence(pilote[:perte_total].to_s, "perte") %> 
-      <%= badge_points_licence(pilote[:gain_total].to_s, "gain") %> 
-      <%= badge_points_licence(pilote[:solde].to_s, "solde") %> 
+  <div class=" d-flex align-items-center justify-content-center my-1 p-0" style="">
+      <%= equipe_banner_with_data(
+          AssociationUser.find(pilote[:association_user_id]).equipe, 
+          User.find(pilote[:user_id]).nom) %> 
+      <div class="d-flex align-items-center justify-content-center">
+        <%= badge_points_licence(pilote[:perte_total].to_s, "perte") %> 
+        <%= badge_points_licence(pilote[:gain_total].to_s, "gain") %> 
+        <%= badge_points_licence(pilote[:solde].to_s, "solde") %> 
+      </div>
     </div>
-  </div>
 <% end %>
 
-<%= link_to "", generate_image_licences_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
-<%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
-
-<%#= display_data_in_table(cumul_licence_user(@event), ['Pilote', 'Perte', 'Gain', 'Solde']) %>
+<div class="container">
+  <%= link_to "", generate_image_licences_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
+  <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+</div>
 

@@ -67,8 +67,8 @@ select, input{
 
 .card-with-effect{
   border-radius: 10px;
-  background: #fffefe;
-  box-shadow:  5px 5px 6px #b5b5b5,
+  background: #f4f4f4;
+  box-shadow:  3px 3px 4px #e4e2e2,
               -5px -5px 5px #fffdfd;
   padding: 2px;
   margin-top: 20px;
@@ -82,6 +82,7 @@ select, input{
   box-shadow:  2px 2px 5px #dddbdb,
               -2px -5px 5px #ffffff;
   padding: 5px;
+  margin-bottom: 10px;
 
 }
 
@@ -108,8 +109,11 @@ select, input{
 }
 
 .btn-cote{
-  font-size: x-small;
+  font-size: small;
   padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+
   margin: 1px;
 }
 
@@ -143,4 +147,26 @@ select, input{
 
 .titre-topic{
   text-align: center;
+}
+
+.partial-topic{
+  background-color: #eeebeb;
+
+}
+
+.card-event-topics{
+  background-color: #eeebeb;
+  padding-top: 20px;
+  border-radius: 10px;
+}
+
+
+.btn-topic{
+  background-color: white; 
+}
+
+.btn-topic.active {
+  background-color: #007bff; /* Change this color to your desired active color */
+  color: #fff;
+  font-size: large;
 }

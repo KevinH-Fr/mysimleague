@@ -1,9 +1,9 @@
-<h4 class="d-inline"> Présences</h4>
-
-
+<h4 class="titre-topic">
+  Présences
   <%= turbo_frame_tag :content_new_presence do %>
     <%= render "presences/new_presence" %>
   <% end %>
+</h4>
 
 <div class="d-flex align-items-center justify-content-center m-0 p-0">
   <div id="presences">
@@ -13,6 +13,6 @@
   </div>
 </div>
 
-<div id="partial-presences-stats-container" class="my-1">
+<div id="partial-presences-stats-container" class="my-1 text-center">
   <%= render "presences/stats" %>
 </div>

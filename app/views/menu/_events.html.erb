@@ -1,4 +1,4 @@
-<div class="card-with-effect">
+<div class="card-with-effect m-0">
 
 
   <h4 class="d-inline mx-1"> Events </h4>
@@ -28,64 +28,70 @@
     </div>
   </div>
 
+
   <% if @event && @division %>
 
     <%# détail event courante %>
     <%= render @event %>
 
-    <hr>  
-    <div class="d-flex flex-wrap justify-content-center align-items-center">
-      
-      <%= button_to display_resultats_menu_index_path, class: "btn btn-sm btn-primary m-1" do %>
-        <i class="fa fa-solid fa-xl fa-square-poll-horizontal"></i>
-        <span class="ms-1 fw-bold">Résultats</span>
-      <% end %>
+    <div class="card-event-topics">
+      <div class="d-flex flex-wrap justify-content-center align-items-center">
+        
+        <%= button_to display_resultats_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
+            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
+            <i class="fa fa-solid fa-xl fa-square-poll-horizontal text-secondary"></i>
+            <span class="ms-1 fw-bold">Résultats</span>
+        <% end %>
 
-      <%= button_to display_presences_menu_index_path, class: "btn btn-sm btn-success m-1" do %>
-        <i class="fa fa-solid fa-xl fa-street-view"></i>
-        <span class="ms-1 fw-bold">Présences</span>
-      <% end %>
+        <%= button_to display_presences_menu_index_path, class: "btn btn-sm m-1 btn-topic",
+            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
+            <i class="fa fa-solid fa-xl fa-street-view text-success"></i>
+            <span class="ms-1 fw-bold">Présences</span>
+        <% end %>
 
-      <%= button_to display_dotds_menu_index_path, class: "btn btn-sm btn-warning m-1" do %>
-        <i class="fa fa-solid fa-xl fa-star"></i>
-        <span class="ms-1 fw-bold">DOTD</span>
-      <% end %>
 
-      <%= button_to display_dois_menu_index_path, class: "btn btn-sm btn-danger m-1" do %>
-        <i class="fa fa-solid fa-xl fa-magnifying-glass"></i>
-        <span class="ms-1 fw-bold">DOI</span>
-      <% end %>
+        <%= button_to display_dotds_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
+            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
+          <i class="fa fa-solid fa-xl fa-star text-warning"></i>
+          <span class="ms-1 fw-bold">DOTD</span>
+        <% end %>
 
-      <%= button_to display_synthese_licences_menu_index_path, class: "btn btn-sm btn-danger m-1" do %>
-        <i class="fa fa-solid fa-xl fa-id-card"></i>
-        <span class="ms-1 fw-bold">Licences</span>
-      <% end %>
-      
-      <%= button_to display_paris_menu_index_path, class: "btn btn-sm btn-success m-1" do %>
-        <i class="fa fa-solid fa-xl fa-money-bill-wave"></i>
-        <span class="ms-1 fw-bold">Paris</span>
-      <% end %>
+        <%= button_to display_dois_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
+            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
+          <i class="fa fa-solid fa-xl fa-magnifying-glass text-danger"></i>
+          <span class="ms-1 fw-bold">DOI</span>
+        <% end %>
 
-      <div class="dropdown">
-        <button class="btn btn-sm btn-dark dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-solid fa-xl fa-ranking-star"></i>
-            <span class="ms-1 fw-bold"> Classements</span>
-        </button>
-        <ul class="dropdown-menu dropdown-menu-dark">
-          <%= button_to display_classement_pilotes_menu_index_path, class: "dropdown-item" do %>
-            <span class="ms-1 fw-bold">Class. pilotes</span>
-          <% end %>
+        <%= button_to display_synthese_licences_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
+            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
+          <i class="fa fa-solid fa-xl fa-id-card text-danger"></i>
+          <span class="ms-1 fw-bold">Licences</span>
+        <% end %>
+        
+        <%= button_to display_paris_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
+            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
+          <i class="fa fa-solid fa-xl fa-money-bill-wave text-success"></i>
+          <span class="ms-1 fw-bold">Paris</span>
+        <% end %>
 
-          <%= button_to display_classement_equipes_menu_index_path, class: "dropdown-item" do %>
-            <span class="ms-1 fw-bold">Class. equipes</span>
-          <% end %>
-        </ul>
+
+        <%= button_to display_classement_pilotes_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
+            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
+          <i class="fa fa-solid fa-xl fa-ranking-star"></i>
+          <span class="ms-1 fw-bold">Pilotes</span>
+        <% end %>
+        <%= button_to display_classement_equipes_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
+            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
+          <i class="fa fa-solid fa-xl fa-ranking-star"></i>
+          <span class="ms-1 fw-bold">Equipes</span>
+        <% end %>
+
       </div>
 
-    </div>
+      <div id="partial-container" class="partial-topic">
+        <%# recoit le turbo stream avec elements cliqués %>
+      </div>
 
-    <div id="partial-container" class="my-2">
-      <%# recoit le turbo stream avec elements cliqués %>
     </div>
 
   <% end %>

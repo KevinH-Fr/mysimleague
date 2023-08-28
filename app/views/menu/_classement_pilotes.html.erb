@@ -1,7 +1,7 @@
 <h4 class="titre-topic">classement pilotes </h4>
 
 <% somme_user(@event).each do |user| %>
-  <div class="record-with-effect d-flex align-items-center justify-content-center">
+  <div class="d-flex align-items-center justify-content-center my-1">
 
     <%= badge_score_position(user[:rank]) %> 
 
@@ -27,5 +27,7 @@
   </div>
 <% end %>
 
-<%= link_to "", generate_image_class_pilotes_path(event: @event.id), class: 'btn btn-success fa fa-image' %>
-<%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+<div class="container">
+  <%= link_to "", generate_image_class_pilotes_path(event: @event.id), class: 'btn btn-success fa fa-image' %>
+  <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+</div>
