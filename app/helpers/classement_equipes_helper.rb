@@ -9,8 +9,6 @@ module ClassementEquipesHelper
                                 .where("events.numero <= ?", event.numero)
                                 .where("divisions.id = ?", event.division_id)
                                 .joins(association_user: :equipe)
-                                .where("association_users.actif = ?", true)
-                                .where("association_users.valide = ?", true)
     
         resultats.each do |resultat|
           equipe = resultat.association_user.equipe

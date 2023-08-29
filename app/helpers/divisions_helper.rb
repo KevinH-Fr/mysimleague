@@ -2,7 +2,9 @@ module DivisionsHelper
 
     def pilotes_division_named(division)
         if division
-            pilotes = division.association_users.map { |au| [au.id, au.user.nom] }        
+            pilotes = division.association_users
+                .where(valide: true, actif: true)
+                .map { |au| [au.id, au.user.nom] }        
         end 
     end
 

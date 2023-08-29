@@ -1,6 +1,5 @@
 module ClassementPilotesHelper
-
-
+  
   def somme_user(event)
     user_scores = {}
   
@@ -16,8 +15,6 @@ module ClassementPilotesHelper
                           .where("events.numero <= ?", event.numero)
                           .where("divisions.id = ?", event.division_id)
                           .joins(association_user: :user)
-                          .where("association_users.actif = ?", true)
-                          .where("association_users.valide = ?", true)
   
       resultats.group_by { |resultat| resultat.association_user.user.id }.each do |id, user_resultats|
         user_scores[id][:score] = user_resultats.sum(&:score)
@@ -47,25 +44,28 @@ module ClassementPilotesHelper
   
     ranked_users
   end
-  
+
   def compare_ranks(previous_event, current_event)
-    previous_ranks = somme_user(previous_event).index_by { |user| user[:user_id] }
-    current_ranks = somme_user(current_event).index_by { |user| user[:user_id] }
-  
-    comparison = {}
-    previous_ranks.each do |user_id, previous_rank|
-      current_rank = current_ranks[user_id]
-      next unless current_rank
-  
-      comparison[user_id] = {
-        previous_rank: previous_rank[:rank],
-        current_rank: current_rank[:rank],
-        delta_rank: previous_rank[:rank] - current_rank[:rank]
-      }
-    end
-  
-    comparison
+
+    if previous_event && current_event 
+      previous_ranks = somme_user(previous_event).index_by { |user| user[:user_id] }
+      current_ranks = somme_user(current_event).index_by { |user| user[:user_id] }
+    
+      comparison = {}
+      previous_ranks.each do |user_id, previous_rank|
+        current_rank = current_ranks[user_id]
+        next unless current_rank
+    
+        comparison[user_id] = {
+          previous_rank: previous_rank[:rank],
+          current_rank: current_rank[:rank],
+          delta_rank: previous_rank[:rank].to_i - current_rank[:rank].to_i
+        }
+      end
+    
+      comparison
+    end 
   end
   
-         
+
 end
