@@ -114,6 +114,29 @@ class EventsController < ApplicationController
     end
   end
 
+  def duplication
+    if request.post?
+      source_division_id = params[:source_division]
+      date_difference = params[:date_difference].to_i
+  
+      # Retrieve the source division and its events
+      source_division = Division.find(source_division_id)
+      source_events = source_division.events
+  
+      # Duplicate and adjust events
+      source_events.each do |source_event|
+        new_event = source_event.dup
+        new_event.division_id = session[:division] # Assuming you have a method to get the current division's ID
+        new_event.horaire += date_difference.days
+        new_event.save
+      end
+  
+      flash[:notice] = "Events duplicated successfully."
+    end
+    redirect_to menu_index_path(ligue: session[:ligue], saison: session[:saison] , division: session[:division] ) # Redirect back to the events page or adjust as needed
+  end
+  
+
   private
 
     def set_event

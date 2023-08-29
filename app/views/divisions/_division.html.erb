@@ -27,6 +27,10 @@
       <hr>
 
       <div class="d-inline-flex">
+        <% if current_user && verif_admin_ligue(current_user, division.saison.ligue) %>
+          <%= button_to 'duplication', display_dupliquer_events_division_menu_index_path, class: "btn btn-sm btn-warning m-1"  %> 
+        <% end %>
+        
         <%= button_to 'pilotes', display_pilotes_division_menu_index_path, class: "btn btn-sm btn-dark m-1" %>
       </div>
       

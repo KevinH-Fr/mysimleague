@@ -68,6 +68,20 @@ class MenuController < ApplicationController
     end
   end
 
+  def display_dupliquer_events_division
+
+    @division = Division.find(session[:division])
+    @divisions = Division.where(saison_id: @division.saison_id)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          'partial-division-container', partial: 'menu/duplication_events'
+        )
+      end
+    end
+  end
+
   def display_reglements_ligue
 
     @ligue = Ligue.find(session[:ligue])

@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
     post 'display_reglements_ligue', on: :collection
     post 'display_pilotes_division', on: :collection
+    post 'display_dupliquer_events_division', on: :collection
 
     post 'display_resultats', on: :collection
 
@@ -99,6 +100,7 @@ Rails.application.routes.draw do
       post :edit
     end
   end
+  post 'duplication_event', to: 'events#duplication', as: :duplication_event
 
   resources :association_users do
     member do
