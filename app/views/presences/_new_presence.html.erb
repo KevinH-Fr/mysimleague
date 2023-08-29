@@ -1,4 +1,5 @@
 
+
   <% if verif_appartenance_division(current_user, session[:division] ) %>
     <% unless verif_presence_existe(current_user, session[:event]) %>
 
@@ -8,7 +9,7 @@
       </button>
           
       <div class="collapse" id="collapseNewPresence">
-        <div id="new_presence">
+        <div id="new_presence" class="">
           <%= render partial: "presences/form", locals: { presence: Presence.new } %>
         </div>
       </div>

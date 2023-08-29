@@ -1,10 +1,9 @@
-<div class="record-with-effect m-0 my-1 p-2">  
+<div class="card container-fluid my-1 p-2">  
 
   <%= form_with(model: presence) do |form| %>
     <% if presence.errors.any? %>
       <div style="color: red">
         <h2><%= pluralize(presence.errors.count, "error") %> prohibited this presence from being saved:</h2>
-
         <ul>
           <% presence.errors.each do |error| %>
             <li><%= error.full_message %></li>
@@ -14,12 +13,11 @@
     <% end %>
 
     <%= form.hidden_field :event_id, value: session[:event] %>
-
     <%= form.hidden_field :association_user_id, value: association_user_from_user(current_user.id, session[:division]).id %>
 
 
-  <div class="d-flex align-items-center justify-content-evenly">
-    <div class="form-check form-switch h6">
+  <div class="d-flex align-items-center justify-content-center">
+    <div class="form-check form-switch fs-5">
       <%= form.label "Présent!", class: "form-check-label text-center me-2" %>
       <%= form.check_box :status, class: "form-check-input text-center me-2" %>
     </div>

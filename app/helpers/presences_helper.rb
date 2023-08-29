@@ -18,7 +18,7 @@ module PresencesHelper
 
   
     def nb_presences_event(event)
-      Presence.where(event_id: event).count
+      Presence.where(event_id: event, status: true).count
     end
 
 end

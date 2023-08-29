@@ -9,11 +9,8 @@
         AssociationUser.find(user[:association_user_id]).equipe,
         User.find(user[:user_id]).nom) %> 
 
-    <div class="d-flex align-items-center justify-content-center">
       <%= badge_score_position(user[:score]) %> 
-    </div>
 
-    <div>
       <% comparison_data = compare_ranks(@previous_event, @event) %>
         <% if comparison_data %>
           <% comparison = comparison_data[user[:user_id]] %>
@@ -23,7 +20,6 @@
             </div>
           <% end %>
         <% end %> 
-    </div>
   </div>
 <% end %>
 

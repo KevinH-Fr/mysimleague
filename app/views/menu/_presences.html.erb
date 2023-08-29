@@ -1,11 +1,13 @@
 <h4 class="titre-topic">
   Présences
   <%= turbo_frame_tag :content_new_presence do %>
-    <%= render "presences/new_presence" %>
+    <div class="container-fluid">
+      <%= render "presences/new_presence" %>
+    </div>
   <% end %>
 </h4>
 
-<div class="d-flex align-items-center justify-content-center m-0 p-0">
+<div class="container-fluid">
   <div id="presences">
     <% @presences.each do |presence| %>
         <%= render presence %>

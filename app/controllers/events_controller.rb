@@ -3,7 +3,7 @@ class EventsController < ApplicationController
   include AssociationAdminsHelper
 
   before_action :set_event, only: %i[ show edit update destroy ]
-  before_action :authorize_admin_ligue, only: %i[ new create edit update destroy ]
+  before_action :authorize_admin_ligue, only: %i[ new duplication create edit update destroy ]
 
   def new
     if params[:division]
@@ -126,7 +126,7 @@ class EventsController < ApplicationController
       # Duplicate and adjust events
       source_events.each do |source_event|
         new_event = source_event.dup
-        new_event.division_id = session[:division] # Assuming you have a method to get the current division's ID
+        new_event.division_id = session[:division]
         new_event.horaire += date_difference.days
         new_event.save
       end
