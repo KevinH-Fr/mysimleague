@@ -13,15 +13,8 @@
       <%= badge_score_position(equipe[:score_sum]) %> 
     </div>
 
-    <div>
-      <% comparison_data = compare_equipe_ranks(@previous_event, @event) %>
-      <% if comparison_data %>
-        <% comparison = comparison_data[equipe[:nom]] %>
-        <% if comparison %>
-          Delta rank: <%= comparison[:delta_rank] %>
-        <% end %>
-      <% end %>
-    </div>
+    <% comparison = compare_equipe_ranks(@previous_event, @event)[equipe[:nom]] if @previous_event %>
+    <%= badge_delta_rank(comparison[:delta_rank].to_i) if comparison %>
 
   </div>
 

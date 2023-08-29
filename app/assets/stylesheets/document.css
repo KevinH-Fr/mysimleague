@@ -56,3 +56,11 @@ body, div, h2 {
 .max-record-height{
   height: 30px; 
 }
+
+.text-success-custom{
+  color: rgb(16, 200, 16);
+}
+
+.text-danger-custom{
+  color: rgb(225, 88, 88);
+}

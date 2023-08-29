@@ -69,21 +69,21 @@ module BadgesHelper
   end
 
   def badge_delta_rank(delta_rank)
-    badge_class = "badge badge-pos bg-light max-record-height rounded d-flex align-items-center justify-content-center mx-1 text-center"
+    badge_class = "badge-pos bg-black max-record-height rounded d-flex align-items-center justify-content-center m-0 text-center"
     
     if delta_rank > 0
       content_tag(:div, class: "#{badge_class}") do 
-        concat content_tag(:i, "", class: "fa-solid fa-xl fa-caret-up me-2 text-success")
-        concat content_tag(:span, delta_rank, class: "text-success", style:"font-size: small;")
+        concat content_tag(:i, "", class: "fa-solid fa-xl fa-caret-up me-2 text-success-custom")
+        concat content_tag(:span, delta_rank, class: "text-success-custom", style:"font-size: small;")
       end
     elsif delta_rank < 0
       content_tag(:div, class: "#{badge_class}") do 
-        concat content_tag(:i, "", class: "fa-solid fa-xl fa-caret-down me-2 text-danger")
-        concat content_tag(:span, delta_rank, class: "text-danger", style:"font-size: small;")
+        concat content_tag(:i, "", class: "fa-solid fa-xl fa-caret-down me-2 text-danger-custom")
+        concat content_tag(:span, delta_rank, class: "text-danger-custom", style:"font-size: small;")
       end
     else
       content_tag(:div, class: "#{badge_class}") do 
-        concat content_tag(:i, "", class: "fa-solid fa-xl fa-equals text-center text-dark")
+        concat content_tag(:i, "", class: "fa-solid fa-xl fa-equals text-center text-light")
       end
     end
   end

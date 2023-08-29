@@ -165,5 +165,13 @@ select, input{
 .btn-topic.active {
   background-color: #007bff; /* Change this color to your desired active color */
   color: #fff;
-  font-size: large;
+ /* font-size: large;*/
+}
+
+.text-success-custom{
+  color: rgb(16, 200, 16);
+}
+
+.text-danger-custom{
+  color: rgb(225, 88, 88);
 }
