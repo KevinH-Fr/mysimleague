@@ -12,9 +12,7 @@
     <% if comparison_data %>
       <% comparison = comparison_data[user_id[:user_id]] %>
       <% if comparison %>
-        Delta rank: <%= comparison[:delta_rank].to_i %>
-      <% else %>
-          Delta rank: 0
+        <%= badge_delta_rank(comparison[:delta_rank].to_i) %>
       <% end %>
     <% end %>
 
