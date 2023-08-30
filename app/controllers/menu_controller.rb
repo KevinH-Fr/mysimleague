@@ -105,7 +105,7 @@ class MenuController < ApplicationController
 
     @equipes = Equipe.all
     @event = Event.find(session[:event])
-    @resultats = @event.resultats  
+    @resultats = @event.resultats.order(:course)
 
     respond_to do |format|
       format.turbo_stream do

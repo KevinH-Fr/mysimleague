@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_08_24_215009) do
+ActiveRecord::Schema[7.0].define(version: 2023_08_30_113137) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -248,7 +248,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_08_24_215009) do
     t.integer "equipe_id", null: false
     t.string "qualification"
     t.string "qualification_sprint"
-    t.string "course"
+    t.integer "course"
     t.boolean "dotd"
     t.boolean "mt"
     t.integer "score"

@@ -1,7 +1,7 @@
 
-<h1 class="text-center">Bienvenue sur MySimLeague</h1>
-
-<hr>
+<div class="container bg-dark rounded text-center my-2">
+   <%= link_to image_tag("brandlogo.png", width: 160), root_path, class: "me-2" %>
+</div>
 
 <div class="d-flex flex-wrap justify-content-center align-items-center">
    <%= link_to menu_index_path, class: "btn btn-sm btn-dark m-1" do %>
@@ -65,18 +65,11 @@
    <%# recoit le turbo stream avec elements cliqués %>
 </div>
 
-<% if @prochains_events %>
-   <h4 class="text-center mt-2"> Prochaines courses </h4>
-   <div class="p-2">
-      <% @prochains_events.each do |event| %>
-         <%= link_to menu_index_path(ligue: event.division.saison.ligue, saison: event.division.saison, 
-                           division: event.division_id, event: event), class: "no-underline text-dark" do %>
-            <%= render event %>
-         <% end %>      
-      <% end %>
-   </div>  
-<% end %>
-
+<div class="p-2"> 
+   <% if @prochains_events %>
+      <%= render "prochains_events" %>
+   <% end %>
+</div>
 
 <div>
    <%= render "feed" %>

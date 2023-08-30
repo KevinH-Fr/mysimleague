@@ -1,0 +1,23 @@
+<h4 class="text-center mt-2"> Prochaines courses </h4>
+<% @prochains_events.each do |event| %>
+
+    <%= link_to menu_index_path(
+        ligue: event.division.saison.ligue, 
+        saison: event.division.saison, 
+        division: event.division_id, 
+        event: event), class: "no-underline text-dark" do %>
+        <div class="record-with-effect">
+            <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35") if event.circuit.drapeau.present? %>
+        
+            <strong><%= event.division.saison.ligue.nom %> </strong> 
+            <strong><%= event.division.nom %> </strong> 
+
+            N°<strong> <%= event.numero %> </strong>
+            <strong> <%= event.circuit.nom %> </strong>
+            <%= event.horaire.strftime('%d %b %Y - %Hh%M') %> 
+
+        </div>  
+    
+    <% end %>
+    
+<% end %>

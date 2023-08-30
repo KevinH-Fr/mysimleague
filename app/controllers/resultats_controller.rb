@@ -38,9 +38,11 @@ class ResultatsController < ApplicationController
   def create
     
     @resultat = Resultat.new(resultat_params)
+
     #@pilotes = AssociationUser.includes(:user).where(pilote: true)
     @equipes = Equipe.all
     @event = Event.find(session[:event]) 
+    @resultats = @event.resultats.order(:course) 
 
     @division = Division.find(@event.division_id) if @event
 
@@ -58,11 +60,17 @@ class ResultatsController < ApplicationController
                                 locals: { resultat: Resultat.new }),
   
             turbo_stream.append('resultats',
-                                 partial: "resultats/resultat",
-                                 locals: { resultat: @resultat }),
+                                partial: "resultats/resultat",
+                                locals: { resultat: @resultat }),
             # Include a Turbo Stream command to display the flash notice
-            turbo_stream.prepend('flash', partial: 'layouts/flash', locals: { flash: flash })
+            turbo_stream.prepend('flash', partial: 'layouts/flash', locals: { flash: flash }),
             
+            #ordering
+            turbo_stream.update(
+              'resultats', 
+              partial: "menu/resultats",
+              locals: { resultats: @resultats.order(:course) }
+            )
           ]
         end
 
@@ -88,6 +96,8 @@ class ResultatsController < ApplicationController
   def update
 
     @event = Event.find(@resultat.event_id)
+    @resultats = @event.resultats.order(:course) 
+
     @division = Division.find(@event.division_id)
     @pilotes = AssociationUser.includes(:user).where(pilote: true)
     @equipes = Equipe.all
@@ -109,7 +119,14 @@ class ResultatsController < ApplicationController
 
 
             turbo_stream.prepend('flash',
-              partial: 'layouts/flash', locals: { flash: flash })
+              partial: 'layouts/flash', locals: { flash: flash }),
+
+            #ordering
+            turbo_stream.update(
+              'resultats', 
+              partial: "resultats/resultats",
+              locals: { resultats: @resultats.order(:course) }
+            )
           ]
         end
         format.html { redirect_to resultat_url(@resultat), notice: "Resultat was successfully updated." }
@@ -152,18 +169,9 @@ class ResultatsController < ApplicationController
   def generate_image
 
     @event = Event.find(params[:event])
-    @resultats = @event.resultats if @event.present?
+    @resultats = @event.resultats.order(:course) if @event.present?
 
     render "resultats/document"
-
-  end
-
-  def generate_image_bis
-
-    @event = Event.find(params[:event])
-    @resultats = @event.resultats if @event.present?
-
-    render "resultats/document_bis"
 
   end
 

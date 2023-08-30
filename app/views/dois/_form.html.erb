@@ -22,15 +22,16 @@
       <div class="card p-2">  
         <h4> dépôt </h4>  
 
+        <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
+          <div class="form-check form-switch h6">
+            <%= form.label "Doi commissaire", class: "form-check-label text-center" %>
+            <%= form.check_box :doicommissaire, class: "form-check-input text-center" %>
+          </div>
+        <% end %>
+        
         <div class="row g-2">
           <div class="col-md">
 
-            <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
-              <div class="form-check form-switch h6">
-                <%= form.label "Doi commissaire", class: "form-check-label text-center" %>
-                <%= form.check_box :doicommissaire, class: "form-check-input text-center" %>
-              </div>
-            <% end %>
                     
             <div class="input-group input-group-sm my-2">
               <%= form.label :demandeur, class: "input-group-text" %>     

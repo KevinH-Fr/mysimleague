@@ -135,6 +135,8 @@ module FeedsHelper
             equipes_path()  
         when "Circuit"
             circuits_path()  
+        when "Resultat"
+            menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)  
         when "Pari"
             menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)  
         when "User"
