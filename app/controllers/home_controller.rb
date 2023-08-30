@@ -14,7 +14,7 @@ class HomeController < ApplicationController
 
   def display_parieurs
 
-    @event = Event.find(session[:event])
+   # @event = Event.find(session[:event])
 
     respond_to do |format|
       format.turbo_stream do
@@ -27,7 +27,7 @@ class HomeController < ApplicationController
 
   def display_parieurs_annee
 
-    @event = Event.find(session[:event])
+  #  @event = Event.find(session[:event])
     @annee = params[:annee]
 
     respond_to do |format|

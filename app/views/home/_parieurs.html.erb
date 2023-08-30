@@ -10,7 +10,7 @@
   <% if @annee %>
     <% somme_paris_user(@annee, User.all).each do |user_id, data| %>
 
-      <div class="card record-with-effect my-2 p-1">  
+      <div class="card record-with-effect my-2">  
         <div class="row m-0 p-0">
           <div class="col-1 m-0 p-0 badge-pos rounded d-flex align-items-center justify-content-center record-max-height">
             <%= data[:rank] %>
