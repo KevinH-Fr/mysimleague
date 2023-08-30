@@ -5,7 +5,9 @@
 
     <div class="row align-items-center">
       <div class="col-6">
-        Nom:  <strong> <%= saison.nom %> </strong>
+        <%= link_to "#collapseDetailsSaison", class: "no-underline text-dark", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsSaison", "aria-expanded" => "false" do %>
+           Nom:  <strong> <%= saison.nom %> </strong>
+        <% end %>
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">
 

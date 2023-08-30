@@ -36,7 +36,7 @@
           <tbody class="">
             <% cotes_pilotes(Event.find(session[:event])).each do |association_user_id, values| %>
               <tr>
-                <th scope="row p-1" style="vertical-align: middle;">
+                <th scope="row px-1" style="vertical-align: middle;">
                   <%= truncate(AssociationUser.find(values[:association_user_id]).user.nom, length: 14 ) %> 
                 </th>
                 

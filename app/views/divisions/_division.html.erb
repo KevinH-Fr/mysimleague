@@ -4,7 +4,9 @@
 
     <div class="row align-items-center">
       <div class="col-6">
-        Nom: <strong> <%= division.nom %> </strong> 
+        <%= link_to "#collapseDetailsDivision", class: "no-underline text-dark", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsDivision", "aria-expanded" => "false" do %>
+          Nom: <strong> <%= division.nom %> </strong> 
+        <% end %>
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">
         <button class="btn btn-sm btn-primary fa-solid fa-eye m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetailsDivision" aria-expanded="false">

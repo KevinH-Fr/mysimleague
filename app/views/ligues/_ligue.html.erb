@@ -3,15 +3,20 @@
   <div class="card px-2 my-1">  
 
     <div class="row align-items-center">
+        
       <div class="col-6">
-        <%= image_tag(ligue.logo, class: "img-fluid rounded", width: "40") if ligue.logo.present? %>
-        Nom: <strong> <%= ligue.nom %> </strong>
-
-
+        <%= link_to "#collapseDetailsLigue", class: "no-underline text-dark", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsLigue", "aria-expanded" => "false" do %>
+          <% if ligue.logo.present? %>
+            <%= image_tag(ligue.logo, class: "img-fluid rounded", width: "40") %>
+          <% end %>
+          <strong>Nom:</strong> <%= ligue.nom %>
+        <% end %>
       </div>
+
       <div class="col-6 d-flex justify-content-end align-items-center">
          
-        <button class="btn btn-sm btn-primary fa-solid fa-eye m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetailsLigue" aria-expanded="false">
+
+        <button class="btn btn-sm btn-primary fa-solid fa-eye m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetailsLigue">
         </button>
                 
         <% if current_user && verif_admin_ligue(current_user, ligue.id) %>

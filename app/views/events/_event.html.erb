@@ -4,11 +4,14 @@
   <div class="card px-2 my-1">  
     <div class="row p-1">
       <div class="col-8">
-        <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35") if event.circuit.drapeau.present? %>
 
-        N°<strong> <%= event.numero %> </strong>
-        <strong> <%= event.circuit.nom %> </strong>
-        <%= event.horaire.strftime('%d %b %Y - %Hh%M') %> 
+        <%= link_to "#collapseDetailsEvent", class: "no-underline text-dark", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsEvent", "aria-expanded" => "false" do %>
+          <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35") if event.circuit.drapeau.present? %>
+          N°<strong> <%= event.numero %> </strong>
+          <strong> <%= event.circuit.nom %> </strong>
+          <%= event.horaire.strftime('%d %b %Y - %Hh%M') %> 
+        <% end %>
+
         <% if @show_buttons %>
           <button class="btn btn-sm btn-outline-primary fa-solid fa-cloud-sun-rain m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeather" aria-expanded="false">
           </button> 

@@ -105,14 +105,7 @@ select, input{
   font-size: x-small;
 }
 
-.btn-cote{
-  font-size: small;
-  padding: 2px;
-  padding-left: 10px;
-  padding-right: 10px;
 
-  margin: 1px;
-}
 
 .table-container {
   overflow-x: auto;
@@ -153,7 +146,6 @@ select, input{
 
 .card-event-topics{
   background-color: #eeebeb;
-  padding-top: 20px;
   border-radius: 10px;
 }
 
@@ -174,4 +166,19 @@ select, input{
 
 .text-danger-custom{
   color: rgb(225, 88, 88);
+}
+
+
+.btn-cote{
+  font-size: small;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 1px;
+}
+
+.btn-cote.active {
+  background-color: #007bff; /* Change this color to your desired active color */
+  color: #fff;
+ /* font-size: large;*/
 }

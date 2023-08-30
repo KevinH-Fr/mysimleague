@@ -65,17 +65,18 @@
    <%# recoit le turbo stream avec elements cliqués %>
 </div>
 
+<% if @prochains_events %>
+   <h4 class="text-center mt-2"> Prochaines courses </h4>
+   <div class="p-2">
+      <% @prochains_events.each do |event| %>
+         <%= link_to menu_index_path(ligue: event.division.saison.ligue, saison: event.division.saison, 
+                           division: event.division_id, event: event), class: "no-underline text-dark" do %>
+            <%= render event %>
+         <% end %>      
+      <% end %>
+   </div>  
+<% end %>
 
-<h4 class="text-center mt-2"> Prochaines courses </h4>
-
-<div class="p-2">
-   <% @prochains_events.each do |event| %>
-      <%= link_to menu_index_path(ligue: event.division.saison.ligue, saison: event.division.saison, 
-                        division: event.division_id, event: event), class: "no-underline text-dark" do %>
-         <%= render event %>
-      <% end %>      
-   <% end %>
-</div>  
 
 <div>
    <%= render "feed" %>
