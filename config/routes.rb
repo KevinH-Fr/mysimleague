@@ -182,6 +182,4 @@ Rails.application.routes.draw do
 
   mount ActiveAnalytics::Engine, at: "analytics"
 
-
-
 end
