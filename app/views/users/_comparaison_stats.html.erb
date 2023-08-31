@@ -1,7 +1,3 @@
-
-<div class="card-with-effect">
-   <h4> stats pilote </h4>
-
     <div class="badge bg-dark my-2">
         nb courses: <%= user_resultats_stats(@user)[:nb_courses] %> <br>
     </div> 
@@ -38,17 +34,3 @@
 
         </tbody>
     </table>
-
-
-    <%# comparaison %>
-    
-    <%= button_to display_comparaison_stats_home_index_path, class: "btn btn-sm btn-success m-1" do %>
-        <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
-        <span class="ms-2 fw-bold">Comparaison</span>
-    <% end %>
-        
-    <div id="partial-container" class="p-2">
-       <%# recoit le turbo stream avec elements cliqués %>
-    </div>
-
-</div>

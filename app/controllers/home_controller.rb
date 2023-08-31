@@ -53,7 +53,7 @@ class HomeController < ApplicationController
   def display_pilotes 
 
     @pilotes = User.all 
-    
+
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(
@@ -67,6 +67,18 @@ class HomeController < ApplicationController
 
   def display_creer_ligue
     redirect_to menu_index_path
+  end
+
+  def display_comparaison_stats
+
+    @user = User.last
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          'partial-container', partial: 'users/comparaison_stats'
+        )
+      end
+    end
   end
     
 end

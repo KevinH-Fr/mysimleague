@@ -31,6 +31,8 @@ Rails.application.routes.draw do
     post 'display_parieurs_annee', on: :collection
     post 'display_pilotes', on: :collection
 
+    post 'display_comparaison_stats', on: :collection
+
   end
 
   get 'synthese_licences/index'

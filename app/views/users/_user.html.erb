@@ -5,10 +5,23 @@
     <%= user.nom %>
   </p> 
   
-  <p>
-    <strong>Id:</strong>
-    <%= user.id %>
-  </p> 
+
+  <strong>Participations:</strong> <br>
+
+  <% user.association_users.each do |association_user| %>
+    <div class="container d-flex align-items-center justify-content-center m-1">
+      <div class="badge bg-dark mx-1 p-2"> 
+        <%= association_user.division.saison.ligue.nom %> 
+        <%= association_user.division.saison.nom %> 
+        <%= association_user.division.nom %> 
+      </div>
+      <%= equipe_banner_with_data(association_user.equipe, association_user.user.nom) %>
+      <div class="badge bg-dark mx-1 p-2"> 
+        <%= boolean_icon(association_user.actif) %>
+      </div>
+    </div>
+  <% end %>
+  
 
 </div>
 

@@ -131,10 +131,10 @@ module FeedsHelper
             menu_index_path(ligue: feed.saison.ligue, saison: feed.saison_id, division: feed)  
         when "Event"
             menu_index_path(ligue: feed.division.saison.ligue, saison: feed.division.saison, division: feed.division_id, event: feed)  
-        when "Equipe"
-            equipes_path()  
-        when "Circuit"
-            circuits_path()  
+       # when "Equipe"
+       #     equipes_path()  
+       # when "Circuit"
+       #     circuits_path()  
         when "Resultat"
             menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)  
         when "Pari"
