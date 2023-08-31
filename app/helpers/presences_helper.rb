@@ -21,4 +21,17 @@ module PresencesHelper
       Presence.where(event_id: event, status: true).count
     end
 
+    def verif_delai_presence(event)
+      event = Event.find(event)
+      horaire = event.horaire
+      current_time = Time.now
+
+      if current_time < horaire
+        true # presence can be set
+      else
+        false # over time limit
+      end
+
+    end
+
 end

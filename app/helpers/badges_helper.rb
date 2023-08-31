@@ -45,8 +45,10 @@ module BadgesHelper
 
 
   def badge_score_position(value)
+    formatted_value =  number_with_delimiter(value, delimiter: " ")
+  
     content_tag(:div, class: "badge-pos max-record-height rounded d-flex align-items-center justify-content-center mx-1") do 
-      [value].join.html_safe
+      [formatted_value].join.html_safe
     end
   end
 

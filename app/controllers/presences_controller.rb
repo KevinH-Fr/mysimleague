@@ -5,7 +5,8 @@ class PresencesController < ApplicationController
 
   before_action :set_presence, only: %i[ show edit update destroy ]
   before_action :authorize_user_ligue, only: %i[ new show create destroy ]
-  before_action :authorize_edit_user, only: %i[  edit update destroy ]
+  before_action :authorize_edit_user, only: %i[ edit update destroy ]
+  before_action :check_datetime_user_presence, only: %i[ new create edit update destroy]
 
   def edit
     respond_to do |format|
@@ -132,6 +133,12 @@ class PresencesController < ApplicationController
 
     def authorize_edit_user
       unless current_user && verif_propriete_presence(current_user, @presence.association_user_id) 
+        redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
+    end
+
+    def check_datetime_user_presence
+      unless current_user && verif_delai_presence(Event.find(session[:event]).id)
         redirect_to root_path, alert: "You are not authorized to perform this action."
       end
     end
