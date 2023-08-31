@@ -1,10 +1,15 @@
-<p style="color: green"><%= notice %></p>
+<div class="p-2">
 
-<%= render @equipe %>
+  <%= render @equipe %>
 
-<div>
-  <%= link_to "Edit this equipe", edit_equipe_path(@equipe) %> |
-  <%= link_to "Back to equipes", equipes_path %>
+  <% if current_user && current_user.admin  %>
+    
+    <div>
+      <%= link_to "Edit this equipe", edit_equipe_path(@equipe) %> |
+      <%= link_to "Back to equipes", equipes_path %>
 
-  <%= button_to "Destroy this equipe", @equipe, method: :delete %>
+      <%= button_to "Destroy this equipe", @equipe, method: :delete %>
+    </div>
+  <% end %>
+
 </div>

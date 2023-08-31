@@ -1,7 +1,7 @@
 class CircuitsController < ApplicationController
 
   before_action :set_circuit, only: %i[ show edit update destroy ]
-  before_action :authorize_admin, only: %i[ show new create edit update destroy ]
+  before_action :authorize_admin, only: %i[ new create edit update destroy ]
 
   def index
     @circuits = Circuit.order(created_at: :desc)
