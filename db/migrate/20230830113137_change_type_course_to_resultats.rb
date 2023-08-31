@@ -1,5 +1,5 @@
 class ChangeTypeCourseToResultats < ActiveRecord::Migration[7.0]
   def change
-    change_column :resultats, :course, :integer
+    change_column :resultats, :course, 'integer USING course::integer'
   end
 end
