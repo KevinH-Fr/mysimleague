@@ -4,40 +4,52 @@ module UsersHelper
         current_user.association_users.includes(:division).map(&:division).uniq
     end
 
-    def user_resultats_stats(user)
-        stats = {}
-        
-        stats[:nb_courses] = Resultat.where(association_user_id: user.association_users).count
-
-        stats[:nb_victoires] = Resultat.where(association_user_id: user.association_users, course: 1).count
-        if stats[:nb_courses] > 0
-           stats[:tx_victoires] = sprintf("%.2f", (stats[:nb_victoires].to_f / stats[:nb_courses].to_f * 100))
-        else
-          stats[:tx_victoires] = "0.00" # Handle the case when there are no courses
+    def user_resultats_stats(user, user_compare)
+        if user
+          stats = {}
+          user_stats = {}
+          user_compare_stats = {}
+          
+          # Calculate stats for the main user
+          user_stats[:nb_courses] = Resultat.where(association_user_id: user.association_users).count
+          user_stats[:nb_victoires] = Resultat.where(association_user_id: user.association_users, course: 1).count
+          user_stats[:nb_podiums] = Resultat.where(association_user_id: user.association_users, course: (1..3)).count
+          user_stats[:nb_top5] = Resultat.where(association_user_id: user.association_users, course: (1..5)).count
+          user_stats[:nb_top10] = Resultat.where(association_user_id: user.association_users, course: (1..10)).count
+          
+          # Calculate stats for the user_compare, if provided
+          if user_compare
+            user_compare_stats[:nb_courses] = Resultat.where(association_user_id: user_compare.association_users).count
+            user_compare_stats[:nb_victoires] = Resultat.where(association_user_id: user_compare.association_users, course: 1).count
+            user_compare_stats[:nb_podiums] = Resultat.where(association_user_id: user_compare.association_users, course: (1..3)).count
+            user_compare_stats[:nb_top5] = Resultat.where(association_user_id: user_compare.association_users, course: (1..5)).count
+            user_compare_stats[:nb_top10] = Resultat.where(association_user_id: user_compare.association_users, course: (1..10)).count
+          end
+      
+          # Calculate percentages for both users
+          calculate_percentage = lambda do |stats_hash|
+            if stats_hash[:nb_courses] > 0
+              stats_hash[:tx_victoires] = sprintf("%.2f", (stats_hash[:nb_victoires].to_f / stats_hash[:nb_courses].to_f * 100))
+              stats_hash[:tx_podiums] = sprintf("%.2f", (stats_hash[:nb_podiums].to_f / stats_hash[:nb_courses].to_f * 100))
+              stats_hash[:tx_top5] = sprintf("%.2f", (stats_hash[:nb_top5].to_f / stats_hash[:nb_courses].to_f * 100))
+              stats_hash[:tx_top10] = sprintf("%.2f", (stats_hash[:nb_top10].to_f / stats_hash[:nb_courses].to_f * 100))
+            else
+              stats_hash[:tx_victoires] = "0.00"
+              stats_hash[:tx_podiums] = "0.00"
+              stats_hash[:tx_top5] = "0.00"
+              stats_hash[:tx_top10] = "0.00"
+            end
+          end
+      
+          calculate_percentage.call(user_stats)
+          calculate_percentage.call(user_compare_stats) if user_compare
+      
+          stats[:user_stats] = user_stats
+          stats[:user_compare_stats] = user_compare_stats if user_compare
+      
+          return stats
         end
-
-        stats[:nb_podiums] = Resultat.where(association_user_id: user.association_users, course: (1..3)).count
-        if stats[:nb_courses] > 0
-            stats[:tx_podiums] = sprintf("%.2f", (stats[:nb_podiums].to_f / stats[:nb_courses].to_f * 100))
-        else
-           stats[:tx_podiums] = "0.00" # Handle the case when there are no courses
-        end
-
-        stats[:nb_top5] = Resultat.where(association_user_id: user.association_users, course: (1..5)).count
-        if stats[:nb_top5] > 0
-            stats[:tx_top5] = sprintf("%.2f", (stats[:nb_top5].to_f / stats[:nb_courses].to_f * 100))
-        else
-           stats[:tx_top5] = "0.00" # Handle the case when there are no courses
-        end
-        
-        stats[:nb_top10] = Resultat.where(association_user_id: user.association_users, course: (1..10)).count
-        if stats[:nb_top10] > 0
-            stats[:tx_top10] = sprintf("%.2f", (stats[:nb_top10].to_f / stats[:nb_courses].to_f * 100))
-        else
-           stats[:tx_top5] = "0.00" # Handle the case when there are no courses
-        end
-
-        return stats
     end
+      
 end
   

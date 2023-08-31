@@ -2,53 +2,22 @@
 <div class="card-with-effect">
    <h4> stats pilote </h4>
 
-    <div class="badge bg-dark my-2">
-        nb courses: <%= user_resultats_stats(@user)[:nb_courses] %> <br>
-    </div> 
-
-    <table class="table table-striped text-center" style="max-width: 400px; margin: 0 auto;">
-        <thead class="table-dark">
-          <th> résultat </th>
-          <th> nombre</th>
-          <th> %</th>
-        </thead>
-          
-        <tbody>
-            <tr>
-                <td>Victoire</td>
-                <td>  <%= user_resultats_stats(@user)[:nb_victoires] %>  </td>
-                <td> <%= user_resultats_stats(@user)[:tx_victoires].to_f %> % </td>
-            </tr>
-
-            <tr>
-                <td>Podium</td>
-                <td>  <%= user_resultats_stats(@user)[:nb_podiums] %>  </td>
-                <td> <%= user_resultats_stats(@user)[:tx_podiums].to_f %> % </td>
-            </tr>
-                <tr>
-                <td>Top5</td>
-                <td>  <%= user_resultats_stats(@user)[:nb_top5] %>  </td>
-                <td> <%= user_resultats_stats(@user)[:tx_top5].to_f %> % </td>
-            </tr>
-            <tr>    
-                <td>Top10</td>
-                <td>  <%= user_resultats_stats(@user)[:nb_top10] %>  </td>
-                <td> <%= user_resultats_stats(@user)[:tx_top10].to_f %> % </td>
-            </tr>
-
-        </tbody>
-    </table>
-
-
     <%# comparaison %>
-    
-    <%= button_to display_comparaison_stats_home_index_path, class: "btn btn-sm btn-success m-1" do %>
-        <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
-        <span class="ms-2 fw-bold">Comparaison</span>
+
+    <%= form_tag(controller: 'home', action: 'display_comparaison_stats', id: @user.id) do %>
+        <%= label_tag :select_option, 'Select a pilote:' %>
+<%= select_tag :select_option, options_for_select(User.all.pluck(:nom, :id), nil), include_blank: true %>
+  
+        <%= button_tag type: 'submit', class: 'btn btn-sm btn-primary' do %>
+            <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
+            <span class="ms-2 fw-bold">Comparaison</span>
+        <% end %>
     <% end %>
-        
+    
+
     <div id="partial-container" class="p-2">
-       <%# recoit le turbo stream avec elements cliqués %>
+        <%# recoit le turbo stream avec elements cliqués %>
+        <%= render  "tableau_statistiques" %>      
     </div>
 
 </div>

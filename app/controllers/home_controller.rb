@@ -71,11 +71,21 @@ class HomeController < ApplicationController
 
   def display_comparaison_stats
 
-    @user = User.last
+   # @user = User.first
+    @user = User.find(params[:id])
+
+    selected_option = params[:select_option]
+    @user_compare = User.find(selected_option) if selected_option
+
+    puts "_____________________________________________________ user compare #{@user_compare.id}"
+
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update(
-          'partial-container', partial: 'users/comparaison_stats'
+        render turbo_stream: 
+          turbo_stream.update(
+          'partial-container', 
+          partial: 'users/tableau_statistiques',
+          locals: {user: @user}
         )
       end
     end

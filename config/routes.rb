@@ -24,14 +24,16 @@ Rails.application.routes.draw do
   end
 
   resources :home do
-    post 'display_parieurs', on: :collection
-    post 'display_demande_rattachement', on: :collection
-    post 'display_creer_ligue', on: :collection
+    collection do 
+      post 'display_parieurs'
+      post 'display_demande_rattachement'
+      post 'display_creer_ligue'
 
-    post 'display_parieurs_annee', on: :collection
-    post 'display_pilotes', on: :collection
+      post 'display_parieurs_annee'
+      post 'display_pilotes'
 
-    post 'display_comparaison_stats', on: :collection
+      post 'display_comparaison_stats'
+    end
 
   end
 
