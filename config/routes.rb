@@ -180,4 +180,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  mount ActiveAnalytics::Engine, at: "analytics"
+
+
+
 end

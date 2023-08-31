@@ -2,7 +2,7 @@
     DOI 
 
     <% if current_user %>
-      <% if verif_admin_ligue(current_user, @event.division.saison.ligue.id) || verif_appartenance_division(current_user, @division.id) %>
+      <% if verif_admin_ligue(current_user, @event.division.saison.ligue.id) || verif_appartenance_division(current_user,  session[:division]) %>
         <button class="btn btn-sm btn-warning m-2" type="button" 
           data-bs-toggle="collapse" data-bs-target="#collapseNewDoi" aria-expanded="false">
             <i class="fa-solid fa-square-plus fa-xl"></i>
@@ -12,11 +12,13 @@
     <% end %>
   </h4>
 
-  <div class="collapse" id="collapseNewDoi">
-    <div id="new_doi">
-      <%= render partial: "dois/form", locals: { doi: Doi.new } %>
+  <% if  verif_appartenance_division(current_user, session[:division])  %>    
+    <div class="collapse" id="collapseNewDoi">
+      <div id="new_doi">
+        <%= render partial: "dois/form", locals: { doi: Doi.new } %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
   <div id="dois">
     <% @dois.each do |doi| %>

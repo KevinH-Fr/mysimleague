@@ -33,8 +33,8 @@
           </span>
         <% end %>
 
-        Commentaire:  <%= doi.commentaire %>
-        Resp. commissaire: <strong> <%= AssociationAdmin.find(doi.association_admin_id).user.nom  if doi.association_admin_id %> </strong>
+       <%= "Commentaire: #{doi.commentaire}" if doi.commentaire.present? %>
+      <strong> <%= "Resp. commissaire: #{AssociationAdmin.find(doi.association_admin_id).user.nom}" if doi.association_admin_id.present? %> </strong>
 
         <div class="d-flex align-items-center">  
           <%= link_to "", generate_image_dois_path(doi: doi), 

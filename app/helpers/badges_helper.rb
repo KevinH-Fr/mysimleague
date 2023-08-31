@@ -37,7 +37,7 @@ module BadgesHelper
   def status_badge_decision_doi(value)
     if value == "fait_de_course"
       content_tag(:span, "fait de course", class: "badge bg-success")
-    else
+    elsif value == "responsable"
       content_tag(:span, "responsable", class: "badge bg-danger")
     end
   end
