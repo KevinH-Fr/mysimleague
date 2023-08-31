@@ -1,5 +1,10 @@
-<%= render @user %>
+<div class="p-2">
+    <%= render @user %>
+    <% if current_user && current_user == @user %>
+        <%= link_to 'Edit Profile', edit_user_registration_path(@user),
+            class: "btn btn-primary" %>
+    <% end %>
 
 
-<%# adapter pour rendre edit possible que pour current user %>
-<%= link_to 'Edit Registration', edit_user_registration_path(@user) %>
+    <%= render  "users/statistiques" %>
+</div>

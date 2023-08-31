@@ -1,0 +1,12 @@
+<% @pilotes.each do |pilote| %>
+    <div class="record-with-effect">
+        <div class="row">
+            <div class="col-10">
+                <%= pilote.nom %>
+            </div>
+            <div class="col-2 text-center">
+                <%= link_to  "", user_path(pilote), class: "btn btn-sm btn-primary fa-solid fa-eye m-1" %> 
+            </div>
+        </div>
+    </div>
+<% end %>

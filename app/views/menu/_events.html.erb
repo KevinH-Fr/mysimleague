@@ -1,6 +1,5 @@
 <div class="card-with-effect m-0">
 
-
   <h4 class="d-inline mx-1"> Events </h4>
 
   <% if current_user && verif_admin_ligue(current_user, session[:ligue])  %>
@@ -73,7 +72,6 @@
           <i class="fa fa-solid fa-xl fa-money-bill-wave text-success"></i>
           <span class="ms-1 fw-bold">Paris</span>
         <% end %>
-
 
         <%= button_to display_classement_pilotes_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
             data: { controller: "button-color", action: "click->button-color#handleClick" } do %>

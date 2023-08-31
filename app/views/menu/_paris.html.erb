@@ -1,4 +1,7 @@
-    
+<h4 class="titre-topic">
+  Paris
+</h4>
+
 <% if verif_delai_pari(@event.id) %>
 
     <% if current_user %>
@@ -20,9 +23,12 @@
     <% end %>
     
 <% else %>
-    <div class="container">
-        <%= boolean_container(false, "Les paris sont fermés") %>
-    </div>
+    <h4>
+        <div class="container">
+                <%= boolean_container(false, "Les paris sont fermés") %>
+        </div>
+    </h4>
+
 <% end %>
 
 <% if @event %>

@@ -50,6 +50,20 @@ class HomeController < ApplicationController
     end
   end
 
+  def display_pilotes 
+
+    @pilotes = User.all 
+    
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          'partial-container', partial: 'home/pilotes'
+        )
+      end
+    end
+
+  end
+
 
   def display_creer_ligue
     redirect_to menu_index_path
