@@ -58,3 +58,5 @@ gem 'dotenv-rails', groups: [:development, :test]
 gem 'open-weather-ruby-client'
 
 gem 'active_analytics'
+
+gem 'sitemap_generator'
