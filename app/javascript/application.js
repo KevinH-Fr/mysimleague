@@ -8,3 +8,5 @@ import "@rails/request.js"
 import "jquery"
 import "jquery_ujs"
 
+//= require Chart.min
+

@@ -81,12 +81,18 @@ class HomeController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: 
+        render turbo_stream: [
           turbo_stream.update(
           'partial-container', 
           partial: 'users/tableau_statistiques',
           locals: {user: @user}
-        )
+        ),
+        turbo_stream.prepend(
+          'partial-container', 
+          partial: 'users/chartpie',
+          locals: {user: @user}
+        ),
+        ]
       end
     end
   end

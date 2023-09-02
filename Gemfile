@@ -46,17 +46,14 @@ gem "wkhtmltopdf-heroku", group: :production
 
 gem 'imgkit'
 gem 'wkhtmltoimage-binary'
-
 gem 'activeadmin'
-
 gem 'sassc-rails'
-
 gem 'cloudinary'
 
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'open-weather-ruby-client'
-
 gem 'active_analytics'
-
 gem 'sitemap_generator'
+
+gem 'chart-js-rails'
