@@ -1,83 +1,9 @@
-<div class="chart-container" style="position: relative; height: 100%; width: 100%">
-    <canvas id="myChartPie"></canvas>
+
+<div data-controller="chart" 
+     data-chart-user-stats="<%= @data %>"
+     data-chart-user-compare-stats="<%= @data_compare %>">
+
+  <div class="container mt-1 text-center">
+    <canvas id="myChartRadar" height="300"></canvas>
+  </div>
 </div>
-
-<% stats = user_resultats_stats(@user, @user_compare) %>
-<% @data = [ 
-    stats[:user_stats][:nb_victoires],
-    stats[:user_stats][:nb_podiums],
-    stats[:user_stats][:nb_victoires],
-    stats[:user_stats][:nb_victoires]
-] %>
-
-<% @data_compare = [ 
-    stats[:user_compare_stats][:nb_victoires],
-    stats[:user_compare_stats][:nb_podiums],
-    stats[:user_compare_stats][:nb_victoires],
-    stats[:user_compare_stats][:nb_victoires]
-] if @user_compare %>
-
-
-<div class="chart-container" style="position: relative; height: 100%; width: 100%">
-    <canvas id="myChartBar"></canvas>
-</div>
-
-<script>
-    var couleurVictoire = 'rgb(233, 222, 61)';
-    var couleurPodium = 'rgb(205, 127, 50)';
-    var couleurTop5 = 'rgb(54, 162, 235)';
-    var couleurTop10 = 'rgb(82, 189, 93)';
-
-    var ctx = document.getElementById('myChartBar');
-    var dataAvailable = <%= @data.present? %>; // Check if data is available for the user
-    var dataCompareAvailable = <%= @data_compare.present? %>; // Check if data is available for the user_compare
-
-    if (ctx) {
-        var datasets = [
-            {
-                label: '<%= @user&.nom || "User" %>', // Use user's name if available, or "User" as fallback
-                data: <%= @data.to_json.html_safe %>,
-                backgroundColor: [
-                    couleurVictoire,
-                    couleurPodium,
-                    couleurTop5,
-                    couleurTop10
-                ]
-            }
-        ];
-
-        if (dataCompareAvailable) {
-            datasets.push({
-                label: '<%= @user_compare&.nom || "User Compare" %>', // Use user_compare's name if available, or "User Compare" as fallback
-                data: <%= @data_compare.to_json.html_safe %>,
-                backgroundColor: [
-                    'rgb(255, 0, 0)',
-                    'rgb(0, 255, 0)',
-                    'rgb(0, 0, 255)',
-                    'rgb(128, 128, 0)'
-                ]
-            });
-        }
-
-        new Chart(ctx, {
-            type: 'bar',
-            data: {
-                labels: ['Victoire', 'Podium', 'Top5', 'Top10'],
-                datasets: datasets
-            },
-            options: {
-                scales: {
-                    y: {
-                        beginAtZero: true
-                    }
-                },
-                plugins: {
-                    legend: {
-                        display: true,
-                        position: 'right',
-                    },
-                },
-            }
-        });
-    }
-</script>

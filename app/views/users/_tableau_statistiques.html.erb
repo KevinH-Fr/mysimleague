@@ -1,102 +1,99 @@
+<% if @user_compare %>
+    <div class="container">
+        comparaison avec: <%= @user_compare.nom %>
+    </div>      
+<% end %>
+
+<% stats = user_resultats_stats(@user, @user_compare) %>
+<% if stats.present? %>
+
+    <div class="badge bg-dark my-2">
+        nb courses <%= @user.nom %>: <%= stats[:user_stats][:nb_courses] %> <br>
+    </div>
+
     <% if @user_compare %>
-        <div class="container">
-            comparaison avec: <%= @user_compare.nom %>
-        </div>      
+        <div class="badge bg-dark my-2">
+            nb courses  <%= @user_compare.nom %>: <%= stats[:user_compare_stats][:nb_courses] %> <br>  
+        </div>
     <% end %>
 
-    <% stats = user_resultats_stats(@user, @user_compare) %>
-    <% if stats.present? %>
-
-        <div class="badge bg-dark my-2">
-            nb courses <%= @user.nom %>: <%= stats[:user_stats][:nb_courses] %> <br>
-        </div>
+    <table class="table table-striped text-center" style="max-width: 400px; margin: 0 auto;">
+        <thead class="table-dark">
+            <th> résultat </th>
+            <% if @user_compare %>
+                <th colspan=2> nombre</th>
+                <th colspan=2> % </th>
+            <% else %>
+                <th> nombre</th>
+                <th> %</th>
+            <% end %>
+        </thead>
 
         <% if @user_compare %>
-            <div class="badge bg-dark my-2">
-                nb courses  <%= @user_compare.nom %>: <%= stats[:user_compare_stats][:nb_courses] %> <br>  
-            </div>
-        <% end %>
-
-
-        <table class="table table-striped text-center" style="max-width: 400px; margin: 0 auto;">
-            <thead class="table-dark">
-                <th> résultat </th>
-                <% if @user_compare %>
-                    <th colspan=2> nombre</th>
-                    <th colspan=2> % </th>
-                <% else %>
-                    <th> nombre</th>
-                    <th> %</th>
-
-                <% end %>
-                
+            <thead>
+                <th></th>
+                <th> <%= @user.nom %> </th>
+                <th> <%= @user_compare.nom %> </th>
+                <th> <%= @user.nom %> </th>
+                <th> <%= @user_compare.nom %> </th>
             </thead>
+        <% end %>
+                    
+        <tbody>
+            <tr>
+                <td>Victoire</td>
+                <% if @user_compare %>
+                    <td> <%= stats[:user_stats][:nb_victoires] %>  </td>
+                    <td> <%= stats[:user_compare_stats][:nb_victoires] %>  </td>
+                    <td> <%= stats[:user_stats][:tx_victoires] %>  </td>
+                    <td> <%= stats[:user_compare_stats][:tx_victoires] %>  </td>
 
-            <% if @user_compare %>
-                <thead>
-                    <th></th>
-                    <th> <%= @user.nom %> </th>
-                    <th> <%= @user_compare.nom %> </th>
-                    <th> <%= @user.nom %> </th>
-                    <th> <%= @user_compare.nom %> </th>
-                </thead>
-            <% end %>
-                        
-            <tbody>
-                <tr>
-                    <td>Victoire</td>
-                    <% if @user_compare %>
-                        <td> <%= stats[:user_stats][:nb_victoires] %>  </td>
-                        <td> <%= stats[:user_compare_stats][:nb_victoires] %>  </td>
-                        <td> <%= stats[:user_stats][:tx_victoires] %>  </td>
-                        <td> <%= stats[:user_compare_stats][:tx_victoires] %>  </td>
+                <% else %>
+                    <td> <%= stats[:user_stats][:nb_victoires] %>  </td>
+                    <td> <%= stats[:user_stats][:tx_victoires] %>  </td>
+                <% end %>                    
+            </tr>
 
-                    <% else %>
-                        <td> <%= stats[:user_stats][:nb_victoires] %>  </td>
-                        <td> <%= stats[:user_stats][:tx_victoires] %>  </td>
-                    <% end %>                    
-                </tr>
+            <tr>
+                <td>Podium</td>
+                <% if @user_compare %>
+                    <td> <%= stats[:user_stats][:nb_podiums] %>  </td>
+                    <td> <%= stats[:user_compare_stats][:nb_podiums] %>  </td>
+                    <td> <%= stats[:user_stats][:tx_podiums] %>  </td>
+                    <td> <%= stats[:user_compare_stats][:tx_podiums] %>  </td>
+                <% else %>
+                    <td> <%= stats[:user_stats][:nb_podiums] %>  </td>
+                    <td> <%= stats[:user_stats][:tx_podiums] %>  </td>
+                <% end %>
+            </tr>
 
-                <tr>
-                    <td>Podium</td>
-                    <% if @user_compare %>
-                        <td> <%= stats[:user_stats][:nb_podiums] %>  </td>
-                        <td> <%= stats[:user_compare_stats][:nb_podiums] %>  </td>
-                        <td> <%= stats[:user_stats][:tx_podiums] %>  </td>
-                        <td> <%= stats[:user_compare_stats][:tx_podiums] %>  </td>
-                    <% else %>
-                        <td> <%= stats[:user_stats][:nb_podiums] %>  </td>
-                        <td> <%= stats[:user_stats][:tx_podiums] %>  </td>
-                    <% end %>
-                </tr>
+            <tr>
+                <td>Top5</td>
+                <% if @user_compare %>
+                    <td> <%= stats[:user_stats][:nb_top5] %>  </td>
+                    <td> <%= stats[:user_compare_stats][:nb_top5] %>  </td>
+                    <td> <%= stats[:user_stats][:tx_top5] %>  </td>
+                    <td> <%= stats[:user_compare_stats][:tx_top5] %>  </td>
+                <% else %>
+                    <td> <%= stats[:user_stats][:nb_top5] %>  </td>
+                    <td> <%= stats[:user_stats][:tx_top5] %>  </td>
+                <% end %>
+            </tr>
 
-                <tr>
-                    <td>Top5</td>
-                    <% if @user_compare %>
-                        <td> <%= stats[:user_stats][:nb_top5] %>  </td>
-                        <td> <%= stats[:user_compare_stats][:nb_top5] %>  </td>
-                        <td> <%= stats[:user_stats][:tx_top5] %>  </td>
-                        <td> <%= stats[:user_compare_stats][:tx_top5] %>  </td>
-                    <% else %>
-                        <td> <%= stats[:user_stats][:nb_top5] %>  </td>
-                        <td> <%= stats[:user_stats][:tx_top5] %>  </td>
-                    <% end %>
-                </tr>
+            <tr>
+                <td>Top10</td>
+                <% if @user_compare %>
+                    <td> <%= stats[:user_stats][:nb_top10] %>  </td>
+                    <td> <%= stats[:user_compare_stats][:nb_top10] %>  </td>
+                    <td> <%= stats[:user_stats][:tx_top10] %>  </td>
+                    <td> <%= stats[:user_compare_stats][:tx_top10] %>  </td>
+                <% else %>
+                    <td> <%= stats[:user_stats][:nb_top10] %>  </td>
+                    <td> <%= stats[:user_stats][:tx_top10] %>  </td>
+                <% end %>
+            </tr>
 
-                <tr>
-                    <td>Top10</td>
-                    <% if @user_compare %>
-                        <td> <%= stats[:user_stats][:nb_top10] %>  </td>
-                        <td> <%= stats[:user_compare_stats][:nb_top10] %>  </td>
-                        <td> <%= stats[:user_stats][:tx_top10] %>  </td>
-                        <td> <%= stats[:user_compare_stats][:tx_top10] %>  </td>
-                    <% else %>
-                        <td> <%= stats[:user_stats][:nb_top10] %>  </td>
-                        <td> <%= stats[:user_stats][:tx_top10] %>  </td>
-                    <% end %>
-                </tr>
+        </tbody>
+    </table>
 
-            </tbody>
-        </table>
-
-    <% end %>
+<% end %>

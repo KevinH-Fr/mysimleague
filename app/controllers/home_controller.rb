@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
   include FeedsHelper
+  include UsersHelper
   
   def index
     feeds = feeds_elements
@@ -76,6 +77,21 @@ class HomeController < ApplicationController
 
     selected_option = params[:select_option]
     @user_compare = User.find(selected_option) if selected_option
+
+    stats = user_resultats_stats(@user, @user_compare)
+    @data = [ 
+      stats[:user_stats][:nb_victoires],
+      stats[:user_stats][:nb_podiums],
+      stats[:user_stats][:nb_top5],
+      stats[:user_stats][:nb_top10]
+    ]
+
+    @data_compare = [
+      stats[:user_compare_stats][:nb_victoires],
+      stats[:user_compare_stats][:nb_podiums],
+      stats[:user_compare_stats][:nb_top5],
+      stats[:user_compare_stats][:nb_top10]
+    ] if @user_compare
 
     puts "_____________________________________________________ user compare #{@user_compare.id}"
 
