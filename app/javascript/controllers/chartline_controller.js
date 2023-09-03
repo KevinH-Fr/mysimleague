@@ -6,19 +6,21 @@ Chart.register(...registerables);
 export default class extends Controller {
 
   connect() {
+    console.log("connect chartline controller");
 
-    console.log("connect chart radar controller");
+    // Parse userStats and userCompareStats as JSON
+    var userResultats = JSON.parse(this.data.get("userResultats"));
 
-    var userStats = JSON.parse(this.data.get("userStats")); // Parse userStats as JSON
-    var userCompareStats = JSON.parse(this.data.get("userCompareStats")); // Parse userStats as JSON
+    console.log(userResultats);
+    var userCompareStats = JSON.parse(this.data.get("userCompareStats"));
 
-    var ctx = document.getElementById('myChartRadar');
+    var ctx = document.getElementById('myChartLine');
 
     const datasets = [
       {
         label: 'Main',
-        data: userStats,
-        backgroundColor: 'rgba(75, 192, 192, 0.2)',
+        data: userResultats,
+        fill: false, // Set to false to create a line chart
         borderColor: 'rgba(75, 192, 192, 1)',
         borderWidth: 1
       }
@@ -28,7 +30,7 @@ export default class extends Controller {
       datasets.push({
         label: 'Second',
         data: userCompareStats,
-        backgroundColor: 'rgba(75, 100, 192, 0.2)',
+        fill: false, // Set to false to create a line chart
         borderColor: 'rgba(75, 100, 192, 1)',
         borderWidth: 1
       });
@@ -36,19 +38,23 @@ export default class extends Controller {
 
     const data = {
       labels: ['Victoire', 'Podium', 'Top5', 'Top10'],
+      // get dates of race scores 
       datasets: datasets
     };
 
     const options = {
       scales: {
-        r: {
+        x: {
+          beginAtZero: true
+        },
+        y: {
           beginAtZero: true
         }
       }
     };
 
     new Chart(ctx, {
-      type: 'radar',
+      type: 'line',
       data: data,
       options: options
     });

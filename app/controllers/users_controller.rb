@@ -10,8 +10,13 @@ class UsersController < ApplicationController
       stats[:user_stats][:nb_victoires],
       stats[:user_stats][:nb_podiums],
       stats[:user_stats][:nb_victoires],
-      stats[:user_stats][:nb_victoires]
+      stats[:user_stats][:nb_victoires],
+      
     ]
+
+    resultats = user_resultats_scores(@user, @user_compare)
+    @data_resultats = [ 10, 15, 20 ]
+
 
     @data_compare = []
   end

@@ -16,8 +16,8 @@ module UsersHelper
           user_stats[:nb_podiums] = Resultat.where(association_user_id: user.association_users, course: (1..3)).count
           user_stats[:nb_top5] = Resultat.where(association_user_id: user.association_users, course: (1..5)).count
           user_stats[:nb_top10] = Resultat.where(association_user_id: user.association_users, course: (1..10)).count
-          
-          # Calculate stats for the user_compare, if provided
+
+    # Calculate stats for the user_compare, if provided
           if user_compare
             user_compare_stats[:nb_courses] = Resultat.where(association_user_id: user_compare.association_users).count
             user_compare_stats[:nb_victoires] = Resultat.where(association_user_id: user_compare.association_users, course: 1).count
@@ -49,6 +49,20 @@ module UsersHelper
       
           return stats
         end
+    end
+
+    def user_resultats_scores(user, user_compare)
+
+      if user
+        resultats = {}
+        user_resultats = {}
+
+        user_resultats[:all_scores] = Resultat.where(association_user_id: user.association_users)
+        .pluck(:score)
+        .map { |score| score.nil? ? 0 : score.to_i }
+
+      end 
+
     end
       
 end
