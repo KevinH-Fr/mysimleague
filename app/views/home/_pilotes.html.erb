@@ -2,7 +2,7 @@
     <div class="record-with-effect">
         <div class="row">
             <div class="col-10">
-                <%= pilote.nom %>
+                <%= link_to pilote.nom, user_path(pilote), class: "no-underline text-dark" %>
             </div>
             <div class="col-2 text-center">
                 <%= link_to  "", user_path(pilote), class: "btn btn-sm btn-primary fa-solid fa-eye m-1" %> 

@@ -100,6 +100,7 @@ class HomeController < ApplicationController
     @data_resultats_compare = []
 
     respond_to do |format|
+      
       format.turbo_stream do
         render turbo_stream: [
           turbo_stream.update(

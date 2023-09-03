@@ -4,18 +4,28 @@
 
     <%# comparaison %>
 
+<div data-controller="submit-form">
+
   <%= form_tag(controller: 'home', action: 'display_comparaison_stats', id: @user.id) do %>
 
     <div class="input-group input-group-sm my-2">
-      <%= label_tag :select_option, 'Select a pilote:', class: 'input-group-text' %>
-      <%= select_tag :select_option, options_for_select(User.all.pluck(:nom, :id), nil), include_blank: true, class: 'form-select' %>
-      <button type="submit" class="btn btn-sm btn-primary">
-          <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
+      <%= label_tag :select_option, 'Select a pilote:', class: 'input-group-text bg-primary text-light' do %>
+        <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
+        <span class="ms-2 fw-bold">Comparaison</span>
+      <% end %>
+      
+      <%= select_tag :select_option, options_for_select(User.all.pluck(:nom, :id), nil), include_blank: true, class: 'form-select', id: 'select_option',
+            data: { submit_form_target: "select" } %>
+
+      <button type="submit" class="btn" id="submit_button" style="display: none;">
           <span class="ms-2 fw-bold">Comparaison</span>
       </button>
     </div>
 
   <% end %>
+
+</div>
+
     
   <div class="d-flex flex-wrap justify-content-center align-items-center" id="partial-container">
       <%# recoit le turbo stream avec elements cliqués %>
