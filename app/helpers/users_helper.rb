@@ -52,18 +52,38 @@ module UsersHelper
     end
 
     def user_resultats_scores(user, user_compare)
-
+      resultats = {}
+    
       if user
-        resultats = {}
-        user_resultats = {}
-
-        user_resultats[:all_scores] = Resultat.where(association_user_id: user.association_users)
-        .pluck(:score)
-        .map { |score| score.nil? ? 0 : score.to_i }
-
-      end 
-
+        user_resultats = Resultat.joins(:event)
+                                 .where(association_user_id: user.association_users)
+                                 .order("events.horaire ASC") # Order by horaire
+                                 .pluck(:score, "events.horaire")
+                                 .map { |score, horaire| { 
+                                  score: score.nil? ? 0 : score.to_i, 
+                                  event: horaire.strftime("%d %b %Y") } }
+        
+        resultats[:user] = user_resultats
+      else
+        resultats[:user] = []
+      end
+    
+      if user_compare
+        user_compare_resultats = Resultat.joins(:event)
+                                         .where(association_user_id: user_compare.association_users)
+                                         .order("events.horaire ASC") # Order by horaire
+                                         .pluck(:score, "events.horaire")
+                                         .map { |score, horaire| { 
+                                          score: score.nil? ? 0 : score.to_i, 
+                                          event: horaire.strftime("%d %b %Y") } }
+        
+        resultats[:user_compare] = user_compare_resultats
+      else
+        resultats[:user_compare] = []
+      end
+    
+      resultats
     end
-      
+        
 end
   

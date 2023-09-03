@@ -72,12 +72,12 @@ class HomeController < ApplicationController
 
   def display_comparaison_stats
 
-   # @user = User.first
     @user = User.find(params[:id])
 
     selected_option = params[:select_option]
     @user_compare = User.find(selected_option) if selected_option
 
+    # datas pour chartradar
     stats = user_resultats_stats(@user, @user_compare)
     @data = [ 
       stats[:user_stats][:nb_victoires],
@@ -93,7 +93,11 @@ class HomeController < ApplicationController
       stats[:user_compare_stats][:nb_top10]
     ] if @user_compare
 
-    puts "_____________________________________________________ user compare #{@user_compare.id}"
+    # datas pour chartline
+    resultats = user_resultats_scores(@user, @user_compare)
+    @data_resultats = resultats.to_json
+
+    @data_resultats_compare = []
 
     respond_to do |format|
       format.turbo_stream do
@@ -105,10 +109,15 @@ class HomeController < ApplicationController
         ),
         turbo_stream.prepend(
           'partial-container', 
-          partial: 'users/chartpie',
+          partial: 'users/chartline',
           locals: {user: @user}
         ),
-        ]
+        turbo_stream.prepend(
+          'partial-container', 
+          partial: 'users/chartradar',
+          locals: {user: @user}
+        ),
+      ]
       end
     end
   end

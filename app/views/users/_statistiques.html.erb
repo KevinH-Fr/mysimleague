@@ -1,6 +1,6 @@
 
 <div class="card-with-effect">
-   <h4> Statistiques </h4>
+   <h4 class="text-center my-4"> Statistiques </h4>
 
     <%# comparaison %>
 
@@ -17,13 +17,11 @@
 
   <% end %>
     
-  <div id="partial-container" class="p-2">
+  <div class="d-flex flex-wrap justify-content-center align-items-center" id="partial-container">
       <%# recoit le turbo stream avec elements cliqués %>
-      <%= render "chartpie" %>      
+      <%= render "chartradar" %>      
       <%= render "chartline" %>      
       <%= render "tableau_statistiques" %>      
   </div>
-
-  
 
 </div>
