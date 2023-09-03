@@ -25,9 +25,21 @@ SitemapGenerator::Sitemap.create do
   #     add article_path(article), :lastmod => article.updated_at
   #   end
 
+  add '/home', :changefreq => 'daily', :priority => 0.9
+
+  add '/menu', :changefreq => 'daily', :priority => 0.9
+
   Circuit.find_each do |circuit|
     add(circuit_path(circuit),
       :lastmod => circuit.updated_at,
+      :changefreq => 'weekly',
+      :priority => 0.9
+    )
+  end
+
+  Ligue.find_each do |ligue|
+    add(ligue_path(ligue),
+      :lastmod => ligue.updated_at,
       :changefreq => 'weekly',
       :priority => 0.9
     )
