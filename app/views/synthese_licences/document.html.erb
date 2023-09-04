@@ -6,7 +6,7 @@
 
 <%= stylesheet_link_tag "document" %>
 
-<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+<div id="captureContainer" class="doc-background my-2" style="width: 100%; max-width: 500px; margin-left:auto;margin-right:auto;">
  
   <body>
 
@@ -15,6 +15,16 @@
     <%#= tableau data class pilotes %>
         
     <table style="margin-left:auto;margin-right:auto">
+
+      <thead class="text-center">
+        <tr>
+          <th></th>
+          <th class="text-danger">Perte</th>
+          <th class="text-success">Gain</th>
+          <th>Solde</th>
+        </tr>
+      </thead>
+
       <tbody>
         <% cumul_licence_user(@event).each do |user| %>
 
@@ -29,12 +39,12 @@
             </td>
  
             <td>
-              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center text-danger">
                 <%= user[:perte_total] %> 
               </div>
             </td>
             <td>
-              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center text-success">
                 <%= user[:gain_total] %> 
               </div>
             </td>

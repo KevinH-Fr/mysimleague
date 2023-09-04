@@ -6,7 +6,7 @@
 
 <%= stylesheet_link_tag "document" %>
 
-<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+<div id="captureContainer" class="doc-background my-2" style="width: 100%; max-width: 500px; margin-left:auto;margin-right:auto;">
  
   <body>
 
@@ -35,12 +35,18 @@
                 <%= equipe[:score_sum] %> 
               </div>
             </td>
-            <td>
-              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
-                <% comparison = compare_equipe_ranks(@previous_event, @event)[equipe[:nom]] if @previous_event %>
-                <%= badge_delta_rank(comparison[:delta_rank].to_i) if comparison %>
-              </div>
-            </td>
+
+            <% if @previous_event %>
+
+              <td>
+                <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                  <% comparison = compare_equipe_ranks(@previous_event, @event)[equipe[:nom]] if @previous_event %>
+                  <%= badge_delta_rank(comparison[:delta_rank].to_i) if comparison %>
+                </div>
+              </td>
+            
+            <% end %>
+            
           </tr>
         <% end %> 
       </tbody>  

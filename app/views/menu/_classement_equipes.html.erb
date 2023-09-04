@@ -1,4 +1,8 @@
-<h4 class="titre-topic">classement equipes </h4>
+<div class="container-fluid px-4 text-center card-with-effect">
+ Retrouve ici le classement équipes !
+</div>
+
+<h4 class="titre-topic">classement équipes </h4>
 
 <% somme_equipe(@event).each do |equipe| %>
   <div class="d-flex align-items-center justify-content-center my-1">
@@ -20,7 +24,7 @@
 
 <% end %>
 
-<div class="container">
+<div class="container my-2">
   <%= link_to "", generate_image_class_equipes_path(event: @event.id), 
         class: 'btn btn-success fa fa-image' %>
   <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>

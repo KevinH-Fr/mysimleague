@@ -38,12 +38,15 @@ module DotdsHelper
       horaire = event.horaire
       time_difference = Time.now - horaire
       hours_difference = time_difference / 3600
-      allowed_hours = 36
+      allowed_hours = 32
     
       if hours_difference <= allowed_hours
         true
+        puts "___ time diff: #{hours_difference}"
       else
         false
+        puts "___ time diff: #{hours_difference}"
+
       end
     end
 

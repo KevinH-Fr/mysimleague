@@ -23,7 +23,7 @@
 
       <div class="col d-flex justify-content-end align-items-center">
 
-        <% if @show_buttons && current_user && verif_admin_ligue(current_user, event.division.saison.ligue) %>
+        <% if current_user && verif_admin_ligue(current_user, event.division.saison.ligue) %>
 
           <button class="btn btn-sm btn-primary fa-solid fa-eye m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetailsEvent" aria-expanded="false">
           </button>

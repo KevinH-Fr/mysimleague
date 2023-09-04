@@ -1,4 +1,8 @@
 
+<div class="container-fluid px-4 text-center card-with-effect">
+  Retrouve ici tous les résultats des courses !
+</div>
+
 <h4 class="titre-topic">
   Résultats
 
@@ -11,6 +15,8 @@
 
 </h4>
 
+
+
 <div class="d-flex align-items-center justify-content-center m-0 p-0">
   <div class="collapse my-2" id="collapseNewEvent">
     <div id="new_resultat">
@@ -21,9 +27,7 @@
 
 <%= render  "resultats/resultats" %>
 
-<hr>  
-
-<div class="container">
+<div class="container my-2">
   <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
   <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-film btn-primary' %>
 </div>

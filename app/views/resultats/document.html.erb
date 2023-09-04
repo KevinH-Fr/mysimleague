@@ -7,7 +7,7 @@
 <%= stylesheet_link_tag "document" %>
 
 
-<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+<div style="width: 100%; max-width: 500px; margin-left:auto;margin-right:auto;" id="captureContainer" class="doc-background my-2">
 
   <body>
 
@@ -16,6 +16,7 @@
     <%#= tableau data resultats %>
         
     <table style="margin-left:auto;margin-right:auto">
+
       <tbody>
         <% @resultats.each do |resultat| %>
           <% nom = User.find(resultat.association_user.user_id).nom %>
@@ -42,9 +43,9 @@
                  <%= resultat.score %> 
               </div>
             </td>
-            <td style= "width: 28px; margin-top: 4px;">
+            <td style= "">
               <% if resultat.mt == true %>
-                <%= image_tag asset_url('/images/mt_violet.png'), style: "max-width: 100%; max-height: 100%;" %>
+                <%= image_tag asset_url('/images/mt_violet.png'), style: "width: 28px; margin-top: 4px; margin-right: 2px;" %> 
               <% end %>
             </td>
           </tr>
