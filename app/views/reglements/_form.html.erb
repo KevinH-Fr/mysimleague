@@ -15,12 +15,12 @@
 
     <%= form.hidden_field :ligue_id, value: session[:ligue] %>
 
-    <div class="form-check form-switch">
+    <!--div class="form-check form-switch">
       <% if current_user && current_user.admin %>
         <%= form.label :defaut, class: "form-check-label" %>
         <%= form.check_box :defaut, class: "form-check-input" %>
       <% end %>
-    </div>
+    </div-->
 
     <div class="row g-2">
       <div class="col-md">

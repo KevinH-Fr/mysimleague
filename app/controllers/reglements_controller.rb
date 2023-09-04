@@ -1,6 +1,9 @@
 class ReglementsController < ApplicationController
+
+  include AssociationAdminsHelper
+
   before_action :set_reglement, only: %i[ show edit update destroy ]
-  before_action :authorize_admin, only: %i[ index new create edit update destroy ]
+  before_action :authorize_admin_ligue, only: %i[ index new create edit update destroy ]
 
   def index
     @reglements = Reglement.all
@@ -122,8 +125,8 @@ class ReglementsController < ApplicationController
 
   private
 
-  def authorize_admin
-    unless current_user && current_user.admin 
+  def authorize_admin_ligue
+    unless current_user && verif_admin_ligue(current_user, session[:ligue]) 
       redirect_to root_path, alert: "You are not authorized to perform this action."
     end
   end

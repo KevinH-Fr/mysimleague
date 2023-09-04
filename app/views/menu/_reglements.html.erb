@@ -1,6 +1,6 @@
 <h4>Règlements</h4>
 
-<% if @ligue.reglement_defaut == false %>
+<%# if @ligue.reglement_defaut == false %>
     
     <% if current_user && verif_admin_ligue(current_user, @ligue.id)  %>
         <button class="btn btn-sm btn-primary my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReglements" aria-expanded="false">
@@ -14,7 +14,7 @@
         </div>
     </div>   
 
-<% end %>
+<%# end %>
 
 <div id="reglements">
 
