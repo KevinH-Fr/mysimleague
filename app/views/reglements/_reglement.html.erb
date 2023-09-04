@@ -4,13 +4,16 @@
 
     <div class="row align-items-center">
       <div class="col-8">
-        Ligue: <%= reglement.ligue_id %>
-        Defaut: <%= reglement.defaut %>
-        Num article: <%= reglement.num_article %>
-        Titre article:  <%= reglement.titre_article %>
-        Contenu article: <%= reglement.contenu_article %>
-        Penalite: <%= reglement.penalite %>
-        Penalite temps:  <%= reglement.penalite_temps %>
+        <span class="fw-bold">
+          N° <%= reglement.num_article %>
+          Titre:  <%= reglement.titre_article %>
+        </span>
+          Contenu: <%= reglement.contenu_article %>
+        <span class="text-danger">
+          <%= "Penalite: #{reglement.penalite}" %>
+          <%= " Penalite temps: #{reglement.penalite_temps}" %>
+        </span>
+
       </div>
       <div class="col-4 d-flex justify-content-end align-items-center">
          

@@ -18,7 +18,7 @@
 
     <div class="input-group input-group-sm my-2">
       <%= form.label :user_id, class: "input-group-text" %>
-      <%= form.collection_select :user_id, User.all, :id, :nom, 
+      <%= form.collection_select :user_id, User.all.order(:nom), :id, :nom, 
        { include_blank: 'Select a pilote' }, class: "form-select" %>
     </div>
 
@@ -27,7 +27,7 @@
 
     <div class="input-group input-group-sm my-2">
       <%= form.label :equipe_id, class: "input-group-text" %>
-      <%= form.collection_select :equipe_id, Equipe.all, :id, :nom, 
+      <%= form.collection_select :equipe_id, Equipe.all.order(:nom), :id, :nom, 
        { include_blank: 'Select a team' }, class: "form-select" %>
     </div>
 
