@@ -48,8 +48,8 @@ export default class extends Controller {
         var capturer = this.capturer; // Assign capturer from the controller instance
 
         var totalPilotes = 20;
-        var hauteurEquipeImage = 25;
-        var widthPosition = 40;
+        var hauteurEquipeImage = 20;
+        var widthPosition = 35;
         const sizeMtDotd = 25;
 
         const margeX = 30;
@@ -82,7 +82,7 @@ export default class extends Controller {
 
         var imageObjects = []; 
 
-        var deltaYparPosition = 30;
+        var deltaYparPosition = 22;
 
         var positionY;
         var labelStep;
@@ -226,7 +226,7 @@ export default class extends Controller {
                         positionY = basePositionStep3 + positionOffset;
 
                         labelStep = "Fin";
-                        textContent.push( labelPilote + ' q: ' + resultat.qualification);
+                        textContent.push( labelPilote);
                         posContent.push( resultat.course );
                         scoreContent.push(resultat.score);
 
@@ -256,7 +256,7 @@ export default class extends Controller {
                         positionStep3 = basePositionY - (deltaYparPosition * (totalPilotes - resultat.course));
                         positionY = positionStep3;
                         labelStep = "Fin";
-                        textContent.push( labelPilote + ' q: ' + resultat.qualification);
+                        textContent.push( labelPilote);
                         posContent.push( resultat.course );
                         scoreContent.push(resultat.score);
 
@@ -275,11 +275,11 @@ export default class extends Controller {
                 ctx.fillRect(5, 5, canvas.width - 10, 30);
 
                 ctx.fillStyle = "white";
-                ctx.font = "20px F1regular";
+                ctx.font = "18px F1regular";
                 //var text = `Step ${step + 1} of ${animationSteps} ${labelStep}`;
                 var text = labelStep;
                 var textWidth = ctx.measureText(text).width;
-                var x = (canvas.width - textWidth) / 2;-
+                var x = (canvas.width - textWidth) / 2;
                 ctx.fillText(text, x, 30);
 
                 // Draw the footer of the canvas with infos
@@ -294,7 +294,7 @@ export default class extends Controller {
                 ctx.fillText(text, x, canvas.height - 12);
 
                 // draw position pilote 
-                var fontSize = 30;
+                var fontSize = 10;
                 ctx.font = fontSize + 'px ' ;
                 ctx.fillStyle = bgColor;
 
@@ -304,11 +304,11 @@ export default class extends Controller {
                 textWidth = ctx.measureText(text).width;
                 var centerX = margeX + (widthPosition - textWidth) / 2;
                 ctx.fillStyle = textColor;
-                ctx.fillText(text, centerX, positionY + 10, widthPosition, hauteurEquipeImage);
+                ctx.fillText(text, centerX, positionY + 6, widthPosition, hauteurEquipeImage);
 
                 // draw score pilote 
                 if (scoreContent[index] >= 0) {                    
-                    var fontSize = 22;
+                    var fontSize = 10;
                    // var fontFamily = 'Arial';
                     ctx.font = fontSize + 'px ';
                     ctx.fillStyle = bgColor;
@@ -319,7 +319,7 @@ export default class extends Controller {
                     textWidth = ctx.measureText(text).width;
                     var centerX = canvas.width - widthPosition - margeX + (widthPosition - textWidth) / 2; // Adjust x-coordinate
                     ctx.fillStyle = textColor;
-                    ctx.fillText(text, centerX, positionY + 10);
+                    ctx.fillText(text, centerX, positionY + 6);
                 }
                 // Draw image equipe
 
@@ -347,9 +347,9 @@ export default class extends Controller {
                 if (originalText.length > maxLength) {
                 // Truncate the text and add ellipsis
                 const truncatedText = originalText.substring(0, maxLength) + "...";
-                ctx.fillText(truncatedText, 140, positionY + 10);
+                ctx.fillText(truncatedText, 110, positionY + 6);
                 } else {
-                ctx.fillText(originalText, 140, positionY + 10);
+                ctx.fillText(originalText, 110, positionY + 6);
                 }
 
                 if (mtContent == true) {
