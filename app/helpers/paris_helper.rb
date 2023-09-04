@@ -21,12 +21,12 @@ module ParisHelper
   end
 
 
-  def update_paris_resultats(event, association_user, qualification, course)
+  def update_paris_resultats(event, association_user, qualification, course, dns)
     paris = Pari.where(event_id: event, association_user_id: association_user)
 
     # Victoire
     parisVictoire = paris.where(typepari: "victoire")
-    resultat_pari = (course == 1) ? true : false
+    resultat_pari = (course == 1) ? "true" : "false"
 
     parisVictoire.each do |pari|
       pari.update(resultat: resultat_pari)
@@ -34,7 +34,7 @@ module ParisHelper
 
     # Pole
     parisPole = paris.where(typepari: "pole")
-    resultat_pari = (qualification == 1) ? true : false
+    resultat_pari = (qualification == 1) ? "true" : "false"
 
     parisPole.each do |pari|
       pari.update(resultat: resultat_pari)
@@ -42,7 +42,7 @@ module ParisHelper
 
     # Podium
     parisPodium = paris.where(typepari: "podium")
-    resultat_pari = (course <= 3) ? true : false
+    resultat_pari = (course <= 3) ? "true" : "false"
 
     parisPodium.each do |pari|
       pari.update(resultat: resultat_pari)
@@ -50,11 +50,20 @@ module ParisHelper
 
     # Top10
     parisTop10 = paris.where(typepari: "top10")
-    resultat_pari = (course <= 10) ? true : false
+    resultat_pari = (course <= 10) ? "true" : "false"
 
     parisTop10.each do |pari|
       pari.update(resultat: resultat_pari)
     end
+
+    #ajouter methode pour rembourser pari si resultat = dns 
+    if dns == true
+      paris = Pari.where(event_id: event, association_user_id: association_user)
+      paris.each do |pari|
+        pari.update(resultat: "dns")
+      end
+    end
+
     
   
   end

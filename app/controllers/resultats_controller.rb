@@ -51,7 +51,8 @@ class ResultatsController < ApplicationController
         flash.now[:success] = "resultat was successfully created"
 
         #call maj paris liés 
-        update_paris_resultats(@resultat.event_id, @resultat.association_user_id, @resultat.qualification.to_i, @resultat.course.to_i)
+        update_paris_resultats(@resultat.event_id, @resultat.association_user_id, @resultat.qualification.to_i, @resultat.course.to_i,
+        @resultat.dns)
 
         format.turbo_stream do
           render turbo_stream: [
@@ -107,7 +108,13 @@ class ResultatsController < ApplicationController
         flash.now[:success] = "resultat was successfully updated"
 
         #call maj paris liés 
-        update_paris_resultats(@resultat.event_id, @resultat.association_user_id, @resultat.qualification.to_i, @resultat.course.to_i)
+        update_paris_resultats(
+          @resultat.event_id, 
+          @resultat.association_user_id, 
+          @resultat.qualification.to_i, 
+          @resultat.course.to_i,
+          @resultat.dns
+        )
 
         format.turbo_stream do
           render turbo_stream: [

@@ -17,9 +17,10 @@ class Pari < ApplicationRecord
   end 
 
   def calcul_solde  
-    puts "_________________________________________call calcul solde depuis model pari"
-    if self.resultat == true 
+    if self.resultat == "true"
       self.solde = self.montant * self.cote
+    elsif self.resultat == "dns"
+      self.solde = self.montant
     else
       self.solde = 0 #-self.montant
     end
