@@ -17,6 +17,9 @@
           </button> 
           <button class="btn btn-sm btn-outline-success fa-solid fa-map-location-dot m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false">
           </button>
+
+          <%= render "shared/countdown" %>
+
         <% end %> 
 
       </div>
@@ -51,5 +54,7 @@
       <% @circuit_nom = event.circuit.nom %>
       <%= render  "circuits/map", locals: {circuit_nom: @circuit_nom} %>
     </div>
+
+
   </div>
 </div>
