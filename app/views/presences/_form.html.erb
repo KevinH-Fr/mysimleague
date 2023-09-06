@@ -19,7 +19,7 @@
   <div class="d-flex align-items-center justify-content-center">
     <div class="form-check form-switch fs-5">
       <%= form.label "Présent!", class: "form-check-label text-center me-2" %>
-      <%= form.check_box :status, class: "form-check-input text-center me-2" %>
+      <%= form.check_box :status, { class: "form-check-input text-center me-2", checked: true } %>
     </div>
 
     <%= custom_submit_button("Présence") %>
