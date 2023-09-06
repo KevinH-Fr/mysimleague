@@ -1,4 +1,7 @@
 class ClassementEquipesController < ApplicationController
+  
+  include ClassementEquipesHelper
+  include AssociationUsersHelper
 
   def generate_image
     @event = Event.find(params[:event])
@@ -6,4 +9,26 @@ class ClassementEquipesController < ApplicationController
 
     render "classement_equipes/document"
   end
+
+  def animation
+    @event = Event.find(params[:event])
+    @previous_event = Event.where(division_id: @event.division_id, numero: @event.numero - 1).first if @event
+      
+    resultats = somme_equipe(@event)
+
+    @resultats = resultats.map do |classement|
+      equipe =  Equipe.find_by(id: classement[:equipe_id]) 
+      comparison = compare_equipe_ranks(@previous_event, @event)[classement[:equipe_id]] if @previous_event 
+      {
+        equipe_id: equipe.id,
+        equipe_nom: equipe.nom,
+        banniere_url: equipe.banniere.url,
+        score: classement[:score_sum],
+        rank_precedent: comparison ? comparison[:delta_rank].to_i + classement[:rank].to_i : classement[:rank], # Calculate rank_precedent if comparison is not nil
+        rank_courant: classement[:rank]
+      }
+    end
+    
+  end
+
 end

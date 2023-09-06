@@ -1,0 +1,24 @@
+
+<h4 class="text-center" id="infos-event" style="display: none;"> 
+    <%= truncate(@event.event_full_name, lenght: 8) %> 
+</h4>
+
+<h4 class="text-center" id="infos-event-precedent" style="display: none;"> 
+    <%= truncate(@previous_event.event_full_name, lenght: 8) if @previous_event %> 
+</h4>
+
+<div class="d-flex align-items-center justify-content-center">
+    <div style="width: 100%; max-width: 500px;" data-controller="animation-class-equipes" 
+        data-action="connect" data-animation-class-equipes-resultats-value="<%= @resultats.to_json %>">
+        <canvas style="width: 100%; margin: 0 auto;" id="myCanvas" height="350" data-animation-class-equipes-target="myCanvas"></canvas>
+    </div>
+</div>
+
+<div class="container text-center">
+    <button id="startAnimationBtn" class="btn btn-success">Start</button>
+    <button id="recordAnimationBtn" class="btn btn-warning">Record</button>
+</div>
+
+<%= back_button_on_event(@event.id) %>
+
+<br>
