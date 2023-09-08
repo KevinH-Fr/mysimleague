@@ -25,25 +25,24 @@ class Equipe < ApplicationRecord
       end
     end
 
-  def self.ransackable_attributes(auth_object = nil)
-    super + ['logo', 'voiture']
-  end
+    def self.ransackable_attributes(auth_object = nil)
+      super + ['logo', 'voiture']
+    end
 
     def self.ransackable_associations(auth_object = nil)
         ["logo_attachment", "logo_blob", "voiture_attachment", "voiture_blob"]
       end
 
-
-      ActiveStorage::Attachment.class_eval do
-        def self.ransackable_attributes(auth_object = nil)
-          ['blob_id', 'created_at', 'id', 'name', 'record_id', 'record_type']
-        end
+    ActiveStorage::Attachment.class_eval do
+      def self.ransackable_attributes(auth_object = nil)
+        ['blob_id', 'created_at', 'id', 'name', 'record_id', 'record_type']
       end
+    end
 
 
-      def self.recent(limit = 5)
-        order(created_at: :desc).limit(limit)
-      end
+    def self.recent(limit = 5)
+      order(created_at: :desc).limit(limit)
+    end
       
 end
 

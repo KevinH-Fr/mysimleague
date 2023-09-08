@@ -26,20 +26,31 @@ SitemapGenerator::Sitemap.create do
   #   end
 
   add '/home', :changefreq => 'daily', :priority => 0.9
-
   add '/menu', :changefreq => 'daily', :priority => 0.9
+
+  # Add sign-in and sign-up URLs to the sitemap
+  add '/users/sign_in', :changefreq => 'daily', :priority => 0.8, :lastmod => Time.now
+  add '/users/sign_up', :changefreq => 'daily', :priority => 0.8, :lastmod => Time.now
 
   Circuit.find_each do |circuit|
     add(circuit_path(circuit),
       :lastmod => circuit.updated_at,
       :changefreq => 'weekly',
-      :priority => 0.9
+      :priority => 0.7
     )
   end
 
   Ligue.find_each do |ligue|
     add(ligue_path(ligue),
       :lastmod => ligue.updated_at,
+      :changefreq => 'weekly',
+      :priority => 0.9
+    )
+  end
+
+  User.find_each do |user|
+    add(user_path(user),
+      :lastmod => user.updated_at,
       :changefreq => 'weekly',
       :priority => 0.9
     )

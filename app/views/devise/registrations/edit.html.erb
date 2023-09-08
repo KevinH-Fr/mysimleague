@@ -14,6 +14,11 @@
       <%= f.text_field :nom, class:"form-control " %>
     </div>
 
+    <div class="input-group input-group mb-2">
+      <%= f.label :profile_pic, class: "input-group-text" %>
+      <%= f.file_field :profile_pic, accept: "image/jpeg, image/png", class: "form-control"%>
+    </div>
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>

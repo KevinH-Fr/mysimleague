@@ -10,6 +10,10 @@ class User < ApplicationRecord
 
   validates :nom, presence: true
 
+  has_one_attached :profile_pic
+  validate :profile_pic_format_and_size
+
+
 
   def feed_content
     id
@@ -25,6 +29,17 @@ class User < ApplicationRecord
 
   def self.recent(limit = 5)
     order(created_at: :desc).limit(limit)
+  end
+
+  def profile_pic_format_and_size
+    if profile_pic.attached?
+      unless profile_pic.blob.content_type.in?(%w(image/jpeg image/png image/gif))
+        errors.add(:profile_pic, 'must be a JPEG, PNG, or GIF image')
+      end
+      unless profile_pic.blob.byte_size <= 1.megabyte
+        errors.add(:profile_pic, 'size should be less than 1MB')
+      end
+    end
   end
    
 end
