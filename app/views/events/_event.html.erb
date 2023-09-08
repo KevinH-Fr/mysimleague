@@ -10,6 +10,7 @@
           N°<strong> <%= event.numero %> </strong>
           <strong> <%= event.circuit.nom %> </strong>
           <%= event.horaire.strftime('%d %b %Y - %Hh%M') %> 
+          <%#= local_time event.horaire, format: :short %>
         <% end %>
 
         <% if @show_buttons %>

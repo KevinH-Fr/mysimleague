@@ -24,6 +24,7 @@
     <div class="row g-2">
       <div class="col-md">
         <div class="input-group input-group-sm my-2">
+          <%#= form.hidden_field :time_zone, value: 'Paris' %>
           <%= form.label :horaire, class: "input-group-text" %>
           <%= form.datetime_field :horaire, class: "form-control"%>
         </div>

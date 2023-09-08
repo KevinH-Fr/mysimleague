@@ -19,6 +19,10 @@ export default class extends Controller {
     const targetDate = new Date(dateStr);
     
     const currentDate = new Date();
+    console.log(currentDate);
+
+
+        
     const timeRemaining = new Date(targetDate - currentDate);
 
     const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));

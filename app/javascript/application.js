@@ -10,3 +10,6 @@ import "jquery_ujs"
 
 //= require Chart.min
 
+import LocalTime from "local-time"
+LocalTime.start()
+

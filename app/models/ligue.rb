@@ -28,6 +28,7 @@ class Ligue < ApplicationRecord
 	    end
     end
 
+
     private
 
     def create_association_admin

@@ -173,6 +173,7 @@ GEM
       activerecord
       kaminari-core (= 1.2.2)
     kaminari-core (1.2.2)
+    local_time (2.1.0)
     loofah (2.21.3)
       crass (~> 1.0.2)
       nokogiri (>= 1.12.0)
@@ -344,6 +345,7 @@ DEPENDENCIES
   importmap-rails
   jbuilder
   jquery-rails
+  local_time
   open-weather-ruby-client
   pg (~> 1.4, >= 1.4.1)
   puma (~> 5.0)

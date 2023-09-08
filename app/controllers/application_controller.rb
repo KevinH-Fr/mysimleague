@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
 
     before_action :record_page_view
+    around_action :set_time_zone, if: -> { session[:ligue].present? }
   
     def record_page_view
       ActiveAnalytics.record_request(request)
@@ -26,6 +27,11 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    private
+
+    def set_time_zone
+        Time.use_zone(Ligue.find(session[:ligue]).time_zone) {yield}
+    end
 
 
 

@@ -69,6 +69,8 @@ class EventsController < ApplicationController
   end
 
   def update
+
+
     respond_to do |format|
       if @event.update(event_params)
         flash.now[:success] = "event was successfully updated"
