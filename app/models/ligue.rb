@@ -7,6 +7,7 @@ class Ligue < ApplicationRecord
     belongs_to :user
 
     validates :nom, presence: true
+    validates :time_zone, presence: true
     validate :medias_format_and_size
 
     has_one_attached :logo
