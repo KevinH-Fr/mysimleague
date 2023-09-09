@@ -41,5 +41,14 @@ class User < ApplicationRecord
       end
     end
   end
+
+  def default_profile_pic
+    if profile_pic.attached?
+      profile_pic
+    else
+      '/images/profile_default.png'
+    end
+  end
+
    
 end

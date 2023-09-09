@@ -1,23 +1,28 @@
 <div class="card-with-effect p-2" id="<%= dom_id user %>">
 
-  <h4 class="text-center"> <%= user.nom %> </h4>
+  <div class="container bg-dark text-light rounded"> 
+    <h4 class="text-center"> <%= user.nom %> </h4>
+  </div>
 
-  <strong>Participations:</strong> <br>
-
-  <% user.association_users.each do |association_user| %>
-    <div class="d-flex align-items-center justify-content-center m-1">
-      <div class="badge bg-dark mx-1 p-2"> 
-        <%= association_user.division.saison.ligue.nom %> 
-        <%= association_user.division.saison.nom %> 
-        <%= association_user.division.nom %> 
-      </div>
-      <%= equipe_banner_with_data(association_user.equipe, association_user.user.nom) %>
-      <div class="badge bg-dark mx-1 p-2"> 
-        <%= boolean_icon(association_user.actif) %>
-      </div>
+  <div class="card" style="width: 100%;">
+    <div class="card-body text-center"> <!-- Center align the content within the card -->
+      <%= image_tag(user.default_profile_pic, class: "card-img-top profile-pic mx-auto d-block mb-2") %> <!-- Center align the profile picture -->
+      
+      <% user.association_users.each do |association_user| %>
+        <div class="d-flex align-items-center justify-content-center m-1">
+          <div class="badge bg-dark mx-1 p-2"> 
+            <%= association_user.division.saison.ligue.nom %> 
+            <%= association_user.division.saison.nom %> 
+            <%= association_user.division.nom %> 
+          </div>
+          <%= equipe_banner_with_data(association_user.equipe, association_user.user.nom) %>
+          <div class="badge bg-dark mx-1 p-2"> 
+            <%= boolean_icon(association_user.actif) %>
+          </div>
+        </div>
+      <% end %>
     </div>
-  <% end %>
-  
+  </div>
+
 
 </div>
-
