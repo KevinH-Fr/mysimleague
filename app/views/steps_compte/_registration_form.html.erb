@@ -21,6 +21,25 @@
           <%= f.label :profile_pic, class: "input-group-text" %>
           <%= f.file_field :profile_pic, accept: "image/jpeg, image/png", class: "form-control"%>
         </div>
+
+        <div class="input-group mb-2">
+          <%= f.label :controlleur, class:"input-group-text label-with-format label-colored" %>
+          <%= f.select :controlleur_type, ['volant', 'manette'], {include_blank: true}, class: "form-select" %>
+        </div>
+        <div class="input-group mb-2">
+          <%= f.label :slogan, class:"input-group-text label-with-format label-colored" %>
+          <%= f.text_area :slogan, class:"form-control " %>
+        </div>
+        <div class="input-group mb-2">
+          <%= f.label :bio, class:"input-group-text label-with-format label-colored" %>
+          <%= f.text_area :bio, class:"form-control " %>
+        </div>
+        <div class="input-group mb-2">
+          <%= f.label :pilote_prefere, class:"input-group-text label-with-format label-colored" %>
+          <%= f.text_field :pilote_prefere, class:"form-control " %>
+        </div>
+
+        <hr>  
         
         <div class="input-group mb-2">
           <%= f.label :password, class:"input-group-text label-with-format label-colored" %>
@@ -32,39 +51,17 @@
           <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control " %>
         </div>
 
+        <button type="submit" class="btn btn-primary container-fluid my-4">
+          <i class="fa-solid fa-xl fa-square-check"></i> 
+          <span class="fw-bold ms-2"> SIGN UP</span>
+        </button>
 
-
-
-        <div class="input-group mb-2">
-          <%#= f.label :visiteur, class:"input-group-text label-with-format label-colored" %>
-          <%#= f.check_box :visiteur, class:"" %>
+        <div class="text-dark fw-bold text-center">
+          <small>you already have an account ?</small>
+          <%= link_to "Log in", new_session_path(resource_name) %><br />
         </div>
-
-        <div class="input-group mb-2">
-          <%#= f.label :pilote, class:"input-group-text label-with-format label-colored" %>
-          <%#= f.check_box :pilote, class:"" %>
-        </div>
-
-        <div class="input-group mb-2">
-          <%#= f.label :admin, class:"input-group-text label-with-format label-colored" %>
-          <%#= f.check_box :admin, class:"" %>
-        </div>
-
-      </div>
-
-      <button type="submit" class="btn btn-primary container-fluid my-4">
-      <i class="fa-solid fa-xl fa-square-check"></i> 
-        <span class="fw-bold ms-2"> SIGN UP</span>
-      </button>
-
-      <div class="text-dark fw-bold text-center">
-        <small>you already have an account ?</small>
-        <%= link_to "Log in", new_session_path(resource_name) %><br />
+  
       </div>
     <% end %>
 
-
-  </div>
-
-  
 </div>

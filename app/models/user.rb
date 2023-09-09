@@ -13,8 +13,6 @@ class User < ApplicationRecord
   has_one_attached :profile_pic
   validate :profile_pic_format_and_size
 
-
-
   def feed_content
     id
    end 
@@ -47,6 +45,14 @@ class User < ApplicationRecord
       profile_pic
     else
       '/images/profile_default.png'
+    end
+  end
+
+  def icon_controlleur
+    if controlleur_type == "volant"
+      ActionController::Base.helpers.image_tag("/images/steering-wheel.png", alt: "Steering Wheel Image", class: "icon-controlleur")
+    elsif controlleur_type == "manette"
+      '<i class="fas fa-gamepad fa-xl"></i>'.html_safe
     end
   end
 

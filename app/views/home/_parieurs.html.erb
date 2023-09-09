@@ -2,20 +2,24 @@
 <div class="card-with-effect">
   <h4 class="text-center">Parieurs</h4>
 
-  <%# selection de l'année %>
-  <% annees_paris.each do |annee| %>
-    <%= button_to annee, display_parieurs_annee_home_index_path, params: { annee: annee }, class: "btn btn-sm btn-warning m-1" %>
-  <% end %>
+  <div class="text-center">
+    <%# selection de l'année %>
+    <% annees_paris.each do |annee| %>
+      <%= button_to annee, display_parieurs_annee_home_index_path, params: { annee: annee }, class: "btn btn-sm btn-warning m-1" %>
+    <% end %>
+  </div>
 
   <% if @annee %>
     <% somme_paris_user(@annee, User.all).each do |user_id, data| %>
       <div class="d-flex align-items-center justify-content-center my-1">
-
         <%= badge_score_position(data[:rank]) %>
         <div class="equipe-banner-wrapper d-flex align-items-center bg-secondary text-light fw-bold rounded px-2" style="width: 100%; max-width: 300px;">
-          <%= image_tag(User.find(user_id).default_profile_pic, class: "mini-profile-pic") %>
-          <%= User.find(user_id).nom %>
+          <%= link_to user_path(user_id), class: "no-underline text-light" do %>
+            <%= image_tag(User.find(user_id).default_profile_pic, class: "mini-profile-pic") %>
+            <%= User.find(user_id).nom %>
+          <% end %>
         </div>
+        
         <div style="min-width: 80px;">
           <%= badge_score_position(data[:sum]) %>
         </div>

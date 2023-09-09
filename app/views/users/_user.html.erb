@@ -1,27 +1,54 @@
 <div class="card-with-effect p-2" id="<%= dom_id user %>">
 
-  <div class="container bg-dark text-light rounded"> 
+  <div class="bg-dark text-light rounded p-2 my-1"> 
     <h4 class="text-center"> <%= user.nom %> </h4>
   </div>
 
-  <div class="card" style="width: 100%;">
-    <div class="card-body text-center"> <!-- Center align the content within the card -->
-      <%= image_tag(user.default_profile_pic, class: "card-img-top profile-pic mx-auto d-block mb-2") %> <!-- Center align the profile picture -->
-      
-      <% user.association_users.each do |association_user| %>
-        <div class="d-flex align-items-center justify-content-center m-1">
-          <div class="badge bg-dark mx-1 p-2"> 
-            <%= association_user.division.saison.ligue.nom %> 
-            <%= association_user.division.saison.nom %> 
-            <%= association_user.division.nom %> 
-          </div>
-          <%= equipe_banner_with_data(association_user.equipe, association_user.user.nom) %>
-          <div class="badge bg-dark mx-1 p-2"> 
-            <%= boolean_icon(association_user.actif) %>
-          </div>
+
+  <div class="card mb-2">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <%= image_tag(user.default_profile_pic, class: "card-img-top profile-pic mx-auto d-block my-2") %> 
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <h5 class="card-title"><%= user.nom %></h5>
+          <p class="card-text">
+           <small> slogan:</small> <%= user.slogan %>
+          </p>
+          <p class="card-text">
+           <small> bio:</small> <%= user.bio %>
+          </p>
+          <p class="card-text">
+             <small>pilote préféré: </small><%= user.pilote_prefere %>
+          </p>
+          <p class="card-text">
+             <small>controlleur:</small> <%= user.icon_controlleur %>
+          </p>
+
+          <p class="card-text text-center">
+            <small class="text-muted">
+              Member since <%= local_time user.created_at %>
+            </small>
+          </p>
         </div>
-      <% end %>
+      </div>
     </div>
+
+    <% user.association_users.each do |association_user| %>
+      <div class="d-flex align-items-center justify-content-center m-1">
+        <div class="badge bg-dark mx-1 p-2"> 
+          <%= association_user.division.saison.ligue.nom %> 
+          <%= association_user.division.saison.nom %> 
+          <%= association_user.division.nom %> 
+        </div>
+        <%= equipe_banner_with_data(association_user.equipe, association_user.user.nom) %>
+        <div class="badge bg-dark mx-1 p-2"> 
+          <%= boolean_icon(association_user.actif) %>
+        </div>
+      </div>
+    <% end %>
+
   </div>
 
 

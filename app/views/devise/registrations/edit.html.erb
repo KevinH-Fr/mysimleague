@@ -19,28 +19,54 @@
       <%= f.file_field :profile_pic, accept: "image/jpeg, image/png", class: "form-control"%>
     </div>
 
+    <div class="input-group mb-2">
+      <%= f.label :controlleur, class:"input-group-text label-with-format label-colored" %>
+      <%= f.select :controlleur_type, ['volant', 'manette'], {include_blank: true}, class: "form-select" %>
+    </div>
+    <div class="input-group mb-2">
+      <%= f.label :slogan, class:"input-group-text label-with-format label-colored" %>
+      <%= f.text_area :slogan, class:"form-control " %>
+    </div>
+    <div class="input-group mb-2">
+      <%= f.label :bio, class:"input-group-text label-with-format label-colored" %>
+      <%= f.text_area :bio, class:"form-control " %>
+    </div>
+    <div class="input-group mb-2">
+      <%= f.label :pilote_prefere, class:"input-group-text label-with-format label-colored" %>
+      <%= f.text_field :pilote_prefere, class:"form-control " %>
+    </div>
+    
+
     <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
       <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
     <% end %>
 
-    <div class="input-group mb-2">
-      <%= f.label :password, class:"input-group-text label-with-format label-colored" %>
-      <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
-    </div>
-    <i>(leave blank if you don't want to change it)</i>
+    <p>
+      <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseEditPassword" role="button" aria-expanded="false">
+        Change password
+      </a>
+    </p>
+    <div class="collapse" id="collapseEditPassword">
+      <h5> Change password </h5>
+      <i>(à remplir pour changer de password)</i>
 
+      <div class="input-group mb-2">
+        <%= f.label :password, class:"input-group-text label-with-format label-colored" %>
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+      </div>
 
-    <div class="input-group mb-2">
-      <%= f.label :password_confirmation, class:"input-group-text label-with-format label-colored" %>
-      <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+      <div class="input-group mb-2">
+        <%= f.label :password_confirmation, class:"input-group-text label-with-format label-colored" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+      </div>
+      
     </div>
 
     <div class="input-group mb-2">
       <%= f.label :current_password, class:"input-group-text label-with-format label-colored" %>
       <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
     </div>
-    <i>(we need your current password to confirm your changes)</i>
-
+    <i>(à renseigner pour valider les changements)</i>
 
     <button type="submit" class="btn btn-primary container-fluid my-4">
       <i class="fa-solid fa-xl fa-square-check"></i> 
@@ -53,7 +79,9 @@
     <%= button_to "Cancel my account", registration_path(resource_name), 
           data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete,
           class: "btn btn-sm btn-outline-danger" %>
+    <%= link_to "", :back, class: "btn btn-secondary btn-sm fa fa-arrow-rotate-left my-2" %>
+
   </div>
+
 </div>
 
-<%= link_to "", :back, class: "btn btn-secondary btn-sm fa fa-arrow-rotate-left my-2" %>
