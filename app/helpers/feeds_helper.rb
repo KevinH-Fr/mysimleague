@@ -96,23 +96,28 @@ module FeedsHelper
         when "Resultat"
             span_label = content_tag(:span, "Resultat")
             span_content = content_tag(:span, feed.association_user.user.nom, class: "fw-bold")
-            combined_content = span_label + " " + span_content
+            span_image = image_tag(feed.association_user.user.default_profile_pic, class: "mini-profile-pic ms-1")
+            combined_content = span_label + span_image + " " + span_content
         when "Pari"
             span_label = content_tag(:span, "Pari")
             span_content = content_tag(:span, feed.user.nom, class: "fw-bold")
-            combined_content = span_label + " " + span_content
+            span_image = image_tag(feed.user.default_profile_pic, class: "mini-profile-pic ms-1")
+            combined_content = span_label + span_image + " " + span_content
         when "User"
             span_label = content_tag(:span, "User")
             span_content = content_tag(:span, feed.nom, class: "fw-bold")
-            combined_content = span_label + " " + span_content
+            span_image = image_tag(feed.default_profile_pic, class: "mini-profile-pic ms-1")
+            combined_content = span_label + span_image + " " + span_content 
         when "AssociationUser"
             span_label = content_tag(:span, "Pilote")
             span_content = content_tag(:span, feed.user.nom, class: "fw-bold")
-            combined_content = span_label + " " + span_content
+            span_image = image_tag(feed.user.default_profile_pic, class: "mini-profile-pic ms-1")
+            combined_content = span_label  + span_image  + " " + span_content
         when "Doi"
             span_label = content_tag(:span, "DOI")
             span_content = content_tag(:span, AssociationUser.find(feed.demandeur_id).user.nom, class: "fw-bold")
-            combined_content = span_label + " " + span_content
+            span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.default_profile_pic, class: "mini-profile-pic ms-1")
+            combined_content = span_label + span_image + " " + span_content
 
         else
             span_label = content_tag(:span, "Model")
