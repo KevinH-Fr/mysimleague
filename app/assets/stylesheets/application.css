@@ -191,34 +191,27 @@ select, input{
   text-align: center;
 }
 
+.profile-pic, .mini-profile-pic, .medium-profile-pic{
+  object-fit: cover;
+  object-position: center center;
+  background-color: #8a8a8d;
+  border-radius: 100px;
+  border: 2px solid white;
+}
+
 .profile-pic {
   width: 200px;
   height: 200px;
-  object-fit: cover;
-  object-position: center center;
-  border-radius: 100px;
-  border: 5px solid white;
-  cursor: pointer;
 }
 
 .mini-profile-pic {
   width: 25px;
   height: 25px;
-  object-fit: cover;
-  object-position: center center;
-  border-radius: 100px;
-  border: 1px solid white;
-
 }
 
 .medium-profile-pic {
   width: 50px;
   height: 50px;
-  object-fit: cover;
-  object-position: center center;
-  border-radius: 100px;
-  border: 1px solid white;
-
 }
 
 .icon-controlleur{
