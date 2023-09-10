@@ -2,7 +2,7 @@
 <div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
   Pour parier c'est ici que ça se passe !
   Chaque semaine reçois des points pour parier, fais en bon usage !
-  Les paris sont ouverts sur toutes les courses, mêmes celles auxquelles tu participes !
+  Les paris sont ouverts à tous !
 </div>
 
 <h4 class="titre-topic">
@@ -39,6 +39,20 @@
 <% end %>
 
 <% if @event %>
+
+    <div class="card-with-effect p-2">
+        <h5>synthèse</h5>
+        nb paris: <span class="fw-bold"><%= @nb_paris %> </span><br>
+
+        <% if @nb_paris > 0 %>          
+            parieur avec le + de mises: <span class="fw-bold"><%= @biggest_parieur %> </span>
+            montant misé:  <span class="fw-bold"><%= number_with_delimiter(@sum_montant_biggest_parieur.to_i, delimiter: ' ', precision: 0) %> </span><br>
+
+            coureur avec le + de mises:<span class="fw-bold"> <%= @biggest_coureur %> </span>
+            montant misé:  <span class="fw-bold"><%= number_with_delimiter(@sum_montant_biggest_coureur.to_i, delimiter: ' ', precision: 0) %> </span><br>
+        <% end %>
+
+    </div>
 
     <div id="paris">
         <% @paris.each do |pari| %>

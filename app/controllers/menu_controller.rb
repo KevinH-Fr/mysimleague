@@ -163,7 +163,33 @@ class MenuController < ApplicationController
   def display_paris
 
     @event = Event.find(session[:event])
-    @paris = @event.paris if @event 
+
+    if @event
+      @paris = @event.paris 
+      @nb_paris = @paris.count
+    
+      if @paris.any?
+        sum_biggest_parieur = User.all.max_by do |parieur|
+          @paris.where(user_id: parieur.id).sum(:montant)
+        end
+      end
+        
+      if sum_biggest_parieur
+        @biggest_parieur = sum_biggest_parieur.nom
+        @sum_montant_biggest_parieur = @paris.where(user_id: sum_biggest_parieur.id).sum(:montant)
+      end
+
+      sum_biggest_coureur = AssociationUser.all.max_by do |coureur|
+        @paris.where(association_user_id: coureur.id).sum(:montant)
+      end
+      
+      if sum_biggest_coureur
+        @biggest_coureur = sum_biggest_coureur.user.nom
+        @sum_montant_biggest_coureur = @paris.where(association_user_id: sum_biggest_coureur.id).sum(:montant)
+      end
+      
+    end
+
 
     respond_to do |format|
       format.turbo_stream do
