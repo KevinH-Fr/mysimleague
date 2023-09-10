@@ -42,14 +42,19 @@
 
     <div class="card-with-effect p-2">
         <h5>synthèse</h5>
-        nb paris: <span class="fw-bold"><%= @nb_paris %> </span><br>
+        nombre paris: <span class="fw-bold"><%= @nb_paris %> </span><br>
+        montant misé: <span class="fw-bold"><%= number_with_delimiter(@montant_paris, delimiter: ' ', precision: 0) %> </span><br>
 
         <% if @nb_paris > 0 %>          
-            parieur avec le + de mises: <span class="fw-bold"><%= @biggest_parieur %> </span>
-            montant misé:  <span class="fw-bold"><%= number_with_delimiter(@sum_montant_biggest_parieur.to_i, delimiter: ' ', precision: 0) %> </span><br>
+            parieur avec le <i class="fa-solid fa-plus fw-bold"></i> de mises: 
+            <span class="fw-bold"><%= @biggest_parieur %> </span>
+            montant:  
+            <span class="fw-bold"><%= number_with_delimiter(@sum_montant_biggest_parieur, delimiter: ' ', precision: 0) %> </span><br>
 
-            coureur avec le + de mises:<span class="fw-bold"> <%= @biggest_coureur %> </span>
-            montant misé:  <span class="fw-bold"><%= number_with_delimiter(@sum_montant_biggest_coureur.to_i, delimiter: ' ', precision: 0) %> </span><br>
+            coureur avec le <i class="fa-solid fa-plus fw-bold"></i> de mises:
+            <span class="fw-bold"> <%= @biggest_coureur %> </span>
+            montant:  
+            <span class="fw-bold"><%= number_with_delimiter(@sum_montant_biggest_coureur, delimiter: ' ', precision: 0) %> </span><br>
         <% end %>
 
     </div>

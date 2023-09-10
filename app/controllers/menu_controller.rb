@@ -167,6 +167,7 @@ class MenuController < ApplicationController
     if @event
       @paris = @event.paris 
       @nb_paris = @paris.count
+      @montant_paris = @paris.sum(:montant).to_i
     
       if @paris.any?
         sum_biggest_parieur = User.all.max_by do |parieur|
@@ -176,16 +177,16 @@ class MenuController < ApplicationController
         
       if sum_biggest_parieur
         @biggest_parieur = sum_biggest_parieur.nom
-        @sum_montant_biggest_parieur = @paris.where(user_id: sum_biggest_parieur.id).sum(:montant)
+        @sum_montant_biggest_parieur = @paris.where(user_id: sum_biggest_parieur.id).sum(:montant).to_i
       end
 
       sum_biggest_coureur = AssociationUser.all.max_by do |coureur|
-        @paris.where(association_user_id: coureur.id).sum(:montant)
+        @paris.where(association_user_id: coureur.id).sum(:montant).to_i
       end
       
       if sum_biggest_coureur
         @biggest_coureur = sum_biggest_coureur.user.nom
-        @sum_montant_biggest_coureur = @paris.where(association_user_id: sum_biggest_coureur.id).sum(:montant)
+        @sum_montant_biggest_coureur = @paris.where(association_user_id: sum_biggest_coureur.id).sum(:montant).to_i
       end
       
     end
