@@ -109,10 +109,17 @@ class DoisController < ApplicationController
   private
 
     def authorize_user_ligue
-      unless current_user && verif_appartenance_division(current_user, session[:division]) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+      if verif_admin_ligue(current_user, session[:ligue])
+        # If the user is an admin ligue, authorize the action
+        # Add your authorization logic for admin ligue here
+      else
+        # If not an admin ligue, check division membership
+        unless current_user && verif_appartenance_division(current_user, session[:division]) 
+          redirect_to root_path, alert: "You are not authorized to perform this action."
+        end
       end
     end
+  
 
     def user_connected_doi_ouvert
       unless verif_admin_ligue(current_user, session[:ligue]) || verif_delai_doi(session[:event])        

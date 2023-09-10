@@ -24,7 +24,7 @@
 
   </h4>
 
-  <% if  verif_appartenance_division(current_user, session[:division])  %>    
+  <% if verif_appartenance_division(current_user, session[:division]) || verif_admin_ligue(current_user, @event.division.saison.ligue.id)  %>    
     <div class="collapse" id="collapseNewDoi">
       <div id="new_doi">
         <%= render partial: "dois/form", locals: { doi: Doi.new } %>
