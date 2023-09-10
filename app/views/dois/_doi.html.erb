@@ -36,6 +36,8 @@
        <%= "Commentaire: #{doi.commentaire}" if doi.commentaire.present? %>
       <strong> <%= "Resp. commissaire: #{AssociationAdmin.find(doi.association_admin_id).user.nom}" if doi.association_admin_id.present? %> </strong>
 
+      <% if current_user && verif_admin_ligue(current_user, doi.event.division.saison.ligue) %>
+
         <div class="d-flex align-items-center">  
           <%= link_to "", generate_image_dois_path(doi: doi), 
                 class: 'btn btn-sm btn-success fa-solid fa-image m-1' %>
@@ -46,6 +48,8 @@
                 class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
         </div>
+      
+      <% end %>
 
     </div>
   </div>

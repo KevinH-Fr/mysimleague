@@ -6,15 +6,22 @@
   <h4 class="titre-topic mx-1">
     DOI 
 
-    <% if current_user %>
-      <% if verif_admin_ligue(current_user, @event.division.saison.ligue.id) || verif_appartenance_division(current_user,  session[:division]) %>
-        <button class="btn btn-sm btn-warning m-2" type="button" 
-          data-bs-toggle="collapse" data-bs-target="#collapseNewDoi" aria-expanded="false">
-            <i class="fa-solid fa-square-plus fa-xl"></i>
-        </button>
-      <% end %>
-        
+  <% if current_user %>
+    <% if verif_admin_ligue(current_user, @event.division.saison.ligue.id) %>
+      <!-- Display the button for admin ligue -->
+      <button class="btn btn-sm btn-warning m-2" type="button" 
+        data-bs-toggle="collapse" data-bs-target="#collapseNewDoi" aria-expanded="false">
+          <i class="fa-solid fa-square-plus fa-xl"></i>
+      </button>
+    <% elsif verif_appartenance_division(current_user, session[:division]) && verif_delai_doi(session[:event]) %>
+      <!-- Display the button for other users if both conditions are true -->
+      <button class="btn btn-sm btn-warning m-2" type="button" 
+        data-bs-toggle="collapse" data-bs-target="#collapseNewDoi" aria-expanded="false">
+          <i class="fa-solid fa-square-plus fa-xl"></i>
+      </button>
     <% end %>
+  <% end %>
+
   </h4>
 
   <% if  verif_appartenance_division(current_user, session[:division])  %>    
