@@ -42,11 +42,8 @@ module DotdsHelper
     
       if hours_difference <= allowed_hours
         true
-        puts "___ time diff: #{hours_difference}"
       else
         false
-        puts "___ time diff: #{hours_difference}"
-
       end
     end
 
