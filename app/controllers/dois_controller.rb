@@ -2,6 +2,8 @@ class DoisController < ApplicationController
 
   include AssociationUsersHelper
   include AssociationAdminsHelper
+  include DoisHelper
+
 
   before_action :set_doi, only: %i[ show edit update destroy ]
   before_action :authorize_user_ligue, only: %i[ new show create destroy ]
