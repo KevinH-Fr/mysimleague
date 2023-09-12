@@ -17,6 +17,8 @@
 
         <%= "Description: #{doi.description}" if doi.description.present? %>
         <%= "Lien: #{doi.lien}" if doi.lien.present? %>
+        horaire: <%= local_time(doi.created_at, :short) %>
+
         <%= status_badge_decision_doi(doi.decision) %>
         <% if doi.penalite.present? || doi.penalite_temps.present? %>
           <span class="text-danger">
@@ -34,7 +36,7 @@
         <% end %>
 
        <%= "Commentaire: #{doi.commentaire}" if doi.commentaire.present? %>
-      <strong> <%= "Resp. commissaire: #{AssociationAdmin.find(doi.association_admin_id).user.nom}" if doi.association_admin_id.present? %> </strong>
+       <strong> <%= "Resp. commissaire: #{AssociationAdmin.find(doi.association_admin_id).user.nom}" if doi.association_admin_id.present? %> </strong>
 
       <% if current_user && verif_admin_ligue(current_user, doi.event.division.saison.ligue) %>
 
