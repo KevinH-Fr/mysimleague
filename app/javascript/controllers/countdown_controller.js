@@ -19,7 +19,7 @@ export default class extends Controller {
     const targetDate = new Date(dateStr);
     
     const currentDate = new Date();
-    console.log(currentDate);
+    //console.log(currentDate);
 
 
         

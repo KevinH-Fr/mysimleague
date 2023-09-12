@@ -21,6 +21,30 @@ module PresencesHelper
       Presence.where(event_id: event, status: true).count
     end
 
+    def nb_non_presences_event(event)
+      Presence.where(event_id: event, status: false).count
+    end
+
+    def nb_non_reponses_event(event)
+      pilotes_divisions = pilotes_division(Event.find(event).division_id).count
+      reponses = Presence.where(event_id: event).count
+      non_reponses = pilotes_divisions - reponses
+    end
+
+
+    def non_responding_users(event)
+    
+      # Get all active and valid association users in the division
+      pilotes_division = pilotes_division(Event.find(event).division_id).ids
+
+      responders = Presence.where(event_id: event).pluck(:association_user_id)
+    
+      non_responders = pilotes_division.difference(responders)
+      non_responders 
+    end
+    
+
+
     def verif_delai_presence(event)
       event = Event.find(event)
       horaire = event.horaire

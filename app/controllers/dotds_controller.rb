@@ -42,7 +42,7 @@ class DotdsController < ApplicationController
                   partial: "dotds/form",
                   locals: { dotd: Dotd.new }),
     
-                turbo_stream.append('dotds',
+                turbo_stream.prepend('dotds',
                                      partial: "dotds/dotd",
                                      locals: { dotd: @dotd }),
     
@@ -88,13 +88,13 @@ class DotdsController < ApplicationController
 
           format.turbo_stream do
             render turbo_stream: [
+              turbo_stream.update(
+                'partial-dotds-stats-container', partial: 'dotds/stats'
+              ),
               turbo_stream.update(@dotd, 
               partial: 'dotds/dotd', 
               locals: { dotd: @dotd }),
 
-              turbo_stream.update(
-                'partial-dotds-stats-container', partial: 'dotds/stats'
-              ),
               turbo_stream.prepend('flash',
                 partial: 'layouts/flash', locals: { flash: flash })
 

@@ -1,5 +1,23 @@
+<hr>
 
-<strong>
+<span class="my-2 text-success">
   <%= nb_presences_event(session[:event]) %>
   <%= "présence".pluralize(nb_presences_event(session[:event])) %>
-</strong> 
+</span>
+
+<span class="my-2 text-danger">
+  <%= nb_non_presences_event(session[:event]) %>
+  <%= "absence".pluralize(nb_non_presences_event(session[:event])) %>
+</span>
+
+<div>
+  <%= nb_non_reponses_event(session[:event]) %>
+  <%= "non-réponse".pluralize(nb_non_reponses_event(session[:event])) %> 
+  <br>
+  
+  <% non_responders = non_responding_users(session[:event]) %>
+  <% non_responders.each do |pilote| %>
+    <%= AssociationUser.find(pilote).user.nom %> -
+  <% end %>
+
+</div>

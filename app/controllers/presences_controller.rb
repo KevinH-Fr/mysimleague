@@ -75,7 +75,8 @@ class PresencesController < ApplicationController
                                  locals: { presence: @presence }),
 
             turbo_stream.update(:content_new_presence, 
-              partial: 'presences/new_presence'),          turbo_stream.update(
+              partial: 'presences/new_presence'),          
+            turbo_stream.update(
                 'partial-presences-stats-container', partial: 'presences/stats'
                 ),
 
