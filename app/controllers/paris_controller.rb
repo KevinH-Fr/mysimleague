@@ -9,6 +9,7 @@ class ParisController < ApplicationController
   before_action :set_pari, only: %i[ show edit update destroy ]
   before_action :user_connected_pari_ouvert, only: %i[ new create edit update destroy ]
   before_action :authorize_edit_user, only: %i[ edit update destroy ]
+  before_action :user_not_in_division, only: %i[ new create ]
 
   def new
     @pari = Pari.new(pari_params)
@@ -111,6 +112,12 @@ class ParisController < ApplicationController
 
     def authorize_edit_user
       unless current_user && verif_user_pari(current_user, @pari.user_id) 
+        redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
+    end
+
+    def user_not_in_division
+      if verif_appartenance_division(current_user, Event.find(session[:event]).division_id)
         redirect_to root_path, alert: "You are not authorized to perform this action."
       end
     end
