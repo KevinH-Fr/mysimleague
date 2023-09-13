@@ -4,7 +4,7 @@ module DoisHelper
         horaire = event.horaire
         time_difference = Time.now - horaire
         hours_difference = time_difference / 3600
-        allowed_hours = 36
+        allowed_hours = 24
       
         if hours_difference <= allowed_hours
           true

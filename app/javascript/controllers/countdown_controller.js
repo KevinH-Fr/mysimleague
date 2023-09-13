@@ -1,12 +1,13 @@
 import { Controller } from "@hotwired/stimulus"
 
 export default class extends Controller {
-  static targets = ["horaire", "timer"];
-  static values = { target: String };
+  static targets = ["timer"];
+ // static values = { target: String };
 
   connect() {
     this.updateTimer();
     this.interval = setInterval(() => this.updateTimer(), 1000);
+  //  console.log(this.data.get("eventDate"));
   }
 
   disconnect() {
@@ -15,12 +16,11 @@ export default class extends Controller {
 
   updateTimer() {
 
-    const dateStr = this.horaireTarget.textContent; // Access the text content of the span
+    const dateStr = this.data.get("eventDate")
     const targetDate = new Date(dateStr);
     
     const currentDate = new Date();
     //console.log(currentDate);
-
 
         
     const timeRemaining = new Date(targetDate - currentDate);

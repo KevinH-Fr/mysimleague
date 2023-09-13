@@ -31,7 +31,7 @@
 
               <% equipe = Equipe.find(AssociationUser.find(pilote1.first).equipe_id) %>
               <%= image_tag equipe.voiture, style: "width: 100px;", class: "img-fluid rounded me-2" if equipe.voiture.present? %>
-              <span class="fw-bold"> <%= pilote1.last.truncate(10) %> </span>
+              <span class="fw-bold"> <%= pilote1.last.truncate(14) %> </span>
             </label>
           </div>
           <% if pilote2.present? %>
@@ -42,7 +42,7 @@
                 </div>
                 <% equipe = Equipe.find(AssociationUser.find(pilote2.first).equipe_id) %>
                 <%= image_tag equipe.voiture, style: "width: 100px;", class: "img-fluid rounded me-2" if equipe.voiture.present? %>
-                <span class="fw-bold"> <%= pilote2.last.truncate(10) %> </span>
+                <span class="fw-bold"> <%= pilote2.last.truncate(14) %> </span>
               </label>
             </div>
           <% end %>

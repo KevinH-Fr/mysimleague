@@ -1,25 +1,22 @@
 
 <div id="<%= dom_id dotd %>">
 
+  <div class="d-flex align-items-center justify-content-center my-1">
 
-    <div class="d-flex align-items-center justify-content-center my-1">
+    <div class="rounded badge-pos max-record-height d-flex align-items-center justify-content-center mx-1 px-1">
+      <span class="text-warning px-2"><%= truncate(dotd.user.nom, length: 8) %></span>
+    </div>
+      
+    <%= equipe_banner_with_data(
+      dotd.association_user.equipe,
+      dotd.association_user.user.nom) %> 
 
-      <div class="rounded badge-pos max-record-height d-flex align-items-center justify-content-center mx-1 px-1">
-        <span class="text-warning px-2"><%= truncate(dotd.user.nom, length: 8) %></span>
-      </div>
-        
-      <%= equipe_banner_with_data(
-        dotd.association_user.equipe,
-        dotd.association_user.user.nom) %> 
-
-
-      <% if current_user && verif_user_dotd(current_user, dotd.user_id) && verif_delai_dotd(session[:event]) %>
-        <%= button_to "", edit_dotd_path(dotd), method: :post, 
-              class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
-        <%= button_to "", dotd, method: :delete, 
-              class: "btn btn-sm btn-danger fa-solid fa-trash",
-              data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>        
-      <% end %>
-    
-
+    <% if current_user && verif_user_dotd(current_user, dotd.user_id) && verif_delai_dotd(session[:event]) %>
+      <%= button_to "", edit_dotd_path(dotd), method: :post, 
+            class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+      <%= button_to "", dotd, method: :delete, 
+            class: "btn btn-sm btn-danger fa-solid fa-trash",
+            data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>        
+    <% end %>
+  
 </div>

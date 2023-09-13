@@ -16,6 +16,8 @@ module FeedsHelper
 
         feed_paris =  Pari.order(updated_at: :desc).limit(5)
  
+        feed_dotds =  Dotd.order(updated_at: :desc).limit(5)
+
         @feeds = []
         @feeds.concat(feed_users)
         @feeds.concat(feed_association_users)
@@ -31,6 +33,8 @@ module FeedsHelper
         @feeds.concat(feed_dois)
 
         @feeds.concat(feed_paris)
+        @feeds.concat(feed_dotds)
+
    
         @feeds.sort_by!(&:updated_at).reverse!
         
@@ -62,6 +66,9 @@ module FeedsHelper
             content_tag :i, "", class: "fa fa-xl fa-user text-warning"
         when "Doi"
             content_tag :i, "", class: "fa fa-xl fa-solid fa-magnifying-glass text-danger"
+        when "Dotd"
+            content_tag :i, "", class: "fa fa-xl fa-solid fa-ranking-star text-warning"
+
         else
             content_tag :i, "", class: "fa fa-xl fa-question-circle text-dark"
         end 
@@ -119,6 +126,12 @@ module FeedsHelper
             span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.default_profile_pic, class: "mini-profile-pic ms-1")
             combined_content = span_label + span_image + " " + span_content
 
+        when "Dotd"
+            span_label = content_tag(:span, "DOTD")
+            span_content = content_tag(:span, feed.user.nom, class: "fw-bold")
+            span_image = image_tag(feed.user.default_profile_pic, class: "mini-profile-pic ms-1")
+            combined_content = span_label + span_image + " " + span_content
+
         else
             span_label = content_tag(:span, "Model")
             span_content = content_tag(:span, feed, class: "fw-bold")
@@ -150,6 +163,9 @@ module FeedsHelper
             user_path(feed.user_id)
         when "Doi"
             menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)  
+        when "Dotd"
+            menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)  
+
         else
           root_path
         end

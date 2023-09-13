@@ -8,6 +8,8 @@ class Pari < ApplicationRecord
 
   validate :verif_montant
 
+  validates :montant, numericality: { greater_than: 0 }
+
   
   #before_save :update_solde, if: :resultat_changed?
   before_save :calcul_solde
