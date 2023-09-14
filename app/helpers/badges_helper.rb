@@ -24,9 +24,10 @@ module BadgesHelper
 
   def boolean_icon(value)
     content_tag(:span, class: "container-fluid text-light fw-bold") do
-      content_tag(:i, "", class: "fa-solid fa-xl #{value == 'true' ? 'fa-check-circle text-success' : 'fa-circle-xmark text-danger'}")
+      content_tag(:i, "", class: "fa-solid fa-xl #{value == 'true' || value == true ? 'fa-check-circle text-success' : 'fa-circle-xmark text-danger'}")
     end
   end
+  
 
   def boolean_container(value, text)
     content_tag(:div, class: "container-fluid rounded border my-2 p-1 text-center #{value ? 'border-success text-success' : 'border-danger text-danger'}") do

@@ -108,28 +108,28 @@ module FeedsHelper
         when "Pari"
             span_label = content_tag(:span, "Pari")
             span_content = content_tag(:span, feed.user.nom, class: "fw-bold")
-            span_image = image_tag(feed.user.default_profile_pic, class: "mini-profile-pic ms-1")
+            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-1")
             combined_content = span_label + span_image + " " + span_content
         when "User"
             span_label = content_tag(:span, "User")
             span_content = content_tag(:span, feed.nom, class: "fw-bold")
-            span_image = image_tag(feed.default_profile_pic, class: "mini-profile-pic ms-1")
+            span_image = image_tag(feed.webp_variant, class: "mini-profile-pic ms-1")
             combined_content = span_label + span_image + " " + span_content 
         when "AssociationUser"
             span_label = content_tag(:span, "Pilote")
             span_content = content_tag(:span, feed.user.nom, class: "fw-bold")
-            span_image = image_tag(feed.user.default_profile_pic, class: "mini-profile-pic ms-1")
+            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-1")
             combined_content = span_label  + span_image  + " " + span_content
         when "Doi"
             span_label = content_tag(:span, "DOI")
             span_content = content_tag(:span, AssociationUser.find(feed.demandeur_id).user.nom, class: "fw-bold")
-            span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.default_profile_pic, class: "mini-profile-pic ms-1")
+            span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.webp_variant, class: "mini-profile-pic ms-1")
             combined_content = span_label + span_image + " " + span_content
 
         when "Dotd"
             span_label = content_tag(:span, "DOTD")
             span_content = content_tag(:span, feed.user.nom, class: "fw-bold")
-            span_image = image_tag(feed.user.default_profile_pic, class: "mini-profile-pic ms-1")
+            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-1")
             combined_content = span_label + span_image + " " + span_content
 
         else
