@@ -14,8 +14,8 @@ module CotesHelper
 
           coteBase = 1.0 # Set a fixed base cote value for the first event
 
-          victoire = (coteBase * 3.41).round(2)
-          pole = (coteBase * 3.08).round(2)
+          victoire = (coteBase * 2.81).round(2)
+          pole = (coteBase * 2.58).round(2)
           podium = (coteBase * 2.07).round(2)
           top10 = (coteBase * 1.09).round(2)
 
