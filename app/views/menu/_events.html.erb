@@ -14,7 +14,7 @@
                 class: "btn btn-outline-primary btn-sm btn-event me-1 mb-1 p-1
                       #{'fw-bold text-light btn-primary'  if params[:event] == event.id.to_s}" do %>
 
-          <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "20") if event.circuit.drapeau.present? %>
+          <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35", height: "20") if event.circuit.drapeau.present? %>
           <%= "n° #{event.numero}" %>
   
       <% end %>

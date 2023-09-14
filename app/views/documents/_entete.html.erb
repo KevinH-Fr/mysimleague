@@ -19,7 +19,7 @@
                     GP <%= @event.numero %> - 
                     <%= Circuit.find(@event.circuit_id).pays %> 
                     <%= cl_image_tag(Circuit.find(@event.circuit_id).drapeau.url, 
-                    style: "width: 40px; display: inline", 
+                    style: "width: 40px; height: 20px; display: inline", 
                     class: "img-fluid rounded") %> 
                 </span>
             </h6>
