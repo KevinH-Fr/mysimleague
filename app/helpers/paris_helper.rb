@@ -31,11 +31,12 @@ module ParisHelper
     resultat_pari = (course == 1) ? "true" : "false"
 
     parisVictoire.each do |pari|
+      solde_value = resultat_pari == "true" ? pari.montant * pari.cote : 0
+
       pari.update_columns(
         resultat: resultat_pari,
-        solde: pari.montant * pari.cote
+        solde: solde_value
       )
-      puts "_____pari victoire updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat} - solde: #{pari.solde}"
     end
 
     # Pole
@@ -43,9 +44,11 @@ module ParisHelper
     resultat_pari = (qualification == 1) ? "true" : "false"
 
     parisPole.each do |pari|
+      solde_value = resultat_pari == "true" ? pari.montant * pari.cote : 0
+
       pari.update_columns(
         resultat: resultat_pari,
-        solde: pari.montant * pari.cote
+        solde: solde_value
       )
       # puts "_____pari pole updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
 
@@ -56,9 +59,11 @@ module ParisHelper
     resultat_pari = (course <= 3) ? "true" : "false"
 
     parisPodium.each do |pari|
+      solde_value = resultat_pari == "true" ? pari.montant * pari.cote : 0
+
       pari.update_columns(
         resultat: resultat_pari,
-        solde: pari.montant * pari.cote
+        solde: solde_value
       )
       #puts "_____pari podium updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
 
@@ -69,9 +74,11 @@ module ParisHelper
     resultat_pari = (course <= 10) ? "true" : "false"
 
     parisTop10.each do |pari|
+      solde_value = resultat_pari == "true" ? pari.montant * pari.cote : 0
+
       pari.update_columns(
         resultat: resultat_pari,
-        solde: pari.montant * pari.cote
+        solde:solde_value
       )
       #puts "_____pari top10 updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
 
@@ -83,7 +90,7 @@ module ParisHelper
       paris.each do |pari|
         pari.update_columns(
           resultat: "dns",
-          solde: pari.montant * pari.cote
+          solde: pari.montant 
         )
         #puts "_____pari dns updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
 
