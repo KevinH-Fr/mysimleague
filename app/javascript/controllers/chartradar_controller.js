@@ -1,5 +1,5 @@
 import { Controller } from "@hotwired/stimulus";
-import { Chart, registerables } from 'https://cdn.skypack.dev/chart.js';
+import { Chart, registerables } from "chart.js";
 
 Chart.register(...registerables);
 

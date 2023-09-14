@@ -1,11 +1,11 @@
 import { Controller } from "@hotwired/stimulus";
-import { Chart, registerables } from 'https://cdn.skypack.dev/chart.js';
 
-Chart.register(...registerables);
-
+import { Chart, registerables } from "chart.js";
 export default class extends Controller {
+  async connect() {
+    // Dynamically load Chart.js and its dependencies
 
-  connect() {
+    Chart.register(...registerables);
 
     var userResultats = JSON.parse(this.data.get("userResultats"));
     var userName = JSON.parse(this.data.get("userName")); // Parse userStats as JSON
@@ -28,19 +28,19 @@ export default class extends Controller {
       datasets: datasets
     };
 
-        // Check if user_compare data exists
-        if (userResultats.user_compare && userResultats.user_compare.length > 0) {
-          var userCompareName = JSON.parse(this.data.get("userCompareName")); // Parse userStats as JSON
+    // Check if user_compare data exists
+    if (userResultats.user_compare && userResultats.user_compare.length > 0) {
+      var userCompareName = JSON.parse(this.data.get("userCompareName")); // Parse userStats as JSON
 
-          datasets.push({
-            label: userCompareName,
-            data: userResultats.user_compare.map(resultat => resultat.score),
-            fill: true,
-            backgroundColor: 'rgba(240, 128, 128, 0.2)',
-            borderColor: 'rgba(240, 128, 128, 1)',
-            borderWidth: 1
-          });
-        }
+      datasets.push({
+        label: userCompareName,
+        data: userResultats.user_compare.map(resultat => resultat.score),
+        fill: true,
+        backgroundColor: 'rgba(240, 128, 128, 0.2)',
+        borderColor: 'rgba(240, 128, 128, 1)',
+        borderWidth: 1
+      });
+    }
 
     const options = {
       scales: {

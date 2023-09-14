@@ -8,6 +8,8 @@ import "@rails/request.js"
 import "jquery"
 import "jquery_ujs"
 
+import "chart.js"
+
 //= require Chart.min
 
 import LocalTime from "local-time"
