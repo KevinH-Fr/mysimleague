@@ -103,7 +103,7 @@ module FeedsHelper
         when "Resultat"
             span_label = content_tag(:span, "Resultat")
             span_content = content_tag(:span, feed.association_user.user.nom, class: "fw-bold")
-            span_image = image_tag(feed.association_user.user.default_profile_pic, class: "mini-profile-pic ms-1")
+            span_image = image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic ms-1")
             combined_content = span_label + span_image + " " + span_content
         when "Pari"
             span_label = content_tag(:span, "Pari")
