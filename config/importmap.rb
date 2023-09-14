@@ -15,4 +15,6 @@ pin "local-time", to: "https://ga.jspm.io/npm:local-time@2.1.0/app/assets/javasc
 pin "chart.js", to: "https://ga.jspm.io/npm:chart.js@4.2.0/dist/chart.js"
 pin "@kurkle/color", to: "https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.esm.js"
 
+
 pin_all_from "app/javascript/controllers", under: "controllers"
+
