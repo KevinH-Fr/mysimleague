@@ -72,7 +72,7 @@ module ParisHelper
       paris = Pari.where(event_id: event, association_user_id: association_user)
   
       paris.each do |pari|
-        pari.update(resultat: false)
+        pari.update(resultat: "false")
       end
   end
 
