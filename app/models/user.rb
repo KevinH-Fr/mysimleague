@@ -29,6 +29,23 @@ class User < ApplicationRecord
     order(created_at: :desc).limit(limit)
   end
 
+  def webp_variant
+    if profile_pic.attached?
+
+      profile_pic.variant(
+        format: :webp,
+        resize_to_limit: [500, 500],
+        saver: {
+          subsample_mode: "on",
+          strip: true,
+          interlace: true,
+          lossless: false,
+          quality: 5 }).processed
+    else
+      '/images/profile_default.webp'
+    end
+  end
+
   def profile_pic_format_and_size
     if profile_pic.attached?
       unless profile_pic.blob.content_type.in?(%w(image/jpeg image/png image/gif))

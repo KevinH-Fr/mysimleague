@@ -8,7 +8,8 @@
   <div class="card mb-2">
     <div class="row g-0">
       <div class="col-md-4">
-        <%= image_tag(user.default_profile_pic, class: "card-img-top profile-pic mx-auto d-block my-2") %> 
+        <%#= image_tag(user.default_profile_pic, class: "card-img-top profile-pic mx-auto d-block my-2") %> 
+        <%= image_tag(user.webp_variant, class: "card-img-top profile-pic mx-auto d-block my-2") %>
       </div>
       <div class="col-md-8">
         <div class="card-body">
