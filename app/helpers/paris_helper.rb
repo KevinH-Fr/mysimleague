@@ -43,7 +43,10 @@ module ParisHelper
     resultat_pari = (qualification == 1) ? "true" : "false"
 
     parisPole.each do |pari|
-      pari.update_columns(resultat: resultat_pari)
+      pari.update_columns(
+        resultat: resultat_pari,
+        solde: pari.montant * pari.cote
+      )
       # puts "_____pari pole updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
 
     end
@@ -53,7 +56,10 @@ module ParisHelper
     resultat_pari = (course <= 3) ? "true" : "false"
 
     parisPodium.each do |pari|
-      pari.update_columns(resultat: resultat_pari)
+      pari.update_columns(
+        resultat: resultat_pari,
+        solde: pari.montant * pari.cote
+      )
       #puts "_____pari podium updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
 
     end
@@ -63,7 +69,10 @@ module ParisHelper
     resultat_pari = (course <= 10) ? "true" : "false"
 
     parisTop10.each do |pari|
-      pari.update_columns(resultat: resultat_pari)
+      pari.update_columns(
+        resultat: resultat_pari,
+        solde: pari.montant * pari.cote
+      )
       #puts "_____pari top10 updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
 
     end
@@ -72,7 +81,10 @@ module ParisHelper
     if dns == true
       paris = Pari.where(event_id: event, association_user_id: association_user)
       paris.each do |pari|
-        pari.update_columns(resultat: "dns")
+        pari.update_columns(
+          resultat: "dns",
+          solde: pari.montant * pari.cote
+        )
         #puts "_____pari dns updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
 
       end
@@ -84,7 +96,10 @@ module ParisHelper
       paris = Pari.where(event_id: event, association_user_id: association_user)
   
       paris.each do |pari|
-        pari.update_columns(resultat: "false")
+        pari.update_columns(
+          resultat: "false",
+          solde: pari.montant * pari.cote
+        )
         #puts "_____pari false updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
 
       end
