@@ -22,6 +22,8 @@ module ParisHelper
 
 
   def update_paris_resultats(event, association_user, qualification, course, dns)
+
+    puts "_____________call update pari helper paris "
     paris = Pari.where(event_id: event, association_user_id: association_user)
 
     # Victoire

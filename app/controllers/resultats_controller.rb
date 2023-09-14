@@ -108,6 +108,8 @@ class ResultatsController < ApplicationController
         flash.now[:success] = "resultat was successfully updated"
 
         #call maj paris liés 
+
+        puts "____call update pari depuis resultat update"
         update_paris_resultats(
           @resultat.event_id, 
           @resultat.association_user_id, 
