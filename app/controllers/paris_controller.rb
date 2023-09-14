@@ -8,7 +8,7 @@ class ParisController < ApplicationController
 
   before_action :set_pari, only: %i[ show edit update destroy ]
   before_action :user_connected_pari_ouvert, only: %i[ new create edit update destroy ]
-  before_action :authorize_edit_user, only: %i[ edit update destroy ]
+ # before_action :authorize_edit_user, only: %i[ edit update destroy ]
   before_action :user_not_in_division, only: %i[ new create ]
 
   def new
