@@ -31,14 +31,15 @@ class LicencesController < ApplicationController
       end
     end
 
-
     redirect_to menu_index_path(
       ligue: @event.division.saison.ligue, 
       saison: @event.division.saison.id, 
       division: @event.division.id,
-      event: @event.id,
-      expand_synthese_licences: true # Add this line to pass the parameter
+      event: @event.id
     )
+
+    flash[:notice] = "Licences updated successfully." 
+
 
   end
 

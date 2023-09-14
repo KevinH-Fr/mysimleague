@@ -108,8 +108,6 @@
                   <%= form.text_field :penalite_temps, class: "form-control",
                   data: { form_new_doi_target: "penalite_temps" } %>
                 </div>
-              
-
               </div>
 
               <span
@@ -117,11 +115,7 @@
                 data-form-new-doi-target="contenu_article">
                 <!-- Display other content if needed -->
               </span>
-
-
-
             </div>
-
         </div>
 
         <div class="input-group input-group-sm my-2">
@@ -134,7 +128,6 @@
           <%= form.select :association_admin_id, 
                 options_from_collection_for_select(liste_admins_ligue(session[:ligue]), 'id', 'user_nom', form.object.association_admin_id), 
                 { include_blank: 'Select commissaire' }, class: "form-select" %>
-
         </div>
 
       <% end %>

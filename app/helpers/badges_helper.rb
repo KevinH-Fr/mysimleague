@@ -40,6 +40,8 @@ module BadgesHelper
       content_tag(:span, "fait de course", class: "badge bg-success")
     elsif value == "responsable"
       content_tag(:span, "responsable", class: "badge bg-danger")
+    else
+      content_tag(:span, "autre", class: "badge bg-dark")
     end
   end
 
