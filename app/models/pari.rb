@@ -18,6 +18,10 @@ class Pari < ApplicationRecord
     id
   end 
 
+  def self.recent(limit = 5)
+    order(created_at: :desc).limit(limit)
+  end
+  
   def calcul_solde  
     if self.resultat == "true"
       self.solde = self.montant.to_f * self.cote
