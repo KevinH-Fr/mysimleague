@@ -2,12 +2,13 @@
 
   <div class="card record-with-effect m-0 my-2">  
 
-    <div class="row align-items-center justicy-content-center">
-      <div class="col-9">
+      <div class="col">
         <%= image_tag(circuit.drapeau, class: "img-fluid rounded", width: "50") if circuit.drapeau.present? %>
 
         Nom:  <%= circuit.nom %>
         Pays: <%= circuit.pays %>
+
+        <% unless params[:action] == 'index' %>
 
           <button class="btn btn-sm btn-outline-primary fa-solid fa-cloud-sun-rain m-1" type="button" 
                   data-bs-toggle="collapse" data-bs-target="#collapseWeather<%= circuit.id %>" aria-expanded="false">
@@ -16,10 +17,12 @@
           <button class="btn btn-sm btn-outline-success fa-solid fa-map m-1" type="button" 
                   data-bs-toggle="collapse" data-bs-target="#collapseMap<%= circuit.id %>" aria-expanded="false">
           </button>
+  
+        <% end %>
               
       </div>
       
-      <div class="col-3 d-flex align-items-center justify-content-end">  
+      <div class="col d-flex align-items-center justify-content-end">  
         <% if current_user && current_user.admin %>
           <%= button_to "", edit_circuit_path(circuit), method: :post, 
                 class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
@@ -28,18 +31,22 @@
                 data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
         <% end %>
       </div>
-      
-      <div class="collapse" id="collapseWeather<%= circuit.id %>">
-        <% @data = weather_data(circuit.latitude, circuit.longitude) %>
-        <%= render "meteo", locals: { data: @data } %>
-      </div>
 
-      <div class="collapse" id="collapseMap<%= circuit.id %>">
-        <% @circuit_nom = circuit.nom %>
-        <%= render  "map", locals: {circuit_nom: @circuit_nom} %>
-      </div>
+      <% unless params[:action] == 'index' %>
+
+        <div class="collapse" id="collapseWeather<%= circuit.id %>">
+          <% @data = weather_data(circuit.latitude, circuit.longitude) %>
+          <%= render "meteo", locals: { data: @data } %>
+        </div>
+
+        <div class="collapse" id="collapseMap<%= circuit.id %>">
+          <% @circuit_nom = circuit.nom %>
+          <%= render  "map", locals: {circuit_nom: @circuit_nom} %>
+        </div>
+      
+      <% end %>
+      
 
     </div>
-  </div>
 
 </div>

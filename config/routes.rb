@@ -74,6 +74,7 @@ Rails.application.routes.draw do
     member do
       post :edit
     end
+   # post 'display_weather', on: :collection
   end
 
   resources :ligues do

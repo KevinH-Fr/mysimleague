@@ -19,8 +19,9 @@ module DotdsHelper
         "Aucun vote pour l'instant." # Return a message indicating no votes yet
       elsif max_pilote_ids.count > 1
         "Il y a une égalité entre les pilotes suivants:<br>".html_safe +
+        
           max_pilote_ids.map { |pilote_id|
-            "#{AssociationUser.find(pilote_id).user.nom} (#{max_count} votes)"
+            "  <strong>  #{AssociationUser.find(pilote_id).user.nom}  </strong>  (#{max_count} votes)"
           }.join("<br>").html_safe
       else
           "Pilote en tête: <strong>  #{AssociationUser.find(max_pilote_ids.first).user.nom} </strong> (#{max_count} #{'vote'.pluralize(max_count)})".html_safe

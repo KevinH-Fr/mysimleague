@@ -3,22 +3,24 @@
 
   <div class="card record-with-effect m-0 my-2">  
 
-    <h4> <%= equipe.nom %> </h4>  
+    <div class="d-inline">
+      <h4> <%= equipe.nom %> </h4>  
 
-    <%= image_tag(equipe.voiture, class: "img-fluid rounded w-50") if equipe.voiture.present? %>
-    <%= image_tag(equipe.banniere, class: "img-fluid rounded w-50") if equipe.banniere.present? %>
+      <%= image_tag(equipe.voiture, class: "img-fit rounded w-25", loading: "lazy") if equipe.voiture.present? %>
+      <%= image_tag(equipe.banniere, class: "img-fit rounded w-25", loading: "lazy") if equipe.banniere.present? %>
 
-    Couleurs:  <%= equipe.couleurs %>
-      
-      <% if current_user && current_user.admin %>
-
-        <%= button_to "", edit_equipe_path(equipe), method: :post, 
-              class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
-        <%= button_to "", equipe, method: :delete, 
-              class: "btn btn-sm btn-danger fa-solid fa-trash",
-              data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+      Couleurs:  <%= equipe.couleurs %>
         
-      <% end %>
-    
+    </div>    
+
+        <% if current_user && current_user.admin %>
+
+          <%= button_to "", edit_equipe_path(equipe), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+          <%= button_to "", equipe, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+          
+        <% end %>
   </div>
 </div>
