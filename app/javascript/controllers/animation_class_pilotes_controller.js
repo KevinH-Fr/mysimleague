@@ -99,7 +99,7 @@ export default class extends Controller {
                if (!background) {
                  //  console.log('set background')
                    const backgroundImage = new Image();
-                   backgroundImage.src = "/images/bg_grey.jpg";
+                   backgroundImage.src = "/images/bg_grey.webp";
                
                    backgroundImage.onload = function() {
                      ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);

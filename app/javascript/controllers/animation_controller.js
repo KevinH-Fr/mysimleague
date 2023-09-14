@@ -100,7 +100,7 @@ export default class extends Controller {
             if (!background) {
               //  console.log('set background')
                 const backgroundImage = new Image();
-                backgroundImage.src = "/images/bg_grey.jpg";
+                backgroundImage.src = "/images/bg_grey.webp";
             
                 backgroundImage.onload = function() {
                   ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
@@ -128,10 +128,10 @@ export default class extends Controller {
 
                 // Create image objects
                 const imageMT = new Image();
-                imageMT.src = "/images/mt_violet.png";
+                imageMT.src = "/images/mt_violet.webp";
 
                 const imageDOTD = new Image();
-                imageDOTD.src = "/images/dotd_gold.png";
+                imageDOTD.src = "/images/dotd_gold.webp";
 
             resultats.forEach(function(resultat, index) {
                 
