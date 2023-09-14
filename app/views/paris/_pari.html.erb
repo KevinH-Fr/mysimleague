@@ -5,7 +5,7 @@
 
     <div class="row align-items-center">
       <div class="col-12">
-        #: <%= pari.id %>
+        <strong>#<%= pari.id %></strong>
         parieur: <strong>  <%= pari.user.nom %> </strong>
         pilote: <strong> <%= pari.association_user.user.nom %> </strong>
         montant: <%= number_with_delimiter(pari.montant.to_i, delimiter: ' ', precision: 0)  %> 
@@ -13,7 +13,6 @@
         cote: <%= pari.cote %>
         <%= boolean_icon(pari.resultat) %>
         <%= boolean_badge(pari.solde) %>
-        resultat: <%= pari.resultat %>
       </div>
 
     </div>
