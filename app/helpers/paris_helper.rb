@@ -31,7 +31,7 @@ module ParisHelper
     resultat_pari = (course == 1) ? "true" : "false"
 
     parisVictoire.each do |pari|
-      pari.update(resultat: resultat_pari)
+      pari.update_columns(resultat: resultat_pari)
       puts "_____pari victoire updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
     end
 

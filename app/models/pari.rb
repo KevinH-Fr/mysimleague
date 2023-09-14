@@ -6,7 +6,7 @@ class Pari < ApplicationRecord
   belongs_to :user
   belongs_to :association_user
 
-  validate :verif_montant
+  validate :verif_montant, on: :create
 
   validates :montant, numericality: { greater_than: 0 }
 
@@ -21,7 +21,7 @@ class Pari < ApplicationRecord
   def self.recent(limit = 5)
     order(created_at: :desc).limit(limit)
   end
-  
+
   def calcul_solde  
     if self.resultat == "true"
       self.solde = self.montant.to_f * self.cote
@@ -47,7 +47,7 @@ class Pari < ApplicationRecord
    # puts "____________test val user depuis verif montant: #{user}"
     soldeAvant = somme_paris_user(Time.now.year, [User.find(user)])[User.find(user).id][:sum]
 
-    #puts " ____________solde avant depuis verif montant: #{soldeAvant}"
+    puts " ____________solde avant depuis verif montant: #{soldeAvant}"
 
     total = soldeAvant.to_f - montant.to_f
     if total < 0 
