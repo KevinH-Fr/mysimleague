@@ -12,8 +12,10 @@ class Pari < ApplicationRecord
 
   
   #before_save :update_solde, if: :resultat_changed?
-  before_save :calcul_solde
-  
+  #before_save :calcul_solde
+  before_create :calcul_solde
+  before_update :calcul_solde
+
   def feed_content
     id
   end 
@@ -23,8 +25,9 @@ class Pari < ApplicationRecord
   end
 
   def calcul_solde  
+    puts "____________call calcul solde depuis pari model"
     if self.resultat == "true"
-      self.solde = self.montant.to_f * self.cote
+      self.solde = self.montant * self.cote
     elsif self.resultat == "dns"
       self.solde = self.montant
     else
