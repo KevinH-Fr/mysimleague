@@ -32,6 +32,7 @@ module ParisHelper
 
     parisVictoire.each do |pari|
       pari.update(resultat: resultat_pari)
+      puts "_____pari victoire updated - id pari: #{pari.id} - coureur: #{pari.association_user.user.nom} - resultat pari: #{pari.resultat}"
     end
 
     # Pole
