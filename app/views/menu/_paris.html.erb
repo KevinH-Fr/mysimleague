@@ -63,7 +63,7 @@
     </div>
 
     <div id="paris">
-        <% @paris.each do |pari| %>
+        <% @paris.each.order(:created_at) do |pari| %>
             <%= render pari %>
         <% end %>
     </div>

@@ -5,7 +5,7 @@
 
     <div class="row align-items-center">
       <div class="col-12">
-        #: <%= pari %>
+        #: <%= pari.id %>
         parieur: <strong>  <%= pari.user.nom %> </strong>
         pilote: <strong> <%= pari.association_user.user.nom %> </strong>
         montant: <%= number_with_delimiter(pari.montant.to_i, delimiter: ' ', precision: 0)  %> 
