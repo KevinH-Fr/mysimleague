@@ -56,7 +56,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Recent paris" do
           ul do
             Pari.recent(5).map do |pari|
-              li link_to(pari.id, admin_ligue_path(pari))
+              li link_to(pari.id, admin_pari_path(pari))
             end
           end
         end
