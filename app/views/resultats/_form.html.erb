@@ -27,7 +27,7 @@
       <div class="row g-2">
         <div class="col-md">
           <div class="input-group input-group-sm my-1">
-            <%= form.label :pilote, class: "input-group-text" %>
+            <%= form.label :association_user_id, "Pilote", class: "input-group-text" %>
             <%= form.collection_select :association_user_id,
                       pilotes_division_named(Division.find(session[:division])), :first, :second,
                       { include_blank: 'Select Pilote' },
@@ -49,14 +49,14 @@
       <div class="row g-2">
         <div class="col-md">
           <div class="input-group input-group-sm my-1">
-            <%= form.label :qualif, class: "input-group-text" %>
+            <%= form.label :qualification, "Qualif", class: "input-group-text" %>
             <%= form.select :qualification, options_for_select([nil] + (1..20).to_a, 
                   selected: resultat.qualification), {}, class: "form-select" %>
           </div>
         </div>
         <div class="col-md">
           <div class="input-group input-group-sm my-1">
-            <%= form.label :sprint, class: "input-group-text" %>
+            <%= form.label :qualification_sprint, "Sprint", class: "input-group-text" %>
             <%= form.select :qualification_sprint, options_for_select([nil] + (1..20).to_a, 
                   selected: resultat.qualification_sprint), {}, 
                   data: { action: "change->resultat#update_score", resultat_target: "sprint" }, 

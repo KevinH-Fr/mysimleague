@@ -24,7 +24,7 @@
 
         <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
           <div class="form-check form-switch h6">
-            <%= form.label "Doi commissaire", class: "form-check-label text-center" %>
+            <%= form.label :doicommissaire, "DOI commissaire", class: "form-check-label text-center" %>
             <%= form.check_box :doicommissaire, class: "form-check-input text-center" %>
           </div>
         <% end %>
@@ -32,9 +32,8 @@
         <div class="row g-2">
           <div class="col-md">
 
-                    
             <div class="input-group input-group-sm my-2">
-              <%= form.label :demandeur, class: "input-group-text" %>     
+              <span class= "input-group-text"> Demandeur</span>    
               <% if doi.persisted? %>
                 <%= form.hidden_field :demandeur_id, value: doi.demandeur_id, class: "form-control disable" %> 
                   <div class="form-control text-center">
@@ -56,7 +55,7 @@
           </div>
           <div class="col-md">
             <div class="input-group input-group-sm my-2">
-              <%= form.label :implique, class: "input-group-text" %>
+              <%= form.label :implique_id, class: "input-group-text" %>
               <%= form.collection_select :implique_id, pilotes_division_named(Division.find(session[:division])), 
                       :first, :second, { include_blank: 'Select impliqué'},  class: "form-select" %> 
             </div>
@@ -124,7 +123,7 @@
         </div>
 
         <div class="input-group input-group-sm my-2">
-          <%= form.label "resp_commissaire", class: "input-group-text" %>
+          <%= form.label :association_admin_id, "Respo. commissaire", class: "input-group-text" %>
           <%= form.select :association_admin_id, 
                 options_from_collection_for_select(liste_admins_ligue(session[:ligue]), 'id', 'user_nom', form.object.association_admin_id), 
                 { include_blank: 'Select commissaire' }, class: "form-select" %>
