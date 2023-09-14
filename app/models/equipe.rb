@@ -15,8 +15,8 @@ class Equipe < ApplicationRecord
     def medias_format_and_size
       %w(logo banniere voiture).each do |media|
           if send(media).attached?
-              unless send(media).blob.content_type.in?(%w(image/jpeg image/png image/gif))
-                  errors.add(media.to_sym, 'must be a JPEG, PNG, or GIF image')
+              unless send(media).blob.content_type.in?(%w(image/jpeg image/png image/gif image/avif image/webp))
+                  errors.add(media.to_sym, 'must be a JPEG, PNG, GIF, AVIF or WebP image')
               end
               unless send(media).blob.byte_size <= 1.megabytes
                   errors.add(media.to_sym, 'size should be less than 1MB')
