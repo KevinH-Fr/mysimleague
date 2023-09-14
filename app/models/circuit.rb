@@ -19,7 +19,7 @@ class Circuit < ApplicationRecord
 	
 	def medias_format_and_size
 	    if drapeau.attached?
-	        unless drapeau.blob.content_type.in?(%w(image/jpeg image/png image/gif))
+	        unless drapeau.blob.content_type.in?(%w(image/jpeg image/png image/gif image/avif image/webp))
 	            errors.add(:drapeau, 'must be a JPEG, PNG, or GIF image')
 	        end
             unless drapeau.blob.byte_size <= 1.megabytes
