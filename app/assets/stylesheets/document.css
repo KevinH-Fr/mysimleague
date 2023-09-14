@@ -3,10 +3,12 @@
 @font-face {
   font-family: 'F1regular';
   src: url('Formula1-Regular_web_0.ttf');
+  font-display: swap;
+
 }
 
 body, div, h2 {
-  font-family: "F1regular";
+ /* font-family: "F1regular"; */
   font-size: small;
 }
 
@@ -18,7 +20,7 @@ body, div, h2 {
   font-weight: 1000;
   font-size: xx-large;
   font-family: 'F1regular';
-  src: url('Formula1-Bold_web_0.ttf');
+/*  src: url('Formula1-Bold_web_0.ttf'); */
 }
 
 

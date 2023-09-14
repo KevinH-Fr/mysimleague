@@ -9,9 +9,10 @@
 }
 
 body, select {
-  font-family: "F1regular";
+  font-family: 'F1regular';
   font-size: small;
 }
+
 
 ::-webkit-scrollbar {
   width: 4px; /* Width of the vertical scrollbar */

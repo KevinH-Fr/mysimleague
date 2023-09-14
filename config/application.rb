@@ -20,5 +20,8 @@ module Mysimleague
     #config.active_record.default_timezone = :utc
 
     # config.eager_load_paths << Rails.root.join("extras")
+
+
+
   end
 end
