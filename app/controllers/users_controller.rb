@@ -11,8 +11,8 @@ class UsersController < ApplicationController
     @data = [ 
       stats[:user_stats][:nb_victoires],
       stats[:user_stats][:nb_podiums],
-      stats[:user_stats][:nb_victoires],
-      stats[:user_stats][:nb_victoires],      
+      stats[:user_stats][:nb_top5],
+      stats[:user_stats][:nb_top10],      
     ]
     @data_compare = []
 

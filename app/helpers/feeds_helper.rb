@@ -1,43 +1,23 @@
 module FeedsHelper
 
     def feeds_elements
-
-        feed_users = User.order(updated_at: :desc).limit(3)
-        feed_association_users =  AssociationUser.order(updated_at: :desc).limit(3)
-        feed_ligues =  Ligue.order(updated_at: :desc).limit(3)
-        feed_saisons =  Saison.order(updated_at: :desc).limit(3)
-        feed_divisions =  Division.order(updated_at: :desc).limit(3)
-    
-        feed_circuits =  Circuit.order(updated_at: :desc).limit(3)
-        feed_ecuries =  Equipe.order(updated_at: :desc).limit(3)
-        feed_events =  Event.order(updated_at: :desc).limit(3)
-        feed_resultats =  Resultat.order(updated_at: :desc).limit(3)
-        feed_dois =  Doi.order(updated_at: :desc).limit(3)
-
-        feed_paris =  Pari.order(updated_at: :desc).limit(3)
- 
-        feed_dotds =  Dotd.order(updated_at: :desc).limit(3)
-
+        # Define the models you want to fetch
+        models_to_fetch = [User, AssociationUser, Ligue, Saison, Division, Circuit, Equipe, Event, Resultat, Doi, Pari, Dotd]
+      
+        # Initialize an empty array to store the results
         @feeds = []
-        @feeds.concat(feed_users)
-        @feeds.concat(feed_association_users)
-
-        @feeds.concat(feed_ligues)
-        @feeds.concat(feed_saisons)
-        @feeds.concat(feed_divisions)
-    
-        @feeds.concat(feed_circuits)
-        @feeds.concat(feed_ecuries)
-        @feeds.concat(feed_events)
-        @feeds.concat(feed_resultats)
-        @feeds.concat(feed_dois)
-
-        @feeds.concat(feed_paris)
-        @feeds.concat(feed_dotds)
-   
+      
+        # Iterate through the models and fetch the most recent 3 records for each
+        models_to_fetch.each do |model|
+          # Use the 'or' method to build a query for each model
+          recent_records = model.order(updated_at: :desc).limit(3)
+          @feeds += recent_records
+        end
+      
+        # Sort @feeds by updated_at in descending order
         @feeds.sort_by!(&:updated_at).reverse!
-        
     end
+      
     # selecteur d'icon pour le feed en fonction du model
     def feed_icon(feed)
         case feed.class.name
