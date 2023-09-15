@@ -11,10 +11,12 @@
 <% else %>
     <div class="flex-element p-2">
         <%= link_to '', new_user_session_path, 
-                class: "fa-solid fa-user-lock btn btn-warning" %>
+                class: "fa-solid fa-user-lock btn btn-warning",
+                'aria-label' => "Sign In"%>
 
         <%= link_to "", steps_compte_step1_path, 
-                class: "fa-solid fa-user-plus btn btn-primary" %>
+                class: "fa-solid fa-user-plus btn btn-primary",
+                'aria-label' => "Sign Up" %>
     </div>
 <% end %>
         
