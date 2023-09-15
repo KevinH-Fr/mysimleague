@@ -56,6 +56,11 @@ Rails.application.configure do
   # Store uploaded files on the local file system (see config/storage.yml for options).
   config.active_storage.service = :cloudinary
 
+  config.public_file_server.headers = {
+    'Cache-Control' => 'public, max-age=31536000' # Set max-age to one year (in seconds)
+  }
+  
+
   # Mount Action Cable outside main process or domain.
   # config.action_cable.mount_path = nil
   # config.action_cable.url = "wss://example.com/cable"
