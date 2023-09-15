@@ -3,35 +3,46 @@ class HomeController < ApplicationController
   include UsersHelper
 
   def index
-  #  feeds = feeds_elements
-
-  models_to_fetch = [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd]
-  # models enlevés : Ligue Saison Division Circuit Equipe
-  @feeds = []
-
-  # Iterate through the models and fetch the most recent 3 records for each
-  models_to_fetch.each do |model|
-    # Use the 'or' method to build a query for each model
-    recent_records = model.order(updated_at: :desc).limit(3)
-    @feeds += recent_records
-  end
-
-  @feeds.sort_by!(&:updated_at).reverse!
-
-
- #@pagy, feeds = pagy(feeds, items: 5)
-
-  @pagy, @feeds = pagy_array(@feeds, items: 5)
-    
-    @prochains_events = Event.where('horaire >= ?', Date.today).order(:horaire).limit(5)
+ 
+    @prochains_events = Event.where('horaire >= ?', Date.today).order(:horaire).limit(4)
 
     if current_user
       @current_user
     end
-
-
   
   end 
+
+  def display_feeds
+    #  feeds = feeds_elements
+
+    models_to_fetch = [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd]
+    # models enlevés : Ligue Saison Division Circuit Equipe
+    @feeds = []
+
+    # Iterate through the models and fetch the most recent 3 records for each
+    models_to_fetch.each do |model|
+      # Use the 'or' method to build a query for each model
+      recent_records = model.order(updated_at: :desc).limit(3)
+      @feeds += recent_records
+    end
+
+    @feeds.sort_by!(&:updated_at).reverse!
+
+
+  #@pagy, feeds = pagy(feeds, items: 5)
+
+    @pagy, @feeds = pagy_array(@feeds, items: 5)
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          'partial-container', partial: 'home/feeds'
+        )
+      end
+    end
+
+    
+  end
 
   def display_parieurs
 

@@ -1,30 +1,34 @@
 Rails.application.routes.draw do
 
   resources :menu do
-    post 'display_admins_ligue', on: :collection
-    post 'display_rattachements_ligue', on: :collection
+    collection do
+      post 'display_admins_ligue'
+      post 'display_rattachements_ligue'
 
-    post 'display_reglements_ligue', on: :collection
-    post 'display_pilotes_division', on: :collection
-    post 'display_dupliquer_events_division', on: :collection
+      post 'display_reglements_ligue'
+      post 'display_pilotes_division'
+      post 'display_dupliquer_events_division'
 
-    post 'display_resultats', on: :collection
+      post 'display_resultats'
 
+      post 'display_presences'
+      post 'display_dotds'
+      post 'display_dois'
+      post 'display_paris'
 
-    post 'display_presences', on: :collection
-    post 'display_dotds', on: :collection
-    post 'display_dois', on: :collection
-    post 'display_paris', on: :collection
-
-    post 'display_licences', on: :collection
-    post 'display_synthese_licences', on: :collection
-    post 'display_classement_equipes', on: :collection
-    post 'display_classement_pilotes', on: :collection
+      post 'display_licences'
+      post 'display_synthese_licences'
+      post 'display_classement_equipes'
+      post 'display_classement_pilotes'
+    end
 
   end
 
   resources :home do
     collection do 
+
+      post 'display_feeds'
+
       post 'display_parieurs'
       post 'display_demande_rattachement'
       post 'display_creer_ligue'
