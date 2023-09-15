@@ -2,8 +2,8 @@
 <% @prochains_events.each do |event| %>
 
     <%= link_to menu_index_path(
-        ligue: event.division.saison.ligue, 
-        saison: event.division.saison, 
+        ligue: event.division.saison.ligue_id, 
+        saison: event.division.saison_id, 
         division: event.division_id, 
         event: event), class: "no-underline text-dark" do %>
 
