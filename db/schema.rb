@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_09_114058) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_15_115051) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -129,7 +129,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_09_114058) do
   end
 
   create_table "dois", force: :cascade do |t|
-    t.integer "demandeur_id", null: false
+    t.integer "demandeur_id"
     t.integer "implique_id", null: false
     t.integer "event_id", null: false
     t.text "description"

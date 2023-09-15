@@ -43,11 +43,15 @@
               <%# donne erreur si pas de pilotes %>
 
                 <%# if association_user_from_user(current_user, session[:division]) %>                  
-                    <%= form.hidden_field :demandeur_id, value: (association_user = association_user_from_user(current_user, session[:division])) ? association_user.id : current_user.id %>
-                    <div class="form-control text-center">
-                      <% association_user = association_user_from_user(current_user, session[:division]) %>
-                      <%= User.find(association_user.user_id).nom if association_user %>
-                    </div>  
+
+                <% association_user = association_user_from_user(current_user, session[:division]) %>
+
+                <%= form.hidden_field :demandeur_id, value: association_user&.id %>
+                <div class="form-control text-center">
+                  <%= association_user ? User.find_by(id: association_user.user_id)&.nom : "" %>
+                </div>
+
+
                 <%# end %>
 
               <% end %>
