@@ -1,7 +1,7 @@
 <nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
   <div class="container-fluid m-0 p-0">
     <div class="text-start">
-      <%= link_to image_tag("/images/brandlogo.webp", width: 240, height: 40, loading: "lazy",  alt: "Go to home page"), 
+      <%= link_to image_tag("/images/brandlogo.webp", width: 240, height: 40, alt: "Go to home page"), 
             root_path, class: "mx-2" %>
     </div>
     <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
@@ -37,16 +37,18 @@
         <% unless current_user %>
           
           <%= link_to new_user_session_path, class: "text-warning no-underline m-2", 
-            alt: "Go to sign in" do %>
-            <i class="fa fa-solid fa-lg fa-user-lock"></i>
-            <span class="ms-2 fw-bold">Se connecter</span>
+                  title: "Sign In", 'aria-label' => "Sign In" do %>
+            <i class="fa fa-solid fa-lg fa-user-lock" aria-hidden="true"></i>
+            <span class="ms-2 fw-bold">Sign In</span>
           <% end %>
 
+
           <%= link_to steps_compte_step1_path, class: "text-primary no-underline m-2",
-                alt: "Go to sign up" do %>
-            <i class="fa fa-solid fa-lg fa-user-plus"></i>
-            <span class="ms-2 fw-bold">Creer compte</span>
+                  title: "Create an Account", 'aria-label' => "Create an Account" do %>
+            <i class="fa fa-solid fa-lg fa-user-plus" aria-hidden="true"></i>
+            <span class="ms-2 fw-bold">Create an Account</span>
           <% end %>
+
 
         <% end %>  
                                                   
