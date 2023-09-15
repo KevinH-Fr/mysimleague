@@ -128,7 +128,7 @@ module FeedsHelper
                 span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
             else
                 span_content = content_tag(:span, "Commissaire", class: "fw-bold")
-                span_image =  content_tag(:i, "", class: "fa fa-xl fa-person-military-pointing")
+                span_image =  content_tag(:i, "", class: "fa fa-xl fa-person-military-pointing mx-2")
             end 
             combined_content = span_label + span_image + " " + span_content
 

@@ -2,17 +2,6 @@
 <html lang="en">
   <head>
 
-     <!-- Google tag (gtag.js) -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-8LZY8X784Z"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-
-      gtag('config', 'G-8LZY8X784Z');
-    </script>
-
-
     <title>racemeifyoucan</title>
 
     <meta name="description" content="simracing management tool">
@@ -39,6 +28,26 @@
 
     <%= javascript_importmap_tags %>
     
+
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id='G-8LZY8X784Z'"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-8LZY8X784Z');
+    </script>
+
+    <script type="module">
+      let isInitialLoad = true;
+      document.addEventListener('turbo:load', () => {
+        if (isInitialLoad){isInitialLoad = false; return;}
+        gtag('config', 'G-8LZY8X784Z', {
+          page_path: window.location.pathname,
+        });
+      });
+    </script>
+
 
   </head>
 
