@@ -2,15 +2,11 @@
 import "@hotwired/turbo-rails"
 import "controllers"
 
-
 import "@rails/request.js"
 
-import "jquery"
-import "jquery_ujs"
+//import "jquery"
+//import "jquery_ujs"
 
-import "chart.js"
-
-//= require Chart.min
 
 import LocalTime from "local-time"
 LocalTime.start()

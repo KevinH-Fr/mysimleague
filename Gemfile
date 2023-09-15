@@ -56,7 +56,6 @@ gem 'open-weather-ruby-client'
 gem 'active_analytics'
 gem 'sitemap_generator'
 
-gem 'chart-js-rails'
 gem "local_time"
 
 gem "image_processing", "~> 1.2"

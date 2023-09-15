@@ -16,5 +16,5 @@ pin "chart.js", to: "https://ga.jspm.io/npm:chart.js@4.2.0/dist/chart.js", prelo
 pin "@kurkle/color", to: "https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.esm.js"
 
 
-pin_all_from "app/javascript/controllers", under: "controllers"
+pin_all_from "app/javascript/controllers", under: "controllers", preload: false
 
