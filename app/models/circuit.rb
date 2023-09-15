@@ -1,5 +1,7 @@
 class Circuit < ApplicationRecord
 
+    include ActionView::Helpers::TextHelper
+
     validates :nom, presence: true
     validate :medias_format_and_size
 
@@ -11,7 +13,11 @@ class Circuit < ApplicationRecord
 
     def circuit_nom_complet
         "#{pays} - #{nom}" # Assuming 'nom' is the circuit's name attribute and 'pays' is the country attribute
-      end
+    end
+
+    def short_name
+        truncate(nom, length: 15)
+    end
 
     def self.ransackable_attributes(auth_object = nil)
         ["carte", "created_at", "id", "latitude", "longitude", "nom", "pays", "updated_at"]

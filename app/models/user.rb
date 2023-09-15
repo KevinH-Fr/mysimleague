@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+
+  include ActionView::Helpers::TextHelper
+
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -63,6 +66,10 @@ class User < ApplicationRecord
     else
       '/images/profile_default.webp'
     end
+  end
+
+  def short_name
+    truncate(nom, length: 10)
   end
 
   def icon_controlleur

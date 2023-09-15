@@ -1,34 +1,27 @@
 
 
-<h4 class="text-center mt-2"> Activités récentes </h4>
+<h4 class="text-center my-2"> Activités récentes </h4>
 
-<div class="p-2">
 
     <div id="feeds">
 
         <% @feeds.each do |feed| %>
             <%= link_to feed_path(feed), class: "no-underline text-dark" do %>
                 <div class="record-with-effect"> 
-                    <div class="row p-1">
-                        <div class="col-2 d-flex align-items-center justify-content-center">
-                            <%= feed_icon(feed) %>
-                            <%#= feed.class %>
-                        </div>
-                        <div class="col-10">
-                            <%= feed_label(feed) %>
-                            <span> edited </span>
-                            <small class="time-ago"> <%= time_ago_in_words(feed.updated_at) %> ago </small> 
-                        </div>
-                    </div>
+                    <%= feed_icon(feed) %>
+                    <%#= feed.class %>
+                    <%= feed_label(feed) %>
+                    <small class="time-ago"> <%= time_ago_in_words(feed.updated_at) %> ago </small> 
                 </div>
             <% end %>
         <% end %>
     </div>
-</div>
 
     <%#= pagy_next_link(@pagy, text: 'En voir plus...', link_extra: 'id="next_link", class="btn btn-primary"') %>
     <%#= turbo_frame_tag :pagination, loading: :lazy, src: home_index_path(format: :turbo_stream) %>
 
-<%== content_tag :div, class: 'd-flex align-items-center justify-content-center' do %>
+<br>
+
+<%== content_tag :div, class: 'd-flex align-items-center justify-content-center my-2' do %>
   <%==pagy_bootstrap_combo_nav_js(@pagy) %>
 <% end %>

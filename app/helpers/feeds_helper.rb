@@ -42,34 +42,34 @@ module FeedsHelper
     def feed_icon(feed)
         case feed.class.name
         when "Pilote"
-            content_tag :i, "", class: "fa fa-xl fa-user", style: "color: blue;"
+            content_tag :i, "", class: "fa fa-2x fa-user me-2", style: "color: blue;"
         when "Ligue"
-            content_tag :i, "", class: "fa fa-xl fa-people-group text-warning"
+            content_tag :i, "", class: "fa fa-2x fa-people-group text-warning me-2"
         when "Saison"
-            content_tag :i, "", class: "fa fa-xl fa-arrows-spin", style: "color: orange;"
+            content_tag :i, "", class: "fa fa-2x fa-arrows-spin me-2", style: "color: orange;"
         when "Division"
-            content_tag :i, "", class: "fa fa-xl fa-layer-group", style: "color: grey;"
+            content_tag :i, "", class: "fa fa-2x fa-layer-group me-2", style: "color: grey;"
         when "Circuit"
-            content_tag :i, "", class: "fa fa-xl fa-road", style: "color: grey;"
+            content_tag :i, "", class: "fa fa-2x fa-road me-2", style: "color: grey;"
         when "Equipe"
-            content_tag :i, "", class: "fa fa-xl fa-car", style: "color: blue;"
+            content_tag :i, "", class: "fa fa-2x fa-car me-2", style: "color: blue;"
         when "Event"
-            content_tag :i, "", class: "fa fa-xl fa-calendar-check"
+            content_tag :i, "", class: "fa fa-2x fa-calendar-check me-2"
         when "Resultat"
-            content_tag :i, "", class: "fa fa-xl fa-square-poll-horizontal text-primary"
+            content_tag :i, "", class: "fa fa-2x fa-square-poll-horizontal text-primary me-2"
         when "Pari"
-            content_tag :i, "", class: "fa fa-xl fa-money-bill-wave text-success"
+            content_tag :i, "", class: "fa fa-2x fa-money-bill-wave text-success me-2"
         when "User"
-            content_tag :i, "", class: "fa fa-xl fa-user text-warning"
+            content_tag :i, "", class: "fa fa-2x fa-user text-warning me-2"
         when "AssociationUser"
-            content_tag :i, "", class: "fa fa-xl fa-user text-warning"
+            content_tag :i, "", class: "fa fa-2x fa-user text-warning me-2"
         when "Doi"
-            content_tag :i, "", class: "fa fa-xl fa-solid fa-magnifying-glass text-danger"
+            content_tag :i, "", class: "fa fa-2x fa-solid fa-magnifying-glass text-danger me-2"
         when "Dotd"
-            content_tag :i, "", class: "fa fa-xl fa-solid fa-ranking-star text-warning"
+            content_tag :i, "", class: "fa fa-2x fa-solid fa-ranking-star text-warning me-2"
 
         else
-            content_tag :i, "", class: "fa fa-xl fa-question-circle text-dark"
+            content_tag :i, "", class: "fa fa-xl fa-question-circle text-dark me-2"
         end 
     end
 
@@ -89,7 +89,7 @@ module FeedsHelper
             combined_content = span_label + " " + span_content
         when "Circuit"
             span_label = content_tag(:span, "Circuit")
-            span_content = content_tag(:span, feed.nom, class: "fw-bold")
+            span_content = content_tag(:span, feed.short_name, class: "fw-bold")
             combined_content = span_label + " " + span_content
         when "Equipe"
             span_label = content_tag(:span, "Equipe")
@@ -101,7 +101,7 @@ module FeedsHelper
             combined_content = span_label + " " + span_content
         when "Resultat"
             span_label = content_tag(:span, "Resultat")
-            span_content = content_tag(:span, feed.association_user.user.nom, class: "fw-bold")
+            span_content = content_tag(:span, feed.association_user.user.short_name, class: "fw-bold")
             span_image = image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
             combined_content = span_label + span_image + " " + span_content
         when "Pari"
@@ -111,25 +111,30 @@ module FeedsHelper
             combined_content = span_label + span_image + " " + span_content
         when "User"
             span_label = content_tag(:span, "User")
-            span_content = content_tag(:span, feed.nom, class: "fw-bold")
+            span_content = content_tag(:span, feed.short_name, class: "fw-bold")
             span_image = image_tag(feed.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
             combined_content = span_label + span_image + " " + span_content 
         when "AssociationUser"
             span_label = content_tag(:span, "Pilote")
-            span_content = content_tag(:span, feed.user.nom, class: "fw-bold")
+            span_content = content_tag(:span, feed.user.short_name, class: "fw-bold")
             span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
             combined_content = span_label  + span_image  + " " + span_content
+
+
         when "Doi"
+            span_label = content_tag(:span, "DOI")
             if feed.demandeur_id.present?
-                span_label = content_tag(:span, "DOI")
-                span_content = content_tag(:span, AssociationUser.find(feed.demandeur_id).user.nom, class: "fw-bold")
+                span_content = content_tag(:span, AssociationUser.find(feed.demandeur_id).user.short_name, class: "fw-bold")
                 span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
-                combined_content = span_label + span_image + " " + span_content
-                end 
+            else
+                span_content = content_tag(:span, "Commissaire", class: "fw-bold")
+                span_image =  content_tag(:i, "", class: "fa fa-xl fa-person-military-pointing")
+            end 
+            combined_content = span_label + span_image + " " + span_content
 
         when "Dotd"
             span_label = content_tag(:span, "DOTD")
-            span_content = content_tag(:span, feed.user.nom, class: "fw-bold")
+            span_content = content_tag(:span, feed.user.short_name, class: "fw-bold")
             span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
             combined_content = span_label + span_image + " " + span_content
 

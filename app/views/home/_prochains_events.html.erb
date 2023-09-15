@@ -7,14 +7,14 @@
         division: event.division_id, 
         event: event), class: "no-underline text-dark" do %>
 
-        <div class="record-with-effect">
-            <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35", height: "20", alt: "drapeau") if event.circuit.drapeau.present? %>
+        <div class="record-with-effect p-2">
+            <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "30", height: "25", alt: "drapeau") if event.circuit.drapeau.present? %>
         
             <strong><%= event.division.saison.ligue.nom %> </strong> 
             <strong><%= event.division.nom %> </strong> 
 
             N°<strong> <%= event.numero %> </strong>
-            <strong> <%= event.circuit.nom %> </strong>
+            <strong> <%= event.circuit.short_name %> </strong>
             <%= local_time event.horaire, format: :short %> 
 
         </div>  
