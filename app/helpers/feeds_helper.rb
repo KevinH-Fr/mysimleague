@@ -120,10 +120,12 @@ module FeedsHelper
             span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
             combined_content = span_label  + span_image  + " " + span_content
         when "Doi"
-            span_label = content_tag(:span, "DOI")
-            span_content = content_tag(:span, AssociationUser.find(feed.demandeur_id).user.nom, class: "fw-bold")
-            span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
-            combined_content = span_label + span_image + " " + span_content
+            if feed.demandeur_id.present?
+                span_label = content_tag(:span, "DOI")
+                span_content = content_tag(:span, AssociationUser.find(feed.demandeur_id).user.nom, class: "fw-bold")
+                span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
+                combined_content = span_label + span_image + " " + span_content
+                end 
 
         when "Dotd"
             span_label = content_tag(:span, "DOTD")

@@ -27,10 +27,8 @@
 </div>
 
     <%#= pagy_next_link(@pagy, text: 'En voir plus...', link_extra: 'id="next_link", class="btn btn-primary"') %>
-
     <%#= turbo_frame_tag :pagination, loading: :lazy, src: home_index_path(format: :turbo_stream) %>
 
-    <div class="container-fluid d-flex align-items-center justify-content-center">   
-        <%== pagy_bootstrap_nav(@pagy) %>
-    </div>
-
+<%== content_tag :div, class: 'd-flex align-items-center justify-content-center' do %>
+  <%==pagy_bootstrap_combo_nav_js(@pagy) %>
+<% end %>
