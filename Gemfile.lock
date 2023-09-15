@@ -215,6 +215,8 @@ GEM
       faraday-multipart
       hashie
     orm_adapter (0.5.0)
+    pagy (5.10.1)
+      activesupport
     pg (1.5.3)
     public_suffix (5.0.3)
     puma (5.6.7)
@@ -354,6 +356,7 @@ DEPENDENCIES
   jquery-rails
   local_time
   open-weather-ruby-client
+  pagy
   pg (~> 1.4, >= 1.4.1)
   puma (~> 5.0)
   rails (~> 7.0.6)

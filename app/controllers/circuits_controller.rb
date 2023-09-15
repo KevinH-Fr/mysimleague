@@ -5,6 +5,15 @@ class CircuitsController < ApplicationController
 
   def index
     @circuits = Circuit.order(created_at: :desc)
+
+    @pagy, @circuits = pagy(@circuits, items: 4)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+
+
   end
 
   def show

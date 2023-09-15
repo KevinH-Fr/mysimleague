@@ -1,0 +1,9 @@
+<%= turbo_stream.append :feeds do %>
+    <%= render @feeds %>
+<% end %>
+
+<%= turbo_stream.replace :pagination do %>
+    <%= turbo_frame_tag :pagination, loading: :lazy, src: home_index_path(format: :turbo_stream,
+        page: @pagy.next) %>    
+<% end %>
+    

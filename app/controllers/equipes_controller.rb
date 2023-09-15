@@ -5,6 +5,14 @@ class EquipesController < ApplicationController
 
   def index
     @equipes = Equipe.all
+
+    @pagy, @equipes = pagy(@equipes, items: 4)
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+
   end
 
   def show

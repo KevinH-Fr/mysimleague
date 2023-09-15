@@ -1,15 +1,26 @@
 class HomeController < ApplicationController
   include FeedsHelper
   include UsersHelper
-  
+
   def index
     feeds = feeds_elements
 
+   #@pagy, feeds = pagy(feeds, items: 5)
+
+    @pagy, @feeds = pagy_array(feeds_elements, items: 5, partial: 'home/feed')
+
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+    
     @prochains_events = Event.where('horaire >= ?', Date.today).order(:horaire).limit(5)
 
     if current_user
       @current_user
     end
+
+
   
   end 
 

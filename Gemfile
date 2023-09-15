@@ -61,3 +61,4 @@ gem "local_time"
 
 gem "image_processing", "~> 1.2"
 
+gem 'pagy'

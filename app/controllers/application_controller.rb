@@ -1,5 +1,7 @@
 class ApplicationController < ActionController::Base
 
+    include Pagy::Backend
+
     before_action :record_page_view
     around_action :set_time_zone, if: -> { session[:ligue].present? }
   

@@ -2,21 +2,21 @@ module FeedsHelper
 
     def feeds_elements
 
-        feed_users = User.order(updated_at: :desc).limit(5)
-        feed_association_users =  AssociationUser.order(updated_at: :desc).limit(5)
-        feed_ligues =  Ligue.order(updated_at: :desc).limit(5)
-        feed_saisons =  Saison.order(updated_at: :desc).limit(5)
-        feed_divisions =  Division.order(updated_at: :desc).limit(5)
+        feed_users = User.order(updated_at: :desc).limit(3)
+        feed_association_users =  AssociationUser.order(updated_at: :desc).limit(3)
+        feed_ligues =  Ligue.order(updated_at: :desc).limit(3)
+        feed_saisons =  Saison.order(updated_at: :desc).limit(3)
+        feed_divisions =  Division.order(updated_at: :desc).limit(3)
     
-        feed_circuits =  Circuit.order(updated_at: :desc).limit(5)
-        feed_ecuries =  Equipe.order(updated_at: :desc).limit(5)
-        feed_events =  Event.order(updated_at: :desc).limit(5)
-        feed_resultats =  Resultat.order(updated_at: :desc).limit(5)
-        feed_dois =  Doi.order(updated_at: :desc).limit(5)
+        feed_circuits =  Circuit.order(updated_at: :desc).limit(3)
+        feed_ecuries =  Equipe.order(updated_at: :desc).limit(3)
+        feed_events =  Event.order(updated_at: :desc).limit(3)
+        feed_resultats =  Resultat.order(updated_at: :desc).limit(3)
+        feed_dois =  Doi.order(updated_at: :desc).limit(3)
 
-        feed_paris =  Pari.order(updated_at: :desc).limit(5)
+        feed_paris =  Pari.order(updated_at: :desc).limit(3)
  
-        feed_dotds =  Dotd.order(updated_at: :desc).limit(5)
+        feed_dotds =  Dotd.order(updated_at: :desc).limit(3)
 
         @feeds = []
         @feeds.concat(feed_users)
@@ -34,7 +34,6 @@ module FeedsHelper
 
         @feeds.concat(feed_paris)
         @feeds.concat(feed_dotds)
-
    
         @feeds.sort_by!(&:updated_at).reverse!
         
