@@ -7,7 +7,7 @@
         division: event.division_id, 
         event: event), class: "no-underline text-dark" do %>
 
-        <div class="record-with-effect p-2">
+        <div class="record-with-effect">
             <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "30", height: "25", alt: "drapeau") if event.circuit.drapeau.present? %>
         
             <strong><%= event.division.saison.ligue.nom %> </strong> 
