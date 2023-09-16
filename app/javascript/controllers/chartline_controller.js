@@ -1,37 +1,28 @@
 import { Controller } from "@hotwired/stimulus";
-
 import { Chart, registerables } from "chart.js";
+
 export default class extends Controller {
   async connect() {
     // Dynamically load Chart.js and its dependencies
-
     Chart.register(...registerables);
 
-    var userResultats = JSON.parse(this.data.get("userResultats"));
-    var userName = JSON.parse(this.data.get("userName")); // Parse userStats as JSON
-    
-    var ctx = document.getElementById('myChartLine');
+    const userResultats = JSON.parse(this.data.get("userResultats"));
+    const userName = JSON.parse(this.data.get("userName")); // Parse userStats as JSON
+    const ctx = document.getElementById('myChartLine');
 
     const datasets = [
       {
         label: userName,
         data: userResultats.user.map(resultat => resultat.score),
-        fill: true, // Set to false to create a line chart
+        fill: true,
         backgroundColor: 'rgba(75, 100, 192, 0.2)',
         borderColor: 'rgba(75, 100, 192, 1)',
         borderWidth: 1
       }
     ];
 
-    const data = {
-      labels: userResultats.user.map(resultat => resultat.event),
-      datasets: datasets
-    };
-
-    // Check if user_compare data exists
     if (userResultats.user_compare && userResultats.user_compare.length > 0) {
-      var userCompareName = JSON.parse(this.data.get("userCompareName")); // Parse userStats as JSON
-
+      const userCompareName = JSON.parse(this.data.get("userCompareName")); // Parse userStats as JSON
       datasets.push({
         label: userCompareName,
         data: userResultats.user_compare.map(resultat => resultat.score),
@@ -41,6 +32,11 @@ export default class extends Controller {
         borderWidth: 1
       });
     }
+
+    const data = {
+      labels: userResultats.user.map(resultat => resultat.event),
+      datasets: datasets
+    };
 
     const options = {
       scales: {
@@ -73,7 +69,6 @@ export default class extends Controller {
         footerFontColor: 'white' // Set tooltip footer text color to white
       }
     };
-    
 
     new Chart(ctx, {
       type: 'line',
