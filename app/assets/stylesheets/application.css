@@ -42,7 +42,7 @@ body, select {
 }
 
 nav{
-  box-shadow:  5px 5px 10px #535356,
+  box-shadow:  5px 5px 10px #383737,
   -5px -10px 0px #ffffff;
 }
 
@@ -209,7 +209,7 @@ select, input{
 }
 
 .card-text-topic{
-  background-color: #272728;
+  background-color: #3a3a3b;
   color: white;
   margin: 0 50px 10px 50px;
   padding: 10px;

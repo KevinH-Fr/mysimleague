@@ -14,9 +14,9 @@
     <% end %>
 
     <div class="input-group input-group-sm my-2">
-      <%= form.label :user_id, class: "input-group-text" %>
+      <%= form.label :user_id, class: "input-group-text label-colored" %>
       <%= form.collection_select :user_id, User.all, :id, :nom, 
-       { include_blank: 'Select a user' }, class: "form-select" %>
+       { include_blank: 'Select a user' }, class: "form-select input-colored" %>
     </div>
 
     <%= form.hidden_field :ligue_id, value: session[:ligue] %>
