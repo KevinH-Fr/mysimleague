@@ -22,6 +22,7 @@ module Mysimleague
 
     # config.eager_load_paths << Rails.root.join("extras")
 
+   # config.middleware.use Rack::Deflater
 
 
 
