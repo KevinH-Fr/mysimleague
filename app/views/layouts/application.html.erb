@@ -23,30 +23,8 @@
 
     <%= favicon_link_tag asset_path('favicon.webp'), :rel => 'icon', :type =>  'image/png' %>
 
-    <%= stylesheet_link_tag "application" %>
-
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
     <%= javascript_importmap_tags %>
-    
-
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id='G-8LZY8X784Z'"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-8LZY8X784Z');
-    </script>
-
-    <script type="module">
-      let isInitialLoad = true;
-      document.addEventListener('turbo:load', () => {
-        if (isInitialLoad){isInitialLoad = false; return;}
-        gtag('config', 'G-8LZY8X784Z', {
-          page_path: window.location.pathname,
-        });
-      });
-    </script>
-
 
   </head>
 
@@ -60,6 +38,7 @@
           <div id="flash" class="container-fluid position-fixed top-0 start-50 translate-middle-x">
             <%= render partial: "layouts/flash" %>
           </div>
+
           <%= yield %>
         </main>
       </div>

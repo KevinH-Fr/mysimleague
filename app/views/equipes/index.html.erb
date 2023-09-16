@@ -1,5 +1,5 @@
 
-<h1>
+<h1 class="p-2">
   Equipes
   
   <% if current_user && current_user.admin %>
@@ -22,6 +22,8 @@
     <%= render equipe %>
   <% end %>
 </div>
+
+<br>
 
 <%== content_tag :div, class: 'd-flex align-items-center justify-content-center' do %>
   <%==pagy_bootstrap_combo_nav_js(@pagy) %>

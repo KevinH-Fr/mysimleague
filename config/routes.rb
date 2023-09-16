@@ -192,6 +192,8 @@ Rails.application.routes.draw do
 
   root to: 'home#index'
 
+  get 'set_theme', to: 'theme#update'
+  
   mount ActiveAnalytics::Engine, at: "analytics"
 
 end

@@ -16,8 +16,8 @@
     <%= form.hidden_field :saison_id, value: session[:saison] %> 
 
     <div class="input-group input-group-sm my-2">
-      <%= form.label :nom, class: "input-group-text" %>
-      <%= form.text_field :nom, class: "form-control"%>
+      <%= form.label :nom, class: "input-group-text label-colored" %>
+      <%= form.text_field :nom, class: "form-control input-colored"%>
     </div>
 
     <%= custom_submit_button("Division") %>

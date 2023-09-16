@@ -27,21 +27,21 @@
       <div class="row g-2">
         <div class="col-md">
           <div class="input-group input-group-sm my-1">
-            <%= form.label :association_user_id, "Pilote", class: "input-group-text" %>
+            <%= form.label :association_user_id, "Pilote", class: "input-group-text label-colored" %>
             <%= form.collection_select :association_user_id,
                       pilotes_division_named(Division.find(session[:division])), :first, :second,
                       { include_blank: 'Select Pilote' },
                       data: { action: "change->resultat#update_equipe", resultat_target: "pilote" },
-                      class: "form-select" %>         
+                      class: "form-select input-colored" %>         
           </div>
         </div>
         <div class="col-md">
           <div class="input-group input-group-sm my-1">
             <%# plus tard cacher equipe id et afficher equipe dans le select asso user%>
-            <%= form.label :equipe_id, class: "input-group-text" %>                    
+            <%= form.label :equipe_id, class: "input-group-text label-colored" %>                    
             <%= form.collection_select :equipe_id, @equipes, :id, :nom,
                       { include_blank: 'Select Equipe' },
-                      data: { resultat_target: "equipe" }, class: "form-select" %>
+                      data: { resultat_target: "equipe" }, class: "form-select input-colored" %>
           </div>
         </div>
       </div>
@@ -49,27 +49,27 @@
       <div class="row g-2">
         <div class="col-md">
           <div class="input-group input-group-sm my-1">
-            <%= form.label :qualification, "Qualif", class: "input-group-text" %>
+            <%= form.label :qualification, "Qualif", class: "input-group-text label-colored" %>
             <%= form.select :qualification, options_for_select([nil] + (1..20).to_a, 
-                  selected: resultat.qualification), {}, class: "form-select" %>
+                  selected: resultat.qualification), {}, class: "form-select input-colored" %>
           </div>
         </div>
         <div class="col-md">
           <div class="input-group input-group-sm my-1">
-            <%= form.label :qualification_sprint, "Sprint", class: "input-group-text" %>
+            <%= form.label :qualification_sprint, "Sprint", class: "input-group-text label-colored" %>
             <%= form.select :qualification_sprint, options_for_select([nil] + (1..20).to_a, 
                   selected: resultat.qualification_sprint), {}, 
                   data: { action: "change->resultat#update_score", resultat_target: "sprint" }, 
-                  class: "form-select" %>
+                  class: "form-select input-colored" %>
           </div>
         </div>
         <div class="col-md">
           <div class="input-group input-group-sm my-1">
-            <%= form.label :course, class: "input-group-text" %>
+            <%= form.label :course, class: "input-group-text label-colored" %>
             <%= form.select :course, options_for_select([nil] + (1..20).to_a, 
                   selected: resultat.course), {}, 
                   data: { action: "change->resultat#update_score", resultat_target: "course" }, 
-                  class: "form-select" %>
+                  class: "form-select input-colored" %>
           </div>
         </div>
       </div>
@@ -113,8 +113,8 @@
       </div>
 
       <div class="input-group input-group-sm my-1">
-        <%= form.label :score, class: "input-group-text fs-6" %>
-        <%= form.number_field :score, data: { resultat_target: "score" }, class: "form-control" %>
+        <%= form.label :score, class: "input-group-text fs-6 input-colored" %>
+        <%= form.number_field :score, data: { resultat_target: "score" }, class: "form-control label-colored" %>
       </div>
 
       <%= custom_submit_button("Résultat") %>

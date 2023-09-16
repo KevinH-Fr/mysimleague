@@ -10,7 +10,7 @@
       <span class="navbar-toggler-icon"></span>
     </button>
     <div class="collapse navbar-collapse px-2" id="navbarNav">
-      <ul class="navbar-nav" style="display: flex; align-items: center;">
+      <ul class="navbar-nav px-2">
         <li class="nav-item">
           <%= link_to "Activités", root_path, class:"nav-link" %>
         </li>
@@ -38,7 +38,7 @@
 
         <% unless current_user %>
           <li class="nav-item">
-            <%= link_to new_user_session_path, class: "text-warning no-underline mx-1", 
+            <%= link_to new_user_session_path, class: "nav-link text-warning no-underline mx-1", 
                     title: "Sign In", 'aria-label' => "Sign In" do %>
               <i class="fa fa-solid fa-lg fa-user-lock" aria-hidden="true"></i>
               <span class="ms-2 fw-bold">Sign In</span>
@@ -47,7 +47,7 @@
 
           <li class="nav-item">
 
-            <%= link_to steps_compte_step1_path, class: "text-primary no-underline mx-1",
+            <%= link_to steps_compte_step1_path, class: "nav-link text-primary no-underline mx-1",
                     title: "Create an Account", 'aria-label' => "Create an Account" do %>
               <i class="fa fa-solid fa-lg fa-user-plus" aria-hidden="true"></i>
               <span class="ms-2 fw-bold">Create an Account</span>

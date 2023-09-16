@@ -45,13 +45,35 @@ export default class extends Controller {
     const options = {
       scales: {
         x: {
-          beginAtZero: true
+          beginAtZero: true,
+          ticks: {
+            color: 'white' // Set the color of the x-axis labels to white
+          }
         },
         y: {
-          beginAtZero: true
+          beginAtZero: true,
+          ticks: {
+            color: 'white' // Set the color of the y-axis labels to white
+          }
         }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white' // Set the color of the legend labels to white
+          }
+        }
+      },
+      tooltips: {
+        mode: 'index',
+        intersect: false,
+        backgroundColor: 'rgba(0, 0, 0, 0.8)', // Set tooltip background color
+        titleFontColor: 'white', // Set tooltip title text color to white
+        bodyFontColor: 'white', // Set tooltip body text color to white
+        footerFontColor: 'white' // Set tooltip footer text color to white
       }
     };
+    
 
     new Chart(ctx, {
       type: 'line',

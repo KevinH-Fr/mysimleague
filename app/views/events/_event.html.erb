@@ -5,7 +5,7 @@
     <div class="row p-1">
       <div class="col-9">
 
-        <%= link_to "#collapseDetailsEvent", class: "no-underline text-dark", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsEvent", "aria-expanded" => "false" do %>
+        <%= link_to "#collapseDetailsEvent", class: "no-underline", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsEvent", "aria-expanded" => "false" do %>
           <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35", height: "20", alt: "drapeau") if event.circuit.drapeau.present? %>
           N°<strong> <%= event.numero %> </strong>
           <strong> <%= event.circuit.nom %> </strong>

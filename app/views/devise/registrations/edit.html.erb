@@ -6,34 +6,34 @@
 
     <div class="input-group mb-2">
       <%= f.label :email, class:"input-group-text label-with-format label-colored" %>
-      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control " %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control input-colored" %>
     </div>
 
     <div class="input-group mb-2">
       <%= f.label :nom, class:"input-group-text label-with-format label-colored" %>
-      <%= f.text_field :nom, class:"form-control " %>
+      <%= f.text_field :nom, class:"form-control input-colored" %>
     </div>
 
     <div class="input-group input-group mb-2">
-      <%= f.label :profile_pic, class: "input-group-text" %>
-      <%= f.file_field :profile_pic, accept: "image/jpeg, image/png", class: "form-control"%>
+      <%= f.label :profile_pic, class: "input-group-text label-colored" %>
+      <%= f.file_field :profile_pic, accept: "image/jpeg, image/png", class: "form-control input-colored"%>
     </div>
 
     <div class="input-group mb-2">
       <%= f.label :controlleur, class:"input-group-text label-with-format label-colored" %>
-      <%= f.select :controlleur_type, ['volant', 'manette'], {include_blank: true}, class: "form-select" %>
+      <%= f.select :controlleur_type, ['volant', 'manette'], {include_blank: true}, class: "form-select input-colored" %>
     </div>
     <div class="input-group mb-2">
       <%= f.label :slogan, class:"input-group-text label-with-format label-colored" %>
-      <%= f.text_area :slogan, class:"form-control " %>
+      <%= f.text_area :slogan, class:"form-control input-colored" %>
     </div>
     <div class="input-group mb-2">
       <%= f.label :bio, class:"input-group-text label-with-format label-colored" %>
-      <%= f.text_area :bio, class:"form-control " %>
+      <%= f.text_area :bio, class:"form-control input-colored" %>
     </div>
     <div class="input-group mb-2">
       <%= f.label :pilote_prefere, class:"input-group-text label-with-format label-colored" %>
-      <%= f.text_field :pilote_prefere, class:"form-control " %>
+      <%= f.text_field :pilote_prefere, class:"form-control input-colored" %>
     </div>
     
 
@@ -42,7 +42,7 @@
     <% end %>
 
     <p>
-      <a class="btn btn-secondary" data-bs-toggle="collapse" href="#collapseEditPassword" role="button" aria-expanded="false">
+      <a class="btn btn-outline-warning" data-bs-toggle="collapse" href="#collapseEditPassword" role="button" aria-expanded="false">
         Change password
       </a>
     </p>
@@ -52,19 +52,19 @@
 
       <div class="input-group mb-2">
         <%= f.label :password, class:"input-group-text label-with-format label-colored" %>
-        <%= f.password_field :password, autocomplete: "new-password", class:"form-control" %>
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control input-colored" %>
       </div>
 
       <div class="input-group mb-2">
         <%= f.label :password_confirmation, class:"input-group-text label-with-format label-colored" %>
-        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control input-colored" %>
       </div>
       
     </div>
 
     <div class="input-group mb-2">
       <%= f.label :current_password, class:"input-group-text label-with-format label-colored" %>
-      <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control" %>
+      <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control input-colored" %>
     </div>
     <i>(à renseigner pour valider les changements)</i>
 

@@ -31,7 +31,7 @@ class HomeController < ApplicationController
 
   #@pagy, feeds = pagy(feeds, items: 5)
 
-    @pagy, @feeds = pagy_array(@feeds, items: 5)
+   # @pagy, @feeds = pagy_array(@feeds, items: 5)
 
     respond_to do |format|
       format.turbo_stream do

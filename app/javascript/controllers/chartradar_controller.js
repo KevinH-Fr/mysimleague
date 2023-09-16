@@ -44,9 +44,19 @@ export default class extends Controller {
     const options = {
       scales: {
         r: {
-          beginAtZero: true
+          beginAtZero: true,
+          pointLabels: {
+            color: 'white' // Set the label color to white
+          }
         }
-      }
+      },
+      plugins: {
+        legend: {
+          labels: {
+            color: 'white' // Set the color of the legend labels to white
+          }
+        }
+      },
     };
 
     new Chart(ctx, {

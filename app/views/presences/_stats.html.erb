@@ -17,7 +17,9 @@
   
   <% non_responders = non_responding_users(session[:event]) %>
   <% non_responders.each do |pilote| %>
-    <%= AssociationUser.find(pilote).user.nom %> -
+    <span class="badge bg-dark" style="font-size: 12px;">
+      <%= AssociationUser.find(pilote).user.nom %>
+    </span>
   <% end %>
 
 </div>

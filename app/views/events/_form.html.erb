@@ -14,9 +14,9 @@
     <% end %>
 
     <div class="input-group input-group-sm my-2">
-      <%= form.label :circuit_id, class: "input-group-text" %>
+      <%= form.label :circuit_id, class: "input-group-text label-colored" %>
       <%= form.collection_select :circuit_id, @circuits, :id, :circuit_nom_complet,
-        { include_blank: 'Select a circuit' }, class: "form-select" %>
+        { include_blank: 'Select a circuit' }, class: "form-select input-colored" %>
     </div>
 
     <%= form.hidden_field :division_id, value: session[:division] %>
@@ -25,15 +25,15 @@
       <div class="col-md">
         <div class="input-group input-group-sm my-2">
           <%#= form.hidden_field :time_zone, value: 'Paris' %>
-          <%= form.label :horaire, class: "input-group-text" %>
-          <%= form.datetime_field :horaire, class: "form-control"%>
+          <%= form.label :horaire, class: "input-group-text label-colored" %>
+          <%= form.datetime_field :horaire, class: "form-control input-colored"%>
         </div>
       </div>
 
       <div class="col-md">
         <div class="input-group input-group-sm my-2">
-          <%= form.label :numero, class: "input-group-text" %>
-          <%= form.number_field :numero, class: "form-control"%>
+          <%= form.label :numero, class: "input-group-text label-colored" %>
+          <%= form.number_field :numero, class: "form-control input-colored"%>
         </div>
       </div>
     </div>

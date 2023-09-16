@@ -1,9 +1,8 @@
 
-
 <h4 class="text-center my-2"> Activités récentes </h4>
+<br>
 
-
-    <div id="feeds">
+    <div id="feeds" class="mt-2">
 
         <% @feeds.each do |feed| %>
             <%= link_to feed_path(feed), class: "no-underline text-dark" do %>
@@ -22,6 +21,6 @@
 
 <br>
 
-<%== content_tag :div, class: 'd-flex align-items-center justify-content-center my-2' do %>
-  <%==pagy_bootstrap_combo_nav_js(@pagy) %>
-<% end %>
+<%#== content_tag :div, class: 'd-flex align-items-center justify-content-center my-2' do %>
+  <%#==pagy_bootstrap_combo_nav_js(@pagy) %>
+<%# end %>

@@ -1,16 +1,17 @@
 
 <div id="<%= dom_id pari %>">
 
-  <div class="card my-1 p-2">  
+  <div class="card my-2 p-2">  
 
     <div class="row align-items-center">
       <div class="col-12">
-        <strong>#<%= pari.id %></strong>
-        parieur: <strong>  <%= pari.user.nom %> </strong>
-        pilote: <strong> <%= pari.association_user.user.nom %> </strong>
-        montant: <%= number_with_delimiter(pari.montant.to_i, delimiter: ' ', precision: 0)  %> 
-        type: <%= pari.typepari %>
+        <strong>#<%= pari.id %></strong> - pari de
+        <strong> <%= pari.association_user.user.nom %> </strong> 
+         <%= number_with_delimiter(pari.montant.to_i, delimiter: ' ', precision: 0)  %> sur 
+        <strong> <%= pari.typepari %> </strong> de 
+        <strong> <%= pari.association_user.user.nom %> </strong> - 
         cote: <%= pari.cote %>
+
         <%= boolean_icon(pari.resultat) %>
         <%= boolean_badge(pari.solde) %>
       </div>

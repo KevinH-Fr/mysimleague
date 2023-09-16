@@ -13,13 +13,13 @@
     <% end %>
 
     <div class="input-group input-group-sm my-2">
-      <%= form.label :nom, class: "input-group-text" %>
-      <%= form.text_field :nom, class: "form-control"%>
+      <%= form.label :nom, class: "input-group-text label-colored" %>
+      <%= form.text_field :nom, class: "form-control input-colored"%>
     </div>
 
     <div class="input-group input-group-sm my-2">
-      <%= form.label :logo, class: "input-group-text" %>
-      <%= form.file_field :logo, accept: "image/jpeg, image/png", class: "form-control"%>
+      <%= form.label :logo, class: "input-group-text label-colored" %>
+      <%= form.file_field :logo, accept: "image/jpeg, image/png", class: "form-control input-colored"%>
     </div>
 
     <div>
@@ -30,19 +30,25 @@
     <div class="row g-2">
       <div class="col-md">
         <div class="input-group input-group-sm">
-          <%= form.label :points_initial, "Points départ licence", class: "input-group-text" %>
-          <%= form.text_field :points_initial, class: "form-control" %>
-          <%= form.time_zone_select :time_zone %>
-
+          <%= form.label :points_initial, "Points départ licence", class: "input-group-text label-colored" %>
+          <%= form.text_field :points_initial, class: "form-control input-colored" %>
         </div>
       </div>
       <div class="col-md">
         <div class="form-check form-switch">
-          <%= form.label :reglement_defaut, class: "form-check-label" %>
-          <%= form.check_box :reglement_defaut, class: "form-check-input" %>
+          <%= form.label :reglement_defaut, class: "form-check-label label-colored" %>
+          <%= form.check_box :reglement_defaut, class: "form-check-input input-colored" %>
         </div>
       </div>
     </div>
+
+    <div class="my-2">
+      <span><%= "Timezone" %></span>
+      <span> <%= form.time_zone_select :time_zone %> </span>
+    </div>
+
+            
+
 
     <%= custom_submit_button("Ligue") %>
 

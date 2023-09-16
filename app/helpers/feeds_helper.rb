@@ -83,22 +83,22 @@ module FeedsHelper
         when "Resultat"
             span_label = content_tag(:span, "Resultat")
             span_content = content_tag(:span, feed.association_user.user.short_name, class: "fw-bold")
-            span_image = image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
+            span_image = image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
             combined_content = span_label + span_image + " " + span_content
         when "Pari"
             span_label = content_tag(:span, "Pari")
             span_content = content_tag(:span, feed.user.nom, class: "fw-bold")
-            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
+            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
             combined_content = span_label + span_image + " " + span_content
         when "User"
             span_label = content_tag(:span, "User")
             span_content = content_tag(:span, feed.short_name, class: "fw-bold")
-            span_image = image_tag(feed.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
+            span_image = image_tag(feed.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
             combined_content = span_label + span_image + " " + span_content 
         when "AssociationUser"
             span_label = content_tag(:span, "Pilote")
             span_content = content_tag(:span, feed.user.short_name, class: "fw-bold")
-            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
+            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
             combined_content = span_label  + span_image  + " " + span_content
 
 
@@ -106,7 +106,7 @@ module FeedsHelper
             span_label = content_tag(:span, "DOI")
             if feed.demandeur_id.present?
                 span_content = content_tag(:span, AssociationUser.find(feed.demandeur_id).user.short_name, class: "fw-bold")
-                span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
+                span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
             else
                 span_content = content_tag(:span, "Commissaire", class: "fw-bold")
                 span_image =  content_tag(:i, "", class: "fa fa-xl fa-person-military-pointing mx-2")
@@ -116,7 +116,7 @@ module FeedsHelper
         when "Dotd"
             span_label = content_tag(:span, "DOTD")
             span_content = content_tag(:span, feed.user.short_name, class: "fw-bold")
-            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-1", alt: "user picture")
+            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
             combined_content = span_label + span_image + " " + span_content
 
         else

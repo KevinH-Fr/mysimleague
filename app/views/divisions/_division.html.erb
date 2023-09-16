@@ -4,7 +4,7 @@
 
     <div class="row align-items-center">
       <div class="col-6">
-        <%= link_to "#collapseDetailsDivision", class: "no-underline text-dark", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsDivision", "aria-expanded" => "false" do %>
+        <%= link_to "#collapseDetailsDivision", class: "no-underline", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsDivision", "aria-expanded" => "false" do %>
           Nom: <strong> <%= division.nom %> </strong> 
         <% end %>
       </div>
@@ -23,17 +23,16 @@
       </div>
     </div>
 
-
     <div class="collapse" id="collapseDetailsDivision">
 
       <hr>
 
       <div class="d-inline-flex">
         <% if current_user && verif_admin_ligue(current_user, division.saison.ligue) %>
-          <%= button_to 'duplication', display_dupliquer_events_division_menu_index_path, class: "btn btn-sm btn-warning m-1"  %> 
+          <%= button_to 'duplication', display_dupliquer_events_division_menu_index_path, class: "btn btn-sm btn-outline-warning m-1"  %> 
         <% end %>
         
-        <%= button_to 'pilotes', display_pilotes_division_menu_index_path, class: "btn btn-sm btn-dark m-1" %>
+        <%= button_to 'pilotes', display_pilotes_division_menu_index_path, class: "btn btn-sm btn-outline-secondary m-1" %>
       </div>
       
       <div id="partial-division-container">
