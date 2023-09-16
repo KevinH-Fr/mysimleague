@@ -9,16 +9,19 @@
   Paris
 </h4>
 
-<% if verif_delai_pari(@event.id) %>
 
-    <% if current_user %>
+
+<% if current_user %>
+
+    <% if verif_delai_pari(@event.id) %>
 
         <% if verif_appartenance_division(current_user, @event.division_id) %>
             <div class="text-center text-danger"> Les paris ne sont pas autorisés sur une division à laquelle tu participes </div> 
         <% else %>
-        
-            <%= boolean_container(true, "Les paris sont ouverts") %>                
-        
+            <div class="container fs-6">
+                <%= boolean_container(true, "Les paris sont ouverts") %>                
+            </div>
+
             <button class="btn btn-primary my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePari" aria-expanded="<%= @expand_pari ? 'true' : 'false' %>">
                 <span>Nouveau</span>
             </button>
@@ -29,15 +32,17 @@
                 </div>
             </div>
         <% end %>
-    
+    <% else %>
+        <div class="container fs-6">
+            <%= boolean_container(false, "Les paris sont fermés") %>
+        </div>
     <% end %>
     
 <% else %>
-    <h4>
-        <div class="container">
-                <%= boolean_container(false, "Les paris sont fermés") %>
-        </div>
-    </h4>
+
+    <div class="container fs-6">
+        <%= boolean_container(false, "Connecte toi à ton compte pour parier") %>
+    </div>
 
 <% end %>
 

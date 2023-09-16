@@ -1,5 +1,5 @@
 
-
+<% if current_user %>
   <% if verif_appartenance_division(current_user, session[:division] ) %>
     <% unless verif_presence_existe(current_user, session[:event]) %>
 
@@ -15,3 +15,9 @@
       </div>
     <% end %>
   <% end %>
+<% else %>
+  <div class="container my-2 fs-6">
+    <%= boolean_container(false, "Connecte toi à ton compte pour mettre ta présence") %>
+  </div>  
+<% end %>
+
