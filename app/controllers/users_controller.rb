@@ -20,6 +20,7 @@ class UsersController < ApplicationController
     @data_resultats = resultats.to_json
     @data_resultats_compare = []
 
+
   end
 
   def index

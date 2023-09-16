@@ -3,6 +3,7 @@
 <div data-controller="chartline" 
     data-chartline-user-resultats="<%= @data_resultats %>"
     data-chartline-user-name="<%= @user.nom.to_json %>"
+    data-chartline-user-compare-stats="<%= @data_compare %>"
     data-chartline-user-compare-name="<%= @user_compare.nom.to_json if @user_compare %>">
 
   <div class="container mt-1 text-center">

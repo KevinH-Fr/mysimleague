@@ -14,7 +14,7 @@
             </div>
         <% end %>
 
-        <table class="table table-striped table-dark text-center" style="max-width: 400px; margin: 0 auto;">
+        <table class="table table-striped table-dark text-center" style="width: 100%; margin: 0 auto;">
             <thead class="table-dark">
                 <th> résultat </th>
                 <% if @user_compare %>
@@ -30,9 +30,9 @@
                 <thead>
                     <th></th>
                     <th> <%= @user.nom %> </th>
-                    <th> <%= @user_compare.nom %> </th>
+                    <th> <%= @user_compare.short_name %> </th>
                     <th> <%= @user.nom %> </th>
-                    <th> <%= @user_compare.nom %> </th>
+                    <th> <%= @user_compare.short_name %> </th>
                 </thead>
             <% end %>
                         
