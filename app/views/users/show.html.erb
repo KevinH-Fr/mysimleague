@@ -1,9 +1,7 @@
 <div class="p-2">
     <%= render @user %>
-    <% if current_user && current_user == @user %>
-        <%= link_to 'Edit Profile', edit_user_registration_path(@user),
-            class: "btn btn-primary" %>
-    <% end %>
 
     <%= render  "users/statistiques" %>
 </div>
+
+<br>

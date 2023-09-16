@@ -74,7 +74,7 @@ class User < ApplicationRecord
 
   def icon_controlleur
     if controlleur_type == "volant"
-      ActionController::Base.helpers.image_tag("/images/steering-wheel.webp", alt: "Steering Wheel Image", class: "icon-controlleur")
+      ActionController::Base.helpers.image_tag("/images/steering-wheel_white.webp", alt: "Steering Wheel Image", class: "icon-controlleur ms-2")
     elsif controlleur_type == "manette"
       '<i class="fas fa-gamepad fa-xl"></i>'.html_safe
     end
