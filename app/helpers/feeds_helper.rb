@@ -78,7 +78,7 @@ module FeedsHelper
        #     combined_content = span_label + " " + span_content
         when "Event"
             span_label = content_tag(:span, "Event")
-            span_content = content_tag(:span, feed.circuit.nom, class: "fw-bold")
+            span_content = content_tag(:span, feed.circuit.nom, class: "fw-bold ms-2")
             combined_content = span_label + " " + span_content
         when "Resultat"
             span_label = content_tag(:span, "Resultat")
