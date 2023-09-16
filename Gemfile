@@ -62,4 +62,6 @@ gem "image_processing", "~> 1.2"
 
 gem 'pagy'
 
-gem 'brotli'
+#gem 'brotli'
+
+gem 'bullet', group: 'development'

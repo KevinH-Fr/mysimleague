@@ -4,8 +4,13 @@ class HomeController < ApplicationController
 
   def index
  
-    @prochains_events = Event.where('horaire >= ?', Date.today).order(:horaire).limit(4)
-
+    @prochains_events = Event
+    .where('horaire >= ?', Date.today)
+    .includes(division: [:saison], circuit: { drapeau_attachment: :blob })
+    .order(:horaire)
+    .limit(4)
+  
+  
     if current_user
       @current_user
     end
