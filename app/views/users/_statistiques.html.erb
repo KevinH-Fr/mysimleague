@@ -14,7 +14,7 @@
           <span class="ms-2 fw-bold">Comparaison</span>
         <% end %>
         
-        <%= select_tag :select_option, options_for_select(User.all.pluck(:nom, :id), nil), include_blank: true, class: 'form-select input-colored', id: 'select_option',
+        <%= select_tag :select_option, options_for_select(User.all.order(:nom).pluck(:nom, :id), nil), include_blank: true, class: 'form-select input-colored', id: 'select_option',
               data: { submit_form_target: "select" } %>
 
         <button type="submit" class="btn" id="submit_button" style="display: none;">

@@ -2,19 +2,17 @@
 <h4 class="text-center my-2"> Activités récentes </h4>
 <br>
 
-    <div id="feeds" class="mt-2">
-
-        <% @feeds.each do |feed| %>
-            <%= link_to feed_path(feed), class: "no-underline text-dark" do %>
-                <div class="record-with-effect"> 
-                    <%= feed_icon(feed) %>
-                    <%#= feed.class %>
-                    <%= feed_label(feed) %>
-                    <small class="time-ago"> <%= time_ago_in_words(feed.updated_at) %> ago </small> 
-                </div>
-            <% end %>
-        <% end %>
-    </div>
+<div id="feeds" class="mt-2">
+  <% @feeds.each do |feed| %>
+    <%= link_to feed_path(feed), class: "no-underline text-dark" do %>
+      <div class="record-with-effect d-flex align-items-center ps-2">
+        <%= feed_icon(feed) %>
+        <%= feed_label(feed) %>
+        <small class="time-ago"> <%= time_ago_in_words(feed.updated_at) %> ago </small>
+      </div>
+    <% end %>
+  <% end %>
+</div>
 
     <%#= pagy_next_link(@pagy, text: 'En voir plus...', link_extra: 'id="next_link", class="btn btn-primary"') %>
     <%#= turbo_frame_tag :pagination, loading: :lazy, src: home_index_path(format: :turbo_stream) %>
