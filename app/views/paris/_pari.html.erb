@@ -6,7 +6,7 @@
     <div class="row align-items-center">
       <div class="col-12">
         <strong>#<%= pari.id %></strong> - pari de
-        <strong> <%= pari.association_user.user.nom %> </strong> 
+        <strong> <%= pari.user.nom %> </strong> 
          <%= number_with_delimiter(pari.montant.to_i, delimiter: ' ', precision: 0)  %> sur 
         <strong> <%= pari.typepari %> </strong> de 
         <strong> <%= pari.association_user.user.nom %> </strong> - 

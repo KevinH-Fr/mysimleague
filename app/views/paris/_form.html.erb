@@ -115,9 +115,9 @@
           </div>
 
           <div class="input-group input-group-sm my-1">
-              <%= form.label :montant, class: "input-group-text" %>
+              <%= form.label :montant, class: "input-group-text label-colored" %>
               <%= form.text_field :montant, 
-                data: { action: "change->form-pari#update_values", form_pari_target: "montant" }, class: "form-control" %>
+                data: { action: "change->form-pari#update_values", form_pari_target: "montant" }, class: "form-control input-colored" %>
           </div>
 
           <div data-form-pari-target="output"></div>
