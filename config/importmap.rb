@@ -6,8 +6,8 @@ pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 
 
-pin "jquery", to: "jquery.min.js" #, preload: true
-pin "jquery_ujs", to: "jquery_ujs.js"#, preload: true
+pin "jquery", to: "jquery.min.js", preload: false
+pin "jquery_ujs", to: "jquery_ujs.js", preload: false
 
 pin "html2canvas", to: "https://ga.jspm.io/npm:html2canvas@1.4.1/dist/html2canvas.js", preload: false
 
@@ -16,5 +16,5 @@ pin "chart.js", to: "https://ga.jspm.io/npm:chart.js@4.2.0/dist/chart.js", prelo
 pin "@kurkle/color", to: "https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.esm.js"
 
 
-pin_all_from "app/javascript/controllers", under: "controllers", preload: false
+pin_all_from "app/javascript/controllers", under: "controllers"
 
