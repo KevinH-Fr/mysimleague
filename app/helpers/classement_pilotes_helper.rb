@@ -17,10 +17,14 @@ module ClassementPilotesHelper
                           .joins(association_user: :user)
   
       resultats.group_by { |resultat| resultat.association_user.user.id }.each do |id, user_resultats|
-        user_scores[id][:score] = user_resultats.sum(&:score)
-        user_resultats.each do |resultat|
-          course_position = resultat.course.to_i
-          user_scores[id][:course_positions][course_position] += 1 if course_position.between?(1, 20)
+
+        if user_scores[id] # Check if user_scores[id] exists
+
+          user_scores[id][:score] = user_resultats.sum(&:score) 
+          user_resultats.each do |resultat|
+            course_position = resultat.course.to_i
+            user_scores[id][:course_positions][course_position] += 1 if course_position.between?(1, 20)
+          end
         end
       end
   
