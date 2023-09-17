@@ -3,7 +3,7 @@ import { Controller } from "@hotwired/stimulus";
 export default class extends Controller {
   connect() {
 
-    console.log("call gtag");
+   // console.log("call gtag");
     // Load Google Analytics script asynchronously
     const script = document.createElement("script");
     script.async = true;
