@@ -19,6 +19,7 @@
         </button>
                 
         <% if current_user && verif_admin_ligue(current_user, ligue.id) %>
+
           <%= button_to "", edit_ligue_path(ligue), method: :post, 
                 class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
           <%= button_to "", ligue, method: :delete, 

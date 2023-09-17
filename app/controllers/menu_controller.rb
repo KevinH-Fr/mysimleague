@@ -15,7 +15,10 @@ class MenuController < ApplicationController
 
     @circuits = Circuit.all if @division
 
-    @events = @division.events.order(:numero) if @division
+    if @division
+      @events = @division.events.includes(circuit: { drapeau_attachment: :blob }).order(:numero)
+    end
+
     @show_buttons = true #pour afficher les btns de event que depuis ce controller, pas depuis home index 
     @event = Event.find(params[:event]) if params[:event]
     session[:event] = @event.id if @event
@@ -43,7 +46,7 @@ class MenuController < ApplicationController
   def display_rattachements_ligue
 
     @ligue = Ligue.find(session[:ligue])
-    @rattachements = @ligue.rattachements 
+    @rattachements = @ligue.rattachements
 
     respond_to do |format|
       format.turbo_stream do
