@@ -4,8 +4,8 @@ import "controllers"
 
 import "@rails/request.js"
 
-//import "jquery"
-//import "jquery_ujs"
+import "jquery"
+import "jquery_ujs"
 
 
 import LocalTime from "local-time"
