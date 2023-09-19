@@ -1,14 +1,18 @@
+<% title "Main Menu" %>
+<% description "Menu page with tools for race simulation, create and manage leagues." %>
 <div class="overflow-auto p-1 mt-2" style="max-height: 86vh;">
 
     <%= render "menu/ligues" %>
 
     <% if @ligue %>
-        <%= render "menu/saisons" %>
+       <% keywords "Menu, tools, management, results, rankings, bets, votes " + @ligue.nom %>
+       <%= render "menu/saisons" %>
 
         <% if @saison %>
             <%= render "menu/divisions" %>
             
             <% if @division %>
+                <% keywords "Menu, tools, management, results, rankings, bets, votes " + @ligue.nom + " " + @division.nom %>
                 <%= render "menu/events" %>
             <% end %>
             

@@ -3,7 +3,8 @@ class UsersController < ApplicationController
   include UsersHelper
 
   def show
-    @user = User.find(params[:id])
+    @user = User.includes(association_users: [{ equipe: {banniere_attachment: :blob} }, :division])
+    .find(params[:id])
 
     @user_compare = nil
 

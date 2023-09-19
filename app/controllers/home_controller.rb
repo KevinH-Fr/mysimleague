@@ -3,7 +3,7 @@ class HomeController < ApplicationController
   include UsersHelper
 
   def index
- 
+
     @prochains_events = Event
     .where('horaire >= ?', Date.today)
     .includes(division: [:saison], circuit: { drapeau_attachment: :blob })

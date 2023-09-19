@@ -32,7 +32,7 @@
         <div class="row g-2">
           <div class="col-md">
 
-            <div class="input-group input-group-sm my-2 label-colored">
+            <div class="input-group input-group-sm my-1 label-colored">
               <span class= "input-group-text label-colored"> Demandeur</span>    
               <% if doi.persisted? %>
                 <%= form.hidden_field :demandeur_id, value: doi.demandeur_id, class: "form-control disable" %> 
@@ -123,7 +123,7 @@
 
         <div class="input-group input-group-sm my-2">
           <%= form.label :commentaire, class: "input-group-text label-colored" %>
-          <%= form.text_area :commentaire, class: "form-control input-colored" %>
+          <%= form.text_area :commentaire, class: "form-control input-colored", style: "min-height: 70px;" %>
         </div>
 
         <div class="input-group input-group-sm my-2">

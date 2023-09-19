@@ -64,3 +64,4 @@ gem 'pagy'
 
 gem 'bullet', group: 'development'
 
+gem 'meta-tags'
