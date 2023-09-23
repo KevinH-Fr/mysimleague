@@ -49,7 +49,6 @@ export default class extends Controller {
            var totalPilotes = 20;
            var hauteurEquipeImage = 20;
            var widthPosition = 35;
-           const sizeMtDotd = 25;
    
            const margeX = 30;
            const imgWidth = canvas.width - widthPosition * 2 - margeX * 2 - 10;

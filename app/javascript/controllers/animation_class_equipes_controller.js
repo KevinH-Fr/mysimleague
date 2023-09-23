@@ -122,7 +122,7 @@ export default class extends Controller {
       
                resultats.forEach(function(resultat, index) {
                    
-                   console.log(resultats);
+                 //  console.log(resultats);
                    var labelEquipe = resultat.equipe_nom;
    
               /*     const image = new Image();

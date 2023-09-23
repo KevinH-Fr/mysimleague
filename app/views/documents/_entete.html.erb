@@ -1,12 +1,12 @@
 
-<table width="480" style="margin-left:auto;margin-right:auto">
+<table width="540" style="margin-left:auto;margin-right:auto">
 
     <tr>
         <td class="">
             <h2 class="doc-titre">
                 <%= cl_image_tag(@event.division.saison.ligue.logo.url, 
                     :class => "position-relative rounded m-0 p-0 img-fluid",
-                    :style => "width: 80px; height: 60px; display: block;") if @event.division.saison.ligue.logo.present? %>
+                    :style => "width: 80px; height: auto; display: block;") if @event.division.saison.ligue.logo.present? %>
 
                 <%= titre %>
             </h2>
@@ -14,14 +14,15 @@
         <td class="text-end">  
             <h6 class="doc-sous-titre">  
                 <%= @event.division.saison.nom %>
-                <%= @event.division.nom %> <br>
-                <span class="fw-bold">  
-                    GP <%= @event.numero %> - 
-                    <%= Circuit.find(@event.circuit_id).pays %> 
+                <%= @event.division.nom %> - 
+                GP <%= @event.numero %> <br>
+
+                        <%= Circuit.find(@event.circuit_id).pays %> 
+                   
                     <%= cl_image_tag(Circuit.find(@event.circuit_id).drapeau.url, 
                     style: "width: 40px; height: 30px; display: inline", 
-                    class: "img-fluid rounded") %> 
-                </span>
+                    class: "img-fluid rounded") %>
+
             </h6>
         </td>
     </tr>
