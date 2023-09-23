@@ -7,7 +7,7 @@
     <%= truncate(@previous_event.event_full_name, lenght: 8) if @previous_event %> 
 </h4>
 
-<div class="d-flex align-items-center justify-content-center">
+<div class="d-flex align-items-center justify-content-center mt-4">
     <div style="width: 100%; max-width: 500px;" data-controller="animation-class-pilotes" 
         data-action="connect" data-animation-class-pilotes-resultats-value="<%= @resultats.to_json %>">
 
@@ -16,7 +16,7 @@
     </div>
 </div>
 
-<div class="container text-center">
+<div class="container text-center my-2">
     <button id="startAnimationBtn" class="btn btn-success">Start</button>
     <button id="recordAnimationBtn" class="btn btn-warning">Record</button>
 </div>
@@ -24,3 +24,5 @@
 <%= back_button_on_event(@event.id) %>
 
 <br>
+
+

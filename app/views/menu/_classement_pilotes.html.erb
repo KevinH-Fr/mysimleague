@@ -3,7 +3,9 @@
  Retrouve ici le classement pilotes !
 </div>
 
-<h4 class="titre-topic">classement pilotes </h4>
+<h4 class="titre-topic">classement pilotes 
+  <%= link_to "", animation_class_pilotes_path(event: @event.id), class: 'btn fa fa-bounce fa-film btn-primary mx-2' %>
+</h4>
 
 <% somme_user(@event).each do |user_id, user_data| %>
   <div class="d-flex align-items-center justify-content-center my-1">

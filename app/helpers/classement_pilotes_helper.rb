@@ -11,10 +11,10 @@ module ClassementPilotesHelper
         user_scores[association_user.user.id] ||= { association_user_id: association_user.id, user_id: association_user.user.id, score: 0, course_positions: Hash.new(0) }
       end
   
-      resultats = Resultat.joins(event: { division: :saison })
+      resultats = Resultat.includes(:association_user).joins(event: { division: :saison })
                           .where("events.numero <= ?", event.numero)
                           .where("divisions.id = ?", event.division_id)
-                          .joins(association_user: :user)
+                       #   .joins(association_user: :user)
   
       resultats.group_by { |resultat| resultat.association_user.user.id }.each do |id, user_resultats|
 
@@ -63,7 +63,9 @@ module ClassementPilotesHelper
         comparison[user_id] = {
           previous_rank: previous_rank[:rank],
           current_rank: current_rank[:rank],
-          delta_rank: previous_rank[:rank].to_i - current_rank[:rank].to_i
+          delta_rank: previous_rank[:rank].to_i - current_rank[:rank].to_i,
+          previous_score: previous_rank[:score] # Add previous_score to the comparison
+ 
         }
       end
     

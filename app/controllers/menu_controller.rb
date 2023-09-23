@@ -247,6 +247,7 @@ class MenuController < ApplicationController
     @event = Event.find(session[:event])
     @previous_event = Event.where(division_id: @event.division_id, numero: @event.numero - 1).first if @event
 
+
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(

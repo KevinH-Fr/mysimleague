@@ -1,7 +1,7 @@
 module AssociationUsersHelper
 
   def pilotes_division(division)
-      association_users = AssociationUser.where(
+      association_users = AssociationUser.includes(:user).where(
         division_id: division, 
         actif: true, 
         valide: true)

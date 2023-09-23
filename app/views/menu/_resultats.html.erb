@@ -6,6 +6,8 @@
 <h4 class="titre-topic">
   Résultats
 
+    <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-bounce fa-film btn-primary mx-2' %>
+
     <% if current_user && verif_admin_ligue(current_user, @event.division.saison.ligue) %>
       <button class="btn btn-sm btn-warning m-2" type="button" 
         data-bs-toggle="collapse" data-bs-target="#collapseNewEvent" aria-expanded="false">
@@ -14,8 +16,6 @@
     <% end %>
 
 </h4>
-
-
 
 <div class="d-flex align-items-center justify-content-center m-0 p-0">
   <div class="collapse my-2" id="collapseNewEvent">
@@ -31,4 +31,3 @@
   <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
   <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-film btn-primary' %>
 </div>
-

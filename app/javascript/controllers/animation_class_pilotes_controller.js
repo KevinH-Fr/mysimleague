@@ -78,9 +78,7 @@ export default class extends Controller {
                ctx.closePath();
                ctx.fill();
            }
-   
-           var imageObjects = []; 
-   
+      
            var deltaYparPosition = 22;
    
            var positionY;
@@ -118,9 +116,7 @@ export default class extends Controller {
                    var posContent = []; 
                    var textContent = []; 
                    var scoreContent = []; 
-   
-                   var mtContent, dotdContent;
-   
+      
                    var movementRange = -10; 
                    var totalSteps = frameDivider; 
                    var movementStep = frame % totalSteps; 
@@ -130,7 +126,7 @@ export default class extends Controller {
                //    console.log(resultats);
                    var labelPilote = resultat.pilote;
    
-                   const image = new Image();
+                /*   const image = new Image();
                    image.crossOrigin = 'anonymous';
                    image.src = resultat.banniere_url;
                    
@@ -139,7 +135,7 @@ export default class extends Controller {
                        positionY: 0
                    });
    
-                  // console.log(imageObjects);
+                  // console.log(imageObjects);*/
    
                    switch (step) {
                        case 0:  // Step 1: Position at the bottom of the canvas
@@ -149,7 +145,7 @@ export default class extends Controller {
                            positionY = basePositionY;
                            labelStep = "début";
                            textContent.push(labelPilote);
-                           scoreContent.push(resultat.score);
+                           scoreContent.push(resultat.score_precedent);
                            break;
    
                        case 1:   // Step 2: Move up based on the rank_precedent value + 50
@@ -158,7 +154,7 @@ export default class extends Controller {
                            labelStep = infosEventPrecedentValue;
                            textContent.push( labelPilote );
                            posContent.push( resultat.rank_precedent );
-                           scoreContent.push(resultat.score);
+                           scoreContent.push(resultat.score_precedent);
                            break;
                    
                        case 2: // hold positions
@@ -168,7 +164,7 @@ export default class extends Controller {
                            labelStep = infosEventPrecedentValue;
                            textContent.push(labelPilote);
                            posContent.push( resultat.rank_precedent );
-                           scoreContent.push(resultat.score);
+                           scoreContent.push(resultat.score_precedent);
                            break;
    
                        case 3:  // Step 3: Move up or down based on the rank_courant value
@@ -198,7 +194,7 @@ export default class extends Controller {
    
                            // For the last step (Step 4), change color based on resultat.course
                            if (resultat.rank_courant == 1) {
-                               bgColor = 'yellow';
+                               bgColor = 'rgb(255, 228, 6)';
                                textColor = 'black';
                            } else if (resultat.rank_courant == 2){
                                bgColor = 'grey';
@@ -227,8 +223,8 @@ export default class extends Controller {
    
                            // For the last step (Step 4), change color based on resultat.course
                            if (resultat.rank_courant == 1) {
-                               bgColor = 'yellow';
-                               textColor = 'black';
+                              bgColor = 'rgb(255, 228, 6';
+                              textColor = 'black';
                            } else if (resultat.rank_courant == 2){
                                bgColor = 'grey';
                                textColor = 'white';
@@ -255,44 +251,50 @@ export default class extends Controller {
                    const imgY = positionY - 10;
    
                    // Draw the step indicator text inside the canvas
-                   ctx.fillStyle = "grey";
-                   ctx.fillRect(5, 5, canvas.width - 10, 30);
-   
-                   ctx.fillStyle = "white";
-                   ctx.font = "18px F1regular";
-                   //var text = `Step ${step + 1} of ${animationSteps} ${labelStep}`;
-                   var text = labelStep;
-                   var textWidth = ctx.measureText(text).width;
-                   var x = (canvas.width - textWidth) / 2;
-                   ctx.fillText(text, x, 30);
-   
-                   // Draw the footer of the canvas with infos
-                   ctx.fillStyle = "grey";
-                   ctx.fillRect(5, canvas.height - 35, canvas.width - 10, 30);
-                   ctx.fillStyle = "white";
-                  // ctx.font = "42px";
-                   text = infosEventValue;
-                   textWidth = ctx.measureText(text).width;
-                   x = (canvas.width - textWidth) / 2;
-   
-                   ctx.fillText(text, x, canvas.height - 12);
+                    // Set the fill color for the rounded rectangle to gray
+                    ctx.fillStyle = "rgb(51, 51, 51)";
+                    drawRoundedRect(ctx, 5, 5, canvas.width - 10, 30, borderRadius);
+                    ctx.fill();
+
+                    // Set the text color to white
+                    ctx.fillStyle = "white";
+                    ctx.font = "16px F1regular";
+                    var text = labelStep;
+                    var textWidth = ctx.measureText(text).width;
+                    var x = (canvas.width - textWidth) / 2;
+                    ctx.fillText(text, x, 25);
+
+                    // Draw the footer box inside the canvas
+                    ctx.fillStyle = "rgb(51, 51, 51)";
+                    drawRoundedRect(ctx, 5, 515, canvas.width - 10, 30, borderRadius);
+                    ctx.fill();
+
+                    // Set the text color to white
+                    ctx.fillStyle = "white";
+                    ctx.font = "16px F1regular";
+                    var text = infosEventValue;
+                    var textWidth = ctx.measureText(text).width;
+                    var x = (canvas.width - textWidth) / 2;
+                    ctx.fillText(text, x, 535);
+
    
                    // draw position pilote 
-                   var fontSize = 10;
-                   ctx.font = fontSize + 'px ' ;
-                   ctx.fillStyle = bgColor;
-   
-                   drawRoundedRect(ctx, margeX, positionY - 10, widthPosition, hauteurEquipeImage, borderRadius);
-               
-                   text = posContent[index];
-                   textWidth = ctx.measureText(text).width;
-                   var centerX = margeX + (widthPosition - textWidth) / 2;
-                   ctx.fillStyle = textColor;
-                   ctx.fillText(text, centerX, positionY + 6, widthPosition, hauteurEquipeImage);
-   
+                   if (posContent[index] >= 0) {                    
+                        ctx.font = "12px F1regular";
+                        ctx.fillStyle = bgColor;
+        
+                        drawRoundedRect(ctx, margeX, positionY - 10, widthPosition, hauteurEquipeImage, borderRadius);
+                    
+                        text = posContent[index];
+                        textWidth = ctx.measureText(text).width;
+                        var centerX = margeX + (widthPosition - textWidth) / 2;
+                        ctx.fillStyle = textColor;
+                        ctx.fillText(text, centerX, positionY + 5, widthPosition, hauteurEquipeImage);
+                   }
+
                    // draw score pilote 
                    if (scoreContent[index] >= 0) {                    
-                       var fontSize = 10;
+                       var fontSize = 12;
                       // var fontFamily = 'Arial';
                        ctx.font = fontSize + 'px ';
                        ctx.fillStyle = bgColor;
@@ -303,7 +305,7 @@ export default class extends Controller {
                        textWidth = ctx.measureText(text).width;
                        var centerX = canvas.width - widthPosition - margeX + (widthPosition - textWidth) / 2; // Adjust x-coordinate
                        ctx.fillStyle = textColor;
-                       ctx.fillText(text, centerX, positionY + 6);
+                       ctx.fillText(text, centerX, positionY + 5);
                    }
                    // Draw image equipe
    
@@ -315,8 +317,11 @@ export default class extends Controller {
                    ctx.clip();
    
                    // Draw the image inside the clipped path
-                   ctx.drawImage(imageObjects[index].image, imgX, imgY, imgWidth, imgHeight);
-                   ctx.restore();
+                  // ctx.drawImage(imageObjects[index].image, imgX, imgY, imgWidth, imgHeight);
+                   
+                  ctx.fillStyle = resultat.equipe_color;
+                  ctx.fillRect(imgX, imgY, imgWidth, imgHeight);
+                  ctx.restore();
    
                    // draw label pilote
                    ctx.fillStyle = "white";
@@ -331,9 +336,9 @@ export default class extends Controller {
                    if (originalText.length > maxLength) {
                    // Truncate the text and add ellipsis
                    const truncatedText = originalText.substring(0, maxLength) + "...";
-                   ctx.fillText(truncatedText, 110, positionY + 6);
+                   ctx.fillText(truncatedText, 90, positionY + 5);
                    } else {
-                   ctx.fillText(originalText, 110, positionY + 6);
+                   ctx.fillText(originalText, 90, positionY + 5);
                    }
                   
                });

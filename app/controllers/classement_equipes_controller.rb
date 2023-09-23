@@ -23,6 +23,8 @@ class ClassementEquipesController < ApplicationController
         equipe_id: equipe.id,
         equipe_nom: equipe.nom,
         banniere_url: equipe.banniere.url,
+        equipe_color: equipe.couleurs,
+        score_precedent: comparison ? comparison[:previous_score] : classement[:score_sum],
         score: classement[:score_sum],
         rank_precedent: comparison ? comparison[:delta_rank].to_i + classement[:rank].to_i : classement[:rank], # Calculate rank_precedent if comparison is not nil
         rank_courant: classement[:rank]
