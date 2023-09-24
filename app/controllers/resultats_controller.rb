@@ -202,7 +202,8 @@ class ResultatsController < ApplicationController
         course: resultat.course,
         score: resultat.score,
         dotd: resultat.dotd,
-        mt: resultat.mt
+        mt: resultat.mt,
+        delta_rank: resultat.qualification.to_i - resultat.course.to_i
       }
     end
 

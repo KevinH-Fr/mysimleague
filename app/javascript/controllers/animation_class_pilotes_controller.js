@@ -115,7 +115,8 @@ export default class extends Controller {
                    var posContent = []; 
                    var textContent = []; 
                    var scoreContent = []; 
-      
+                   var deltaContent = [];
+
                    var movementRange = -10; 
                    var totalSteps = frameDivider; 
                    var movementStep = frame % totalSteps; 
@@ -175,6 +176,8 @@ export default class extends Controller {
                            textContent.push(labelPilote);
                            posContent.push(  resultat.rank_courant );
                            scoreContent.push(resultat.score);
+                           deltaContent.push( resultat.delta_rank );
+
                            break;
    
                        case 4:  // hold positions
@@ -185,6 +188,8 @@ export default class extends Controller {
                            textContent.push(labelPilote);
                            posContent.push( resultat.rank_courant );
                            scoreContent.push(resultat.score);
+                           deltaContent.push( resultat.delta_rank );
+
                            break;
    
                        case 5:  // Step 4: End of animation with a slight movement up and down
@@ -215,7 +220,8 @@ export default class extends Controller {
                            textContent.push( labelPilote);
                            posContent.push( resultat.rank_courant );
                            scoreContent.push(resultat.score);
-      
+                           deltaContent.push( resultat.delta_rank );
+
                            break;
    
                        case 6: // hold positions 
@@ -242,7 +248,8 @@ export default class extends Controller {
                            textContent.push( labelPilote);
                            posContent.push( resultat.rank_courant );
                            scoreContent.push(resultat.score);
-      
+                           deltaContent.push( resultat.delta_rank );
+
                            break;
                    }
    
@@ -326,7 +333,7 @@ export default class extends Controller {
                    ctx.fillStyle = "white";
                    
                    // Maximum length for the text content
-                   const maxLength = 10; // Adjust the maximum length as needed
+                   const maxLength = 14; // Adjust the maximum length as needed
    
                    // Get the original text content
                    const originalText = textContent[index];
@@ -339,6 +346,84 @@ export default class extends Controller {
                    } else {
                    ctx.fillText(originalText, 90, positionY + 5);
                    }
+
+
+                   
+                // Draw delta content with a rounded rectangle
+                if (deltaContent[index] !== undefined) {
+                    const delta = parseInt(deltaContent[index]); // Convert deltaContent to a number
+                    const text = Math.abs(delta).toString(); // Convert the integer to a string
+
+                    const textWidth = ctx.measureText(text).width;
+                    const x = canvas.width - 14; // Adjust the x-coordinate for right alignment
+
+                    // Determine the color and triangle direction based on the sign of delta
+                    let triangleColor, triangleDirection;
+                    if (delta > 0) {
+                        triangleColor = "green";
+                        triangleDirection = "up";
+                    } else if (delta < 0) {
+                        triangleColor = "red";
+                        triangleDirection = "down";
+                    } else {
+                        return;
+                    }
+
+                    // Draw a rounded border around the rectangle
+                    const rectX = x - 78; // Adjust the x-coordinate for centering the rectangle
+                    const rectY = positionY - 6; // Adjust the y-coordinate for centering the rectangle
+                    const rectWidth = 20; // Adjust the width of the rectangle
+                    const rectHeight = 12; // Adjust the height of the rectangle
+                    const borderRadius = 4; // Adjust the border radius
+
+                    ctx.fillStyle = "white"; // Set the color of the rectangle
+                    ctx.beginPath();
+                    ctx.moveTo(rectX + borderRadius, rectY);
+                    ctx.lineTo(rectX + rectWidth - borderRadius, rectY);
+                    ctx.quadraticCurveTo(rectX + rectWidth, rectY, rectX + rectWidth, rectY + borderRadius);
+                    ctx.lineTo(rectX + rectWidth, rectY + rectHeight - borderRadius);
+                    ctx.quadraticCurveTo(rectX + rectWidth, rectY + rectHeight, rectX + rectWidth - borderRadius, rectY + rectHeight);
+                    ctx.lineTo(rectX + borderRadius, rectY + rectHeight);
+                    ctx.quadraticCurveTo(rectX, rectY + rectHeight, rectX, rectY + rectHeight - borderRadius);
+                    ctx.lineTo(rectX, rectY + borderRadius);
+                    ctx.quadraticCurveTo(rectX, rectY, rectX + borderRadius, rectY);
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // Calculate the centered x-coordinate for the text
+                    const textX = rectX + (rectWidth - textWidth) / 2;
+
+                    // Draw a triangle to the left of deltaContent
+                    const triangleX = x - 76; // Adjust the position of the triangle
+                    const triangleY = positionY - 3; // Adjust the position of the triangle
+                    const triangleWidth = 6; // Adjust the width of the triangle
+                    const triangleHeight = 6; // Adjust the height of the triangle
+
+                    ctx.fillStyle = triangleColor; // Set the color of the triangle
+
+                    ctx.beginPath();
+                    if (triangleDirection === "up") {
+                        // Triangle pointing up
+                        ctx.moveTo(triangleX + triangleWidth / 2, triangleY);
+                        ctx.lineTo(triangleX, triangleY + triangleHeight);
+                        ctx.lineTo(triangleX + triangleWidth, triangleY + triangleHeight);
+                    } else {
+                        // Triangle pointing down
+                        ctx.moveTo(triangleX, triangleY);
+                        ctx.lineTo(triangleX + triangleWidth, triangleY);
+                        ctx.lineTo(triangleX + triangleWidth / 2, triangleY + triangleHeight);
+                    }
+                    ctx.closePath();
+                    ctx.fill();
+
+                    // Draw delta content with the adjusted position and centered text
+                    ctx.font = "7px F1regular";
+                    ctx.fillStyle = "black"; // Adjust the color of the text
+                    ctx.fillText(text, textX + 6, positionY + 3); // Center the text horizontally
+                }
+
+
+
                   
                });
            }

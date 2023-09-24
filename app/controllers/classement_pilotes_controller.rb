@@ -19,7 +19,7 @@ class ClassementPilotesController < ApplicationController
     @resultats = resultats.map do |classement|
       association_user = AssociationUser.find_by(id: classement[:association_user_id])
       comparison = compare_ranks(@previous_event, @event)[association_user[:user_id]] if @previous_event 
-   
+      rank_precedent = comparison ? comparison[:delta_rank].to_i + classement[:rank].to_i : classement[:rank]
 
       {
         equipe_id: association_user.equipe_id,
@@ -28,8 +28,10 @@ class ClassementPilotesController < ApplicationController
         pilote: association_user.user.nom,
         score_precedent:  comparison ? comparison[:previous_score] : classement[:score],
         score: classement[:score],
-        rank_precedent: comparison ? comparison[:delta_rank].to_i + classement[:rank].to_i : classement[:rank], # Calculate rank_precedent if comparison is not nil
-        rank_courant: classement[:rank]
+        rank_precedent: rank_precedent, # Calculate rank_precedent if comparison is not nil
+        rank_courant: classement[:rank],
+        delta_rank: rank_precedent.to_i - classement[:rank].to_i
+
       }
     end
     
