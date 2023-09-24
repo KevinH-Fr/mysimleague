@@ -26,6 +26,10 @@ class Event < ApplicationRecord
     "n°" "#{numero}" " #{circuit.nom}"  
   end
 
+  def short_name_sanitaze
+    "#{division.saison.ligue.nom}""_#{division.saison.nom}""_#{division.nom}""_n""#{numero}" 
+  end
+
   def event_full_name
     "#{division.saison.ligue.nom}" " #{division.saison.nom}" " #{division.nom}" " n°" "#{numero}" " #{circuit.nom}"  
   end

@@ -3,6 +3,8 @@
     <%= truncate(@event.event_full_name, lenght: 8) %> 
 </h4>
 
+<span class="text-center" id="infos-event-sanitaze" style="display: none;"> <%= "teams_" + @event.short_name_sanitaze %> </span>
+
 <h4 class="text-center" id="infos-event-precedent" style="display: none;"> 
     <%= truncate(@previous_event.event_full_name, lenght: 8) if @previous_event %> 
 </h4>

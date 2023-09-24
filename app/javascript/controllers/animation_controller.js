@@ -460,6 +460,10 @@ export default class extends Controller {
             });
         }
         function animationLoop() {
+
+
+            
+
            
             const easedProgress = easeInOutCubic(currentFrame / frameDivider);
             drawAnimation(currentStep, currentFrame, easedProgress);
@@ -491,15 +495,17 @@ export default class extends Controller {
     }
 
     recordAnimation() {
-        console.log("call depuis bouton record");
 
+        const infosEventSanitaze = document.getElementById("infos-event-sanitaze");
+        const infosEventSanitazeValue = infosEventSanitaze.textContent;        
+        
         if (!this.capturer) {
             this.capturer = new CCapture({
                 format: 'webm',
                 quality: 80,
                 framerate: 60,
                 verbose: true,
-                name: "video_if1",
+                name: infosEventSanitazeValue.replace(/\s+/g, ''), // Remove spaces
                 allowTaint: false,
                 useCORS: true
             });
@@ -530,6 +536,7 @@ export default class extends Controller {
 
         const infosEvent = document.getElementById("infos-event");
         const infosEventValue = infosEvent.textContent;        
+
 
         const resultats = JSON.parse(this.element.dataset.animationResultatsValue);
         this.startAnimation(resultats, canvas, ctx, infosEventValue);
