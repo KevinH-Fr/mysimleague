@@ -32,59 +32,26 @@
     <%# détail event courante %>
     <%= render @event %>
 
-
     <div class="card-event-topics">
+      <% button_configs = [
+        { path: display_resultats_menu_index_path, icon: "fa-square-poll-horizontal", text: "Résultats", color: "text-secondary" },
+        { path: display_presences_menu_index_path, icon: "fa-street-view", text: "Présences", color: "text-success" },
+        { path: display_dotds_menu_index_path, icon: "fa-star", text: "DOTD", color: "text-warning" },
+        { path: display_dois_menu_index_path, icon: "fa-magnifying-glass", text: "DOI", color: "text-danger" },
+        { path: display_synthese_licences_menu_index_path, icon: "fa-id-card", text: "Licences", color: "text-danger" },
+        { path: display_paris_menu_index_path, icon: "fa-money-bill-wave", text: "Paris", color: "text-success" },
+        { path: display_classement_pilotes_menu_index_path, icon: "fa-ranking-star", text: "Pilotes", color: "" },
+        { path: display_classement_equipes_menu_index_path, icon: "fa-ranking-star", text: "Equipes", color: "" }
+      ] %>
+
       <div class="d-flex flex-wrap justify-content-center align-items-center py-4">
-        
-        <%= button_to display_resultats_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
-            data: { controller: "button-color", action: "click->button-color#handleClick" },
-            id: "scrollButton" do %>
-            <i class="fa fa-solid fa-xl fa-square-poll-horizontal text-secondary"></i>
-            <span class="ms-1 fw-bold">Résultats</span>
+        <% button_configs.each do |config| %>
+          <%= button_to config[:path], class: "btn btn-sm m-1 btn-topic", 
+              data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
+            <i class="fa fa-solid fa-xl <%= config[:icon] %>  <%= config[:color] %> <%= config[:text].downcase.parameterize %> <%= config[:color] %>"></i>
+            <span class="ms-1 fw-bold text-light"><%= config[:text] %></span>
+          <% end %>
         <% end %>
-
-        <%= button_to display_presences_menu_index_path, class: "btn btn-sm m-1 btn-topic",
-            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
-            <i class="fa fa-solid fa-xl fa-street-view text-success"></i>
-            <span class="ms-1 fw-bold">Présences</span>
-        <% end %>
-
-
-        <%= button_to display_dotds_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
-            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
-          <i class="fa fa-solid fa-xl fa-star text-warning"></i>
-          <span class="ms-1 fw-bold">DOTD</span>
-        <% end %>
-
-        <%= button_to display_dois_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
-            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
-          <i class="fa fa-solid fa-xl fa-magnifying-glass text-danger"></i>
-          <span class="ms-1 fw-bold">DOI</span>
-        <% end %>
-
-        <%= button_to display_synthese_licences_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
-            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
-          <i class="fa fa-solid fa-xl fa-id-card text-danger"></i>
-          <span class="ms-1 fw-bold">Licences</span>
-        <% end %>
-        
-        <%= button_to display_paris_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
-            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
-          <i class="fa fa-solid fa-xl fa-money-bill-wave text-success"></i>
-          <span class="ms-1 fw-bold">Paris</span>
-        <% end %>
-
-        <%= button_to display_classement_pilotes_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
-            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
-          <i class="fa fa-solid fa-xl fa-ranking-star"></i>
-          <span class="ms-1 fw-bold">Pilotes</span>
-        <% end %>
-        <%= button_to display_classement_equipes_menu_index_path, class: "btn btn-sm m-1 btn-topic", 
-            data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
-          <i class="fa fa-solid fa-xl fa-ranking-star"></i>
-          <span class="ms-1 fw-bold">Equipes</span>
-        <% end %>
-
       </div>
 
       <div id="partial-container" class="partial-topic">

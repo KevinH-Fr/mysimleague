@@ -25,9 +25,22 @@ class MenuController < ApplicationController
 
     @previous_event = Event.where(division_id: @event.division_id, numero: @event.numero - 1).first if @event
 
+    #essayer de passer un param pour afficher selectionner un topic grace à l'url 
+    #  permet d'avoir une url qui mene au topic, permet d'aller vers le topic avec un bouton 
+
+    #topic = "resultats" #params[:topic]
+    #puts "______________________test param topic = #{topic}"
+
+    #if topic = "resultats"
+      #puts "___________________________________________________call display topic = #{topic}"
+
+    # Call the display_resultats action
+    #redirect_to display_resultats_menu_index_path
+    #end
 
   
   end
+
 
   def display_admins_ligue
 
@@ -119,7 +132,7 @@ class MenuController < ApplicationController
 
           )
       end
-
+      format.html 
     end
   end
 
@@ -165,7 +178,6 @@ class MenuController < ApplicationController
       end
     end
   end
-
 
   def display_paris
 

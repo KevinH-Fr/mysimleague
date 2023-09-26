@@ -2,7 +2,7 @@ module FeedsHelper
 
     def feeds_elements
         # Define the models you want to fetch
-        models_to_fetch = [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd]
+        models_to_fetch = [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence]
         # models enlevés : Ligue Saison Division Circuit Equipe
 
         # Initialize an empty array to store the results
@@ -48,6 +48,8 @@ module FeedsHelper
             content_tag :i, "", class: "fa fa-2x fa-solid fa-magnifying-glass text-danger me-2"
         when "Dotd"
             content_tag :i, "", class: "fa fa-2x fa-solid fa-ranking-star text-warning me-2"
+        when "Presence"
+            content_tag :i, "", class: "fa fa-2x fa-solid fa-street-view text-warning me-2"
 
         else
             content_tag :i, "", class: "fa fa-xl fa-question-circle text-dark me-2"
@@ -119,6 +121,12 @@ module FeedsHelper
             span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
             combined_content = span_label + span_image + " " + span_content
 
+        when "Presence"
+            span_label = content_tag(:span, "Presence")
+            span_content = content_tag(:span, feed.association_user.user.short_name, class: "fw-bold")
+            span_image = image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
+            combined_content = span_label + span_image + " " + span_content
+
         else
             span_label = content_tag(:span, "Model")
             span_content = content_tag(:span, feed, class: "fw-bold")
@@ -127,38 +135,37 @@ module FeedsHelper
     end
 
     def feed_path(feed)
-        case feed.class.name
-       # when "Ligue"
-       #     menu_index_path(ligue: feed)
-       # when "Saison"
-       #     menu_index_path(ligue: feed.ligue_id, saison: feed)
-       # when "Division"
-       #     menu_index_path(ligue: feed.saison.ligue, saison: feed.saison_id, division: feed)  
-       # when "Event"
-       #     menu_index_path(ligue: feed.division.saison.ligue, saison: feed.division.saison, division: feed.division_id, event: feed)  
-       # when "Equipe"
-       #     equipe_path(feed)  
-       # when "Circuit"
-       #     circuit_path(feed)  
-        when "Resultat"
-            menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)  
-        when "Pari"
-            menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)  
-        when "User"
-            user_path(feed)
-        when "AssociationUser"
-            user_path(feed.user_id)
-        when "Doi"
-            menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)  
-        when "Dotd"
-            menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)  
 
+
+                # when "Ligue"
+            #     menu_index_path(ligue: feed)
+            # when "Saison"
+            #     menu_index_path(ligue: feed.ligue_id, saison: feed)
+            # when "Division"
+            #     menu_index_path(ligue: feed.saison.ligue, saison: feed.saison_id, division: feed)  
+            # when "Event"
+            #     menu_index_path(ligue: feed.division.saison.ligue, saison: feed.division.saison, division: feed.division_id, event: feed)  
+            # when "Equipe"
+            #     equipe_path(feed)  
+            # when "Circuit"
+            #     circuit_path(feed) 
+            
+
+    
+        case feed.class.name
+        when "Resultat", "Pari", "Doi", "Dotd", "Presence"
+          menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)
+        when "User"
+          user_path(feed)
+        when "AssociationUser"
+          user_path(feed.user_id)
         else
           root_path
         end
       end
-      
-    
+
+
+
 
   end
   

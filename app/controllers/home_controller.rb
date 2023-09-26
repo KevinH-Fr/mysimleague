@@ -20,7 +20,7 @@ class HomeController < ApplicationController
   def display_feeds
     #  feeds = feeds_elements
 
-    models_to_fetch = [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd]
+    models_to_fetch = [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence]
     # models enlevés : Ligue Saison Division Circuit Equipe
     @feeds = []
 
