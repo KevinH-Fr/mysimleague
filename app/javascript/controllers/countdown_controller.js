@@ -30,7 +30,7 @@ export default class extends Controller {
     const minutes = String(timeRemaining.getUTCMinutes()).padStart(2, "0");
     const seconds = String(timeRemaining.getUTCSeconds()).padStart(2, "0");
 
-    this.timerTarget.textContent = `${days} days ${hours} hours ${minutes} minutes ${seconds} seconds`;
+    this.timerTarget.textContent = `${days} days ${hours} : ${minutes} : ${seconds}`;
 
     if (timeRemaining <= 0) {
       this.timerTarget.textContent = "Finished";

@@ -4,30 +4,36 @@
   <% keywords "Menu, tools, management, results, rankings, bets, votes " + event.event_full_name %>
 
   <div class="card px-2 my-1">  
-    <div class="row p-1">
-      <div class="col-9">
+
+    <div class="row">
+
+      <div class="d-flex justify-content-start align-items-center">
 
         <%= link_to "#collapseDetailsEvent", class: "no-underline", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsEvent", "aria-expanded" => "false" do %>
           <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35", height: "20", alt: "drapeau") if event.circuit.drapeau.present? %>
           N°<strong> <%= event.numero %> </strong>
-          <strong> <%= event.circuit.nom %> </strong>
+          <strong> <%= event.circuit.nom %> </strong> -
           <%#= event.horaire.strftime('%d %b %Y - %Hh%M') %> 
           <%= local_time event.horaire, format: :short %>
         <% end %>
+      </div>
+
+      <div class="d-flex justify-content-center align-items-center">
 
         <% if @show_buttons %>
-          <button class="btn btn-sm btn-outline-primary fa-solid fa-cloud-sun-rain m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeather" aria-expanded="false">
+          <div class="mx-2">
+            <%= render "shared/countdown" %>
+          </div>
+          <button class="btn btn-sm btn-outline-primary fa-solid fa-cloud-sun-rain mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeather" aria-expanded="false">
           </button> 
-          <button class="btn btn-sm btn-outline-success fa-solid fa-map-location-dot m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false">
+          <button class="btn btn-sm btn-outline-success fa-solid fa-map-location-dot mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false">
           </button>
-
-          <%= render "shared/countdown" %>
-
         <% end %> 
 
       </div>
 
-      <div class="col d-flex justify-content-end align-items-center">
+
+      <div class=" d-flex justify-content-end align-items-center">
 
         <% if current_user && verif_admin_ligue(current_user, event.division.saison.ligue) %>
 
@@ -43,7 +49,7 @@
         <% end %>  
       </div>
     </div>
-      
+
     <div class="collapse" id="collapseDetailsEvent">
       more content
     </div>
