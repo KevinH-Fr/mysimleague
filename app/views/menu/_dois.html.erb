@@ -1,50 +1,51 @@
-
-<div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
-  Dépose ici tes Demande d'Ouverture d'Investigation et suis les décisions des commissaires !
-</div>
-
-  <h4 class="titre-topic mx-1">
-    DOI 
-
-  <% if current_user %>
-    <% if verif_admin_ligue(current_user, @event.division.saison.ligue.id) %>
-      <!-- Display the button for admin ligue -->
-      <button class="btn btn-sm btn-warning m-2" type="button" 
-        data-bs-toggle="collapse" data-bs-target="#collapseNewDoi" aria-expanded="false">
-          <i class="fa-solid fa-square-plus fa-xl"></i>
-      </button>
-    <% elsif verif_appartenance_division(current_user, session[:division]) && verif_delai_doi(session[:event]) %>
-      <!-- Display the button for other users if both conditions are true -->
-      <button class="btn btn-sm btn-warning m-2" type="button" 
-        data-bs-toggle="collapse" data-bs-target="#collapseNewDoi" aria-expanded="false">
-          <i class="fa-solid fa-square-plus fa-xl"></i>
-      </button>
-    <% end %>
-  <% end %>
-
-  </h4>
-
-<% if current_user %>
-
-  <% if verif_appartenance_division(current_user, session[:division]) || verif_admin_ligue(current_user, @event.division.saison.ligue.id)  %>    
-    <div class="collapse" id="collapseNewDoi">
-      <div id="new_doi">
-        <%= render partial: "dois/form", locals: { doi: Doi.new } %>
-      </div>
-    </div>
-  <% end %>
-<% else %>
-  <div class="container my-2 fs-6">
-    <%= boolean_container(false, "Connecte toi à ton compte pour déposer une DOI") %>
-  </div>  
-<% end %>
+<div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
 
 
-  <div id="dois">
-    <% @dois.each do |doi| %>
-      <%= render doi %>
-    <% end %>
+  <div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
+    Dépose ici tes Demande d'Ouverture d'Investigation et suis les décisions des commissaires !
   </div>
 
-  <%#= link_to "Generate PNG", generate_image_dois_path(event: @event.id), class: 'btn btn-success' %>
-  <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+    <h4 class="titre-topic mx-1">
+      DOI 
+
+    <% if current_user %>
+      <% if verif_admin_ligue(current_user, @event.division.saison.ligue.id) %>
+        <!-- Display the button for admin ligue -->
+        <button class="btn btn-sm btn-warning m-2" type="button" 
+          data-bs-toggle="collapse" data-bs-target="#collapseNewDoi" aria-expanded="false">
+            <i class="fa-solid fa-square-plus fa-xl"></i>
+        </button>
+      <% elsif verif_appartenance_division(current_user, session[:division]) && verif_delai_doi(session[:event]) %>
+        <!-- Display the button for other users if both conditions are true -->
+        <button class="btn btn-sm btn-warning m-2" type="button" 
+          data-bs-toggle="collapse" data-bs-target="#collapseNewDoi" aria-expanded="false">
+            <i class="fa-solid fa-square-plus fa-xl"></i>
+        </button>
+      <% end %>
+    <% end %>
+
+    </h4>
+
+  <% if current_user %>
+
+    <% if verif_appartenance_division(current_user, session[:division]) || verif_admin_ligue(current_user, @event.division.saison.ligue.id)  %>    
+      <div class="collapse" id="collapseNewDoi">
+        <div id="new_doi">
+          <%= render partial: "dois/form", locals: { doi: Doi.new } %>
+        </div>
+      </div>
+    <% end %>
+  <% else %>
+    <div class="container my-2 fs-6">
+      <%= boolean_container(false, "Connecte toi à ton compte pour déposer une DOI") %>
+    </div>  
+  <% end %>
+
+
+    <div id="dois">
+      <% @dois.each do |doi| %>
+        <%= render doi %>
+      <% end %>
+    </div>
+
+</div>

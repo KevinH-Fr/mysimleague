@@ -3,7 +3,6 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
 
   connect() {
-
   }
 
   handleClick(event) {
@@ -17,5 +16,8 @@ export default class extends Controller {
         button.classList.remove("active");
       }
     }
+    
   }
+
+
 }

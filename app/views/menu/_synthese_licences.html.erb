@@ -1,31 +1,33 @@
+<div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
 
-<div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
- Retrouve ici la synthèse des licences pilotes !
-</div>
+  <div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
+  Retrouve ici la synthèse des licences pilotes !
+  </div>
 
-<h4 class="titre-topic">
-  synthèse licences 
-  <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
-    <%= link_to  "update", update_licences_path(@event), class: "btn btn-sm btn-primary" %>
-  <% end %>
-</h4>
-<%#= link_to  "supprimer licences", supprimer_licences_path(@event), class: "btn btn-danger" %>
+  <h4 class="titre-topic">
+    synthèse licences 
+    <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
+      <%= link_to  "update", update_licences_path(@event), class: "btn btn-sm btn-primary" %>
+    <% end %>
+  </h4>
+  <%#= link_to  "supprimer licences", supprimer_licences_path(@event), class: "btn btn-danger" %>
 
-<% cumul_licence_user(@event).each do |pilote| %>
-  <div class=" d-flex align-items-center justify-content-center my-1 p-0" style="">
-      <%= equipe_banner_with_data(
-          AssociationUser.find(pilote[:association_user_id]).equipe, 
-          User.find(pilote[:user_id]).nom) %> 
-      <div class="d-flex align-items-center justify-content-center">
-        <%= badge_points_licence(pilote[:perte_total].to_s, "perte") %> 
-        <%= badge_points_licence(pilote[:gain_total].to_s, "gain") %> 
-        <%= badge_points_licence(pilote[:solde].to_s, "solde") %> 
+  <% cumul_licence_user(@event).each do |pilote| %>
+    <div class=" d-flex align-items-center justify-content-center my-1 p-0" style="">
+        <%= equipe_banner_with_data(
+            AssociationUser.find(pilote[:association_user_id]).equipe, 
+            User.find(pilote[:user_id]).nom) %> 
+        <div class="d-flex align-items-center justify-content-center">
+          <%= badge_points_licence(pilote[:perte_total].to_s, "perte") %> 
+          <%= badge_points_licence(pilote[:gain_total].to_s, "gain") %> 
+          <%= badge_points_licence(pilote[:solde].to_s, "solde") %> 
+        </div>
       </div>
-    </div>
-<% end %>
+  <% end %>
 
-<div class="container my-2">
-  <%= link_to "", generate_image_licences_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
-  <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+  <div class="container my-2">
+    <%= link_to "", generate_image_licences_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
+    <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+  </div>
+
 </div>
-

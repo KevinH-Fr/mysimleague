@@ -1,23 +1,25 @@
+<div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
 
-<div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
-  Retrouve ici les présences à valider avant la course !
-</div>
-
-<h4 class="titre-topic">
-  Présences
-  <%= turbo_frame_tag :content_new_presence do %>
-      <%= render "presences/new_presence" %>
-  <% end %>
-</h4>
-
-<div class="container-fluid">
-  <div id="presences">
-    <% @presences.each do |presence| %>
-        <%= render presence %>
-    <% end %>
+  <div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
+    Retrouve ici les présences à valider avant la course !
   </div>
-</div>
 
-<div id="partial-presences-stats-container" class="my-1 text-center">
-  <%= render "presences/stats" %>
+  <h4 class="titre-topic">
+    Présences
+    <%= turbo_frame_tag :content_new_presence do %>
+        <%= render "presences/new_presence" %>
+    <% end %>
+  </h4>
+
+  <div class="container-fluid">
+    <div id="presences">
+      <% @presences.each do |presence| %>
+          <%= render presence %>
+      <% end %>
+    </div>
+  </div>
+
+  <div id="partial-presences-stats-container" class="my-1 text-center">
+    <%= render "presences/stats" %>
+  </div>
 </div>

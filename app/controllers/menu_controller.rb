@@ -112,10 +112,14 @@ class MenuController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.update(
-          'partial-container', partial: 'menu/resultats'
-        )
+        render turbo_stream: 
+          turbo_stream.update(
+            'partial-container', 
+            partial: 'menu/resultats'
+
+          )
       end
+
     end
   end
 

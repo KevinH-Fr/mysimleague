@@ -1,33 +1,37 @@
 
-<div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
-  Retrouve ici tous les résultats des courses !
-</div>
+<div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
 
-<h4 class="titre-topic">
-  Résultats
+  <div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
+    Retrouve ici tous les résultats des courses !
+  </div>
 
-    <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-bounce fa-film btn-primary mx-2' %>
+  <h4 class="titre-topic">
+    Résultats
 
-    <% if current_user && verif_admin_ligue(current_user, @event.division.saison.ligue) %>
-      <button class="btn btn-sm btn-warning m-2" type="button" 
-        data-bs-toggle="collapse" data-bs-target="#collapseNewEvent" aria-expanded="false">
-          <i class="fa-solid fa-square-plus fa-xl"></i>
-      </button>
-    <% end %>
+      <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-bounce fa-film btn-primary mx-2' %>
 
-</h4>
+      <% if current_user && verif_admin_ligue(current_user, @event.division.saison.ligue) %>
+        <button class="btn btn-sm btn-warning m-2" type="button" 
+          data-bs-toggle="collapse" data-bs-target="#collapseNewEvent" aria-expanded="false">
+            <i class="fa-solid fa-square-plus fa-xl"></i>
+        </button>
+      <% end %>
 
-<div class="d-flex align-items-center justify-content-center m-0 p-0">
-  <div class="collapse my-2" id="collapseNewEvent">
-    <div id="new_resultat">
-      <%= render partial: "resultats/form", locals: { resultat: Resultat.new } %>
+  </h4>
+
+  <div class="d-flex align-items-center justify-content-center m-0 p-0">
+    <div class="collapse my-2" id="collapseNewEvent">
+      <div id="new_resultat">
+        <%= render partial: "resultats/form", locals: { resultat: Resultat.new } %>
+      </div>
     </div>
   </div>
-</div>
 
-<%= render  "resultats/resultats" %>
+  <%= render  "resultats/resultats" %>
 
-<div class="container my-2">
-  <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
-  <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-film btn-primary' %>
+  <div class="container my-2">
+    <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
+    <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-film btn-primary' %>
+  </div>
+
 </div>
