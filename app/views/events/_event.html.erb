@@ -1,69 +1,65 @@
 
-<div id="<%= dom_id event %>">
+<div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
 
-  <% keywords "Menu, tools, management, results, rankings, bets, votes " + event.event_full_name %>
+  <div id="<%= dom_id event %>">
 
-  <div class="card px-2 my-1">  
+    <% keywords "Menu, tools, management, results, rankings, bets, votes " + event.event_full_name %>
 
-    <div class="row">
+    <div class="card px-2 my-1">  
 
-      <div class="d-flex justify-content-start align-items-center">
+      <div class="row">
 
-        <%= link_to "#collapseDetailsEvent", class: "no-underline", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsEvent", "aria-expanded" => "false" do %>
-          <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35", height: "20", alt: "drapeau") if event.circuit.drapeau.present? %>
-          N°<strong> <%= event.numero %> </strong>
-          <strong> <%= event.circuit.nom %> </strong> -
-          <%#= event.horaire.strftime('%d %b %Y - %Hh%M') %> 
-          <%= local_time event.horaire, format: :short %>
-        <% end %>
+        <div class="d-flex justify-content-start align-items-center">
+          <%= link_to "#collapseDetailsEvent", class: "no-underline", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsEvent", "aria-expanded" => "false" do %>
+            <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "35", height: "20", alt: "drapeau") if event.circuit.drapeau.present? %>
+            N°<strong> <%= event.numero %> </strong>
+            <strong> <%= event.circuit.nom %> </strong> -
+            <%#= event.horaire.strftime('%d %b %Y - %Hh%M') %> 
+            <%= local_time event.horaire, format: :short %>
+          <% end %>
+        </div>
+
+        <div class="d-flex justify-content-center align-items-center">
+          <% if @show_buttons %>
+            <div class="mx-2">
+              <%= render "shared/countdown" %>
+            </div>
+            <button class="btn btn-sm btn-outline-primary fa-solid fa-cloud-sun-rain mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeather" aria-expanded="false">
+            </button> 
+            <button class="btn btn-sm btn-outline-success fa-solid fa-map-location-dot mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false">
+            </button>
+          <% end %> 
+        </div>
+
+        <div class=" d-flex justify-content-end align-items-center">
+          <% if current_user && verif_admin_ligue(current_user, event.division.saison.ligue) %>
+            <button class="btn btn-sm btn-primary fa-solid fa-eye m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetailsEvent" aria-expanded="false">
+            </button>
+            <%= button_to "", edit_event_path(event), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+            <%= button_to "", event, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+          <% end %>  
+        </div>
+
       </div>
 
-      <div class="d-flex justify-content-center align-items-center">
+      <div class="collapse" id="collapseDetailsEvent">
+        more content
+      </div>
 
-        <% if @show_buttons %>
-          <div class="mx-2">
-            <%= render "shared/countdown" %>
-          </div>
-          <button class="btn btn-sm btn-outline-primary fa-solid fa-cloud-sun-rain mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeather" aria-expanded="false">
-          </button> 
-          <button class="btn btn-sm btn-outline-success fa-solid fa-map-location-dot mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false">
-          </button>
-        <% end %> 
-
+      <div class="collapse" id="collapseWeather">
+        <% @data = weather_data(event.circuit.latitude, event.circuit.longitude) %>
+        <%= render  "circuits/meteo", locals: {data: @data} %>
+      </div>
+  
+      <div class="collapse" id="collapseMap">
+        <% @circuit_nom = event.circuit.nom %>
+        <%= render  "circuits/map", locals: {circuit_nom: @circuit_nom} %>
       </div>
 
 
-      <div class=" d-flex justify-content-end align-items-center">
-
-        <% if current_user && verif_admin_ligue(current_user, event.division.saison.ligue) %>
-
-          <button class="btn btn-sm btn-primary fa-solid fa-eye m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetailsEvent" aria-expanded="false">
-          </button>
-
-          <%= button_to "", edit_event_path(event), method: :post, 
-              class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
-          <%= button_to "", event, method: :delete, 
-              class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
-              data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
-            
-        <% end %>  
-      </div>
     </div>
-
-    <div class="collapse" id="collapseDetailsEvent">
-      more content
-    </div>
-
-    <div class="collapse" id="collapseWeather">
-      <% @data = weather_data(event.circuit.latitude, event.circuit.longitude) %>
-      <%= render  "circuits/meteo", locals: {data: @data} %>
-    </div>
- 
-    <div class="collapse" id="collapseMap">
-      <% @circuit_nom = event.circuit.nom %>
-      <%= render  "circuits/map", locals: {circuit_nom: @circuit_nom} %>
-    </div>
-
-
   </div>
 </div>

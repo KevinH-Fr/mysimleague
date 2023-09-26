@@ -16,16 +16,15 @@ export default class extends Controller {
   }
 
   scroll() {
-  //  const targetElement = document.getElementById("target-scroll-id")
   
   const targetElement = this.element
 
- // console.log("Call scroll from Stimulus" + " " + targetElement)
+  //console.log("Call scroll from Stimulus" + " " + targetElement)
 
     if (targetElement) {
       targetElement.scrollIntoView({
         behavior: "smooth",
-        block: "center",
+        block: "start",
       })
     }
   }
