@@ -34,8 +34,7 @@ class HomeController < ApplicationController
     @feeds.sort_by!(&:updated_at).reverse!
 
 
-  #@pagy, feeds = pagy(feeds, items: 5)
-
+   #@pagy, feeds = pagy(feeds, items: 5)
    # @pagy, @feeds = pagy_array(@feeds, items: 5)
 
     respond_to do |format|
