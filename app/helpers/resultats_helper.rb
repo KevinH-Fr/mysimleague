@@ -20,7 +20,8 @@ module ResultatsHelper
     end
 
     content_span = content_tag(:span, content.join(" ").html_safe, 
-      class: "text-light fw-bold  position-absolute end-0 top-50 translate-middle-y")
+      class: "text-light fw-bold position-absolute end-0",
+      style: "top: 6px;") 
     content_span
   end
 
@@ -38,10 +39,9 @@ module ResultatsHelper
   def equipe_banner_pilote_and_indicators_document(equipe, pilote, dotd, mt, dnf, dns)
     if equipe.banniere.present?
       banner_and_pilote = equipe_banner_with_data_document(equipe, pilote)
-      indicators = dotd_mt_dnf_dns_indicators(dotd, mt, dnf, dns)
-      
-      content_tag(:div, class: "img-banniere-doc", style: "position: relative; ") do
-        content_tag(:div, class: "indicators", style: "padding-right: 0px;") do
+      indicators =  dotd_mt_dnf_dns_indicators(dotd, mt, dnf, dns)
+      content_tag(:div, class: "img-banniere-doc", style: "position: relative;") do
+        content_tag(:div, style: ";") do
           [banner_and_pilote, indicators].join.html_safe
         end
       end
