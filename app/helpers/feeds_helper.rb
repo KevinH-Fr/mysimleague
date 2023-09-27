@@ -136,8 +136,11 @@ module FeedsHelper
     def feed_path(feed)            
 
         case feed.class.name
-        when "Resultat", "Pari", "Doi", "Dotd", "Presence, Event"
+        when "Resultat", "Pari", "Doi", "Dotd", "Presence"
           menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)
+        
+        when "Event"
+            menu_index_path(ligue: feed.division.saison.ligue, saison: feed.division.saison, division: feed.division_id, event: feed)
         when "User"
           user_path(feed)
         when "AssociationUser"
