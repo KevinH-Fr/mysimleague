@@ -86,8 +86,7 @@
 
 <%# test feeds infinite scroll %>
 <h4 class="text-center mt-2">Activités</h4> 
-<div id="feeds" class="p-2">
-</div>
+<div id="feeds" class="p-2"> </div>
 
 <%= turbo_frame_tag :pagination, loading: :lazy, src: home_index_path(format: :turbo_stream) %>
 

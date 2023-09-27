@@ -6,7 +6,7 @@
 <div class="my-2">
   <h2 class="text-center fw-bold my-2">Log in</h2>
 
-  <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
+  <%= form_for(resource, as: resource_name, url: session_path(resource_name), data: { turbo: false }) do |f| %>
 
 
     <div class="container p-4 my-4"> 

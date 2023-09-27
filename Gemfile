@@ -35,7 +35,8 @@ group :test do
   gem "webdrivers"
 end
 
-gem "devise", "~> 4.9"
+#gem "devise", "~> 4.9"
+gem 'devise', github: "heartcombo/devise", branch: "main"
 
 gem 'requestjs-rails'
 gem 'jquery-rails'
