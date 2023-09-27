@@ -14,14 +14,43 @@ class HomeController < ApplicationController
     if current_user
       @current_user
     end
+
+    # friends infinite scroll
+    models_to_fetch = 
+      [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence,
+      Ligue, Saison, Division, Circuit, Equipe]
+    @feeds = []
+
+    # Iterate through the models and fetch the most recent 3 records for each
+    models_to_fetch.each do |model|
+      # Use the 'or' method to build a query for each model
+      recent_records = model.order(updated_at: :desc)
+      @feeds += recent_records
+    end
+
+    @feeds.sort_by!(&:updated_at).reverse!
+
+    page = (params[:page].to_i > 0) ? params[:page].to_i : 1
+    items = 5
+    start = (page - 1) * items
+    
+    @pagy = Pagy.new(count: @feeds.size, page: page, items: items)
+    @feeds = @feeds.slice(start, items)
+    
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
+    
   
   end 
 
   def display_feeds
     #  feeds = feeds_elements
 
-    models_to_fetch = [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence]
-    # models enlevés : Ligue Saison Division Circuit Equipe
+    models_to_fetch = 
+    [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence,
+      Ligue, Saison, Division, Circuit, Equipe]
     @feeds = []
 
     # Iterate through the models and fetch the most recent 3 records for each

@@ -1,5 +1,6 @@
 
-    <h4 class="text-center mt-2"> Prochaines courses </h4> <br>
+<h4 class="text-center mt-2">Prochaines courses</h4> 
+<div class="py-2">
     <% @prochains_events.each do |event| %>
 
         <%= link_to menu_index_path(
@@ -23,3 +24,4 @@
         <% end %>
         
     <% end %>
+</div>

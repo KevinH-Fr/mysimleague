@@ -2,16 +2,15 @@ module FeedsHelper
 
     def feeds_elements
         # Define the models you want to fetch
-        models_to_fetch = [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence]
-        # models enlevés : Ligue Saison Division Circuit Equipe
+        models_to_fetch = 
+        [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence,
+            Ligue, Saison, Division, Circuit, Equipe ]
 
-        # Initialize an empty array to store the results
         @feeds = []
       
-        # Iterate through the models and fetch the most recent 3 records for each
         models_to_fetch.each do |model|
           # Use the 'or' method to build a query for each model
-          recent_records = model.order(updated_at: :desc).limit(3)
+          recent_records = model.order(updated_at: :desc)
           @feeds += recent_records
         end
       
@@ -24,16 +23,16 @@ module FeedsHelper
         case feed.class.name
         when "Pilote"
             content_tag :i, "", class: "fa fa-2x fa-user me-2", style: "color: blue;"
-       # when "Ligue"
-       #     content_tag :i, "", class: "fa fa-2x fa-people-group text-warning me-2"
-       # when "Saison"
-       #     content_tag :i, "", class: "fa fa-2x fa-arrows-spin me-2", style: "color: orange;"
-       # when "Division"
-       #     content_tag :i, "", class: "fa fa-2x fa-layer-group me-2", style: "color: grey;"
-       # when "Circuit"
-       #     content_tag :i, "", class: "fa fa-2x fa-road me-2", style: "color: grey;"
-       # when "Equipe"
-       #     content_tag :i, "", class: "fa fa-2x fa-car me-2", style: "color: blue;"
+        when "Ligue"
+            content_tag :i, "", class: "fa fa-2x fa-people-group text-warning me-2"
+        when "Saison"
+            content_tag :i, "", class: "fa fa-2x fa-arrows-spin me-2", style: "color: orange;"
+        when "Division"
+            content_tag :i, "", class: "fa fa-2x fa-layer-group me-2", style: "color: grey;"
+        when "Circuit"
+            content_tag :i, "", class: "fa fa-2x fa-road me-2 text-light"
+        when "Equipe"
+            content_tag :i, "", class: "fa fa-2x fa-car me-2 text-light"
         when "Event"
             content_tag :i, "", class: "fa fa-2x fa-calendar-check me-2"
         when "Resultat"
@@ -47,7 +46,7 @@ module FeedsHelper
         when "Doi"
             content_tag :i, "", class: "fa fa-2x fa-solid fa-magnifying-glass text-danger me-2"
         when "Dotd"
-            content_tag :i, "", class: "fa fa-2x fa-solid fa-ranking-star text-warning me-2"
+            content_tag :i, "", class: "fa fa-2x fa-solid fa-ranking-star text-primary me-2"
         when "Presence"
             content_tag :i, "", class: "fa fa-2x fa-solid fa-street-view text-warning me-2"
 
@@ -58,33 +57,33 @@ module FeedsHelper
 
     def feed_label(feed)
         case feed.class.name
-       # when "Ligue"
-       #     span_label = content_tag(:span, "Ligue")
-       #     span_content = content_tag(:span, feed.nom, class: "fw-bold")
-       #     combined_content = span_label + " " + span_content
-       # when "Saison"
-       #     span_label = content_tag(:span, "Saison")
-       #     span_content = content_tag(:span, feed.nom, class: "fw-bold")
-       #     combined_content = span_label + " " + span_content
-       # when "Division"
-       #     span_label = content_tag(:span, "Division")
-       #     span_content = content_tag(:span, feed.nom, class: "fw-bold")
-       #     combined_content = span_label + " " + span_content
-       # when "Circuit"
-       #     span_label = content_tag(:span, "Circuit")
-       #     span_content = content_tag(:span, feed.short_name, class: "fw-bold")
-       #     combined_content = span_label + " " + span_content
-       # when "Equipe"
-       #     span_label = content_tag(:span, "Equipe")
-       #     span_content = content_tag(:span, feed.nom, class: "fw-bold")
-       #     combined_content = span_label + " " + span_content
+        when "Ligue"
+            span_label = content_tag(:span, "Ligue")
+            span_content = content_tag(:span, feed.nom, class: "fw-bold mx-2")
+            combined_content = span_label + " " + span_content
+        when "Saison"
+            span_label = content_tag(:span, "Saison")
+            span_content = content_tag(:span, feed.nom, class: "fw-bold mx-2")
+            combined_content = span_label + " " + span_content
+        when "Division"
+            span_label = content_tag(:span, "Division")
+            span_content = content_tag(:span, feed.nom, class: "fw-bold mx-2")
+            combined_content = span_label + " " + span_content
+        when "Circuit"
+            span_label = content_tag(:span, "Circuit")
+            span_content = content_tag(:span, feed.short_name, class: "fw-bold mx-2")
+            combined_content = span_label + " " + span_content
+        when "Equipe"
+            span_label = content_tag(:span, "Equipe")
+            span_content = content_tag(:span, feed.nom, class: "fw-bold mx-2")
+            combined_content = span_label + " " + span_content
         when "Event"
             span_label = content_tag(:span, "Event")
-            span_content = content_tag(:span, feed.circuit.nom, class: "fw-bold ms-2")
+            span_content = content_tag(:span, feed.circuit.nom, class: "fw-bold mx-2")
             combined_content = span_label + " " + span_content
         when "Resultat"
             span_label = content_tag(:span, "Resultat")
-            span_content = content_tag(:span, feed.association_user.user.short_name, class: "fw-bold")
+            span_content = content_tag(:span, feed.association_user.user.short_name, class: "fw-bold mx-2")
             span_image = image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
             combined_content = span_label + span_image + " " + span_content
         when "Pari"
@@ -102,7 +101,6 @@ module FeedsHelper
             span_content = content_tag(:span, feed.user.short_name, class: "fw-bold")
             span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
             combined_content = span_label  + span_image  + " " + span_content
-
 
         when "Doi"
             span_label = content_tag(:span, "DOI")
@@ -134,31 +132,26 @@ module FeedsHelper
         end 
     end
 
-    def feed_path(feed)
+    def feed_path(feed)            
 
-
-                # when "Ligue"
-            #     menu_index_path(ligue: feed)
-            # when "Saison"
-            #     menu_index_path(ligue: feed.ligue_id, saison: feed)
-            # when "Division"
-            #     menu_index_path(ligue: feed.saison.ligue, saison: feed.saison_id, division: feed)  
-            # when "Event"
-            #     menu_index_path(ligue: feed.division.saison.ligue, saison: feed.division.saison, division: feed.division_id, event: feed)  
-            # when "Equipe"
-            #     equipe_path(feed)  
-            # when "Circuit"
-            #     circuit_path(feed) 
-            
-
-    
         case feed.class.name
-        when "Resultat", "Pari", "Doi", "Dotd", "Presence"
+        when "Resultat", "Pari", "Doi", "Dotd", "Presence, Event"
           menu_index_path(ligue: feed.event.division.saison.ligue, saison: feed.event.division.saison, division: feed.event.division_id, event: feed.event_id)
         when "User"
           user_path(feed)
         when "AssociationUser"
           user_path(feed.user_id)
+
+        when "Ligue"
+            menu_index_path(ligue: feed)
+        when "Saison"
+            menu_index_path(ligue: feed.ligue_id, saison: feed)
+        when "Division"
+            menu_index_path(ligue: feed.saison.ligue, saison: feed.saison_id, division: feed)  
+        when "Equipe"
+            equipe_path(feed)  
+        when "Circuit"
+            circuit_path(feed) 
         else
           root_path
         end

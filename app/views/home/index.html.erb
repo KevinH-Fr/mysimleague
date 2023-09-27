@@ -71,12 +71,12 @@
    <% end %>
 </div>
 
-<div class="d-block flex-wrap justify-content-center align-items-center px-2">   
+<!--div class="d-block flex-wrap justify-content-center align-items-center px-2">   
    <%= button_to display_feeds_home_index_path, class: "w-100 btn btn-xl btn-outline-warning " do %>
       <i class="fa fa-solid fa-xl fa-bell"></i>
       <span class="ms-2 fw-bold">Voir les activités</span>
    <% end %>
-</div>
+</div-->
 
 <div id="partial-container" class="p-2 mt-2">
    <%# recoit le turbo stream avec elements cliqués %>
@@ -84,5 +84,10 @@
 
 
 
+<%# test feeds infinite scroll %>
+<h4 class="text-center mt-2">Activités</h4> 
+<div id="feeds" class="p-2">
+</div>
 
+<%= turbo_frame_tag :pagination, loading: :lazy, src: home_index_path(format: :turbo_stream) %>
 

@@ -15,8 +15,8 @@
   </div>
 </div>
 
-<div id="friends">
-  <% @friends.each do |friend| %>
-    <%= render friend %>
-  <% end %>
-</div>
+<div id="friends"> </div>
+
+<%= link_to "New friend", new_friend_path %>
+
+<%= turbo_frame_tag :pagination, loading: :lazy, src: friends_path(format: :turbo_stream) %>

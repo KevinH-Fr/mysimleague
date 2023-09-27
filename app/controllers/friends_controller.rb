@@ -2,21 +2,13 @@ class FriendsController < ApplicationController
   before_action :set_friend, only: %i[ show edit update destroy ]
 
   def index
-    @friends = Friend.all
-
+    # @artists = Artist.all
+    @pagy, @friends = pagy_countless(Friend.order(created_at: :desc), items: 5)
     respond_to do |format|
-      format.html
-      format.pdf do
-
-        render pdf: "friends: #{@friends.count}", # filename
-               template: "friends/index",
-               formats: [:html],
-               disposition: :inline,
-               layout: 'pdf'
-      end
+     format.html
+     format.turbo_stream
     end
-
-  end
+   end
 
   
 
