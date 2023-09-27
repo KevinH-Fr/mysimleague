@@ -65,7 +65,7 @@
    <%= render "shared/connexion" %>
 </div>
 
-<div class="p-2"> 
+<div class="px-2"> 
    <% if @prochains_events %>
       <%= render "prochains_events" %>
    <% end %>
@@ -85,7 +85,7 @@
 
 
 <%# test feeds infinite scroll %>
-<h4 class="text-center mt-2">Activités</h4> 
+<h4 class="text-center">Activités</h4> 
 <div id="feeds" class="p-2"> </div>
 
 <%= turbo_frame_tag :pagination, loading: :lazy, src: home_index_path(format: :turbo_stream) %>

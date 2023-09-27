@@ -35,5 +35,19 @@ module ResultatsHelper
     end
   end
 
+  def equipe_banner_pilote_and_indicators_document(equipe, pilote, dotd, mt, dnf, dns)
+    if equipe.banniere.present?
+      banner_and_pilote = equipe_banner_with_data_document(equipe, pilote)
+      indicators = dotd_mt_dnf_dns_indicators(dotd, mt, dnf, dns)
+      
+      content_tag(:div, class: "img-banniere-doc", style: "position: relative; ") do
+        content_tag(:div, class: "indicators", style: "padding-right: 0px;") do
+          [banner_and_pilote, indicators].join.html_safe
+        end
+      end
+    end
+  end
+  
+
 
 end

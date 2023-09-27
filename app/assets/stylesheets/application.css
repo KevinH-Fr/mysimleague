@@ -247,3 +247,14 @@ select, input{
   width: 90px;
 }
 
+small{
+  font-size: xx-small;
+}
+
+.pilote1-colored{
+  color: rgb(75, 100, 192);
+}
+
+.pilote2-colored{
+  color: rgb(240, 128, 128);
+}

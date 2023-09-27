@@ -35,8 +35,9 @@
               </div>
             </td>
 
-            <td>
-                <%= equipe_banner_with_data_document(equipe, nom) %>               
+            <td class="">
+                <%= equipe_banner_pilote_and_indicators_document(
+                      equipe, nom, false, false, resultat.dnf, resultat.dns) %>               
             </td>
 
             <td>

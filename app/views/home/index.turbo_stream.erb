@@ -1,4 +1,4 @@
-
+<%# feeds infinite scroll pagination %>
 <%= turbo_stream.append :feeds do %>
     <% @feeds.each do |feed| %>
       <%= link_to feed_path(feed), class: "no-underline text-dark" do %>
