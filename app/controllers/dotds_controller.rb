@@ -7,6 +7,9 @@ class DotdsController < ApplicationController
   before_action :user_first_vote, only: %i[ new create ]
   before_action :authorize_edit_user, only: %i[ edit update destroy ]
 
+  def index
+  end
+  
   def new
     @event = Event.find(params[:event]) 
     @dotd = Dotd.new
