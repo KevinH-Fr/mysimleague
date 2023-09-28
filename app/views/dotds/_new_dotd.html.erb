@@ -16,12 +16,14 @@
 
     <% end %>
   <% else %>
+    <%= add_disabled_button %>
     <div class="container">
       <%= boolean_container(false, "Les votes sont fermés") %>
     </div>  
   <% end %>
 
 <% else %>
+    <%= add_disabled_button %>
     <div class="container my-2 fs-6">
       <%= boolean_container(false, "Connecte toi à ton compte pour voter") %>
     </div>  

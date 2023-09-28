@@ -22,4 +22,10 @@ module ButtonsHelper
         end
     end
 
+    def add_disabled_button
+        content_tag(:button, class: 'btn btn-sm btn-secondary m-2', type: 'button', disabled: true) do
+          content_tag(:i, nil, class: 'fa-solid fa-square-plus fa-xl')
+        end
+    end
+
 end

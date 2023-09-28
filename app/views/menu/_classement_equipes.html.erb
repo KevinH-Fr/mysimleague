@@ -9,8 +9,6 @@
     <%= link_to "", animation_class_equipes_path(event: @event.id), class: 'btn fa fa-bounce fa-film btn-primary mx-2' %>
   </h4>
 
-
-
   <% somme_equipe(@event).each do |equipe| %>
     <div class="d-flex align-items-center justify-content-center my-1">
 
@@ -31,10 +29,11 @@
 
   <% end %>
 
-  <div class="container my-2">
-    <%= link_to "", generate_image_class_equipes_path(event: @event.id), 
-          class: 'btn btn-success fa fa-image' %>
-    <%= link_to "", animation_class_equipes_path(event: @event.id), class: 'btn fa fa-film btn-primary' %>
+  <br>
+
+  <div class="container-fluid text-center my-2">
+    <%= link_to "", generate_image_class_equipes_path(event: @event.id), class: 'btn btn-outline-success fa fa-image w-25' %>
+    <%= link_to "", animation_class_equipes_path(event: @event.id), class: 'btn fa fa-film btn-outline-primary w-25' %>
   </div>
 
 </div>

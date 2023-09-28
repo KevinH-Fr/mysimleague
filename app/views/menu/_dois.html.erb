@@ -21,25 +21,27 @@
           data-bs-toggle="collapse" data-bs-target="#collapseNewDoi" aria-expanded="false">
             <i class="fa-solid fa-square-plus fa-xl"></i>
         </button>
+      <% else %>
+            <%= add_disabled_button %>
       <% end %>
     <% end %>
 
-    </h4>
+    <% if current_user %>
 
-  <% if current_user %>
-
-    <% if verif_appartenance_division(current_user, session[:division]) || verif_admin_ligue(current_user, @event.division.saison.ligue.id)  %>    
-      <div class="collapse" id="collapseNewDoi">
-        <div id="new_doi">
-          <%= render partial: "dois/form", locals: { doi: Doi.new } %>
+      <% if verif_appartenance_division(current_user, session[:division]) || verif_admin_ligue(current_user, @event.division.saison.ligue.id)  %>    
+        <div class="collapse" id="collapseNewDoi">
+          <div id="new_doi">
+            <%= render partial: "dois/form", locals: { doi: Doi.new } %>
+          </div>
         </div>
-      </div>
+      <% end %>
+    <% else %>
+      <%= add_disabled_button %>
+      <div class="container my-2 fs-6">
+        <%= boolean_container(false, "Connecte toi à ton compte pour déposer une DOI") %>
+      </div>  
     <% end %>
-  <% else %>
-    <div class="container my-2 fs-6">
-      <%= boolean_container(false, "Connecte toi à ton compte pour déposer une DOI") %>
-    </div>  
-  <% end %>
+  </h4>
 
 
     <div id="dois">

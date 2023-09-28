@@ -14,8 +14,11 @@
         </div>
       </div>
     <% end %>
+  <% else %>
+    <%= add_disabled_button %>
   <% end %>
 <% else %>
+  <%= add_disabled_button %>
   <div class="container my-2 fs-6">
     <%= boolean_container(false, "Connecte toi à ton compte pour mettre ta présence") %>
   </div>  

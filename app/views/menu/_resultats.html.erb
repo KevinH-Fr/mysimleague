@@ -28,11 +28,11 @@
     </div>
   </div>
 
-  <%= render  "resultats/resultats" %>
+  <%= render "resultats/resultats" %>
 
-  <div class="container my-2">
-    <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-success' %>
-    <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-film btn-primary' %>
+  <div class="container-fluid text-center my-2">
+    <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-outline-success w-25' %>
+    <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-film btn-outline-primary w-25' %>
   </div>
 
 
