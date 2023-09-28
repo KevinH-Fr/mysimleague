@@ -34,10 +34,10 @@ module CotesHelper
           deltaPoints = (maxScore - score) / maxScore
           coteBase = 1 + ((0.14 * rank) + (0.87 * deltaPoints))
 
-          victoire = (coteBase * 2.81).round(2)
-          pole = (coteBase * 2.58).round(2)
-          podium = (coteBase * 2.07).round(2)
-          top10 = (coteBase * 1.09).round(2)
+          victoire = (coteBase * 2.41).round(2)
+          pole = (coteBase * 2.18).round(2)
+          podium = (coteBase * 1.67).round(2)
+          top10 = (coteBase * 1.03).round(2)
 
           values[user_id] = { association_user_id: association_user_id, user_id: user_id, score: score, victoire: victoire, pole: pole, podium: podium, top10: top10 }
         end

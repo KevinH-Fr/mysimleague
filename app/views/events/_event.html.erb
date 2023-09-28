@@ -18,14 +18,16 @@
           <% end %>
         </div>
 
-        <div class="d-flex justify-content-center align-items-center">
+        <div class="container py-2">
           <% if @show_buttons %>
-            <div class="mx-2">
               <%= render "shared/countdown" %>
-            </div>
-            <button class="btn btn-sm btn-outline-primary fa-solid fa-cloud-sun-rain mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeather" aria-expanded="false">
+            <button class="btn btn-sm btn-outline-primary mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeather" aria-expanded="false">
+              <i class="fa-solid fa-cloud-sun-rain"> </i>
+              <span class="ms-2"> météo </span>
             </button> 
-            <button class="btn btn-sm btn-outline-success fa-solid fa-map-location-dot mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false">
+            <button class="btn btn-sm btn-outline-success mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false">
+              <i class="fa-solid fa-map-location-dot"> </i>
+              <span class="ms-2"> map </span>
             </button>
           <% end %> 
         </div>
