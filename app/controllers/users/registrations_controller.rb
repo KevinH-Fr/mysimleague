@@ -10,7 +10,7 @@ class Users::RegistrationsController < Devise::RegistrationsController
     end
 
   end
-
+  
 
   def after_sign_up_path_for(resource)
       root_path
@@ -27,12 +27,12 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   def sign_up_params
     params.require(:user).permit(:email, :password, :password_confirmation, :nom, :visiteur, :pilote, :admin,
-                                  :profile_pic, :slogan, :bio, :controlleur_type, :pilote_prefere)
+                                  :profile_pic, :slogan, :bio, :controlleur_type, :pilote_prefere, :twitch)
   end
 
   def account_update_params
     params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :nom, :visiteur, :pilote, :admin,
-                                  :profile_pic, :slogan, :bio, :controlleur_type, :pilote_prefere)
+                                  :profile_pic, :slogan, :bio, :controlleur_type, :pilote_prefere, :twitch)
 
   end
 end

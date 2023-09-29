@@ -24,12 +24,19 @@ class UsersController < ApplicationController
 
   end
 
+  def create
+    @user.twitch = sanitize(params[:user][:twitch])
+  end
+  
+
   def index
     @users = User.all
   end
 
   def edit
     @user = User.find(params[:id])
+    @user.twitch = sanitize(params[:user][:twitch])
+
 
   end
 

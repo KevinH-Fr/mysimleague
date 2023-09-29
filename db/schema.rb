@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_09_15_115051) do
+ActiveRecord::Schema[7.0].define(version: 2023_09_29_090710) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -300,6 +300,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_09_15_115051) do
     t.text "bio"
     t.string "controlleur_type"
     t.string "pilote_prefere"
+    t.string "twitch"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end

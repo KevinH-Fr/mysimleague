@@ -26,6 +26,11 @@
              <small>controlleur:</small> <%= user.icon_controlleur %>
           </p>
 
+          <p class="card-text">
+            <small>Twitch:</small> <%= link_to user.twitch, user.twitch if valid_url?(user.twitch) %>
+          </p>
+
+
           <p class="card-text text-center">
             <small class="text-warning">
               Member since <%= local_time user.created_at %>
