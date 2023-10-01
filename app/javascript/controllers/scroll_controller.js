@@ -28,4 +28,20 @@ export default class extends Controller {
       })
     }
   }
+
+  scrollDown() {
+  
+    const targetElement = this.element
+  
+    console.log("Call scroll botttom Stimulus");
+  
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "end",
+        })
+      }
+    }
+  
+
 }
