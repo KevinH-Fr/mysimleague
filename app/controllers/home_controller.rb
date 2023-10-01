@@ -9,7 +9,8 @@ class HomeController < ApplicationController
     .includes(division: [:saison], circuit: { drapeau_attachment: :blob })
     .order(:horaire)
     .limit(4)
-  
+
+      
   
     if current_user
       @current_user

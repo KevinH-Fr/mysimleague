@@ -22,6 +22,8 @@ class ApplicationController < ActionController::Base
         end
     end
 
+    
+
     def division_courante 
         if params[:event]
             @event = Event.find(params[:event])

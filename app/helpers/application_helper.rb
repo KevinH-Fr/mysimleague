@@ -24,6 +24,12 @@ module ApplicationHelper
           end
     end
 
+    def prochain_event
+        Event
+        .where('horaire >= ?', Date.today)
+        .includes(division: [:saison], circuit: { drapeau_attachment: :blob })
+        .first
+    end
     
 
 

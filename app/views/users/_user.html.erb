@@ -30,8 +30,12 @@
             <small>Twitch:</small> <%= link_to user.twitch, user.twitch %>
           </p>
 
+          <p class="card-text fs-6">
+            paris: <%= badge_solde_parieur(user) %>
+          </p>
 
-          <p class="card-text text-center">
+
+          <p class="card-text text-center my-2">
             <small class="text-warning">
               Member since <%= local_time user.created_at %>
             </small>
@@ -55,10 +59,17 @@
     <% end %>
 
     <% if current_user && current_user == @user %>
-      <div class="mt-4">  
+
+      <div class="container-fluid mt-4">  
         <%= link_to 'Edit Profile', edit_user_registration_path(@user),
             class: "btn btn-primary" %>
+
+        <%= button_to "", destroy_user_session_path, method: :delete, 
+            data: {turbo: "false"},
+            class: "fa-solid fa-right-from-bracket btn btn-danger mt-2"  %>
       </div>
+
+
     <% end %>
 
   </div>

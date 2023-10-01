@@ -6,9 +6,16 @@
                  data: {turbo: "false"}, class:"fa-solid fa-id-card btn btn-warning" %>
 
         <%= current_user.nom %> 
-        <%= button_to "", destroy_user_session_path, method: :delete, 
-            data: {turbo: "false"},
-                class: "fa-solid fa-right-from-bracket btn btn-danger"  %>
+
+
+        <%= link_to "", menu_index_path(
+            ligue: prochain_event.division.saison.ligue_id, 
+            saison: prochain_event.division.saison_id, 
+            division: prochain_event.division_id, 
+            event: prochain_event),
+            class:"fa-regular fa-calendar btn btn-primary",
+            alt: "prochaine course",
+            'aria-label' => "prochaine course" if prochain_event %>
 
     </div>
 <% else %>

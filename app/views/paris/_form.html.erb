@@ -109,10 +109,7 @@
           <%= form.hidden_field :user_id, value: current_user.id, data: { form_pari_target: "parieur" } %>
           <%= form.hidden_field :event_id, value: session[:event] %>
 
-
-          <div class="badge bg-dark fs-6 p-1 my-2">
-            solde avant <%= somme_paris_user(Time.now.year, User.all)[current_user.id][:sum] %>
-          </div>
+          <%= badge_solde_parieur(current_user) %>
 
           <div class="input-group input-group-sm my-1">
               <%= form.label :montant, class: "input-group-text label-colored" %>
@@ -120,7 +117,7 @@
                 data: { action: "change->form-pari#update_values", form_pari_target: "montant" }, class: "form-control input-colored" %>
           </div>
 
-          <div data-form-pari-target="output"></div>
+          <div class="fs-6 m-2 p-2" data-form-pari-target="output"></div>
   
           <%= custom_submit_button("Pari") %>
 

@@ -4,6 +4,8 @@ module UsersHelper
         current_user.association_users.includes(:division).map(&:division).uniq
     end
 
+    
+
     def user_resultats_stats(user, user_compare)
         if user
           stats = {}
