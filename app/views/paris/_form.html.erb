@@ -1,4 +1,3 @@
-<div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
 
 
   <% if current_user %>
@@ -114,6 +113,9 @@
 
             <%= badge_solde_parieur(current_user) %>
 
+            <div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
+            </div>
+            
             <div class="input-group input-group-sm my-1">
                 <%= form.label :montant, class: "input-group-text label-colored" %>
                 <%= form.text_field :montant, 
@@ -135,4 +137,3 @@
 
   <% end %>
 
-</div>
