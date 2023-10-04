@@ -59,10 +59,20 @@ ActiveAdmin.register_page "Dashboard" do
               li link_to(pari.id, admin_pari_path(pari))
             end
           end
-        end
-
-          
+        end          
       end
+
+      column do
+        panel "Recent licences" do
+          ul do
+            Licence.recent(5).map do |licence|
+              li link_to(licence.id, admin_licence_path(licence))
+            end
+          end
+        end
+      end
+
+
     end
 
   end
