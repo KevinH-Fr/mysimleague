@@ -15,6 +15,15 @@ class AssociationUser < ApplicationRecord
     ["actif", "admin", "created_at", "division_id", "equipe_id", "id", "ligue_id", "pilote", "updated_at", "user_id", "valide"]
   end
 
+  def self.ransackable_associations(auth_object = nil)
+    ["division", "equipe", "ligue", "rattachement", "resultats", "user"]
+  end
+
+  def self.recent(limit = 5)
+    order(created_at: :desc).limit(limit)
+  end
+
+  
   private
 
   # passer les autres asso user de ce user inactif pour garder la courante 

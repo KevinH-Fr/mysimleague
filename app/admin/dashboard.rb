@@ -72,6 +72,17 @@ ActiveAdmin.register_page "Dashboard" do
         end
       end
 
+      column do
+        panel "Recent association user" do
+          ul do
+            AssociationUser.recent(5).map do |association_user|
+              li link_to(association_user.id, admin_association_user_path(association_user))
+            end
+          end
+        end
+      end
+
+
 
     end
 
