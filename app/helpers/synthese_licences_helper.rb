@@ -58,27 +58,24 @@ module SyntheseLicencesHelper
       user_solde = user_licences[pilote.user.id][:solde] # Access user solde from user_licences
 
 
-   #   puts "_____________________________________  user_solde #{user_solde}"
-
       previous_events = Event.where("numero <= ?", event.numero)
                              .where("division_id = ?", event.division_id)
                              .order(numero: :desc).limit(3)
-
-      puts "_____________________________________________
-            previous event ids: #{previous_events.ids}"
   
       previous_events.each do |prev_event|
-        perte_trois_der_gp = Licence.where(association_user: pilote)
+        perte_trois_der_gp += Licence.where(association_user: pilote)
                               .joins(event: { division: :saison })
                               .where(events: { numero: prev_event.numero }, divisions: { id: prev_event.division_id })
                               .sum(:perte)
 
-        puts "___________________________________________
-              val perte_trois_der_gp: #{perte_trois_der_gp}"
-
         if perte_trois_der_gp == 0 && event.numero >= 4 && user_solde != maximum_solde
           recup_applicable = true
+        else
+          recup_applicable = false
         end
+      end
+
+        puts "_____________________________________________recup applicable #{recup_applicable}"
 
         #calculer le montant à recuperer pour ne pas depasser le max points
         if recup_applicable == true
@@ -89,7 +86,6 @@ module SyntheseLicencesHelper
           end 
         end
 
-      end
       
       {
         id: pilote.id,
