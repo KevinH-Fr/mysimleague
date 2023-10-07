@@ -75,7 +75,7 @@ module SyntheseLicencesHelper
         end
       end
 
-        puts "_____________________________________________recup applicable #{recup_applicable}"
+      #  puts "_____________________________________________recup applicable #{recup_applicable}"
 
         #calculer le montant à recuperer pour ne pas depasser le max points
         if recup_applicable == true

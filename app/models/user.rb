@@ -9,13 +9,19 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_many :association_users, dependent: :destroy
-
   has_many :ligues, dependent: :destroy
 
   validates :nom, presence: true
 
   has_one_attached :profile_pic
   validate :profile_pic_format_and_size
+
+  #ajoutés pour scorgin - verifier ne donne pas d'erreurs sur existant: 
+  has_many :paris
+  has_many :dotds
+
+ # has_many :visits, class_name: "Ahoy::Visit"
+  has_many :events, class_name: "Ahoy::Event"
 
   def feed_content
     id
@@ -81,7 +87,7 @@ class User < ApplicationRecord
     end
   end
 
-  
+
 
    
 end

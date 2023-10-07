@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
 
     before_action :record_page_view
     around_action :set_time_zone, if: -> { session[:ligue].present? }
-  
+    before_action :track_events
+
     def record_page_view
       ActiveAnalytics.record_request(request)
     end
@@ -32,6 +33,11 @@ class ApplicationController < ActionController::Base
     end
 
     private
+  
+    def track_events
+      # Track the event here
+      ahoy.track "Global Event", request.path, request_method: request.method
+    end
 
     def set_time_zone
         Time.use_zone(Ligue.find(session[:ligue]).time_zone) {yield}

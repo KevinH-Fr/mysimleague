@@ -58,6 +58,12 @@
       <i class="fa fa-solid fa-xl fa-id-card"></i>
       <span class="ms-2 fw-bold">Pilotes</span>
    <% end %>
+
+   
+   <%= link_to scoring_path, class: "btn btn-sm btn-warning m-1" do %>
+      <i class="fa fa-solid fa-xl fa-id-card"></i>
+      <span class="ms-2 fw-bold">Scoring</span>
+   <% end %>
       
 </div>
 
@@ -69,6 +75,10 @@
    <% if @prochains_events %>
       <%= render "prochains_events" %>
    <% end %>
+</div>
+
+<div class="px-2"> 
+   <%= render "top_scoring" %>
 </div>
 
 <!--div class="d-block flex-wrap justify-content-center align-items-center px-2">   

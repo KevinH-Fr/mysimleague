@@ -1,0 +1,138 @@
+
+<div class="video-container position-relative">
+  <div data-controller="video">
+    <video autoplay loop muted playsinline
+      src="https://res.cloudinary.com/dukne3lhz/video/upload/v1696522599/az5slz7zuwtgrh6r1kkg.webm" 
+      type="video/mp4" id="video-background" data-video-target="video">
+    </video>
+  </div>
+
+  <div class="text-container position-absolute bottom-0 w-100 px-4">
+    <h1 class="title-styled mb-4 text-start">
+      Gérez votre ligue de SimRacing avec facilité sur RaceMeIfYoucan
+      <%= link_to "S'inscrire", root_path, class: "btn w-100 btn-light fw-bold my-2 px-5" %>
+    </h1>
+  </div>
+</div>
+
+<h2 class="my-4 text-center"> Gérez votre ligue de SimRacing avec facilité </h2>
+
+<div class="container p-4">
+
+  <p>
+      Bienvenue sur RaceMeIfYouCan, la plateforme ultime pour les passionnés de SimRacing qui souhaitent créer et gérer leur propre ligue avec simplicité et efficacité.
+      Pourquoi utiliser RaceMeIfYouCan ?
+  </p>
+
+  <div class="row row-cols-1 row-cols-md-2 g-4">
+    <div class="col">
+      <div class="card">
+        <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539524/imv3lyulodshnsgsumkg.webp", class:"d-block w-100") %>
+        <div class="card-body">
+          <h5 class="card-title">Créez votre ligue en quelques clics</h5>
+          <p class="card-text"> Notre application intuitive vous permet de créer votre ligue de SimRacing en quelques minutes. Créer votre calendrier, ajoutez vos courses vos participants et définissez vos propres règles en un rien de temps.</p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539523/ryuljnx52zc94tkos5ub.webp", class:"d-block w-100") %>
+        <div class="card-body">
+          <h5 class="card-title"> Ayez le contrôle total sur votre expérience</h5>
+          <p class="card-text">  
+            Avec RaceMeIfYouCan, vous avez un total contrôle sur la gestion de votre ligue. Définissez et personnalisez les règles, les horaires et dates de vos courses afin qu’elles correspondent parfaitement à vos besoins et à vos attentes.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539522/mufqir0iotbclcwahokb.webp", class:"d-block w-100") %>
+        <div class="card-body">
+          <h5 class="card-title"> Une gestion automatisée</h5>
+          <p class="card-text">
+            Avec RaceMeIfYouCan, saisissez les résultats de vos courses et laissez l’application faire le reste. Gestion des points, des classements, des inscriptions et d’autres fonctionnalités vous attendent afin de vous permettre de vous concentrer sur l’essentiel : la compétion.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div class="col">
+      <div class="card">
+        <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539524/z3kkielm1zofmqfhfe4a.webp", class:"d-block w-100") %>
+        <div class="card-body">
+          <h5 class="card-title"> Souder votre communauté</h5>
+          <p class="card-text">
+            Favorisez l’interaction entre les membres de votre de ligue avec un espace de discussion dédié, pariez sur les courses de votre championnat ou sur celui des autres ligues présentes sur l’application ou votez pour votre pilote du jour !
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div class="col">
+      <div class="card">
+        <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539523/rktgsvbwhf9zkjicacgb.webp", class:"d-block w-100") %>
+        <div class="card-body">
+          <h5 class="card-title">   Suivez toues les statistiques en temps réel</h5>
+          <p class="card-text">
+            Accéder à des analyses et des statistiques détaillées pour chaque course et chaque pilote. Identifiez les tendances et prenez des décisions en temps réel pour améliorer votre ligue.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <p>
+      Rejoignez dès maintenant RaceMeIfYoucan
+  </p>
+
+  <div class="container text-center mb-3">
+    <%= image_tag("svgs/accessoires.svg?#{Time.now.to_i}", 
+      width: 250, height: 250, alt: "Animated GIF", 
+      data: { controller: "reanimate", "reanimate-target": "gif" }) %>
+  </div>
+
+
+
+  <div class="container text-center mb-3">
+    <%= image_tag("svgs/racecar.svg?#{Time.now.to_i}", 
+      width: 250, height: 250, alt: "Animated GIF", 
+      data: { controller: "reanimate", "reanimate-target": "gif" }) %>
+  </div>
+
+
+
+  <div class="container text-center mb-3">
+    <%= image_tag("svgs/racecar2.svg?#{Time.now.to_i}", 
+      width: 250, height: 250, alt: "Animated GIF", 
+      data: { controller: "reanimate", "reanimate-target": "gif" }) %>
+  </div>
+
+  <p>
+      Rejoignez des milliers d’autres passionnés de SimRacing et créez et gérez votre propre ligue de manière efficace, amusante et ludique.
+      Inscrivez vous dès maintenant et faites de votre ligue une expérience inouliable.
+      (Lien d’inscription)
+  </p>
+
+  <div class="container text-center mb-3">
+    <%= image_tag("svgs/starman.svg?#{Time.now.to_i}", 
+      width: 250, height: 250, alt: "Animated GIF", 
+      data: { controller: "reanimate", "reanimate-target": "gif" }) %>
+  </div>
+
+  <div class="container-fluid">
+      <%= link_to "S'inscrire", root_path, class: "btn w-100 bg-primary" %>
+  </div>
+
+  <div class="container text-center mb-3">
+    <%= image_tag("svgs/starman2.svg?#{Time.now.to_i}", 
+      width: 250, height: 250, alt: "Animated GIF", 
+      data: { controller: "reanimate", "reanimate-target": "gif" }) %>
+  </div>
+
+
+
+  <hr>
+
+
+</div>

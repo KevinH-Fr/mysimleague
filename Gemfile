@@ -68,3 +68,7 @@ gem 'bullet', group: 'development'
 gem 'meta-tags'
 
 #gem 'faker'
+
+#gem 'impressionist'
+
+gem "ahoy_matey"

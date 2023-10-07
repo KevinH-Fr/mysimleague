@@ -5,7 +5,7 @@ class ResultatsController < ApplicationController
 
   before_action :set_resultat, only: %i[ show edit update destroy]
   before_action :authorize_admin_ligue, only: %i[ new show index create edit update destroy ]
-
+  
   def new
 
     @event = Event.find(params[:event])

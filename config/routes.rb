@@ -158,6 +158,8 @@ Rails.application.routes.draw do
   get 'classement_pilotes/index'
 
   get 'home/index'
+  get '/landingpage', to: 'home#landingpage'
+  get '/scoring', to: 'home#scoring', as: 'scoring'
 
   get 'animation', to: 'resultats#animation', as: 'animation'
   get 'animation_class_pilotes', to: 'classement_pilotes#animation', as: 'animation_class_pilotes'

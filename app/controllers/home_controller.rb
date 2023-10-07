@@ -2,51 +2,62 @@ class HomeController < ApplicationController
  # include FeedsHelper
   include UsersHelper
 
-  def index
 
+  def landingpage
+  end
+
+  def scoring
+    # tempo pour contenir les infos sur le scoring meilleur pilote et meilleur user
+  end
+  
+  def index
+    
     @prochains_events = Event
     .where('horaire >= ?', Date.today)
     .includes(division: [:saison], circuit: { drapeau_attachment: :blob })
     .order(:horaire)
     .limit(4)
-
-      
-  
+    
+    
+    
     if current_user
       @current_user
     end
-
+    
     # friends infinite scroll
     models_to_fetch = 
       [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence,
       Ligue, Saison, Division, Circuit, Equipe]
-    @feeds = []
-
-    # Iterate through the models and fetch the most recent 3 records for each
-    models_to_fetch.each do |model|
-      # Use the 'or' method to build a query for each model
-      recent_records = model.order(updated_at: :desc)
-      @feeds += recent_records
-    end
-
-    @feeds.sort_by!(&:updated_at).reverse!
-
-    page = (params[:page].to_i > 0) ? params[:page].to_i : 1
-    items = 5
-    start = (page - 1) * items
+      @feeds = []
+      
+      # Iterate through the models and fetch the most recent 3 records for each
+      models_to_fetch.each do |model|
+        # Use the 'or' method to build a query for each model
+        recent_records = model.order(updated_at: :desc)
+        @feeds += recent_records
+      end
+      
+      @feeds.sort_by!(&:updated_at).reverse!
+      
+      page = (params[:page].to_i > 0) ? params[:page].to_i : 1
+      items = 5
+      start = (page - 1) * items
+      
+      @pagy = Pagy.new(count: @feeds.size, page: page, items: items)
+      @feeds = @feeds.slice(start, items)
+      
+      respond_to do |format|
+        format.html
+        format.turbo_stream
+      end
+      
+      
+    end 
     
-    @pagy = Pagy.new(count: @feeds.size, page: page, items: items)
-    @feeds = @feeds.slice(start, items)
-    
-    respond_to do |format|
-      format.html
-      format.turbo_stream
-    end
-    
-  
-  end 
+ 
 
-  def display_feeds
+    
+    def display_feeds
     #  feeds = feeds_elements
 
     models_to_fetch = 
@@ -130,6 +141,15 @@ class HomeController < ApplicationController
 
   end
 
+  def display_scoring
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          'partial-container', partial: 'home/scoring'
+        )
+      end
+    end
+  end
 
   def display_creer_ligue
     redirect_to menu_index_path

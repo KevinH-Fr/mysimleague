@@ -4,7 +4,6 @@ class Resultat < ApplicationRecord
   belongs_to :equipe
 
   attribute :score, :integer, default: 0
-
   
   def feed_content
     id

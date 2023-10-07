@@ -18,6 +18,8 @@
 
         <%# maj form a la saisie pour recup data avant validation pour ouvrir montant %>
 
+        <%= badge_solde_parieur(current_user) %>
+
         <div data-controller="form-pari">
 
           <%= form.button "Validate", formaction:  new_pari_path, formmethod: :get, 
