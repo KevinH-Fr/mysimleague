@@ -54,16 +54,17 @@
       <span class="ms-2 fw-bold">Parieurs</span>
    <% end %>
 
+   <%= link_to scoring_path, class: "btn btn-sm btn-warning m-1" do %>
+      <i class="fa fa-solid fa-xl fa-medal"></i>
+      <span class="ms-2 fw-bold">Scoring</span>
+   <% end %>
+
    <%= button_to display_pilotes_home_index_path, class: "btn btn-sm btn-dark m-1" do %>
       <i class="fa fa-solid fa-xl fa-id-card"></i>
       <span class="ms-2 fw-bold">Pilotes</span>
    <% end %>
 
    
-   <%= link_to scoring_path, class: "btn btn-sm btn-warning m-1" do %>
-      <i class="fa fa-solid fa-xl fa-id-card"></i>
-      <span class="ms-2 fw-bold">Scoring</span>
-   <% end %>
       
 </div>
 
@@ -77,9 +78,7 @@
    <% end %>
 </div>
 
-<div class="px-2"> 
-   <%= render "top_scoring" %>
-</div>
+<%#= render "top_scoring" %>
 
 <!--div class="d-block flex-wrap justify-content-center align-items-center px-2">   
    <%= button_to display_feeds_home_index_path, class: "w-100 btn btn-xl btn-outline-warning " do %>

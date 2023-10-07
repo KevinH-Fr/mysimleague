@@ -2,7 +2,7 @@
     <%= link_to scoring_path, class: "no-underline" do %>
         <div>
             <span class="fw-bold text-warning">Scoring users: </span>
-            <% scoring_pilote[0..4].each do |user_data| %>
+            <% top_5_user_scores.each do |user_data| %>
                 <span class="badge rounded bg-dark mx-1">
                     <%= badge_scoring_medal(user_data[:rank]) %>
                     <span class=""><%= user_data[:rank] %></span>
@@ -13,7 +13,7 @@
             <% end %>
             
             <span class="fw-bold text-warning ms-4">Scoring pilotes: </span>
-            <% scoring_pilote[0..4].each do |user_data| %>
+            <% top_5_pilote_scores.each do |user_data| %>
                 <span class="badge rounded bg-dark mx-2">
                     <span class=""><%= user_data[:rank] %></span>
                     <%= image_tag(user_data[:user].webp_variant, class: "mini-profile-pic mx-2", alt: "user picture") %>        
