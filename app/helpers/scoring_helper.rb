@@ -19,6 +19,11 @@ module ScoringHelper
         # Sort the user scoring data by scoring in descending order
         user_scoring_data.sort_by! { |data| -data[:scoring] }
 
+        # Assign ranks to users based on their position in the sorted array
+        user_scoring_data.each_with_index do |data, index|
+            data[:rank] = index + 1
+        end
+        
         user_scoring_data # Return the array of user scoring data
     end
 
@@ -72,6 +77,11 @@ module ScoringHelper
 
         # Sort the user scoring data by scoring in descending order
         user_scoring_data.sort_by! { |data| -data[:scoring] }
+
+        # Assign ranks to users based on their position in the sorted array
+        user_scoring_data.each_with_index do |data, index|
+            data[:rank] = index + 1
+        end
 
         user_scoring_data # Return the array of user scoring data
     end

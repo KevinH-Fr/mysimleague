@@ -16,7 +16,6 @@ body, select {
   color: lightgray;
 }
 
-
 ::-webkit-scrollbar {
   width: 4px; /* Width of the vertical scrollbar */
 }
@@ -284,4 +283,33 @@ small{
   top: 50%; 
   left: 50%; 
   transform: translate(-50%, -50%);
+}
+
+    /* partie animation text defilant avec scoring */
+    .text-defilant {
+        overflow: hidden;                    
+        background: rgba(0, 0, 0, 0.8);
+        padding: 5px;
+    }
+
+    /* le bloc défilant */
+    .text-defilant > :first-child {
+        display: inline-block;                
+        padding-right: 2em;                  
+        padding-left: 100%;                  
+        white-space: nowrap;                 
+        animation: defilement-rtl 10s infinite linear;
+        animation-name: defilement-rtl;       
+        animation-duration: 25s;              
+        animation-iteration-count: infinite; 
+        animation-timing-function: linear;   
+    }
+
+    @keyframes defilement-rtl {
+    0% {
+        transform: translate3d(0,0,0);      /* position initiale à droite */
+    }
+    100% {
+        transform: translate3d(-100%,0,0);  /* position finale à gauche */
+    }
 }

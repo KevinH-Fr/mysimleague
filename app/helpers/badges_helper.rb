@@ -98,7 +98,16 @@ module BadgesHelper
       solde_parieur_formatted = number_with_delimiter(solde_parieur, delimiter: " ")
       
       content_tag(:span, "solde #{solde_parieur_formatted} points", class: "badge bg-dark fs-5 p-1 my-2")
+  end
 
+  def badge_scoring_medal(rank)
+    if rank == 1 
+      content_tag(:i, "", class: "fa-solid fa-xl fa-medal px-2 text-warning")
+    elsif rank == 2
+      content_tag(:i, "", class: "fa-solid fa-xl fa-medal px-2", style: "color: silver;")   
+    elsif rank == 3
+      content_tag(:i, "", class: "fa-solid fa-xl fa-medal px-2", style: "color: brown;")
+    end 
   end
       
 

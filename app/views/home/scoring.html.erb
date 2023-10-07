@@ -1,45 +1,59 @@
-<div class="container p-4">
-    <h1 class="text-center">scoring</h1>
 
-    <h2>User + actif </h2>
+<h4 class="text-center mt-2">Scoring users</h4> 
 
-    <table class="table">
-        <thead class="text-warning">
-            <tr>
-                <th scope="col">User</th>
-                <th scope="col">scoring</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% scoring_user.each do |user_data| %>
-                <tr>
-                    <th scope="row"> <%= user_data[:user].nom %> </th>
-                    <th scope="row"> <%= user_data[:scoring] %> </th>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
-
-    <hr>
-
-    <h2>pilote meilleures stats </h2>
-
-    <table class="table">
-        <thead class="text-warning">
-            <tr>
-                <th scope="col">Pilote</th>             
-                <th scope="col">scoring</th>
-            </tr>
-        </thead>
-        <tbody>
-            <% scoring_pilote.each do |user_data| %>
-                <tr>
-                    <th scope="row"> <%= user_data[:user_nom] %> </th>
-                    <th scope="row"> <%= user_data[:scoring].to_i %> </th>
-                </tr>
-            <% end %>
-        </tbody>
-    </table>
-
+<div class="container text-center rounded bg-dark p-4 my-4">
+    Le scoring users met en avant ceux qui participent le plus sur l'app, par tous les moyens, 
+    notamment en faisant des paris et des votes DOTD !
 </div>
+
+<div class="px-2"> 
+    <% scoring_user.each do |user_data| %>
+        <%= link_to user_path(user_data[:user]), class: "no-underline" do %>
+            <div class="record-with-effect ps-2">
+                <div class="row">
+                    <div class="col">
+                        <span class="badge p-2 bg-dark"><%= user_data[:rank] %></span>
+                        <%= image_tag(user_data[:user].webp_variant, class: "mini-profile-pic mx-2", alt: "user picture") %>        
+                        <%= user_data[:user].nom %> 
+                    </div>
+                    <div class="col text-end me-2">
+                        <%= badge_scoring_medal(user_data[:rank]) %>
+                        <%= user_data[:scoring] %> 
+                    </div>
+                </div>
+            </div>
+        <% end %>    
+    <% end %>
+</div>
+
+<hr>
+
+
+<h4 class="text-center mt-2">Scoring pilotes</h4> 
+
+<div class="container text-center rounded bg-dark p-4 my-4">
+    Le scoring pilotes met en avant les pilotes qui ont les meilleurs statistiques sur leurs résultats en course, 
+    avec des malus pour les DNF, DNS et DOI responsable !
+</div>
+
+<div class="px-2"> 
+    <% scoring_pilote.each do |user_data| %>
+        <%= link_to user_path(user_data[:user]), class: "no-underline" do %>
+            <div class="record-with-effect ps-2">
+                <div class="row">
+                    <div class="col">
+                        <span class="badge p-2 bg-dark"><%= user_data[:rank] %></span>
+                        <%= image_tag(user_data[:user].webp_variant, class: "mini-profile-pic mx-2", alt: "user picture") %>        
+                        <%= user_data[:user].nom %>
+                    </div>
+                    <div class="col text-end me-2">
+                        <%= badge_scoring_medal(user_data[:rank]) %>
+                        <%= user_data[:scoring] %> 
+                    </div>
+                </div>
+            </div>
+        <% end %>    
+    <% end %>
+</div>
+
 
