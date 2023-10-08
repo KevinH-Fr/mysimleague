@@ -14,8 +14,10 @@
                     <div class="col-8">
                         <span class="badge p-2 bg-dark"><%= user_data[:rank] %></span>
                         <%= image_tag(user_data[:user].webp_variant, class: "mini-profile-pic mx-2", alt: "user picture") %>        
-                        <%= user_data[:user].nom %> 
-                        <a class="btn btn-sm btn-primary fa fa-eye ms-2" data-bs-toggle="collapse" href="#collapseDetailsScoringUser<%= user_data[:user].id %>" role="button" aria-expanded="false"></a>
+                        <%= truncate(user_data[:user].short_name) %>
+                        <a class="ms-2" data-bs-toggle="collapse" href="#collapseDetailsScoringUser<%= user_data[:user].id %>" role="button" aria-expanded="false">
+                            <i class="fa fa-eye"></i>
+                        </a>
                     </div>
                     <div class="col-4 text-end">
                         <%= badge_scoring_medal(user_data[:rank]) %>
@@ -41,7 +43,7 @@
 
 <div class="px-2"> 
     <div class="container text-center rounded bg-dark p-4 my-4">
-        Le scoring pilotes met en avant les pilotes qui ont les meilleurs statistiques sur leurs résultats en course, 
+        Le scoring pilotes met en avant les pilotes qui ont les meilleurs résultats en course, 
         avec des malus pour les DNF, DNS et DOI responsable !
     </div>
 
@@ -49,13 +51,15 @@
         <%= link_to user_path(user_data[:user]), class: "no-underline" do %>
             <div class="record-with-effect ps-2">
                 <div class="row">
-                    <div class="col">
+                    <div class="col-8">
                         <span class="badge p-2 bg-dark"><%= user_data[:rank] %></span>
                         <%= image_tag(user_data[:user].webp_variant, class: "mini-profile-pic mx-2", alt: "user picture") %>        
-                        <%= user_data[:user].nom %>
-                        <a class="btn btn-sm btn-primary fa fa-eye ms-2" data-bs-toggle="collapse" href="#collapseDetailsScoringPilote<%= user_data[:user].id %>" role="button" aria-expanded="false"></a>
+                        <%= truncate(user_data[:user].nom, lenght: 10) %>
+                        <a class="ms-2" data-bs-toggle="collapse" href="#collapseDetailsScoringPilote<%= user_data[:user].id %>" role="button" aria-expanded="false">
+                            <i class="fa fa-eye"></i>
+                        </a>
                     </div>
-                    <div class="col text-end me-2">
+                    <div class="col-4 text-end">
                         <%= badge_scoring_medal(user_data[:rank]) %>
                         <%= number_with_delimiter(user_data[:scoring], delimiter: ' ') %> 
                     </div>

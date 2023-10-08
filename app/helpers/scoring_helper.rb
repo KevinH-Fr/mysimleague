@@ -53,8 +53,8 @@ module ScoringHelper
         association_user_ids = user.association_users.pluck(:id)
         dois_resp_count = Doi.where(implique_id: association_user_ids, decision: 'responsable').count
   
-        score_victoire = user_stats[:user_stats][:tx_victoires].to_i * victoire_ponderation * nb_courses
-        score_podium = user_stats[:user_stats][:tx_podiums].to_i * podium_ponderation * nb_courses
+        score_victoire = user_stats[:user_stats][:tx_victoires].to_i * victoire_ponderation 
+        score_podium = user_stats[:user_stats][:tx_podiums].to_i * podium_ponderation 
         score_top10 = user_stats[:user_stats][:tx_top10].to_i * top10_ponderation * nb_courses
         score_dnf = dnf_count * dnf_ponderation
         score_dns = dns_count * dns_ponderation

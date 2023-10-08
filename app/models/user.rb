@@ -76,7 +76,7 @@ class User < ApplicationRecord
   end
 
   def short_name
-    truncate(nom, length: 10)
+    truncate(nom, length: 12)
   end
 
   def icon_controlleur
