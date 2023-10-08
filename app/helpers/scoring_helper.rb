@@ -10,12 +10,12 @@ module ScoringHelper
         score_paris = user.paris.size * paris_ponderation
         score_dotds = user.dotds.size * dotds_ponderation
 
-        profile_edit_points += 700 if user.profile_pic.present?
-        profile_edit_points += 340 if user.twitch.present?
-        profile_edit_points += 250 if user.slogan.present?
-        profile_edit_points += 250 if user.bio.present?
-        profile_edit_points += 150 if user.controlleur_type.present?
-        profile_edit_points += 140 if user.pilote_prefere.present?
+        profile_edit_points += 350 if user.profile_pic.present?
+        profile_edit_points += 170 if user.twitch.present?
+        profile_edit_points += 125 if user.slogan.present?
+        profile_edit_points += 125 if user.bio.present?
+        profile_edit_points += 75 if user.controlleur_type.present?
+        profile_edit_points += 70 if user.pilote_prefere.present?
 
         score_events = user.events.size
 
