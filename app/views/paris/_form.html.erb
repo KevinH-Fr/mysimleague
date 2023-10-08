@@ -115,17 +115,16 @@
 
             <%= badge_solde_parieur(current_user) %>
 
-              <div class="input-group input-group-sm my-1">
-                  <%= form.label :montant, class: "input-group-text label-colored" %>
-                  <%= form.text_field :montant, 
-                    data: { action: "change->form-pari#update_values", form_pari_target: "montant" }, class: "form-control input-colored" %>
+            <div class="input-group input-group-sm my-1">
+              <%= form.label :montant, class: "input-group-text label-colored" %>
+              <%= form.text_field :montant, 
+                data: { action: "change->form-pari#update_values", form_pari_target: "montant" }, class: "form-control input-colored" %>
+              <div class="input-group-append">
+                <%= custom_submit_button("Pari") %>
               </div>
+            </div>
 
             <div class="fs-6 m-2 p-2" data-form-pari-target="output"></div>
-    
-
-            <%= custom_submit_button("Pari") %>
-
 
           </div>
 

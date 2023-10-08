@@ -313,3 +313,9 @@ small{
         transform: translate3d(-100%,0,0);  /* position finale à gauche */
     }
 }
+
+.scrollable-paragraph {
+  max-height: 300px; /* Set a fixed maximum height for each paragraph */
+  overflow-y: scroll; /* Enable vertical scrolling if the content exceeds the max height */
+  padding: 10px; /* Optional: Add padding for better readability */
+}

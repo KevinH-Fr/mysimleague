@@ -1,7 +1,8 @@
 <div class="text-defilant">
     <%= link_to scoring_path, class: "no-underline" do %>
         <div>
-            <span class="fw-bold text-warning">Scoring users: </span>
+            <i class="fa-solid fa-xl fa-flag-checkered fa-fade mx-2"></i>
+            <span class="fw-bold text-warning">Scoring users </span>
             <% top_5_user_scores.each do |user_data| %>
                 <span class="badge rounded bg-dark mx-1">
                     <%= badge_scoring_medal(user_data[:rank]) %>
@@ -11,8 +12,8 @@
                     <span class="ms-1 text-warning"> <%= number_with_delimiter(user_data[:scoring], delimiter: ' ') %> </span>  
                 </span>
             <% end %>
-            
-            <span class="fw-bold text-warning ms-4">Scoring pilotes: </span>
+
+            <span class="fw-bold text-warning ms-4">Scoring pilotes</span>
             <% top_5_pilote_scores.each do |user_data| %>
                 <span class="badge rounded bg-dark mx-2">
                     <span class=""><%= user_data[:rank] %></span>
