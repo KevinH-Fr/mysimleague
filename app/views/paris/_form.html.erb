@@ -22,6 +22,34 @@
 
         <div data-controller="form-pari">
 
+          <div id="div-montant" style="display: none;">
+
+            <%= form.hidden_field :association_user_id, data: { form_pari_target: "coureur" } %>
+        
+            <%= form.hidden_field :typepari, data: { form_pari_target: "typepari" } %>
+            <%= form.hidden_field :cote, data: { form_pari_target: "cote" } %>
+            <%= form.hidden_field :user_id, value: current_user.id, data: { form_pari_target: "parieur" } %>
+            <%= form.hidden_field :event_id, value: session[:event] %>
+
+            <%#= badge_solde_parieur(current_user) %>
+
+            <div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id"> </div>
+
+            <div class="input-group input-group-sm my-1">
+              <%= form.label :montant, class: "input-group-text label-colored" %>
+              <%= form.text_field :montant, 
+                data: { action: "change->form-pari#update_values", form_pari_target: "montant" }, class: "form-control input-colored" %>
+              <div class="input-group-append">
+                <%= custom_submit_button("Pari") %>
+              </div>
+            </div>
+
+
+            <div class="fs-6 m-2 p-2" data-form-pari-target="output"></div>
+
+          </div>
+
+
           <%= form.button "Validate", formaction:  new_pari_path, formmethod: :get, 
                 data: { turbo_frame: :contents_field, form_pari_target: "submitbtn"} %>
 
@@ -104,32 +132,7 @@
           </table>
           
 
-          <div id="div-montant" style="display: none;">
 
-            <%= form.hidden_field :association_user_id, data: { form_pari_target: "coureur" } %>
-        
-            <%= form.hidden_field :typepari, data: { form_pari_target: "typepari" } %>
-            <%= form.hidden_field :cote, data: { form_pari_target: "cote" } %>
-            <%= form.hidden_field :user_id, value: current_user.id, data: { form_pari_target: "parieur" } %>
-            <%= form.hidden_field :event_id, value: session[:event] %>
-
-            <%= badge_solde_parieur(current_user) %>
-
-            <div data-controller="scroll" data-action="click->scroll#scrollDown" data-scroll-target="target-scroll-id"> </div>
-
-            <div class="input-group input-group-sm my-1">
-              <%= form.label :montant, class: "input-group-text label-colored" %>
-              <%= form.text_field :montant, 
-                data: { action: "change->form-pari#update_values", form_pari_target: "montant" }, class: "form-control input-colored" %>
-              <div class="input-group-append">
-                <%= custom_submit_button("Pari") %>
-              </div>
-            </div>
-
-
-            <div class="fs-6 m-2 p-2" data-form-pari-target="output"></div>
-
-          </div>
 
         </div>
 

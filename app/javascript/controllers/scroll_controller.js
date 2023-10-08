@@ -19,7 +19,7 @@ export default class extends Controller {
   
   const targetElement = this.element
 
-  //console.log("Call scroll from Stimulus" + " " + targetElement)
+ // console.log("Call scroll start")
 
     if (targetElement) {
       targetElement.scrollIntoView({
@@ -33,7 +33,7 @@ export default class extends Controller {
   
     const targetElement = this.element
   
-    console.log("Call scroll botttom Stimulus");
+  //  console.log("Call scroll botttom");
   
       if (targetElement) {
         targetElement.scrollIntoView({

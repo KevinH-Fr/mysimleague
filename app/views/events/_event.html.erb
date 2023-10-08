@@ -1,5 +1,4 @@
 
-
   <div id="<%= dom_id event %>">
 
     <% keywords "Menu, tools, management, results, rankings, bets, votes " + event.event_full_name %>
@@ -23,11 +22,11 @@
               <%= render "shared/countdown" %>
             <button class="btn btn-sm btn-outline-primary mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseWeather" aria-expanded="false">
               <i class="fa-solid fa-cloud-sun-rain"> </i>
-              <span class="ms-2"> météo </span>
+              <span class="ms-1"> météo </span>
             </button> 
             <button class="btn btn-sm btn-outline-success mx-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseMap" aria-expanded="false">
               <i class="fa-solid fa-map-location-dot"> </i>
-              <span class="ms-2"> map </span>
+              <span class="ms-1"> map </span>
             </button>
           <% end %> 
         </div>
@@ -63,3 +62,4 @@
 
     </div>
   </div>
+

@@ -22,15 +22,14 @@
                     </button>
                     <div class="container fs-6">
                         <%= boolean_container(true, "Les paris sont ouverts") %>  
-
                     </div>
 
 
                     <div class="collapse" id="collapsePari">
                         <div id="new_pari">
+                            <div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">            
                                 <%= render 'paris/form', pari: Pari.new() %>
-                            <!--div data-controller="scroll" data-action="click->scroll#scrollDown" data-scroll-target="target-scroll-id">            
-                            </div-->
+                            </div>
                         </div>
                     </div>
                 <% end %>
@@ -48,6 +47,9 @@
 
         <% end %>
     </h4>
+
+    </div>
+
 
 
     <% if @event %>
@@ -77,5 +79,4 @@
 
     <% end %>
 
-</div>
 
