@@ -4,9 +4,9 @@ module ScoringHelper
       user_scoring_data = []
       paris_ponderation = 10
       dotds_ponderation = 60
-      profile_edit_points = 0
-  
+      
       users.each do |user|
+        profile_edit_points = 0
         score_paris = user.paris.size * paris_ponderation
         score_dotds = user.dotds.size * dotds_ponderation
 
@@ -16,6 +16,8 @@ module ScoringHelper
         profile_edit_points += 125 if user.bio.present?
         profile_edit_points += 75 if user.controlleur_type.present?
         profile_edit_points += 70 if user.pilote_prefere.present?
+
+        puts " _________________profile edit points: #{profile_edit_points}"
 
         score_events = user.events.size
 
