@@ -102,4 +102,3 @@ module ScoringHelper
     end
 
   end
-  
