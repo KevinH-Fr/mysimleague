@@ -49,11 +49,11 @@ module ScoringHelper
     def scoring_pilote
       users = User.all
       user_scoring_data = []
-      victoire_ponderation = 12
+      victoire_ponderation = 12 
       podium_ponderation = 8
       top5_ponderation = 4
       top10_ponderation = 2
-      nb_courses_ponderation = 58
+      nb_courses_ponderation = 68
       dnf_ponderation = -240
       dns_ponderation = -180
       doi_ponderation = -340

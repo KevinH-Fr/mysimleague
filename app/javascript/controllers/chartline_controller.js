@@ -50,14 +50,17 @@ export default class extends Controller {
     if (userResultats.user_compare && userResultats.user_compare.length > 0) {
       combinedDates.push(...userResultats.user_compare.map(resultat => resultat.event)); // Combine user_compare dates
     }
-
+    
     const uniqueDates = Array.from(new Set(combinedDates)); // Remove duplicate dates
-    uniqueDates.sort(); // Sort the dates in ascending order
-
+    
+    // Sort the dates in ascending order
+    uniqueDates.sort((a, b) => new Date(a) - new Date(b));
+    
     const data = {
       labels: uniqueDates,
       datasets: datasets
     };
+    
 
     const options = {
       scales: {
