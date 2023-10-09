@@ -1,11 +1,13 @@
 module ScoringHelper
     def scoring_user
       users = User.includes(:paris, :dotds, :events).all
+      filtered_users = users.reject { |user| user[:admin] == true }
+
       user_scoring_data = []
       paris_ponderation = 10
       dotds_ponderation = 60
       
-      users.each do |user|
+      filtered_users.each do |user|
         profile_edit_points = 0
         score_paris = user.paris.size * paris_ponderation
         score_dotds = user.dotds.size * dotds_ponderation
