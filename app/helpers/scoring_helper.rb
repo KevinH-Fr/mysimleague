@@ -55,7 +55,7 @@ module ScoringHelper
       podium_ponderation = 8
       top5_ponderation = 4
       top10_ponderation = 2
-      nb_courses_ponderation = 78
+      nb_courses_ponderation = 118
       dnf_ponderation = -240
       dns_ponderation = -180
       doi_ponderation = -340
