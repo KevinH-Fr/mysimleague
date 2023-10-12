@@ -50,7 +50,7 @@ class User < ApplicationRecord
           strip: true,
           interlace: true,
           lossless: false,
-          quality: 5 }).processed
+          quality: 80 }).processed
     else
       '/images/profile_default.webp'
     end

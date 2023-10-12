@@ -74,7 +74,7 @@ module ScoringHelper
         score_podium = user_stats[:user_stats][:tx_podiums].to_i * podium_ponderation 
         score_top10 = user_stats[:user_stats][:tx_top10].to_i * top10_ponderation 
         score_nb_courses = (nb_courses * nb_courses_ponderation)
-      #  score_malus_nb_courses = nb_courses == 1 ? -600 : 0
+        score_malus_nb_courses = nb_courses == 1 ? -600 : 0
         score_sum_points = sum_points * 3
         score_dnf = dnf_count * dnf_ponderation
         score_dns = dns_count * dns_ponderation
@@ -89,8 +89,8 @@ module ScoringHelper
           score_podium: score_podium,
           score_top10: score_top10,
           score_nb_courses: score_nb_courses,
-         # score_malus_nb_courses: score_malus_nb_courses,
-          score_sum_points: score_sum_points,
+          score_malus_nb_courses: score_malus_nb_courses,
+          score_sum_points: score_sum_points * 3,
           score_dnf: score_dnf,
           score_dns: score_dns,
           score_doi: score_doi,
