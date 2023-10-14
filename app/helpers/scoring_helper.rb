@@ -1,6 +1,6 @@
 module ScoringHelper
     def scoring_user
-      users = User.includes(:paris, :dotds, :events).all
+      users = User.includes(:paris, :dotds).all #, :events
       filtered_users = users.reject { |user| user[:admin] == true }
 
       user_scoring_data = []
@@ -19,9 +19,7 @@ module ScoringHelper
         profile_edit_points += 75 if user.controlleur_type.present?
         profile_edit_points += 70 if user.pilote_prefere.present?
 
-       # puts " _________________profile edit points: #{profile_edit_points}"
-
-        score_events = user.events.size
+        score_events = user.action_count.to_i
 
         scoring = score_paris + score_dotds + score_events + profile_edit_points
   

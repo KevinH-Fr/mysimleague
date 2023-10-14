@@ -20,14 +20,11 @@ class User < ApplicationRecord
   has_many :paris
   has_many :dotds
 
- # has_many :visits, class_name: "Ahoy::Visit"
-  has_many :events, class_name: "Ahoy::Event"
-
   def feed_content
     id
-   end 
+  end 
 
-   def self.ransackable_attributes(auth_object = nil)
+  def self.ransackable_attributes(auth_object = nil)
     ["admin", "created_at", "email", "encrypted_password", "id", "nom", "pilote", "remember_created_at", "reset_password_sent_at", "reset_password_token", "updated_at", "visiteur"]
   end
 
@@ -86,8 +83,5 @@ class User < ApplicationRecord
       '<i class="fas fa-gamepad fa-xl"></i>'.html_safe
     end
   end
-
-
-
    
 end

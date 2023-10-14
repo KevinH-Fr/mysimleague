@@ -209,6 +209,8 @@ class ResultatsController < ApplicationController
 
   end
 
+
+
   private
 
     def authorize_admin_ligue

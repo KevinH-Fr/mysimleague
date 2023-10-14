@@ -20,6 +20,7 @@
                             <a class="ms-2" data-bs-toggle="collapse" href="#collapseDetailsScoringUser<%= user_data[:user].id %>" role="button" aria-expanded="false">
                                 <i class="fa fa-xl fa-square-plus text-warning"></i>
                             </a>
+
                         </div>
                         <div class="col-4 text-end">
                             <%= badge_scoring_medal(user_data[:rank]) %>
@@ -30,7 +31,7 @@
                             <hr>
                             <span class="badge bg-dark"> score paris: <%= user_data[:score_paris] %>  </span>
                             <span class="badge bg-dark"> score dotds: <%= user_data[:score_dotds] %>  </span>
-                            <span class="badge bg-dark"> score events: <%= user_data[:score_events] %>  </span>
+                            <span class="badge bg-dark"> score activités sur app: <%= user_data[:user].action_count %>  </span>
                             <span class="badge bg-dark"> score edit profile: <%= user_data[:score_edit_profile] %>  </span>
 
                         </div>
