@@ -71,4 +71,4 @@ gem 'meta-tags'
 
 #gem 'impressionist'
 
-#gem "ahoy_matey"
+gem "ahoy_matey"
