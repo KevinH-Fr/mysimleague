@@ -10,6 +10,6 @@
 #AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
 
 
-100.times do 
-    Friend.create(name: Faker::Friend.name)
-end
+#100.times do 
+#    Friend.create(name: Faker::Friend.name)
+#end

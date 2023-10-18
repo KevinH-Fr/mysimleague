@@ -20,7 +20,9 @@ export default class extends Controller {
     const dnf = this.dnfTarget.checked; 
     const dns = this.dnsTarget.checked; 
 
-    const mtValue = mt && course <= 10 ? 1 : 0; // Set mtValue to 1 if mt is true and course is equal or lower than 10, otherwise 0
+    //const mtValue = mt && course <= 10 ? 1 : 0; // Set mtValue to 1 if mt is true and course is equal or lower than 10, otherwise 0
+    const mtValue = (dnf || dns) ? 0 : (mt && course <= 10 ? 1 : 0);
+
     const dotdValue = dotd ? 1 : 0; // Set dotdValue to 1 if mt is true, otherwise 0
 
     const totalScore = this.calculateCourseValue(course, dnf, dns) + 
