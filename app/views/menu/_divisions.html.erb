@@ -1,18 +1,18 @@
 <div class="card-with-effect">
 
-  <div class="d-flex align-items-center">
+  <div class="d-flex flex-wrap align-items-center">
 
     <h4 class="mx-1">Divisions </h4>
 
-      <% if current_user && verif_admin_ligue(current_user, session[:ligue])  %>
-        <%= link_to "#", class: "btn btn-sm btn-warning m-1", "data-bs-toggle": "collapse", "data-bs-target": "#collapseDivision", "aria-expanded": "false" do %>
-          <i class="fa-solid fa-square-plus fa-xl"></i>
-        <% end %>
+    <% if current_user && verif_admin_ligue(current_user, session[:ligue])  %>
+      <%= link_to "#", class: "btn btn-sm btn-warning m-1", "data-bs-toggle": "collapse", "data-bs-target": "#collapseDivision", "aria-expanded": "false" do %>
+        <i class="fa-solid fa-square-plus fa-xl"></i>
       <% end %>
+    <% end %>
 
     <% @saison.divisions.each do |division| %>
         <%= link_to url_for(ligue: @ligue.id, saison: @saison.id, division: division), class: "btn btn-outline-primary btn-sm m-1 
-            #{'fw-bold text-light btn-primary'  if params[:division] == division.id.to_s}" do %>
+            #{'fw-bold text-light btn-primary' if params[:division] == division.id.to_s}" do %>
             <%= division.nom %> 
         <% end %>
     <% end %>
@@ -24,12 +24,10 @@
     </div>
   </div>
 
-
   <% if @division %>
     <%# détail division courante %>
     <%= render @division  %>
 
   <% end %>
-
 
 </div>
