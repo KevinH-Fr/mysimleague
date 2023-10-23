@@ -4,7 +4,7 @@
   <div class="d-flex align-items-center justify-content-center my-1">
 
     <div class="rounded badge-pos width-badge max-record-height d-flex align-items-center justify-content-center mx-1 ">
-      <span class="text-warning px-1"><%= truncate(dotd.user.nom, length: 8) %></span>
+      <span class="text-warning px-1"><%= truncate(dotd.user.nom, length: 12) %></span>
     </div>
       
     <%= equipe_banner_with_data(
@@ -12,11 +12,36 @@
       dotd.association_user.user.nom) %> 
 
     <% if current_user && verif_user_dotd(current_user, dotd.user_id) && verif_delai_dotd(session[:event]) %>
-      <%= button_to "", edit_dotd_path(dotd), method: :post, 
-            class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
-      <%= button_to "", dotd, method: :delete, 
-            class: "btn btn-sm btn-danger fa-solid fa-trash",
-            data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>        
+    
+      <div class="dropdown p-0 m-0">
+        <button class="btn text-center px-1 btn-sm btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark p-0 m-0">
+          <li>            
+            <%= button_to edit_dotd_path(dotd), method: :post, 
+                class: "dropdown-item text-light" do %>
+                <i class="fa-solid fa-pen-to-square me-1"></i>
+                <span>Editer</span>
+            <% end %>
+          </li>
+          <li>    
+            <%= button_to dotd, method: :delete, 
+              class: "dropdown-item text-danger",
+              data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  do %>
+                <i class="fa-solid fa-trash"></i>
+                <span>Supprimer</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>    
+        
+          <%#= button_to "", edit_dotd_path(dotd), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+          <%#= button_to "", dotd, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>   
+                    
     <% end %>
+  </div>
   
 </div>
