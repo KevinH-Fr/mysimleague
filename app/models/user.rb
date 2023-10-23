@@ -38,28 +38,33 @@ class User < ApplicationRecord
 
   def webp_variant
     if profile_pic.attached?
-
-      profile_pic.variant(
-        format: :webp,
-        resize_to_limit: [500, 500],
-        saver: {
-          subsample_mode: "on",
-          strip: true,
-          interlace: true,
-          lossless: false,
-          quality: 80 }).processed
+      begin
+        profile_pic.variant(
+          format: :webp,
+          resize_to_limit: [500, 500],
+          saver: {
+            subsample_mode: "on",
+            strip: true,
+            interlace: true,
+            lossless: false,
+            quality: 80 }).processed
+      rescue => e
+        Rails.logger.error "Error processing image: #{e.message}"
+        '/images/profile_default.webp'
+      end
     else
       '/images/profile_default.webp'
     end
   end
+  
 
   def profile_pic_format_and_size
     if profile_pic.attached?
       unless profile_pic.blob.content_type.in?(%w(image/jpeg image/png image/gif))
         errors.add(:profile_pic, 'must be a JPEG, PNG, or GIF image')
       end
-      unless profile_pic.blob.byte_size <= 1.megabyte
-        errors.add(:profile_pic, 'size should be less than 1MB')
+      unless profile_pic.blob.byte_size <= 2.megabyte
+        errors.add(:profile_pic, 'size should be less than 2MB')
       end
     end
   end
