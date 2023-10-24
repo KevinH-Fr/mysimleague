@@ -53,6 +53,10 @@ class DivisionsController < ApplicationController
   def update
     respond_to do |format|
       if @division.update(division_params)
+
+        # Ensure 'archived' is set to true when archiving
+        @division.update(archived: true) if division_params[:archived] == 'true'
+
         flash.now[:success] = "division was successfully updated"
 
         format.turbo_stream do
