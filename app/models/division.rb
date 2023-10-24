@@ -7,6 +7,9 @@ class Division < ApplicationRecord
   validates :nom, presence: true
   validates :saison_id, presence: true
 
+  scope :active, -> { where(archived: [false, nil]) }
+  scope :archived, -> { where(archived: true) }
+
   def feed_content
     id
   end 

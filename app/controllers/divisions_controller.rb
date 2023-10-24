@@ -108,6 +108,6 @@ class DivisionsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def division_params
-      params.require(:division).permit(:saison_id, :nom)
+      params.require(:division).permit(:saison_id, :nom, :archived)
     end
 end

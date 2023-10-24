@@ -6,6 +6,9 @@
       <div class="col-6">
         <%= link_to "#collapseDetailsDivision", class: "no-underline", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsDivision", "aria-expanded" => "false" do %>
           Nom: <strong> <%= division.nom %> </strong> 
+          <% if division.archived == true %>
+             | archived
+          <% end %>
         <% end %>
       </div>
       <div class="col-6 d-flex justify-content-end align-items-center">

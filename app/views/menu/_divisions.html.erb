@@ -10,12 +10,23 @@
       <% end %>
     <% end %>
 
-    <% @saison.divisions.each do |division| %>
+    
+    <% @saison.divisions.active.each do |division| %>
         <%= link_to url_for(ligue: @ligue.id, saison: @saison.id, division: division), class: "btn btn-outline-primary btn-sm m-1 
             #{'fw-bold text-light btn-primary' if params[:division] == division.id.to_s}" do %>
             <%= division.nom %> 
         <% end %>
     <% end %>
+
+    <% if current_user && verif_admin_ligue(current_user, session[:ligue])   %>
+      <% @saison.divisions.archived.each do |division| %>
+        <%= link_to url_for(ligue: @ligue.id, saison: @saison.id, division: division), class: "btn btn-outline-secondary btn-sm m-1 
+            #{'fw-bold text-light btn-secondary' if params[:division] == division.id.to_s}" do %>
+            <%= division.nom %>
+        <% end %>
+      <% end %>  
+    <% end %>
+
   </div>
 
   <div class="collapse" id="collapseDivision">
