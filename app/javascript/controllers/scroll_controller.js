@@ -5,6 +5,8 @@ import { Controller } from "@hotwired/stimulus"
 export default class extends Controller {
   initialize() {
     this.ensureDOMLoaded()
+ //   console.log("Call scroll");
+
   }
 
   ensureDOMLoaded() {
@@ -19,7 +21,7 @@ export default class extends Controller {
   
   const targetElement = this.element
 
- // console.log("Call scroll start")
+//  console.log("Call scroll start");
 
     if (targetElement) {
       targetElement.scrollIntoView({
@@ -33,7 +35,7 @@ export default class extends Controller {
   
     const targetElement = this.element
   
-    console.log("Call scroll botttom");
+ //   console.log("Call scroll botttom");
   
       if (targetElement) {
         targetElement.scrollIntoView({

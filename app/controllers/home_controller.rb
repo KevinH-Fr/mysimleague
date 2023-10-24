@@ -14,11 +14,11 @@ class HomeController < ApplicationController
     
     @prochains_events = Event
     .where('horaire >= ?', Date.today)
+    .joins(division: [:saison])
+    .where(divisions: { archived: [false, nil] })
     .includes(division: [:saison], circuit: { drapeau_attachment: :blob })
     .order(:horaire)
-    .limit(4)
-    
-    
+    .limit(4)  
     
     if current_user
       @current_user
