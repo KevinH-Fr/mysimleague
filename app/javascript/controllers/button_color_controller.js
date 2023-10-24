@@ -16,6 +16,7 @@ export default class extends Controller {
         button.classList.remove("active");
       }
     }
+
     
   }
 
