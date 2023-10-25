@@ -7,7 +7,7 @@
     <%# détail event courante %>
 
     <%= render @event %>
-    <%= render  "events/scroll" %>
+    <%#= render  "events/scroll" %>
 
     <div class="card-event-topics">
       <% button_configs = [
@@ -31,6 +31,7 @@
         <% end %>
       </div>
 
+      <div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id"></div>
 
       <div id="partial-container" class="partial-topic">
         <%# recoit le turbo stream avec elements cliqués %>
