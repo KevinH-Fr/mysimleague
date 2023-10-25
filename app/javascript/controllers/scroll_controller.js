@@ -35,7 +35,7 @@ export default class extends Controller {
   
     const targetElement = this.element
   
-    console.log("Call scroll botttom");
+  //  console.log("Call scroll botttom");
   
       if (targetElement) {
         targetElement.scrollIntoView({
@@ -45,9 +45,5 @@ export default class extends Controller {
       }
     }
 
-    scrollDownEvent() {
-      window.scrollTo(0, document.body.scrollHeight);
-    }
-  
 
 }

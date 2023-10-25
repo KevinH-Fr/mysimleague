@@ -15,6 +15,10 @@
             <% if @division %>
                 <% keywords "Menu, tools, management, results, rankings, bets, votes " + @ligue.nom + " " + @division.nom %>
                 <%= render "menu/events" %>
+
+                 <div data-controller="scroll" data-action="click->scroll#scrollDown" data-scroll-target="target-scroll-id">
+                </div>
+
             <% end %>
             
         <% end %>
