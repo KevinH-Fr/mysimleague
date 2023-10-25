@@ -23,6 +23,9 @@ class MenuController < ApplicationController
     @event = Event.find(params[:event]) if params[:event]
     session[:event] = @event.id if @event
 
+    #redirect_to menu_index_url(anchor: 'event_anchor')
+
+
     @previous_event = Event.where(division_id: @event.division_id, numero: @event.numero - 1).first if @event
 
     #essayer de passer un param pour afficher selectionner un topic grace à l'url 

@@ -1,7 +1,8 @@
 <% title "Main Menu" %>
 <% description "Menu page with tools for race simulation, create and manage leagues." %>
-<div class="overflow-auto p-1 mt-2" style="max-height: 86vh;">
+<!--div class="overflow-auto p-1 mt-2" style="max-height: 86vh;"-->
 
+<div class="overflow-auto p-1 mt-2">
     <%= render "menu/ligues" %>
 
     <% if @ligue %>
@@ -10,7 +11,7 @@
 
         <% if @saison %>
             <%= render "menu/divisions" %>
-            
+    
             <% if @division %>
                 <% keywords "Menu, tools, management, results, rankings, bets, votes " + @ligue.nom + " " + @division.nom %>
                 <%= render "menu/events" %>
@@ -22,3 +23,7 @@
 
 </div>
 
+
+<div class="card m-4 p-5 bg-dark text-warning text-center">
+    Explore les différentes sections pour découvrir toutes les informations sur les ligues et les courses, et surtout pour participer !
+</div>

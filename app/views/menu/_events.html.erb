@@ -5,7 +5,9 @@
   <% if @event && @division %>
 
     <%# détail event courante %>
+
     <%= render @event %>
+    <%= render  "events/scroll" %>
 
     <div class="card-event-topics">
       <% button_configs = [
