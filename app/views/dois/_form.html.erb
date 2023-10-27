@@ -60,7 +60,7 @@
           <div class="col-md">
             <div class="input-group input-group-sm my-2">
               <%= form.label :implique_id, class: "input-group-text label-colored" %>
-              <%= form.collection_select :implique_id, pilotes_division_named(Division.find(session[:division])), 
+              <%= form.collection_select :implique_id, pilotes_division_named_with_inactifs(Division.find(session[:division])), 
                       :first, :second, { include_blank: 'Select impliqué'},  class: "form-select input-colored" %> 
             </div>
           </div>
