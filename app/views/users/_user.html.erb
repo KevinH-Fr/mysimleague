@@ -26,10 +26,12 @@
              <small>controlleur:</small> <%= user.icon_controlleur %>
           </p>
 
-          <p class="card-text">
-          <%# ajouter if present ?%>
-            <small>Twitch:</small> <%= link_to user.twitch, user.twitch %>
-          </p>
+          <% if user.twitch.present? %>
+            <p class="card-text">
+              <small>Twitch:</small> 
+                <%= link_to user.twitch, user.twitch %>
+            </p>            
+          <% end %>
 
           <p class="card-text fs-6">
             paris: <%= badge_solde_parieur(user) %>

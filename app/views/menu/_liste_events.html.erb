@@ -1,23 +1,24 @@
 
-  <h4 class="d-inline mx-1"> Events </h4>
+
+<div class="d-flex flex-wrap align-items-center">
+
+  <h4 class="mx-1">Events </h4>
 
   <% if current_user && verif_admin_ligue(current_user, session[:ligue])  %>
-    <%= link_to "#", class: "btn btn-sm btn-warning m-2", "data-bs-toggle": "collapse", "data-bs-target": "#collapseEvent", "aria-expanded": "false" do %>
+    <%= link_to "#", class: "btn btn-sm btn-warning m-1", "data-bs-toggle": "collapse", "data-bs-target": "#collapseEvent", "aria-expanded": "false" do %>
       <i class="fa-solid fa-square-plus fa-xl"></i>
     <% end %>
   <% end %>
 
-  <div class="d-inline flex-wrap justify-content-center align-items-center">
     <% @events.each do |event| %>
       <%= link_to url_for(ligue: @ligue.id, saison: @saison.id, division: @division.id, event: event), 
-            class: "btn btn-outline-primary btn-sm btn-event me-1 mb-1 p-1
+            class: "btn btn-outline-primary btn-sm btn-event m-1
             #{'fw-bold text-light btn-primary' if params[:event] == event.id.to_s}" do %>
 
         <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "25", height: "15") if event.circuit.drapeau.present? %>
         <%= "n° #{event.numero}" %>
       <% end %>
     <% end %>
-  </div>
 
   <div class="collapse" id="collapseEvent">
     <div id="new_event">
@@ -25,3 +26,4 @@
     </div>
   </div>
 
+</div>

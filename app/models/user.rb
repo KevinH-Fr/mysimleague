@@ -16,6 +16,10 @@ class User < ApplicationRecord
   has_one_attached :profile_pic
   validate :profile_pic_format_and_size
 
+  validates :twitch, format: { with: URI::DEFAULT_PARSER.make_regexp },
+  allow_blank: true,
+  on: :create  # Only validate on record creation
+
   #ajoutés pour scorgin - verifier ne donne pas d'erreurs sur existant: 
   has_many :paris
   has_many :dotds

@@ -319,3 +319,8 @@ small{
   overflow-y: scroll; /* Enable vertical scrolling if the content exceeds the max height */
   padding: 10px; /* Optional: Add padding for better readability */
 }
+
+
+.small-text{
+  font-size: x-small;
+}
