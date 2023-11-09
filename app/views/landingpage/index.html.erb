@@ -4,37 +4,35 @@
 <div class="video-container position-relative">
   <div data-controller="video">
     <video autoplay loop muted playsinline
-      src="https://res.cloudinary.com/dukne3lhz/video/upload/v1696522599/az5slz7zuwtgrh6r1kkg.webm?quality=auto" 
+      src="https://res.cloudinary.com/dukne3lhz/video/upload/v1699568038/pexels-cottonbro-5767772_540p_aoeybg.webm?quality=auto" 
       type="video/mp4" id="video-background" data-video-target="video">
     </video>
 
   </div>
 
-  <div class="text-container position-absolute bottom-0 w-100 px-4">
+  <div class="text-container position-absolute bottom-0 w-100 px-4 mb-4">
     <h1 class="title-styled mb-4 text-start text-light">
       Gérez votre ligue de SimRacing sur RaceMeIfYoucan
     </h1>
 
     <div class="container" style="max-width: 800px;">
-      <%= link_to home_index_path, class:"btn w-100 btn-success fw-bold mt-4 mb-3 px-5" do %>
+      <%= link_to home_index_path, class:"btn w-100 btn-dark fw-bold mt-2 mb-3 px-5" do %>
         <i class="me-2 fa fa-solid fa-lg fa-home" aria-hidden="true"></i>
         Home
       <% end %>
 
       <% unless current_user %>
-
-            <%= link_to new_user_session_path, class:"btn w-100 btn-warning fw-bold mt-4 mb-1 px-5", 
-                title: "Sign In", 'aria-label' => "Sign In" do %>
-              <i class="me-2 fa fa-solid fa-lg fa-user-lock" aria-hidden="true"></i>
-              Sign in
-            <% end %>
-            
-            <%= link_to steps_compte_step1_path, class:"btn w-100 btn-primary fw-bold mt-1 mb-2 px-5",
-              title: "Create an Account", 'aria-label' => "Create an Account" do %>
-              <i class="me-2 fa fa-solid fa-lg fa-user-plus" aria-hidden="true"></i>
-              Create account
-            <% end %>
-          
+        <%= link_to new_user_session_path, class:"btn w-100 btn-warning fw-bold mt-2 mb-1 px-5", 
+            title: "Sign In", 'aria-label' => "Sign In" do %>
+          <i class="me-2 fa fa-solid fa-lg fa-user-lock" aria-hidden="true"></i>
+          Sign in
+        <% end %>
+        
+        <%= link_to steps_compte_step1_path, class:"btn w-100 btn-primary fw-bold mt-1 mb-5 px-5",
+          title: "Create an Account", 'aria-label' => "Create an Account" do %>
+          <i class="me-2 fa fa-solid fa-lg fa-user-plus" aria-hidden="true"></i>
+          Create account
+        <% end %>
       <% end %>
 
     </div>
