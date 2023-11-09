@@ -324,3 +324,7 @@ small{
 .small-text{
   font-size: x-small;
 }
+
+.text-helvetica{
+  font-family: Helvetica, Arial, sans-serif;
+}

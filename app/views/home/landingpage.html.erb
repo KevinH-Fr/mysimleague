@@ -8,20 +8,21 @@
   </div>
 
   <div class="text-container position-absolute bottom-0 w-100 px-4">
-    <h1 class="title-styled mb-4 text-start">
+    <h1 class="title-styled mb-5 text-start">
       Gérez votre ligue de SimRacing avec facilité sur RaceMeIfYoucan
-      <%= link_to "S'inscrire", root_path, class: "btn w-100 btn-light fw-bold my-2 px-5" %>
+      <%= link_to "S'inscrire", root_path, class: "btn w-100 btn-warning fw-bold my-4 px-5" %>
     </h1>
   </div>
 </div>
 
-<h2 class="my-4 text-center"> Gérez votre ligue de SimRacing avec facilité </h2>
 
 <div class="container p-4">
 
-  <p>
+  <p class="text-center">
       Bienvenue sur RaceMeIfYouCan, la plateforme ultime pour les passionnés de SimRacing qui souhaitent créer et gérer leur propre ligue avec simplicité et efficacité.
-      Pourquoi utiliser RaceMeIfYouCan ?
+  </p>
+  <p class="fw-bold text-center">
+    Pourquoi utiliser RaceMeIfYouCan ?
   </p>
 
   <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -30,7 +31,19 @@
         <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539524/imv3lyulodshnsgsumkg.webp", class:"d-block w-100") %>
         <div class="card-body">
           <h5 class="card-title">Créez votre ligue en quelques clics</h5>
-          <p class="card-text"> Notre application intuitive vous permet de créer votre ligue de SimRacing en quelques minutes. Créer votre calendrier, ajoutez vos courses vos participants et définissez vos propres règles en un rien de temps.</p>
+          <p class="card-text text-helvetica"> Notre application intuitive vous permet de créer votre ligue de SimRacing en quelques minutes. Créer votre calendrier, ajoutez vos courses vos participants et définissez vos propres règles en un rien de temps.</p>
+          <div class="card-footer"> 
+            <a class="btn btn-primary w-100" data-bs-toggle="collapse" href="#collapseLigue" role="button" aria-expanded="false" aria-controls="collapseLigue">
+              détails
+            </a>  
+            <div class="collapse" id="collapseLigue">
+              <div class="card card-body text-center text-primary">
+                <p>Créé ta ligue en un clique</p>
+                <p>Ajoute les saisons et divisions associées</p>
+              </div>
+            </div>
+
+          </div>
         </div>
       </div>
     </div>
@@ -39,9 +52,25 @@
         <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539523/ryuljnx52zc94tkos5ub.webp", class:"d-block w-100") %>
         <div class="card-body">
           <h5 class="card-title"> Ayez le contrôle total sur votre expérience</h5>
-          <p class="card-text">  
-            Avec RaceMeIfYouCan, vous avez un total contrôle sur la gestion de votre ligue. Définissez et personnalisez les règles, les horaires et dates de vos courses afin qu’elles correspondent parfaitement à vos besoins et à vos attentes.
+          <p class="card-text text-helvetica">  
+            Avec RaceMeIfYouCan, vous avez un total contrôle sur la gestion de votre ligue. Définissez et personnalisez les règles, les horaires et dates de vos courses afin qu’elles correspondent parfaitement à vos besoins.
           </p>
+
+          <div class="card-footer"> 
+            <a class="btn btn-primary w-100" data-bs-toggle="collapse" href="#collapseControle" role="button" aria-expanded="false" aria-controls="collapseControle">
+              détails
+            </a>  
+            <div class="collapse" id="collapseControle">
+              <div class="card card-body text-center text-primary">
+                <p>Définis et gère le règlement de course </p>
+                <p>Donne un rôle d'admin aux managers</p>
+                <p>Programme le planning de courses </p>
+                <p>Définis les participants</p>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -50,9 +79,25 @@
         <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539522/mufqir0iotbclcwahokb.webp", class:"d-block w-100") %>
         <div class="card-body">
           <h5 class="card-title"> Une gestion automatisée</h5>
-          <p class="card-text">
+          <p class="card-text  text-helvetica">
             Avec RaceMeIfYouCan, saisissez les résultats de vos courses et laissez l’application faire le reste. Gestion des points, des classements, des inscriptions et d’autres fonctionnalités vous attendent afin de vous permettre de vous concentrer sur l’essentiel : la compétion.
           </p>
+
+          <div class="card-footer"> 
+            <a class="btn btn-primary w-100" data-bs-toggle="collapse" href="#collapseAutomatise" role="button" aria-expanded="false" aria-controls="collapseAutomatise">
+              détails
+            </a>  
+            <div class="collapse" id="collapseAutomatise">
+              <div class="card card-body text-center text-primary">
+                <p>Gère les présences</p>
+                <p>Saisis les résultats </p>
+                <p>Obtiens les documents mis en forme avec le logo de ta ligue</p>
+                <p>Résultats, classements pilotes et constructeurs, licences </p>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -60,10 +105,25 @@
       <div class="card">
         <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539524/z3kkielm1zofmqfhfe4a.webp", class:"d-block w-100") %>
         <div class="card-body">
-          <h5 class="card-title"> Souder votre communauté</h5>
-          <p class="card-text">
+          <h5 class="card-title"> Souder la communauté</h5>
+          <p class="card-text text-helvetica">
             Favorisez l’interaction entre les membres de votre de ligue avec un espace de discussion dédié, pariez sur les courses de votre championnat ou sur celui des autres ligues présentes sur l’application ou votez pour votre pilote du jour !
           </p>
+
+          <div class="card-footer"> 
+            <a class="btn btn-primary w-100" data-bs-toggle="collapse" href="#collapseCommunaute" role="button" aria-expanded="false" aria-controls="collapseCommunaute">
+              détails
+            </a>  
+            <div class="collapse" id="collapseCommunaute">
+              <div class="card card-body text-center text-primary">
+                <p>Réunis ta communauté</p>
+                <p>Fais la interagir sur les courses avec les votes pour le pilote du jour</p>
+                <p>Rends la course palpitante pour tous avec les paris ouverts à tous</p>
+              </div>
+            </div>
+
+          </div>
+
         </div>
       </div>
     </div>
@@ -72,35 +132,60 @@
       <div class="card">
         <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539523/rktgsvbwhf9zkjicacgb.webp", class:"d-block w-100") %>
         <div class="card-body">
-          <h5 class="card-title">   Suivez toues les statistiques en temps réel</h5>
-          <p class="card-text">
+          <h5 class="card-title">   Suivez les statistiques en direct</h5>
+          <p class="card-text text-helvetica">
             Accéder à des analyses et des statistiques détaillées pour chaque course et chaque pilote. Identifiez les tendances et prenez des décisions en temps réel pour améliorer votre ligue.
           </p>
+
+          <div class="card-footer"> 
+            <a class="btn btn-primary w-100" data-bs-toggle="collapse" href="#collapseStats" role="button" aria-expanded="false" aria-controls="collapseStats">
+              détails
+            </a>  
+            <div class="collapse" id="collapseStats">
+              <div class="card card-body text-center text-primary">
+                <p>Retrouve toutes les infos sur les courses passées et à venir</p>
+                <p>Consulte les données météo et map en direct sur tous les circuits</p>
+                <p>Découvre les statistiques de chaque pilote</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
+
+    <div class="col">
+      <div class="card">
+        <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539522/gqv8arjmyei2tnoerjrp.webp", class:"d-block w-100") %>
+        <div class="card-body">
+          <h5 class="card-title"> Un outil gratuit pour les passionnés</h5>
+          <p class="card-text text-helvetica">
+            Accèdez à un outil gratuit pour la ligue et ses membres pour faciliter votre vie de SimRacer !
+            Si les features existantes te plaisent, tu aimeras encore davantage celles à venir !
+          </p>
+
+          <div class="card-footer"> 
+            <a class="btn btn-primary w-100" data-bs-toggle="collapse" href="#collapseGratuit" role="button" aria-expanded="false" aria-controls="collapseGratuit">
+              détails
+            </a>  
+            <div class="collapse" id="collapseGratuit">
+              <div class="card card-body text-center text-primary">
+                <p>Inscription des ligues et membres gratuites </p>
+                <p>Supprime les contraintes liés à la gestion de ligue</p>
+                <p>Rejoins une communauté de passionés</p>
+                <p>Sois le premier à découvrir les features à venir : application mobile, setup-tool pour aider la prépation du setup de la voiture</p>
+                <p>Et bien plus encore !</p>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
   </div>
 
 
-  <p>
-      Rejoignez dès maintenant RaceMeIfYoucan
-  </p>
-
-  <div class="container text-center mb-3">
-    <%= image_tag("svgs/accessoires.svg?#{Time.now.to_i}", 
-      width: 250, height: 250, alt: "Animated GIF", 
-      data: { controller: "reanimate", "reanimate-target": "gif" }) %>
-  </div>
-
-
-
-  <div class="container text-center mb-3">
-    <%= image_tag("svgs/racecar.svg?#{Time.now.to_i}", 
-      width: 250, height: 250, alt: "Animated GIF", 
-      data: { controller: "reanimate", "reanimate-target": "gif" }) %>
-  </div>
-
-
+<div class="container-fluid my-4">
 
   <div class="container text-center mb-3">
     <%= image_tag("svgs/racecar2.svg?#{Time.now.to_i}", 
@@ -108,31 +193,32 @@
       data: { controller: "reanimate", "reanimate-target": "gif" }) %>
   </div>
 
-  <p>
-      Rejoignez des milliers d’autres passionnés de SimRacing et créez et gérez votre propre ligue de manière efficace, amusante et ludique.
+
+  <h2 class="text-center">
+      Rejoignez dès maintenant RaceMeIfYoucan
+  </h2>
+
+  <div class="container-fluid my-4">
+      <%= link_to new_user_session_path, class: "btn w-100 bg-warning fa-beat-fade" do %>
+        <span>S'inscrire gratuitement</span>
+      
+      <% end %>
+      
+  </div>
+         
+
+  <p class="text-center text-helvetica">
+      Rejoignez des milliers d’autres passionnés de SimRacing et créez et gérez votre propre ligue de manière efficace, amusante et ludique sur RaceMeIfYouCan !
       Inscrivez vous dès maintenant et faites de votre ligue une expérience inouliable.
-      (Lien d’inscription)
   </p>
 
-  <div class="container text-center mb-3">
+</div>
+
+
+  <div class="container text-center">
     <%= image_tag("svgs/starman.svg?#{Time.now.to_i}", 
       width: 250, height: 250, alt: "Animated GIF", 
       data: { controller: "reanimate", "reanimate-target": "gif" }) %>
   </div>
-
-  <div class="container-fluid">
-      <%= link_to "S'inscrire", root_path, class: "btn w-100 bg-primary" %>
-  </div>
-
-  <div class="container text-center mb-3">
-    <%= image_tag("svgs/starman2.svg?#{Time.now.to_i}", 
-      width: 250, height: 250, alt: "Animated GIF", 
-      data: { controller: "reanimate", "reanimate-target": "gif" }) %>
-  </div>
-
-
-
-  <hr>
-
 
 </div>
