@@ -265,7 +265,6 @@ small{
   width: 100%;
   height: 100vh; /* Set the height to full viewport height */
   overflow: hidden;
-  border-bottom: solid black 5px;
 }
 
 .video-container video {
