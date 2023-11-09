@@ -14,6 +14,7 @@
       Gérez votre ligue de SimRacing sur RaceMeIfYoucan
     </h1>
 
+    <div class="container" style="max-width: 800px;">
       <%= link_to home_index_path, class:"btn w-100 btn-success fw-bold mt-4 mb-3 px-5" do %>
         <i class="me-2 fa fa-solid fa-lg fa-home" aria-hidden="true"></i>
         Home
@@ -21,7 +22,6 @@
 
       <% unless current_user %>
 
-        <div class="container">
             <%= link_to new_user_session_path, class:"btn w-100 btn-warning fw-bold mt-4 mb-1 px-5", 
                 title: "Sign In", 'aria-label' => "Sign In" do %>
               <i class="me-2 fa fa-solid fa-lg fa-user-lock" aria-hidden="true"></i>
@@ -34,8 +34,9 @@
               Create account
             <% end %>
           
-        </div>
       <% end %>
+
+    </div>
 
   </div>
 </div>
