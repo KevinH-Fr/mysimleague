@@ -3,7 +3,7 @@
     <div class="text-start">
         
       <%= link_to image_tag("/images/brandlogo.webp", width: 220, height: 35, alt: "Go to home page"), 
-                root_path, class: "mx-2" %>   
+            home_index_path, class: "mx-2" %>   
                 
     </div>
     <button class="navbar-toggler mx-2" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation"> 
@@ -12,7 +12,10 @@
     <div class="collapse navbar-collapse px-2" id="navbarNav">
       <ul class="navbar-nav px-2">
         <li class="nav-item">
-          <%= link_to "Activités", root_path, class:"nav-link" %>
+          <%= link_to "Welcome", root_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Home", home_index_path, class:"nav-link" %>
         </li>
         <li class="nav-item">
           <%= link_to "Menu", menu_index_path, class:"nav-link" %>

@@ -8,9 +8,10 @@
   </div>
 
   <div class="text-container position-absolute bottom-0 w-100 px-4">
-    <h1 class="title-styled mb-5 text-start">
-      Gérez votre ligue de SimRacing avec facilité sur RaceMeIfYoucan
-      <%= link_to "S'inscrire", root_path, class: "btn w-100 btn-warning fw-bold my-4 px-5" %>
+    <h1 class="title-styled mb-4 text-start text-light">
+      Gérez votre ligue de SimRacing sur RaceMeIfYoucan
+      <%= link_to "Home", home_index_path, class:"btn w-100 btn-primary fw-bold mt-4 mb-3 px-5" %>
+      <%= link_to "Inscription", steps_compte_step1_path, class: "btn w-100 btn-warning fw-bold mb-2 px-5" %>
     </h1>
   </div>
 </div>
@@ -21,9 +22,9 @@
   <p class="text-center">
       Bienvenue sur RaceMeIfYouCan, la plateforme ultime pour les passionnés de SimRacing qui souhaitent créer et gérer leur propre ligue avec simplicité et efficacité.
   </p>
-  <p class="fw-bold text-center">
+  <h2 class="fw-bold text-center my-4">
     Pourquoi utiliser RaceMeIfYouCan ?
-  </p>
+  </h2>
 
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col">
@@ -51,7 +52,7 @@
       <div class="card">
         <%= image_tag("https://res.cloudinary.com/dukne3lhz/image/upload/v1696539523/ryuljnx52zc94tkos5ub.webp", class:"d-block w-100") %>
         <div class="card-body">
-          <h5 class="card-title"> Ayez le contrôle total sur votre expérience</h5>
+          <h5 class="card-title"> Garder le contrôle total</h5>
           <p class="card-text text-helvetica">  
             Avec RaceMeIfYouCan, vous avez un total contrôle sur la gestion de votre ligue. Définissez et personnalisez les règles, les horaires et dates de vos courses afin qu’elles correspondent parfaitement à vos besoins.
           </p>
@@ -199,8 +200,8 @@
   </h2>
 
   <div class="container-fluid my-4">
-      <%= link_to new_user_session_path, class: "btn w-100 bg-warning fa-beat-fade" do %>
-        <span>S'inscrire gratuitement</span>
+      <%= link_to steps_compte_step1_path, class: "btn w-100 bg-warning fa-beat-fade" do %>
+        <span>Inscription</span>
       
       <% end %>
       

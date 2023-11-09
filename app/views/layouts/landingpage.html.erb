@@ -20,7 +20,7 @@
     <%= render "shared/gtag" %>
 
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
+    <%#= javascript_importmap_tags %>
 
   </head>
 
@@ -28,30 +28,11 @@
 
     <%= render 'shared/navbar' %> 
 
-    <div class="d-flex justify-content-center align-items-center">
-      <div class="page-max-widthed">
-        <main class="p-0">
-          <div id="flash" class="container-fluid position-fixed top-0 start-50 translate-middle-x">
-            <%= render partial: "layouts/flash" %>
-          </div>
-
-          <%= yield %>
-        </main>
-      </div>
-    </div>
+    <main class="container-fluid container-main p-0 m-0">
+        <%= yield %>
+    </main>
 
   </body>
-
-  <br> <br>
-  
-  <footer class="fixed-bottom">  
-    <% if current_page?(home_index_path) %>
-      <%= render "shared/scoring_banner" %>
-    <% end %>
-
-    <%= render "shared/footer" %>
-
-  </footer>
    
 
 </html>

@@ -2,8 +2,7 @@
  *= require_self
  */
 
-
- @font-face {
+@font-face {
   font-family: 'F1regular';
   src: url('/fonts/Formula1-Regular_web_0.ttf');
   font-display: swap;
@@ -16,12 +15,13 @@ body, select {
   color: lightgray;
 }
 
+
 ::-webkit-scrollbar {
   width: 4px; /* Width of the vertical scrollbar */
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #7b7c7d; /* Color of the scrollbar thumb */
+  background-color: #c8c8c9; /* Color of the scrollbar thumb */
   border-radius: 8px; /* Rounded corners for the thumb */
 }
 
@@ -101,10 +101,12 @@ select, input{
   box-shadow:  2px 2px 5px #3e3c3c,
               -2px -5px 5px #3e3a3a;
   padding: 5px;
-  margin-bottom: 20px;
+  margin-bottom: 12px;
   color: lightgray;
 
 }
+
+
 
 .badge-pos{
 
@@ -261,7 +263,7 @@ small{
 .video-container {
   position: relative;
   width: 100%;
-  height: 95vh; /* Set the height to full viewport height */
+  height: 100vh; /* Set the height to full viewport height */
   overflow: hidden;
   border-bottom: solid black 5px;
 }
@@ -327,4 +329,13 @@ small{
 
 .text-helvetica{
   font-family: Helvetica, Arial, sans-serif;
+}
+
+.container-main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+ /* max-width: 1200px;
+  padding: 20px;*/
 }

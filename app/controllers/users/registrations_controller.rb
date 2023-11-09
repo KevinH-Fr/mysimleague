@@ -11,17 +11,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
 
   end
   
-
   def after_sign_up_path_for(resource)
-      root_path
+      home_index_path
   end
 
   def index  
   end
   
-   def edit
-     super
-   end
+  def edit
+    super
+  end
 
   private
 

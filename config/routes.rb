@@ -158,7 +158,9 @@ Rails.application.routes.draw do
   get 'classement_pilotes/index'
 
   get 'home/index'
-  get '/landingpage', to: 'home#landingpage'
+  #get '/landingpage', to: 'home#landingpage'
+  get 'landingpage/index'
+
   get '/scoring', to: 'home#scoring', as: 'scoring'
 
   get 'animation', to: 'resultats#animation', as: 'animation'
@@ -182,7 +184,13 @@ Rails.application.routes.draw do
 
 
   #devise_for :users
-  devise_for :users, controllers: { registrations: 'users/registrations' }
+  devise_for :users, controllers: { 
+    registrations: 'users/registrations',
+    sessions: 'users/sessions'
+  }
+
+
+
   get 'users' => 'users#index', as: 'users'
 
   get 'users/show'
@@ -193,8 +201,11 @@ Rails.application.routes.draw do
 
   resources :friends
 
-  root to: 'home#index'
+  #  root to: 'home#index'
+  root to: 'landingpage#index'
 
+
+  
   get 'set_theme', to: 'theme#update'
   
   mount ActiveAnalytics::Engine, at: "analytics"

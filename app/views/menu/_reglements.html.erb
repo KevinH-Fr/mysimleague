@@ -3,7 +3,7 @@
 <%# if @ligue.reglement_defaut == false %>
     
     <% if current_user && verif_admin_ligue(current_user, @ligue.id)  %>
-        <button class="btn btn-sm btn-primary my-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReglements" aria-expanded="false">
+        <button class="btn btn-sm btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReglements" aria-expanded="false">
         <span>Nouveau</span>
         </button>
     <% end %>

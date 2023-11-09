@@ -64,7 +64,14 @@
       <span class="ms-2 fw-bold">Pilotes</span>
    <% end %>
 
-   
+
+   <% if current_user %>
+      <%= link_to user_path(current_user, anchor: 'partial-container'), class: "btn btn-sm btn-primary m-1 fa-bounce" do %>
+         <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
+         <span class="ms-2 fw-bold">Mes stats</span>
+      <% end %>
+   <% end %>
+
       
 </div>
 
