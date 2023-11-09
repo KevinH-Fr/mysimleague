@@ -6,14 +6,13 @@ export default class extends Controller {
   
     connect() {
       this.reanimateGif();
+      console.log("reanimate connected");
     }
   
     reanimateGif() {
-      this.reloadGif();
-      const randomInterval = this.getRandomInterval(2000, 4000); // Random interval between 2 and 4 seconds
-      setTimeout(() => {
-        this.reanimateGif();
-      }, randomInterval);
+      setInterval(() => {
+        this.reloadGif();
+      }, 5000); // Refresh every 5 seconds (5000 milliseconds)
     }
   
     reloadGif() {
@@ -24,8 +23,4 @@ export default class extends Controller {
       const newImageUrl = `${imageUrl.split("?")[0]}?t=${new Date().getTime()}`;
       gifElement.setAttribute("src", newImageUrl);
     }
-
-    getRandomInterval(min, max) {
-      return Math.floor(Math.random() * (max - min + 1)) + min;
-    }
-}
+  }
