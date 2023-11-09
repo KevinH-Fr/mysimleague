@@ -12,9 +12,31 @@
   <div class="text-container position-absolute bottom-0 w-100 px-4">
     <h1 class="title-styled mb-4 text-start text-light">
       Gérez votre ligue de SimRacing sur RaceMeIfYoucan
-      <%= link_to "Home", home_index_path, class:"btn w-100 btn-primary fw-bold mt-4 mb-3 px-5" %>
-      <%= link_to "Inscription", steps_compte_step1_path, class: "btn w-100 btn-warning fw-bold mb-2 px-5" %>
     </h1>
+
+      <%= link_to home_index_path, class:"btn w-100 btn-success fw-bold mt-4 mb-3 px-5" do %>
+        <i class="me-2 fa fa-solid fa-lg fa-home" aria-hidden="true"></i>
+        Home
+      <% end %>
+
+      <% unless current_user %>
+
+        <div class="container">
+            <%= link_to new_user_session_path, class:"btn w-100 btn-warning fw-bold mt-4 mb-1 px-5", 
+                title: "Sign In", 'aria-label' => "Sign In" do %>
+              <i class="me-2 fa fa-solid fa-lg fa-user-lock" aria-hidden="true"></i>
+              Sign in
+            <% end %>
+            
+            <%= link_to steps_compte_step1_path, class:"btn w-100 btn-primary fw-bold mt-1 mb-2 px-5",
+              title: "Create an Account", 'aria-label' => "Create an Account" do %>
+              <i class="me-2 fa fa-solid fa-lg fa-user-plus" aria-hidden="true"></i>
+              Create account
+            <% end %>
+          
+        </div>
+      <% end %>
+
   </div>
 </div>
 
@@ -137,7 +159,8 @@
         <div class="card-body">
           <h5 class="card-title">   Suivez les statistiques en direct</h5>
           <p class="card-text text-helvetica">
-            Accéder à des analyses et des statistiques détaillées pour chaque course et chaque pilote. Identifiez les tendances et prenez des décisions en temps réel pour améliorer votre ligue.
+            Accéder à des analyses et des statistiques détaillées pour chaque course et chaque pilote. 
+            Identifiez les tendances et prenez des décisions en temps réel pour améliorer votre ligue.
           </p>
 
           <div class="card-footer"> 
