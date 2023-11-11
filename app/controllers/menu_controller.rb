@@ -225,7 +225,7 @@ class MenuController < ApplicationController
   def display_rivalites
 
     @event = Event.find(session[:event])
-  #  @rivalites = @event.licences if @event 
+    @rivalites = @event.division.rivalites if @event 
 
     respond_to do |format|
       format.turbo_stream do

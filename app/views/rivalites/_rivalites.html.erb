@@ -1,11 +1,12 @@
 
-<div class="d-flex align-items-center justify-content-center m-0 p-0">
-  <div id="rivalites" class="overflow-auto pb-4">
-    <% @rivalites.each do |rivalite| %>
-      <div class="">
-        <%= render rivalite %>
-      </div>
-    <% end %>
-  </div>
+<div class="container">
+    <div class="d-flex align-items-center justify-content-center m-0 p-0">
+    <div id="rivalites" class="">
+        <% @rivalites.each do |rivalite| %>
+        <div class="">
+            <%= render rivalite %>
+        </div>
+        <% end %>
+    </div>
+    </div>
 </div>
-

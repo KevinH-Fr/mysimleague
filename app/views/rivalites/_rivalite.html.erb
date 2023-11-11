@@ -1,22 +1,48 @@
 <div id="<%= dom_id rivalite %>">
-  <p>
-    <strong>Division:</strong>
-    <%= rivalite.division_id %>
-  </p>
 
-  <p>
-    <strong>Pilote1:</strong>
-    <%= rivalite.pilote1_id %>
-  </p>
+  <div class="card my-2 p-2" style="max-width: 480px;">
 
-  <p>
-    <strong>Pilote2:</strong>
-    <%= rivalite.pilote2_id %>
-  </p>
+    <div class="row align-items-center">
+      <div class="col-12 text-center">
 
-  <p>
-    <strong>Statut:</strong>
-    <%= rivalite.statut %>
-  </p>
+        <%= equipe_banner_with_data(
+              AssociationUser.where(
+                user_id: rivalite.pilote1.user.id, 
+                division_id: rivalite.division_id,
+                actif: true,valide: true)
+                .last.equipe,
+                rivalite.pilote1.user.nom) %>
+
+        <i class="fa fa-bolt text-warning"></i>
+        
+        <%= equipe_banner_with_data(
+              AssociationUser.where(
+                user_id: rivalite.pilote2.user.id, 
+                division_id: rivalite.division_id,
+                actif: true,valide: true)
+                .last.equipe,
+                rivalite.pilote2.user.nom) %>
+
+        <%= boolean_icon(rivalite.statut) %>
+      </div>
+
+
+    <div class="col-4 d-flex justify-content-end align-items-center">
+
+
+          <% if current_user && verif_admin_ligue(current_user, rivalite.division.saison.ligue) %>
+
+            <%= button_to "", edit_rivalite_path(rivalite), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square me-1" %>
+            <%= button_to "", rivalite, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash me-1",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+          
+          <% end %>
+    </div>
+
+
+    </div>
 
 </div>
+

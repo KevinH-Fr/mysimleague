@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :rivalites
 
   resources :menu do
     collection do
@@ -71,6 +70,12 @@ Rails.application.routes.draw do
 
 
   resources :paris do
+    member do
+      post :edit
+    end
+  end
+
+  resources :rivalites do
     member do
       post :edit
     end

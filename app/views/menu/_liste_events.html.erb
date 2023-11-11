@@ -10,19 +10,21 @@
     <% end %>
   <% end %>
 
-    <% @events.each do |event| %>
-      <%= link_to url_for(ligue: @ligue.id, saison: @saison.id, division: @division.id, event: event), 
-            class: "btn btn-outline-primary btn-sm btn-event m-1
-            #{'fw-bold text-light btn-primary' if params[:event] == event.id.to_s}" do %>
+  <% @events.each do |event| %>
+    <%= link_to url_for(ligue: @ligue.id, saison: @saison.id, division: @division.id, event: event), 
+          class: "btn btn-outline-primary btn-sm btn-event m-1
+          #{'fw-bold text-light btn-primary' if params[:event] == event.id.to_s}" do %>
 
-        <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "25", height: "15") if event.circuit.drapeau.present? %>
-        <%= "n° #{event.numero}" %>
-      <% end %>
+      <%= image_tag(event.circuit.drapeau, class: "img-fluid rounded me-1", width: "25", height: "15") if event.circuit.drapeau.present? %>
+      <%= "n° #{event.numero}" %>
     <% end %>
+  <% end %>
 
-  <div class="collapse" id="collapseEvent">
-    <div id="new_event">
-      <%= render partial: "events/form", locals: { event: Event.new } %>
+  <div class="container-fluid m-0 p-0">
+    <div class="collapse" id="collapseEvent">
+      <div id="new_event">
+        <%= render partial: "events/form", locals: { event: Event.new } %>
+      </div>
     </div>
   </div>
 
