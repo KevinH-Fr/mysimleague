@@ -327,7 +327,8 @@ small{
 }
 
 .text-helvetica{
-  font-family: Helvetica, Arial, sans-serif;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: medium;
 }
 
 .container-main{

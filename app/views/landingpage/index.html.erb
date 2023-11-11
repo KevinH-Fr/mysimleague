@@ -1,5 +1,5 @@
 <% title "Landing Page" %>
-<% description "Landing Page with features to manage simracing leagues." %>
+<% description "Landing Page with features and tools to manage simracing leagues." %>
 
 <div class="video-container position-relative">
   <div data-controller="video">
@@ -10,7 +10,7 @@
 
   </div>
 
-  <div class="text-container position-absolute bottom-0 w-100 px-4 mb-5">
+  <div class="text-container position-absolute bottom-0 w-100 px-4 mb-4">
     <h1 class="title-styled mb-4 text-start text-light">
       Gérez votre ligue de SimRacing sur RaceMeIfYoucan
     </h1>
@@ -49,6 +49,14 @@
   <h2 class="fw-bold text-center my-4">
     Pourquoi utiliser RaceMeIfYouCan ?
   </h2>
+
+  <div class="my-5"> 
+    <%= render  "slideshow" %>
+  </div>
+
+  <div class="my-5"> 
+    <%= render  "rejoindre" %>
+  </div>
 
   <div class="row row-cols-1 row-cols-md-2 g-4">
     <div class="col">
@@ -116,7 +124,8 @@
         <div class="card-body">
           <h3 class="card-title"> Une gestion automatisée</h3>
           <p class="card-text  text-helvetica">
-            Avec RaceMeIfYouCan, saisissez les résultats de vos courses et laissez l’application faire le reste. Gestion des points, des classements, des inscriptions et d’autres fonctionnalités vous attendent afin de vous permettre de vous concentrer sur l’essentiel : la compétion.
+            Avec RaceMeIfYouCan, saisissez les résultats de vos courses et laissez l’application faire le reste. 
+            Gestion des points, des classements, des inscriptions et d’autres fonctionnalités vous attendent afin de vous permettre de vous concentrer sur l’essentiel : la compétition.
           </p>
 
           <div class="card-footer"> 
@@ -219,7 +228,7 @@
             <div class="collapse" id="collapseGratuit">
               <div class="card card-body text-center text-primary">
                 <p>Inscription des ligues et membres gratuites </p>
-                <p>Supprime les contraintes liés à la gestion de ligue</p>
+                <p>Supprime les contraintes liées à la gestion de ligue</p>
                 <p>Rejoins une communauté de passionés</p>
                 <p>Sois le premier à découvrir les features à venir : application mobile, setup-tool pour aider la prépation du setup de la voiture</p>
                 <p>Et bien plus encore !</p>
@@ -243,17 +252,7 @@
   </div>
 
 
-  <h2 class="text-center">
-      Rejoignez dès maintenant RaceMeIfYoucan
-  </h2>
-
-  <div class="container-fluid my-4">
-      <%= link_to steps_compte_step1_path, class: "btn w-100 bg-warning fa-beat-fade" do %>
-        <span>Inscription</span>
-      
-      <% end %>
-      
-  </div>
+  <%= render  "rejoindre" %>
          
 
   <p class="text-center text-helvetica">

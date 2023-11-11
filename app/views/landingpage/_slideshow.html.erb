@@ -1,0 +1,103 @@
+
+<div class="container-fluid text-center">
+
+  <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+
+    <div class="card px-5 py-2" style="height: 80vh;">
+
+      <div class="carousel-indicators">
+        <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+        <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="1" aria-label="Slide 2"></button>
+        <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="2" aria-label="Slide 3"></button>
+        <button type="button" data-bs-target="#carouselExampleInterval" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      </div>
+
+
+      <div class="carousel-inner">
+        <div class="carousel-item active" data-bs-interval="4000">
+          <%= svg_animation("svgs/racecar2.svg", "create and manage simrace league") %>
+          <p> 
+            <i class="fa fa-xl fa-people-group text-warning me-2"></i>
+            Rejoins une <strong class="text-warning"> communauté de passionnés </strong>  
+          </p>
+          <p> 
+            <i class="fa fa-xl fa-list-check text-success me-2"></i>
+            Créé ta ligue en quelques clics 
+          </p>
+          <p> 
+            <i class="fa fa-xl fa-file-import text-light me-2"></i>
+            Récupère les résultats et les classements automatisés  
+          </p>
+          <p> 
+            <i class="fa fa-xl fa-champagne-glasses text-success me-2"></i>
+            Et bien plus encore,  <strong class="text-success"> le tout gratuitement ! </strong>  
+          </p>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="4000">
+          <%= svg_animation("svgs/communauty.svg", "soude ta communauté et rejoins les autres passionnés") %>
+          <p>	
+            <i class="fa fa-xl fa-gears text-light me-2"></i>
+            Choisis les règles applicables à ta ligue 
+          </p>
+          <p> 
+            <i class="fa fa-xl fa-hourglass-half text-success me-2"></i>
+            Profite d’outils automatisés pour <strong class="text-success"> gagner un temps précieux </strong> 
+          </p>
+          <p>	
+            <i class="fa fa-xl fa-users-between-lines text-warning me-2"></i>
+            <strong class="text-warning"> Soude ta communauté </strong> et rejoins les autres passionnés 
+          </p>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="4000">
+          <%= svg_animation("svgs/extra.svg", "gère facilement les pénalités, les paris, les pilotes du jour, les stats") %>
+          <p>	
+            <i class="fa fa-xl fa-id-card text-danger me-2"></i>
+            Applique des <strong class="text-danger"> pénalités </strong> sur la licence pilote  
+          </p>
+          <p>	
+            <i class="fa fa-xl fa-ranking-star text-warning me-2"></i>
+            Obtiens des votes de <strong class="text-warning"> pilote du jour </strong>
+          </p>
+          <p>	
+            <i class="fa fa-xl fa-money-bill-wave text-success me-2"></i>
+            <strong class="text-success"> Parie des points </strong> sur les courses 
+          </p>
+          <p>	
+            <i class="fa fa-xl fa-magnifying-glass-chart text-primary me-2"></i>
+            Découvre des analyses sur les performances des pilotes 
+          </p>
+        </div>
+
+        <div class="carousel-item" data-bs-interval="4000">
+          <%= svg_animation("svgs/signup.svg", "inscription gratuite pour tous") %>
+          <p>	
+            <i class="fa fa-xl fa-user-plus text-warning me-2"></i>
+            <strong class="text-warning"> Inscris-toi </strong> dès à présent en tant que fan, pilote, membre ou manager d’une ligue  
+          </p>
+          <p> 
+            <i class="fa fa-xl fa-square-check text-success me-2"></i>
+            <strong class="text-success">	Outil gratuit </strong> pour les passionnés de simracing !
+          </p>
+
+          <%= link_to steps_compte_step1_path, class: "btn w-100 bg-warning mt-2" do %>
+            <span>Inscription</span>
+          <% end %>
+
+        </div>
+      </div>
+
+      <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+
+  </div>
+</div>
+
