@@ -40,7 +40,6 @@ class MenuController < ApplicationController
     # Call the display_resultats action
     #redirect_to display_resultats_menu_index_path
     #end
-
   
   end
 
@@ -218,6 +217,20 @@ class MenuController < ApplicationController
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(
           'partial-container', partial: 'menu/paris'
+        )
+      end
+    end
+  end
+
+  def display_rivalites
+
+    @event = Event.find(session[:event])
+  #  @rivalites = @event.licences if @event 
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          'partial-container', partial: 'menu/rivalites'
         )
       end
     end

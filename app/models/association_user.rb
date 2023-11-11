@@ -8,6 +8,13 @@ class AssociationUser < ApplicationRecord
 
   has_many :resultats, dependent: :destroy
 
+  has_many :pilote1_rivalites, class_name: 'Rivalite', 
+    foreign_key: 'pilote1_id'
+  
+  has_many :pilote2_rivalites, class_name: 'Rivalite',
+    foreign_key: 'pilote2_id'
+
+
   before_create :verif_doublon_user
   before_update :verif_doublon_user
 

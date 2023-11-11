@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :rivalites
 
   resources :menu do
     collection do
@@ -15,6 +16,7 @@ Rails.application.routes.draw do
       post 'display_dotds'
       post 'display_dois'
       post 'display_paris'
+      post 'display_rivalites'
 
       post 'display_licences'
       post 'display_synthese_licences'

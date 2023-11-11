@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_10_24_141337) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_11_104446) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -277,6 +277,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_141337) do
     t.index ["event_id"], name: "index_resultats_on_event_id"
   end
 
+  create_table "rivalites", force: :cascade do |t|
+    t.integer "division_id", null: false
+    t.integer "pilote1_id", null: false
+    t.integer "pilote2_id", null: false
+    t.boolean "statut"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["division_id"], name: "index_rivalites_on_division_id"
+    t.index ["pilote1_id"], name: "index_rivalites_on_pilote1_id"
+    t.index ["pilote2_id"], name: "index_rivalites_on_pilote2_id"
+  end
+
   create_table "saisons", force: :cascade do |t|
     t.integer "ligue_id", null: false
     t.string "nom"
@@ -341,5 +353,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_10_24_141337) do
   add_foreign_key "resultats", "association_users"
   add_foreign_key "resultats", "equipes"
   add_foreign_key "resultats", "events"
+  add_foreign_key "rivalites", "association_users", column: "pilote1_id"
+  add_foreign_key "rivalites", "association_users", column: "pilote2_id"
+  add_foreign_key "rivalites", "divisions"
   add_foreign_key "saisons", "ligues"
 end

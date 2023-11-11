@@ -1,0 +1,43 @@
+<%= form_with(model: rivalite) do |form| %>
+  <% if rivalite.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(rivalite.errors.count, "error") %> prohibited this rivalite from being saved:</h2>
+
+      <ul>
+        <% rivalite.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :division_id, style: "display: block" %>
+    <%= form.text_field :division_id %>
+  </div>
+
+  <div>
+    <%= form.label :pilote1_id, style: "display: block" %>
+    <%= form.collection_select :pilote1_id,
+             pilotes_division_named(Division.find(session[:division])), :first, :second,
+            { include_blank: 'Select Pilote' },
+              class: "form-select input-colored" %>         
+  </div>
+
+  <div>
+    <%= form.label :pilote2_id, style: "display: block" %>
+    <%= form.collection_select :pilote2_id,
+             pilotes_division_named(Division.find(session[:division])), :first, :second,
+            { include_blank: 'Select Pilote' },
+              class: "form-select input-colored" %>         
+  </div>
+
+  <div>
+    <%= form.label :statut, style: "display: block" %>
+    <%= form.check_box :statut %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

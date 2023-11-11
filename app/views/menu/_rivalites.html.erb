@@ -1,0 +1,35 @@
+
+<div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
+</div>
+
+  <div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
+    Retrouve ici les résultats des rivalités !
+  </div>
+
+  <h4 class="titre-topic">
+    Rivalités
+
+    <% if current_user && verif_admin_ligue(current_user, @event.division.saison.ligue) %>
+      <button class="btn btn-sm btn-warning m-2" type="button" 
+        data-bs-toggle="collapse" data-bs-target="#collapseNewEvent" aria-expanded="false">
+          <i class="fa-solid fa-square-plus fa-xl"></i>
+      </button>
+    <% end %>
+
+  </h4>
+
+  <div class="d-flex align-items-center justify-content-center m-0 p-0">
+    <div class="collapse my-2" id="collapseNewEvent">
+      <div id="new_rivalite">
+        <%= render partial: "rivalites/form", locals: { rivalite: Rivalite.new } %>
+      </div>
+    </div>
+  </div>
+
+  <%= render "rivalites/rivalites" %>
+
+  <div class="container-fluid text-center my-2">
+    <%#= link_to "", generate_image_rivalites_path(event: @event.id), class: 'btn fa fa-image btn-outline-success w-25' %>
+  </div>
+
+

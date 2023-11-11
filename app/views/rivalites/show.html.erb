@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @rivalite %>
+
+<div>
+  <%= link_to "Edit this rivalite", edit_rivalite_path(@rivalite) %> |
+  <%= link_to "Back to rivalites", rivalites_path %>
+
+  <%= button_to "Destroy this rivalite", @rivalite, method: :delete %>
+</div>
