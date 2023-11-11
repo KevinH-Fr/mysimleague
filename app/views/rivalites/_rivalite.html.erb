@@ -24,6 +24,10 @@
                 rivalite.pilote2.user.nom) %>
 
         <%= boolean_icon(rivalite.statut) %>
+
+        <% if @event %>        
+          score: <%= calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
+        <% end %>
       </div>
 
 
