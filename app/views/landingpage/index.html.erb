@@ -7,7 +7,6 @@
       src="https://res.cloudinary.com/dukne3lhz/video/upload/v1699568038/pexels-cottonbro-5767772_540p_aoeybg.webm?quality=auto" 
       type="video/mp4" id="video-background" data-video-target="video">
     </video>
-
   </div>
 
   <div class="text-container position-absolute bottom-0 w-100 px-4 mb-4">
@@ -40,8 +39,7 @@
   </div>
 </div>
 
-
-<div class="container p-4">
+<div class="container-fluid p-3">
 
   <p class="text-center">
       Bienvenue sur RaceMeIfYouCan, la plateforme ultime pour les passionnés de SimRacing qui souhaitent créer et gérer leur propre ligue avec simplicité et efficacité.
@@ -54,7 +52,7 @@
     <%= render  "slideshow" %>
   </div>
 
-  <div class="my-5"> 
+  <div class="container my-5"> 
     <%= render  "rejoindre" %>
   </div>
 
@@ -242,34 +240,28 @@
 
   </div>
 
+  <div class="container-fluid my-4">
 
-<div class="container-fluid my-4">
+    <div class="container text-center mb-3">
+      <%= image_tag("svgs/racecar2.svg?#{Time.now.to_i}", 
+        width: 250, height: 250, alt: "Animated GIF", 
+        class: "reanimate-svg" ) %>
+    </div>
 
-  <div class="container text-center mb-3">
-    <%= image_tag("svgs/racecar2.svg?#{Time.now.to_i}", 
-      width: 250, height: 250, alt: "Animated GIF", 
-      class: "reanimate-svg" ) %>
+    <%= render  "rejoindre" %>
+
+    <p class="text-center text-helvetica">
+        Rejoignez des milliers d’autres passionnés de SimRacing et créez et gérez votre propre ligue de manière efficace, amusante et ludique sur RaceMeIfYouCan !
+        Inscrivez vous dès maintenant et faites de votre ligue une expérience inouliable.
+    </p>
+
   </div>
-
-
-  <%= render  "rejoindre" %>
-         
-
-  <p class="text-center text-helvetica">
-      Rejoignez des milliers d’autres passionnés de SimRacing et créez et gérez votre propre ligue de manière efficace, amusante et ludique sur RaceMeIfYouCan !
-      Inscrivez vous dès maintenant et faites de votre ligue une expérience inouliable.
-  </p>
-
-</div>
-
-
 
   <div class="container text-center">
     <%= image_tag("svgs/starman.svg?#{Time.now.to_i}", 
       width: 250, height: 250, alt: "Animated SVG", 
       class: "reanimate-svg" ) %>
   </div>
-
 
 </div>
 
