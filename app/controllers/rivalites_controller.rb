@@ -86,6 +86,15 @@ def destroy
   @rivalite.destroy
 
   respond_to do |format|
+
+    format.turbo_stream do
+      render turbo_stream: [
+        turbo_stream.remove(@rivalite),
+        turbo_stream.prepend('flash',
+            partial: 'layouts/flash', locals: { flash: flash })
+      ]
+    end
+
     format.html { redirect_to rivalites_url, notice: "rivalite was successfully destroyed." }
     format.json { head :no_content }
   end
