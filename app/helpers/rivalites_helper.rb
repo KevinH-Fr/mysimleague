@@ -58,11 +58,13 @@ module RivalitesHelper
         elsif pilote1_result.dns == false && pilote2_result.dns == false 
 
           # Update points based on positions for the current event
-          pilote1_points += 1 if pilote1_position_course < pilote2_position_course 
-          pilote2_points += 1 if pilote2_position_course < pilote1_position_course 
 
-          pilote1_points += 1 if pilote1_position_qualif < pilote2_position_qualif 
-          pilote2_points += 1 if pilote2_position_qualif < pilote1_position_qualif 
+          if pilote1_result.dnf == false && pilote2_result.dnf == false 
+            pilote1_points += 1 if pilote1_position_course < pilote2_position_course 
+            pilote2_points += 1 if pilote2_position_course < pilote1_position_course 
+          end
+            pilote1_points += 1 if pilote1_position_qualif < pilote2_position_qualif 
+            pilote2_points += 1 if pilote2_position_qualif < pilote1_position_qualif 
         end
       end
 
