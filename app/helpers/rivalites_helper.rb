@@ -51,6 +51,8 @@ module RivalitesHelper
         pilote1_position_qualif = pilote1_result.qualification
         pilote2_position_qualif = pilote2_result.qualification
 
+        #
+
         if pilote1_result.dns == true
           pilote2_points += 1 if pilote2_result.dnf == false && pilote2_result.dns == false
         elsif pilote2_result.dns == true 
@@ -59,6 +61,7 @@ module RivalitesHelper
 
           # Update points based on positions for the current event
 
+          # si aucun pilote dnf 
           if pilote1_result.dnf == false && pilote2_result.dnf == false 
             pilote1_points += 1 if pilote1_position_course < pilote2_position_course 
             pilote2_points += 1 if pilote2_position_course < pilote1_position_course 
@@ -68,11 +71,11 @@ module RivalitesHelper
         end
       end
 
-      scores_by_event << { event: current_event.numero, pilote1: pilote1_points, pilote2: pilote2_points }
-
       # Accumulate points for each pilote across all events
       cumulative_scores[:pilote1] += pilote1_points
       cumulative_scores[:pilote2] += pilote2_points
+
+      scores_by_event << { event: current_event.numero, pilote1: pilote1_points, pilote2: pilote2_points }
     end
 
     leading_pilote_id = cumulative_scores[:pilote1] > cumulative_scores[:pilote2] ? pilote1.id : cumulative_scores[:pilote1] < cumulative_scores[:pilote2] ? pilote2.id : nil
