@@ -185,6 +185,7 @@ Rails.application.routes.draw do
   get 'generate_image_dois', to: 'dois#generate_image', as: 'generate_image_dois'
 
   get 'generate_image_licences', to: 'synthese_licences#generate_image', as: 'generate_image_licences'
+  get 'generate_image_rivalites', to: 'rivalites#generate_image', as: 'generate_image_rivalites'
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)

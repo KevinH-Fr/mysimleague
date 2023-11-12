@@ -3,7 +3,7 @@
   <div class="card my-2 p-2">  
     <div class="mb-3">
     
-      <% if @event %>     
+      <%# if @event %>     
 
         <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
 
@@ -12,14 +12,14 @@
               actif: true, valide: true).last.equipe, 
               rivalite.pilote1.id,             
               rivalite.pilote1.user.nom, 
-              scores[:leading_pilote_id]) %>
+              scores[:leading_pilote_id],
+              scores[:cumulative_scores][:pilote1]) %>
 
 
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
           
         <div class="text-center">
-          gp: <%= current_event_score[:pilote1] %> points |
-          <strong> cumul: <%= scores[:cumulative_scores][:pilote1] if scores[:cumulative_scores].present? %> points </strong> 
+          gp courant: <%= current_event_score[:pilote1] %> points
         </div>
       </div>
 
@@ -29,15 +29,15 @@
               actif: true, valide: true).last.equipe,           
               rivalite.pilote2.id,             
               rivalite.pilote2.user.nom, 
-              scores[:leading_pilote_id]) %>
+              scores[:leading_pilote_id],
+              scores[:cumulative_scores][:pilote2]) %>
 
         <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
         <div class="text-center">
-          gp: <%= current_event_score[:pilote2] %> points |
-          <strong>  cumul: <%= scores[:cumulative_scores][:pilote2] if scores[:cumulative_scores].present? %> points </strong> 
+          gp courant: <%= current_event_score[:pilote2] %> points
         </div>
-      <% end %>
+      <%# end %>
     </div>
 
     <div class="d-flex mt-2">

@@ -8,7 +8,8 @@ class RivalitesController < InheritedResources::Base
 
   def create
     @rivalite = Rivalite.new(rivalite_params)
-
+    @event = Event.find(session[:event])
+  
     respond_to do |format|
       if @rivalite.save
 
@@ -60,6 +61,8 @@ end
 
 def update
 
+  @event = Event.find(session[:event])
+
   respond_to do |format|
     if @rivalite.update(rivalite_params)
 
@@ -99,6 +102,13 @@ def destroy
     format.json { head :no_content }
   end
 end
+
+def generate_image
+  @event = Event.find(params[:event])
+  @rivalites = Rivalite.where(statut: true, division: @event.division_id)
+  render "rivalites/document"
+end
+
 
   private
 

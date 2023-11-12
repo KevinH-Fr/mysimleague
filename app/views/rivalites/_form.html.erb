@@ -1,4 +1,4 @@
-  <div class="card m-0 my-1 p-2">  
+<div class="card m-0 my-1 p-2" style="max-width: 300px;">  
 
   <%= form_with(model: rivalite) do |form| %>
     <% if rivalite.errors.any? %>
@@ -41,12 +41,12 @@
       </div>
 
       <div class="col-md">
-
-        <div class="form-check form-switch">
-          <%= form.label :statut, class: "form-check-label fs-6" %>
-          <%= form.check_box :statut, class: "form-check-input fs-6" %>
+        <div class="px-2">
+          <div class="form-check form-switch">
+            <%= form.label :statut, class: "form-check-label fs-6" %>
+            <%= form.check_box :statut, class: "form-check-input fs-6" %>
+          </div>
         </div>
-
       </div>
 
       <%= custom_submit_button("Rivalité") %>

@@ -226,8 +226,6 @@ class MenuController < ApplicationController
   def display_rivalites
 
     @event = Event.find(session[:event])
-
-    
     @rivalites = @event.division.rivalites if @event 
 
     unless current_user && verif_admin_ligue(current_user, @event.division.saison.ligue)

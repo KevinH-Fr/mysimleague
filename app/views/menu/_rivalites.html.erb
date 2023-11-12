@@ -11,7 +11,7 @@
 
     <% if current_user && verif_admin_ligue(current_user, @event.division.saison.ligue) %>
       <button class="btn btn-sm btn-warning m-2" type="button" 
-        data-bs-toggle="collapse" data-bs-target="#collapseNewEvent" aria-expanded="false">
+        data-bs-toggle="collapse" data-bs-target="#collapseNewRivalite" aria-expanded="false">
           <i class="fa-solid fa-square-plus fa-xl"></i>
       </button>
     <% end %>
@@ -19,7 +19,7 @@
   </h4>
 
   <div class="d-flex align-items-center justify-content-center m-0 p-0">
-    <div class="collapse my-2" id="collapseNewEvent">
+    <div class="collapse my-2" id="collapseNewRivalite">
       <div id="new_rivalite">
         <%= render partial: "rivalites/form", locals: { rivalite: Rivalite.new } %>
       </div>
@@ -31,7 +31,7 @@
   </div>
   
   <div class="container-fluid text-center my-2">
-    <%#= link_to "", generate_image_rivalites_path(event: @event.id), class: 'btn fa fa-image btn-outline-success w-25' %>
+    <%= link_to "", generate_image_rivalites_path(event: @event.id), class: 'btn fa fa-image btn-outline-success w-25' %>
   </div>
 
 

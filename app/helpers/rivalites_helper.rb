@@ -1,36 +1,32 @@
 module RivalitesHelper
 
-  
-
-  def leader_indicator(pilote, leader)
-
+  def rivalite_indicators(pilote, leader, cumul)
     content = []
-
+  
     if pilote == leader
-      content << content_tag(:i, "", class: "fa fa-trophy fa-lg icon-indicator-resultat text-warning fw-bold pe-1")
-    end 
-
-    content_span = content_tag(:span, content.join(" ").html_safe, 
-      class: "text-light fw-bold position-absolute end-0",
-      style: "top: 6px;") 
+      content << content_tag(:i, "", class: "fa fa-trophy fa-lg icon-indicator-resultat text-warning fw-bold pe-2")
+    end
+  
+    content << content_tag(:span, cumul, class: "text-light fw-bold pe-2")
+  
+    content_span = content_tag(:span, content.join(" ").html_safe,
+                               class: "text-light fw-bold position-absolute end-0 d-flex align-items-center",
+                               style: "top: 50%; transform: translateY(-50%);")
     content_span
   end
+  
+  
 
-  def equipe_banner_pilote_and_indicator(equipe, pilote, label, leader)
+  def equipe_banner_pilote_and_indicator(equipe, pilote, label, leader, cumul)
     if equipe.banniere.present?
       banner_and_pilote = equipe_banner_with_data(equipe, label)
-      indicator = leader_indicator(pilote, leader)
+      indicators = rivalite_indicators(pilote, leader, cumul)
       
       content_tag(:div, class: "equipe-banner-wrapper", style: "position: relative; ") do
-        [banner_and_pilote, indicator].join.html_safe
+        [banner_and_pilote, indicators].join.html_safe
       end
     end
   end
-
-
-  
-
-  
 
   def calcul_rivalite(pilote1, pilote2, division, event)
     @event = Event.find(event)
