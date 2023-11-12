@@ -31,26 +31,29 @@ module RivalitesHelper
   def calcul_rivalite(pilote1, pilote2, division, event)
     @event = Event.find(event)
     events = Event.where('numero <= ? AND division_id = ?', @event.numero, division)
-
+  
     cumulative_scores = { pilote1: 0, pilote2: 0 }
     scores_by_event = []
-
+  
+    point_qualif = nil
+    point_course = nil
+  
     events.each do |current_event|
       # Initialize points for each pilote for the current event
       pilote1_points = 0
       pilote2_points = 0
-    
+  
       pilote1_result = Resultat.find_by(association_user: pilote1.id, event: current_event)
       pilote2_result = Resultat.find_by(association_user: pilote2.id, event: current_event)
-    
+  
       # Check if both results are present
       if pilote1_result && pilote2_result
         pilote1_position_course = pilote1_result.course
         pilote2_position_course = pilote2_result.course
-    
+  
         pilote1_position_qualif = pilote1_result.qualification
         pilote2_position_qualif = pilote2_result.qualification
-    
+  
         if pilote1_result.dns && pilote2_result.dns
           # If both pilots are dns, no points
         elsif pilote1_result.dns
@@ -63,33 +66,44 @@ module RivalitesHelper
           # If both pilots are dnf, give only one point for the one in front in qualification
           if pilote1_position_qualif < pilote2_position_qualif
             pilote1_points += 1
+            point_qualif = pilote1.user.nom
           elsif pilote2_position_qualif < pilote1_position_qualif
             pilote2_points += 1
+            point_qualif = pilote2.user.nom
           end
         else
           # Update points based on positions for the current event
           pilote1_points += 1 if pilote1_position_course < pilote2_position_course
           pilote2_points += 1 if pilote2_position_course < pilote1_position_course
-    
+  
           pilote1_points += 1 if pilote1_position_qualif < pilote2_position_qualif
           pilote2_points += 1 if pilote2_position_qualif < pilote1_position_qualif
+  
+          # Assign leading pilot for qualification and course
+          point_qualif = pilote1_position_qualif < pilote2_position_qualif ? pilote1.user.nom : pilote2.user.nom
+          point_course = pilote1_position_course < pilote2_position_course ? pilote1.user.nom : pilote2.user.nom
         end
       end
-    
+  
       # Accumulate points for each pilote across all events
       cumulative_scores[:pilote1] += pilote1_points
       cumulative_scores[:pilote2] += pilote2_points
-    
+  
       scores_by_event << { event: current_event.numero, pilote1: pilote1_points, pilote2: pilote2_points }
     end
-    
-
+  
     leading_pilote_id = cumulative_scores[:pilote1] > cumulative_scores[:pilote2] ? pilote1.id : cumulative_scores[:pilote1] < cumulative_scores[:pilote2] ? pilote2.id : nil
-
-    { scores_by_event: scores_by_event, cumulative_scores: cumulative_scores, 
-      pilote1_score: cumulative_scores[:pilote1], pilote2_score: cumulative_scores[:pilote2],
-      leading_pilote_id: leading_pilote_id }
+  
+    {
+      scores_by_event: scores_by_event,
+      cumulative_scores: cumulative_scores,
+      pilote1_score: cumulative_scores[:pilote1],
+      pilote2_score: cumulative_scores[:pilote2],
+      leading_pilote_id: leading_pilote_id,
+      point_qualif: point_qualif,
+      point_course: point_course
+    }
   end
-
+  
   
 end

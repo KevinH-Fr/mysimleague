@@ -19,7 +19,7 @@
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
           
         <div class="text-center">
-          gp courant: <%=pluralize(current_event_score[:pilote1], 'point') %>
+          gp courant: <%= pluralize(current_event_score[:pilote1], 'point') %>
         </div>
       </div>
 
@@ -36,12 +36,17 @@
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
         <div class="text-center">
           gp courant: <%=pluralize(current_event_score[:pilote2], 'point') %>
+          <br>
+          qualif: <%= scores[:point_qualif] %>
+          course: <%= scores[:point_course] %>
+
         </div>
       <%# end %>
     </div>
 
     <div class="d-flex mt-2">
       <% if current_user && verif_admin_ligue(current_user, rivalite.division.saison.ligue) %>
+
         <%= boolean_icon(rivalite.statut) %>
         <%= button_to "", edit_rivalite_path(rivalite), method: :post, 
             class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square me-1" %>
