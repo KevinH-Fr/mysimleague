@@ -48,11 +48,11 @@ module RivalitesHelper
   
       # Check if both results are present
       if pilote1_result && pilote2_result
-        pilote1_position_course = pilote1_result.course
-        pilote2_position_course = pilote2_result.course
+        pilote1_position_course = pilote1_result.course.to_i
+        pilote2_position_course = pilote2_result.course.to_i
   
-        pilote1_position_qualif = pilote1_result.qualification
-        pilote2_position_qualif = pilote2_result.qualification
+        pilote1_position_qualif = pilote1_result.qualification.to_i
+        pilote2_position_qualif = pilote2_result.qualification.to_i
   
         if pilote1_result.dns && pilote2_result.dns
           # If both pilots are dns, no points
