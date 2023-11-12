@@ -52,9 +52,9 @@ module RivalitesHelper
         pilote2_position_qualif = pilote2_result.qualification
 
         if pilote1_result.dns == true
-          pilote2_points += 1 if pilote2_result.dnf == false  
+          pilote2_points += 1 if pilote2_result.dnf == false && pilote2_result.dns == false
         elsif pilote2_result.dns == true 
-          pilote1_points += 1 if pilote1_result.dnf == false  
+          pilote1_points += 1 if pilote1_result.dnf == false  && pilote1_result.dns == false
         elsif pilote1_result.dns == false && pilote2_result.dns == false 
 
           # Update points based on positions for the current event

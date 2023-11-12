@@ -20,24 +20,20 @@
     <% end %>
 
     <div class="row g-2">
-      <div class="col-md">
-        <div class="input-group input-group-sm my-1 label-colored">
-          <%= form.label :pilote1_id, class: "input-group-text label-colored" %>
-          <%= form.collection_select :pilote1_id,
-                  pilotes_division_named(Division.find(session[:division])), :first, :second,
-                  { include_blank: 'Select Pilote' },
-                    class: "form-select input-colored" %>  
-        </div>
-      </div>       
+      <div class="input-group input-group-sm my-1 label-colored">
+        <%= form.label :pilote1_id, class: "input-group-text label-colored" %>
+        <%= form.collection_select :pilote1_id,
+                pilotes_division_named(Division.find(session[:division])), :first, :second,
+                { include_blank: 'Select Pilote' },
+                  class: "form-select input-colored" %>  
+      </div>
 
-      <div class="col-md">
-        <div class="input-group input-group-sm my-1 label-colored">
-          <%= form.label :pilote2_id, class: "input-group-text label-colored" %>
-          <%= form.collection_select :pilote2_id,
-                  pilotes_division_named(Division.find(session[:division])), :first, :second,
-                  { include_blank: 'Select Pilote' },
-                    class: "form-select input-colored" %>         
-        </div>
+      <div class="input-group input-group-sm my-1 label-colored">
+        <%= form.label :pilote2_id, class: "input-group-text label-colored" %>
+        <%= form.collection_select :pilote2_id,
+                pilotes_division_named(Division.find(session[:division])), :first, :second,
+                { include_blank: 'Select Pilote' },
+                  class: "form-select input-colored" %>         
       </div>
 
       <div class="col-md">
