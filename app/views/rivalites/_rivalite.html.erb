@@ -19,7 +19,7 @@
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
           
         <div class="text-center">
-          gp courant: <%= current_event_score[:pilote1] %> points
+          gp courant: <%=pluralize(current_event_score[:pilote1], 'point') %>
         </div>
       </div>
 
@@ -35,7 +35,7 @@
         <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
         <div class="text-center">
-          gp courant: <%= current_event_score[:pilote2] %> points
+          gp courant: <%=pluralize(current_event_score[:pilote2], 'point') %>
         </div>
       <%# end %>
     </div>

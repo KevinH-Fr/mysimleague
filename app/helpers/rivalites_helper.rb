@@ -51,16 +51,18 @@ module RivalitesHelper
         pilote1_position_qualif = pilote1_result.qualification
         pilote2_position_qualif = pilote2_result.qualification
 
-        # Check if either pilot has "dns" for both qualification and course
-        if (pilote1_result.qualification != "dns" || pilote1_result.course != "dns") &&
-           (pilote2_result.qualification != "dns" || pilote2_result.course != "dns")
+        if pilote1_result.dns == true
+          pilote2_points += 1 if pilote2_result.dnf == false  
+        elsif pilote2_result.dns == true 
+          pilote1_points += 1 if pilote1_result.dnf == false  
+        elsif pilote1_result.dns == false && pilote2_result.dns == false 
 
           # Update points based on positions for the current event
-          pilote1_points += 1 if pilote1_position_course < pilote2_position_course && pilote1_result.course != "dns"
-          pilote2_points += 1 if pilote2_position_course < pilote1_position_course && pilote2_result.course != "dns"
+          pilote1_points += 1 if pilote1_position_course < pilote2_position_course 
+          pilote2_points += 1 if pilote2_position_course < pilote1_position_course 
 
-          pilote1_points += 1 if pilote1_position_qualif < pilote2_position_qualif && pilote1_result.qualification != "dns"
-          pilote2_points += 1 if pilote2_position_qualif < pilote1_position_qualif && pilote2_result.qualification != "dns"
+          pilote1_points += 1 if pilote1_position_qualif < pilote2_position_qualif 
+          pilote2_points += 1 if pilote2_position_qualif < pilote1_position_qualif 
         end
       end
 
@@ -71,7 +73,7 @@ module RivalitesHelper
       cumulative_scores[:pilote2] += pilote2_points
     end
 
-    leading_pilote_id = cumulative_scores[:pilote1] > cumulative_scores[:pilote2] ? pilote1.id : pilote2.id
+    leading_pilote_id = cumulative_scores[:pilote1] > cumulative_scores[:pilote2] ? pilote1.id : cumulative_scores[:pilote1] < cumulative_scores[:pilote2] ? pilote2.id : nil
 
     { scores_by_event: scores_by_event, cumulative_scores: cumulative_scores, 
       pilote1_score: cumulative_scores[:pilote1], pilote2_score: cumulative_scores[:pilote2],
