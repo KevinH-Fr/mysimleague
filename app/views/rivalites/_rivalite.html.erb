@@ -1,48 +1,55 @@
 <div id="<%= dom_id rivalite %>">
 
   <div class="card my-2 p-2">  
-    <div class="mb-2">
-      <%= equipe_banner_pilote_and_indicator(
-            AssociationUser.where(user_id: rivalite.pilote1.user.id, division_id: rivalite.division_id,
-            actif: true, valide: true).last.equipe, rivalite.pilote1.user.nom, "test") %>
+    <div class="mb-3">
+    
       <% if @event %>     
+
+        <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
+
+        <%= equipe_banner_pilote_and_indicator(
+              AssociationUser.where(user_id: rivalite.pilote1.user.id, division_id: rivalite.division_id,
+              actif: true, valide: true).last.equipe, 
+              rivalite.pilote1.id,             
+              rivalite.pilote1.user.nom, 
+              scores[:leading_pilote_id]) %>
+
+
+        <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
+          
+        <div class="text-center">
+          gp: <%= current_event_score[:pilote1] %> points |
+          <strong> cumul: <%= scores[:cumulative_scores][:pilote1] if scores[:cumulative_scores].present? %> points </strong> 
+        </div>
+      </div>
+
+      <div>
+        <%= equipe_banner_pilote_and_indicator(
+              AssociationUser.where(user_id: rivalite.pilote2.user.id, division_id: rivalite.division_id,
+              actif: true, valide: true).last.equipe,           
+              rivalite.pilote2.id,             
+              rivalite.pilote2.user.nom, 
+              scores[:leading_pilote_id]) %>
+
         <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
-        gp: <%= current_event_score[:pilote1] %> points |
-        cumul: <%= scores[:cumulative_scores][:pilote1] if scores[:cumulative_scores].present? %> points
-      <% end %>
-    </div>
-
-
-    <div>
-      <%= equipe_banner_with_data(
-          AssociationUser.where(user_id: rivalite.pilote2.user.id, division_id: rivalite.division_id,
-          actif: true, valide: true).last.equipe, rivalite.pilote2.user.nom) %>
-
-      <% if @event %>     
-        <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
-        <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
-        gp: <%= current_event_score[:pilote2] %> points |
-        cumul: <%= scores[:cumulative_scores][:pilote2] if scores[:cumulative_scores].present? %> points
+        <div class="text-center">
+          gp: <%= current_event_score[:pilote2] %> points |
+          <strong>  cumul: <%= scores[:cumulative_scores][:pilote2] if scores[:cumulative_scores].present? %> points </strong> 
+        </div>
       <% end %>
     </div>
 
     <div class="d-flex mt-2">
-
-      <%= boolean_icon(rivalite.statut) %>
-
       <% if current_user && verif_admin_ligue(current_user, rivalite.division.saison.ligue) %>
+        <%= boolean_icon(rivalite.statut) %>
         <%= button_to "", edit_rivalite_path(rivalite), method: :post, 
             class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square me-1" %>
         <%= button_to "", rivalite, method: :delete, 
             class: "btn btn-sm btn-danger fa-solid fa-trash me-1",
             data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
       <% end %>
-      
     </div>
   </div>
 
-
-
 </div>
-

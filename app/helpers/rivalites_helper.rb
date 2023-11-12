@@ -1,11 +1,14 @@
 module RivalitesHelper
 
-  def rivalite_lead_indicator(rivalite)
+  
+
+  def leader_indicator(pilote, leader)
+
     content = []
 
-    if rivalite
-      content << content_tag(:span, "leader", class: "badge p-1 text-center rounded bg-light text-danger fw-bold me-1")
-    end
+    if pilote == leader
+      content << content_tag(:i, "", class: "fa fa-trophy fa-lg icon-indicator-resultat text-warning fw-bold pe-1")
+    end 
 
     content_span = content_tag(:span, content.join(" ").html_safe, 
       class: "text-light fw-bold position-absolute end-0",
@@ -13,18 +16,21 @@ module RivalitesHelper
     content_span
   end
 
-  
-
-  def equipe_banner_pilote_and_indicator(equipe, pilote, rivalite)
+  def equipe_banner_pilote_and_indicator(equipe, pilote, label, leader)
     if equipe.banniere.present?
-      banner_and_pilote = equipe_banner_with_data(equipe, pilote)
-      indicator = rivalite_lead_indicator(rivalite)
-
+      banner_and_pilote = equipe_banner_with_data(equipe, label)
+      indicator = leader_indicator(pilote, leader)
+      
       content_tag(:div, class: "equipe-banner-wrapper", style: "position: relative; ") do
         [banner_and_pilote, indicator].join.html_safe
       end
     end
   end
+
+
+  
+
+  
 
   def calcul_rivalite(pilote1, pilote2, division, event)
     @event = Event.find(event)
@@ -69,7 +75,12 @@ module RivalitesHelper
       cumulative_scores[:pilote2] += pilote2_points
     end
 
+    leading_pilote_id = cumulative_scores[:pilote1] > cumulative_scores[:pilote2] ? pilote1.id : pilote2.id
+
     { scores_by_event: scores_by_event, cumulative_scores: cumulative_scores, 
-      pilote1_score: cumulative_scores[:pilote1],   pilote2_score: cumulative_scores[:pilote2]  }
+      pilote1_score: cumulative_scores[:pilote1], pilote2_score: cumulative_scores[:pilote2],
+      leading_pilote_id: leading_pilote_id }
   end
+
+  
 end

@@ -1,4 +1,4 @@
-<div class="card m-0 p-1" style="max-width: 480px;">
+  <div class="card m-0 my-1 p-2">  
 
   <%= form_with(model: rivalite) do |form| %>
     <% if rivalite.errors.any? %>
@@ -21,8 +21,8 @@
 
     <div class="row g-2">
       <div class="col-md">
-        <div class="input-group input-group-sm my-1">
-          <%= form.label :pilote1_id, style: "display: block" %>
+        <div class="input-group input-group-sm my-1 label-colored">
+          <%= form.label :pilote1_id, class: "input-group-text label-colored" %>
           <%= form.collection_select :pilote1_id,
                   pilotes_division_named(Division.find(session[:division])), :first, :second,
                   { include_blank: 'Select Pilote' },
@@ -31,8 +31,8 @@
       </div>       
 
       <div class="col-md">
-        <div class="input-group input-group-sm my-1">
-          <%= form.label :pilote2_id, style: "display: block" %>
+        <div class="input-group input-group-sm my-1 label-colored">
+          <%= form.label :pilote2_id, class: "input-group-text label-colored" %>
           <%= form.collection_select :pilote2_id,
                   pilotes_division_named(Division.find(session[:division])), :first, :second,
                   { include_blank: 'Select Pilote' },
@@ -41,10 +41,12 @@
       </div>
 
       <div class="col-md">
-        <div class="input-group input-group-sm my-1">
-          <%= form.label :statut, style: "display: block" %>
-          <%= form.check_box :statut %>
+
+        <div class="form-check form-switch">
+          <%= form.label :statut, class: "form-check-label fs-6" %>
+          <%= form.check_box :statut, class: "form-check-input fs-6" %>
         </div>
+
       </div>
 
       <%= custom_submit_button("Rivalité") %>

@@ -1,4 +1,5 @@
 class MenuController < ApplicationController
+  include AssociationAdminsHelper
 
   def index
     @ligues = Ligue.all
@@ -225,7 +226,13 @@ class MenuController < ApplicationController
   def display_rivalites
 
     @event = Event.find(session[:event])
+
+    
     @rivalites = @event.division.rivalites if @event 
+
+    unless current_user && verif_admin_ligue(current_user, @event.division.saison.ligue)
+      @rivalites = @event.division.rivalites.where(statut: true) if @event
+    end
 
     respond_to do |format|
       format.turbo_stream do
