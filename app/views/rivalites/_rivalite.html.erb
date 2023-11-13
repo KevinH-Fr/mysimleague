@@ -36,9 +36,9 @@
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
         <div class="text-center">
           gp courant: <%=pluralize(current_event_score[:pilote2], 'point') %>
-          <br>
-          qualif: <%= scores[:point_qualif] %>
-          course: <%= scores[:point_course] %>
+          
+          <%#= scores[:point_qualif] %>
+          <%#= scores[:point_course] %>
 
         </div>
       <%# end %>
