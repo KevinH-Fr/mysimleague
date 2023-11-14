@@ -23,7 +23,12 @@
       </div>
 
       <% comparison = compare_equipe_ranks(@previous_event, @event)[equipe[:equipe_id]] if @previous_event %>
-      <%= badge_delta_rank(comparison[:delta_rank].to_i) if comparison %>
+      
+      <% if comparison %>
+        <%= badge_delta_rank(comparison[:delta_rank].to_i)  %>
+      <% else %>
+        <%= badge_delta_rank(0)  %>
+      <% end %>
 
     </div>
 

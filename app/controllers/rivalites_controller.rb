@@ -122,8 +122,6 @@ end
     end
   end
 
-
-
     def rivalite_params
       params.require(:rivalite).permit(:division_id, :pilote1_id, :pilote2_id, :statut)
     end
