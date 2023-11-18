@@ -2,14 +2,14 @@ class ApplicationController < ActionController::Base
 
     include Pagy::Backend
 
-    before_action :record_page_view
+    #before_action :record_page_view
     around_action :set_time_zone, if: -> { session[:ligue].present? }
 
     before_action :track_action
 
-    def record_page_view
-      ActiveAnalytics.record_request(request)
-    end
+ #   def record_page_view
+ #     ActiveAnalytics.record_request(request)
+ #   end
   
     
     def event_courant 

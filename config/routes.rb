@@ -216,6 +216,6 @@ Rails.application.routes.draw do
   
   get 'set_theme', to: 'theme#update'
   
-  mount ActiveAnalytics::Engine, at: "analytics"
+ # mount ActiveAnalytics::Engine, at: "analytics"
 
 end

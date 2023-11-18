@@ -54,7 +54,7 @@ gem 'cloudinary'
 gem 'dotenv-rails', groups: [:development, :test]
 
 gem 'open-weather-ruby-client'
-gem 'active_analytics'
+#gem 'active_analytics'
 gem 'sitemap_generator'
 
 gem "local_time"
@@ -68,7 +68,5 @@ gem 'bullet', group: 'development'
 gem 'meta-tags'
 
 #gem 'faker'
-
 #gem 'impressionist'
-
 #gem "ahoy_matey"
