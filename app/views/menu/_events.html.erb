@@ -1,4 +1,4 @@
-<div class="card-with-effect m-0">
+<div class="card-with-effect">
 
   <%= render "liste_events" %>
 
@@ -15,15 +15,16 @@
           { path: display_synthese_licences_menu_index_path, icon: "fa-id-card", text: "Licences", color: "text-danger" },
           { path: display_paris_menu_index_path, icon: "fa-money-bill-wave", text: "Paris", color: "text-success" },
           { path: display_rivalites_menu_index_path, icon: "fa-bolt", text: "Rivalités", color: "text-warning" },
-          { path: display_classement_pilotes_menu_index_path, icon: "fa-ranking-star", text: "Pilotes", color: "" },
-          { path: display_classement_equipes_menu_index_path, icon: "fa-ranking-star", text: "Equipes", color: "" }
+          { path: display_classement_pilotes_menu_index_path, icon: "fa-ranking-star", text: "Pilotes", color: "text-light" },
+          { path: display_classement_equipes_menu_index_path, icon: "fa-ranking-star", text: "Equipes", color: "text-light" }
         ] %>
 
         <div class="d-flex flex-wrap justify-content-center align-items-center py-4">
           <% button_configs.each do |config| %>
             <%= button_to config[:path], class: "btn btn-sm m-1 btn-topic", 
-                data: { controller: "button-color", action: "click->button-color#handleClick" } do %>
-              <i class="fa fa-solid fa-xl <%= config[:icon] %>  <%= config[:color] %> <%= config[:text].downcase.parameterize %> <%= config[:color] %>"></i>
+                data: { controller: "button-color", action: "click->button-color#handleClick" },
+                "data-original-color": config[:color] do %>
+              <i class="fa fa-solid fa-xl <%= config[:icon] %> <%= config[:color] %> <%= config[:text].downcase.parameterize %> <%= config[:color] %>" data-target="button-color.icon"></i>
               <span class="ms-1 fw-bold text-light"><%= config[:text] %></span>
             <% end %>
           <% end %>

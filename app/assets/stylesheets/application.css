@@ -11,7 +11,7 @@
 body, select {
   font-family: 'F1regular';
   font-size: small;
-  background-color: #424245;
+  background-color: rgb(22, 22, 22);
   color: lightgray;
 }
 
@@ -41,8 +41,8 @@ body, select {
 }
 
 nav{
-  box-shadow:  5px 5px 10px #383737,
-  -5px -10px 0px #ffffff;
+  box-shadow:  2px 2px 5px #3f3f3f,
+  -2px -5px 0px #3f3f3f;
 }
 
 h4{
@@ -87,8 +87,8 @@ select, input{
 .card-with-effect{
   border-radius: 10px;
   background: #343232;
-  box-shadow:  2px 2px 5px #3e3c3c,
-              -2px -5px 5px #3e3a3a;
+  box-shadow:  2px 2px 5px #3f3f3f,
+              -2px -2px 2px #3f3f3f;
   padding: 2px;
   margin-top: 20px;
  /* margin-bottom: 10px;*/
@@ -178,6 +178,12 @@ select, input{
 .btn-topic{
   background-color: rgb(30, 29, 29); 
   color: lightgray;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-topic:hover {
+  background-color:  #007bff;
+  color: white;
 }
 
 .btn-topic.active {
