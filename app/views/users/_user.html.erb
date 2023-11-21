@@ -54,7 +54,7 @@
           <%= association_user.division.saison.nom %> 
           <%= association_user.division.nom %> 
         </div>
-        <%= equipe_banner_with_data(association_user.equipe, association_user.user.nom) %>
+        <%= equipe_banner_with_data(association_user.equipe, association_user.user.nom, association_user.user.id) %>
         <div class="badge bg-dark mx-1 p-2"> 
           <%= boolean_icon(association_user.actif) %>
         </div>

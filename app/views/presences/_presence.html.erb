@@ -8,7 +8,8 @@
 
     <%= equipe_banner_with_data(
           presence.association_user.equipe,
-          presence.association_user.user.nom) %> 
+          presence.association_user.user.nom,
+          presence.association_user.user.id) %> 
 
     <div class="d-flex align-items-center ms-1">
       <% if current_user && verif_propriete_presence(current_user, presence.association_user_id) %>

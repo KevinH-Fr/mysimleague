@@ -5,7 +5,9 @@
 
     <div class="row align-items-center">
       <div class="col-8">
-        <strong class="me-2"> <%= association_admin.user.nom %> </strong>
+        <strong class="me-2"> 
+          <%= link_to association_admin.user.nom, user_path(association_admin.user.id), class: "no-underline" %> 
+        </strong>
 
         <%= status_badge(association_admin.valide) %>
         <%= activity_badge(association_admin.actif) %>

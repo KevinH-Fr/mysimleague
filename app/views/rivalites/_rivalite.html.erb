@@ -13,7 +13,8 @@
               rivalite.pilote1.id,             
               rivalite.pilote1.user.nom, 
               scores[:leading_pilote_id],
-              scores[:cumulative_scores][:pilote1]) %>
+              scores[:cumulative_scores][:pilote1],
+              rivalite.pilote1.user.id) %>
 
 
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
@@ -30,7 +31,8 @@
               rivalite.pilote2.id,             
               rivalite.pilote2.user.nom, 
               scores[:leading_pilote_id],
-              scores[:cumulative_scores][:pilote2]) %>
+              scores[:cumulative_scores][:pilote2],
+              rivalite.pilote2.user.id) %>
 
         <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>

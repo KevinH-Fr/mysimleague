@@ -16,7 +16,7 @@
 
       <%= equipe_banner_with_data(
             Equipe.find(equipe[:equipe_id]), 
-            Equipe.find(equipe[:equipe_id]).nom) %> 
+            Equipe.find(equipe[:equipe_id]).nom, "") %> 
 
       <div class="d-flex align-items-center justify-content-center">
         <%= badge_score_position(equipe[:score_sum]) %> 

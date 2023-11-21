@@ -16,7 +16,8 @@
     <div class=" d-flex align-items-center justify-content-center my-1 p-0" style="">
         <%= equipe_banner_with_data(
             AssociationUser.find(pilote[:association_user_id]).equipe, 
-            User.find(pilote[:user_id]).nom) %> 
+            User.find(pilote[:user_id]).nom,
+            User.find(pilote[:user_id]).id) %> 
         <div class="d-flex align-items-center justify-content-center">
           <%= badge_points_licence(pilote[:perte_total].to_s, "perte") %> 
           <%= badge_points_licence(pilote[:gain_total].to_s, "gain") %> 

@@ -50,7 +50,7 @@ h4{
 }
 
 .card{
-  background: #272626;
+  background: #222222;
 }
 
 select, input{
@@ -86,9 +86,8 @@ select, input{
 
 .card-with-effect{
   border-radius: 10px;
-  background: #343232;
-  box-shadow:  2px 2px 5px #3f3f3f,
-              -2px -2px 2px #3f3f3f;
+  background: #201f1f;
+  box-shadow:  2px 2px 5px #3f3f3f;
   padding: 2px;
   margin-top: 20px;
  /* margin-bottom: 10px;*/
@@ -97,9 +96,8 @@ select, input{
 
 .record-with-effect{
   border-radius: 10px;
-  background: #343232;
-  box-shadow:  2px 2px 5px #3e3c3c,
-              -2px -5px 5px #3e3a3a;
+  background: #272727;
+  box-shadow:  2px 2px 5px rgb(46, 46, 46);
   padding: 5px;
   margin-bottom: 12px;
   color: lightgray;
@@ -165,13 +163,14 @@ select, input{
 }
 
 .partial-topic{
-  background-color: #343232;
+  background-color: #201f1f;
 
 }
 
 .card-event-topics{
   background-color: #343232;
   border-radius: 10px;
+  margin: 10px 0px 10px 0;
 }
 
 

@@ -19,7 +19,8 @@
             valide: true,
             )
             .last.equipe,
-          User.find(user_id[:user_id]).nom) %>
+          User.find(user_id[:user_id]).nom,
+          user_id[:user_id]) %>
       <%= badge_score_position(user_id[:score]) %>
 
       <% comparison = compare_ranks(@previous_event, @event)[user_id[:user_id]] if @previous_event %>

@@ -1,7 +1,7 @@
 module EquipesHelper
 
     #new banner unique pour faciliter gestion image 
-    def equipe_banner_with_data(equipe, label)
+    def equipe_banner_with_data(equipe, label, user)
       if equipe.banniere.present?
         image_tag = image_tag(equipe.banniere, 
           class: "position-relative rounded m-0 p-0 img-fluid max-record-height",
@@ -14,7 +14,15 @@ module EquipesHelper
             style: "margin-left: 70px;") # Adjust the value as needed
         
         content_tag(:div, class: "equipe-banner-wrapper", style: "position: relative;") do
-          [image_tag, label_span].join.html_safe
+
+          if user.present?
+            link_to(user_path(user)) do
+              [image_tag, label_span].join.html_safe
+            end 
+          else 
+            [image_tag, label_span].join.html_safe
+          end
+
         end
       end
 

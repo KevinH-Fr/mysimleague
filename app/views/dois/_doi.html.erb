@@ -10,10 +10,16 @@
             <span> DOI commissaire </span>
           </span>
         <% else %>
-          demandeur: <strong> <%= AssociationUser.find(doi.demandeur_id).user.nom %></strong>        
+          demandeur: 
+          <strong> 
+            <%= link_to AssociationUser.find(doi.demandeur_id).user.nom, user_path(AssociationUser.find(doi.demandeur_id).user.id), class: "no-underline" %>
+          </strong>        
         <% end %>
        
-        impliqué: <strong><%= AssociationUser.find(doi.implique_id).user.nom %></strong> 
+        impliqué: 
+        <strong> 
+          <%= link_to AssociationUser.find(doi.implique_id).user.nom, user_path(AssociationUser.find(doi.implique_id).user.id), class: "no-underline" %>
+        </strong>        
 
         <div class="my-2">
           <%= "Description: #{doi.description}" if doi.description.present? %>
@@ -32,8 +38,8 @@
         <%= status_badge_decision_doi(doi.decision) %>
         <% if doi.penalite.present? || doi.penalite_temps.present? %>
           <span class="text-danger">
-            Penalité licence: <%= doi.penalite %> points
-            Penalité temps: <%= doi.penalite_temps %> secondes 
+            <%=  "#{doi.penalite} points" if doi.penalite.present? %> 
+            <%=  "#{doi.penalite_temps} secondes" if doi.penalite_temps.present? %> 
           </span>
         <% end %>
 
@@ -52,7 +58,7 @@
         <div class="my-2">
           <strong> <%= "Resp. commissaire: #{AssociationAdmin.find(doi.association_admin_id).user.nom}" if doi.association_admin_id.present? %> </strong>
         </div>
-        
+
       <% if current_user && verif_admin_ligue(current_user, doi.event.division.saison.ligue) %>
 
         <div class="d-flex align-items-center">  

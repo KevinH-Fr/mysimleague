@@ -9,7 +9,8 @@
       
     <%= equipe_banner_with_data(
       dotd.association_user.equipe,
-      dotd.association_user.user.nom) %> 
+      dotd.association_user.user.nom,
+      dotd.association_user.user.id) %> 
 
     <% if current_user && verif_user_dotd(current_user, dotd.user_id) && verif_delai_dotd(session[:event]) %>
     

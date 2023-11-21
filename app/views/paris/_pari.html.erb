@@ -6,10 +6,10 @@
     <div class="row align-items-center">
       <div class="col-12">
         <strong>#<%= pari.id %></strong> - pari de
-        <strong> <%= pari.user.nom %> </strong> 
+        <strong> <%= link_to pari.user.nom, user_path(pari.user.id), class: "no-underline" %> </strong> 
          <%= number_with_delimiter(pari.montant.to_i, delimiter: ' ', precision: 0)  %> sur 
         <strong> <%= pari.typepari %> </strong> de 
-        <strong> <%= pari.association_user.user.nom %> </strong> - 
+        <strong> <%= link_to pari.association_user.user.nom, user_path(pari.association_user.user.id), class: "no-underline" %> </strong> - 
         cote: <%= pari.cote %>
 
         <%= boolean_icon(pari.resultat) %>

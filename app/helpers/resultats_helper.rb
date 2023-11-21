@@ -25,17 +25,20 @@ module ResultatsHelper
     content_span
   end
 
-  def equipe_banner_pilote_and_indicators(equipe, pilote, dotd, mt, dnf, dns)
+  def equipe_banner_pilote_and_indicators(equipe, pilote, dotd, mt, dnf, dns, user)
     if equipe.banniere.present?
-      banner_and_pilote = equipe_banner_with_data(equipe, pilote)
+      banner_and_pilote = equipe_banner_with_data(equipe, pilote, user)
       indicators = dotd_mt_dnf_dns_indicators(dotd, mt, dnf, dns)
       
       content_tag(:div, class: "equipe-banner-wrapper", style: "position: relative; ") do
-        [banner_and_pilote, indicators].join.html_safe
+        link_to(user_path(user)) do
+          [banner_and_pilote, indicators].join.html_safe
+        end
       end
     end
   end
 
+  
   def equipe_banner_pilote_and_indicators_document(equipe, pilote, dotd, mt, dnf, dns)
     if equipe.banniere.present?
       banner_and_pilote = equipe_banner_with_data_document(equipe, pilote)

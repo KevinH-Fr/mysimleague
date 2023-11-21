@@ -17,9 +17,9 @@ module RivalitesHelper
   
   
 
-  def equipe_banner_pilote_and_indicator(equipe, pilote, label, leader, cumul)
+  def equipe_banner_pilote_and_indicator(equipe, pilote, label, leader, cumul, user)
     if equipe.banniere.present?
-      banner_and_pilote = equipe_banner_with_data(equipe, label)
+      banner_and_pilote = equipe_banner_with_data(equipe, label, user)
       indicators = rivalite_indicators(pilote, leader, cumul)
       
       content_tag(:div, class: "equipe-banner-wrapper", style: "position: relative; ") do
