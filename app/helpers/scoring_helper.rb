@@ -60,10 +60,18 @@ module ScoringHelper
 
     end
 
+    def scoring_paris(user)
+      paris_ponderation = 10
+      score_paris = user.paris_score.to_i * paris_ponderation
+    end
 
+
+    def scoring_dotds(user)
+      dotds_ponderation = 60
+      score_dotds = user.dotds_score.to_i * dotds_ponderation
+    end
 
     def scoring_user_sum(user)
-      scoring_user_db(user) + scoring_user_en_cours(user)
     end
     
 

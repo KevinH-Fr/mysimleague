@@ -9,14 +9,14 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def new
 
     super do |resource|
-      resource.edit_profile_score = scoring_edit_profile(resource)
-      resource.save
     end
-
+    
   end
   
+  
   def after_sign_up_path_for(resource)
-      home_index_path
+    user_path(resource)
+    
   end
 
   def index  
@@ -27,13 +27,16 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    super do |resource|
-      resource.edit_profile_score = scoring_edit_profile(resource)
-      resource.save
-    end
+    super
+    update_edit_profile_score(resource)
   end
   
   private
+
+  def update_edit_profile_score(resource)
+    resource.edit_profile_score = scoring_edit_profile(resource)
+    resource.save
+  end
 
   def sign_up_params
     params.require(:user).permit(:email, :password, :password_confirmation, :nom, :visiteur, :pilote, :admin,

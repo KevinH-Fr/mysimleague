@@ -1,6 +1,7 @@
 class Pari < ApplicationRecord
 
   include ParieursHelper
+  include ScoringHelper
   
   belongs_to :event
   belongs_to :user
@@ -15,6 +16,10 @@ class Pari < ApplicationRecord
   #before_save :calcul_solde
   before_create :calcul_solde
   before_update :calcul_solde
+
+  after_create :increment_user_scoring_paris
+
+
 
   def feed_content
     id
@@ -65,6 +70,11 @@ class Pari < ApplicationRecord
 
  def self.ransackable_attributes(auth_object = nil)
   ["association_user_id", "cote", "created_at", "event_id", "id", "montant", "resultat", "solde", "typepari", "updated_at", "user_id"]
+ end
+
+
+ def increment_user_scoring_paris
+    user.increment!(:paris_score, 1)
  end
 
 end
