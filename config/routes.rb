@@ -37,7 +37,11 @@ Rails.application.routes.draw do
       post 'display_parieurs'
       post 'display_parieurs_annee'
 
+      post 'update_scores_users'
+
     end
+
+
 
   end
 

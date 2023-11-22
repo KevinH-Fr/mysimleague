@@ -1,6 +1,7 @@
 class HomeController < ApplicationController
  # include FeedsHelper
   include UsersHelper
+  include ScoringUpdateHelper
 
 
   def landingpage
@@ -211,6 +212,11 @@ class HomeController < ApplicationController
       ]
       end
     end
+  end
+
+  def update_scores_users
+    update_scoring
+    redirect_to root_path, notice: "update_scoring successfully."
   end
     
 end

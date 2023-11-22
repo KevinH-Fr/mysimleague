@@ -44,6 +44,15 @@ module ScoringHelper
       user_scoring_data
     end
 
+    def top_5_user_scores
+      scoring_user[0..4]
+    end
+
+
+
+ 
+    ###################################
+    
 
     def scoring_edit_profile(user)
       profile_edit_points = 0
@@ -56,7 +65,6 @@ module ScoringHelper
       profile_edit_points += 70 if user.pilote_prefere.present?
 
       profile_edit_points
-
 
     end
 
@@ -72,13 +80,34 @@ module ScoringHelper
     end
 
     def scoring_user_sum(user)
+      user.action_count.to_i + scoring_edit_profile(user) + scoring_paris(user) +  scoring_dotds(user)
     end
     
 
 
-    def top_5_user_scores
-        scoring_user[0..4]
-    end
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
   
     def scoring_pilote
       users = User.all

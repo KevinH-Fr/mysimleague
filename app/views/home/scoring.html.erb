@@ -7,6 +7,13 @@
         notamment en faisant des paris et des votes DOTD, ou encore en éditant les infos sur ton profil !
     </div>
 
+
+        <%# cacher pour non admin %>
+    <%= link_to 'Update all scores', 
+            update_scores_users_home_index_path, method: :post %>
+
+
+
     <div class="scrollable-paragraph">
 
         <% scoring_user.each do |user_data| %>
@@ -24,12 +31,11 @@
                             <%# test score task stored in db with update %>
                             <div class="container bg-success">
                                 <%#= user_data[:user].scores.sum(:action_count) %>
-                                verif helper edit profile: <%= scoring_edit_profile(user_data[:user]) %> <br>
+                                verif db count action: <%= user_data[:user].action_count %> <br>
                                 verif db edit profile: <%= user_data[:user].edit_profile_score %>
-
+                                verif sum: <%=  scoring_user_sum(user_data[:user]) %> <br>
                                 verif db puis helper score paris: <%= scoring_paris( user_data[:user]) %>
                                 verif db puis helper score dtods: <%= scoring_dotds( user_data[:user]) %>
-
                             </div>
 
 
