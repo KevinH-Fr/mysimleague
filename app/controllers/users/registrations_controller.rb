@@ -4,9 +4,13 @@ class Users::RegistrationsController < Devise::RegistrationsController
   # before_action :configure_sign_up_params, only: [:create]
   # before_action :configure_account_update_params, only: [:update]
 
+  include ScoringHelper
+
   def new
 
     super do |resource|
+      resource.edit_profile_score = scoring_edit_profile(resource)
+      resource.save
     end
 
   end
@@ -22,16 +26,23 @@ class Users::RegistrationsController < Devise::RegistrationsController
     super
   end
 
+  def update
+    super do |resource|
+      resource.edit_profile_score = scoring_edit_profile(resource)
+      resource.save
+    end
+  end
+  
   private
 
   def sign_up_params
     params.require(:user).permit(:email, :password, :password_confirmation, :nom, :visiteur, :pilote, :admin,
-                                  :profile_pic, :slogan, :bio, :controlleur_type, :pilote_prefere, :twitch)
+                                  :profile_pic, :slogan, :bio, :controlleur_type, :pilote_prefere, :twitch, :edit_profile_score)
   end
 
   def account_update_params
     params.require(:user).permit(:email, :password, :password_confirmation, :current_password, :nom, :visiteur, :pilote, :admin,
-                                  :profile_pic, :slogan, :bio, :controlleur_type, :pilote_prefere, :twitch)
+                                  :profile_pic, :slogan, :bio, :controlleur_type, :pilote_prefere, :twitch, :edit_profile_score)
 
   end
 end

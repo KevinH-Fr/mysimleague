@@ -21,6 +21,16 @@
                                 <i class="fa fa-xl fa-square-plus text-warning"></i>
                             </a>
 
+                            <%# test score task stored in db with update %>
+                            <div class="container bg-success">
+                                <%#= user_data[:user].scores.sum(:action_count) %>
+                                verif helper edit profile: <%= scoring_edit_profile(user_data[:user]) %> <br>
+                                verif db edit profile: <%= user_data[:user].edit_profile_score %>
+
+                            </div>
+
+
+
                         </div>
                         <div class="col-4 text-end">
                             <%= badge_scoring_medal(user_data[:rank]) %>

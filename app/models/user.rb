@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :paris
   has_many :dotds
 
+
+
   def feed_content
     id
   end 
@@ -92,5 +94,5 @@ class User < ApplicationRecord
       '<i class="fas fa-gamepad fa-xl"></i>'.html_safe
     end
   end
-   
+
 end

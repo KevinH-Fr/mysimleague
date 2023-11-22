@@ -70,3 +70,5 @@ gem 'meta-tags'
 #gem 'faker'
 #gem 'impressionist'
 #gem "ahoy_matey"
+
+#gem 'whenever', require: false

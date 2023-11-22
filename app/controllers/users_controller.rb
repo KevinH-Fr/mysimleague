@@ -26,6 +26,7 @@ class UsersController < ApplicationController
 
   def create
     @user.twitch = sanitize(params[:user][:twitch])
+
   end
   
 
@@ -36,8 +37,11 @@ class UsersController < ApplicationController
   def edit
     @user = User.find(params[:id])
     @user.twitch = sanitize(params[:user][:twitch])
-
-
   end
+
+  def update
+    @user = User.find(params[:id])
+  end
+
 
 end

@@ -1,5 +1,7 @@
 module ScoringHelper
     def scoring_user
+
+      # ancienne methode 
       users = User.includes(:paris, :dotds).all #, :events
       filtered_users = users.reject { |user| user[:admin] == true }
 
@@ -41,6 +43,30 @@ module ScoringHelper
   
       user_scoring_data
     end
+
+
+    def scoring_edit_profile(user)
+      profile_edit_points = 0
+
+      profile_edit_points += 350 if user.profile_pic.present?
+      profile_edit_points += 170 if user.twitch.present?
+      profile_edit_points += 125 if user.slogan.present?
+      profile_edit_points += 125 if user.bio.present?
+      profile_edit_points += 75 if user.controlleur_type.present?
+      profile_edit_points += 70 if user.pilote_prefere.present?
+
+      profile_edit_points
+
+
+    end
+
+
+
+    def scoring_user_sum(user)
+      scoring_user_db(user) + scoring_user_en_cours(user)
+    end
+    
+
 
     def top_5_user_scores
         scoring_user[0..4]
