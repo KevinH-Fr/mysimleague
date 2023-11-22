@@ -25,14 +25,22 @@
           <%= "Description: #{doi.description}" if doi.description.present? %>
         </div>
 
-        <div class="my-2">
-          <i class="fa fa-solid fa-link"></i>
-          <%= doi.lien if doi.lien.present? %>
+        <div class="my-2 row text-break">
+          <div class="col-auto">
+            <i class="fa fa-solid fa-link"></i>
+          </div>
+          <div class="col">
+            <%= doi.lien if doi.lien.present? %>
+          </div>
         </div>
 
-        <div class="my-2">
-          <i class="fa fa-solid fa-clock"></i>
+        <div class="my-2 row text-break">
+          <div class="col-auto">
+            <i class="fa fa-solid fa-clock"></i>
+          </div>
+          <div class="col">
           <%= local_time(doi.created_at, :short) %>
+          </div>
         </div>
         
         <%= status_badge_decision_doi(doi.decision) %>

@@ -116,6 +116,11 @@ class HomeController < ApplicationController
     end
   end
 
+
+  def generate_image_parieurs
+    render "home/document_parieurs"
+  end
+
   def display_demande_rattachement
 
     respond_to do |format|

@@ -44,11 +44,9 @@
               </div>
             </div>
 
-
             <div class="fs-6 m-2 p-2" data-form-pari-target="output"></div>
 
           </div>
-
 
           <%= form.button "Validate", formaction:  new_pari_path, formmethod: :get, 
                 data: { turbo_frame: :contents_field, form_pari_target: "submitbtn"} %>
@@ -68,7 +66,8 @@
               <% cotes_pilotes(Event.find(session[:event])).each do |association_user_id, values| %>
                 <tr>
                   <th scope="row px-1" style="vertical-align: middle;">
-                    <%= truncate(AssociationUser.find(values[:association_user_id]).user.nom, length: 12 ) %> 
+                    <%= link_to truncate(AssociationUser.find(values[:association_user_id]).user.nom, length: 12 ), 
+                          user_path(AssociationUser.find(values[:association_user_id]).user.id), class: "no-underline" %> 
                   </th>
                   
                   <td class="text-center px-0">

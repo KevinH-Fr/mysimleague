@@ -10,6 +10,10 @@
       <% end %>
     </div>
 
+    <div class="container-fluid text-center my-2">
+      <%= link_to "", generate_image_parieurs_path(), class: 'btn fa fa-image btn-outline-success w-25' %>
+    </div>
+
     <% if @annee %>
       <% somme_paris_user(@annee, User.all).each do |user_id, data| %>
         <div class="d-flex align-items-center justify-content-center my-1">

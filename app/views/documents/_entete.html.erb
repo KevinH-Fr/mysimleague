@@ -1,29 +1,40 @@
+  
+    <table width="540" style="margin-left:auto;margin-right:auto">
 
-<table width="540" style="margin-left:auto;margin-right:auto">
+        <tr>
+            <td class="">
+                <h2 class="doc-titre">
 
-    <tr>
-        <td class="">
-            <h2 class="doc-titre">
-                <%= cl_image_tag(@event.division.saison.ligue.logo.url, 
-                    :class => "position-relative rounded m-0 p-0 img-fluid",
-                    :style => "width: 80px; height: auto; display: block;") if @event.division.saison.ligue.logo.present? %>
+                    <% if @event %>
+                        <%= cl_image_tag(@event.division.saison.ligue.logo.url, 
+                            :class => "position-relative rounded m-0 p-0 img-fluid",
+                            :style => "width: 80px; height: auto; display: block;") if @event.division.saison.ligue.logo.present? %>
+                    <% end %>
+                    
+                    <%= titre %>
+                </h2>
+            </td>
+            <td class="text-end">  
+                <h6 class="doc-sous-titre">  
 
-                <%= titre %>
-            </h2>
-        </td>
-        <td class="text-end">  
-            <h6 class="doc-sous-titre">  
-                <%= @event.division.saison.nom %>
-                <%= @event.division.nom %> - 
-                GP <%= @event.numero %> <br>
+                    <% if @event %>
+
+                        <%= @event.division.saison.nom %>
+                        <%= @event.division.nom %> - 
+                        GP <%= @event.numero %> <br>
 
                         <%= Circuit.find(@event.circuit_id).pays %> 
-                   
-                    <%= cl_image_tag(Circuit.find(@event.circuit_id).drapeau.url, 
-                    style: "width: 40px; height: 30px; display: inline", 
-                    class: "img-fluid rounded") %>
+                        
+                        <%= cl_image_tag(Circuit.find(@event.circuit_id).drapeau.url, 
+                            style: "width: 40px; height: 30px; display: inline", 
+                            class: "img-fluid rounded") %>
+                    <% else %>
+                        <%= Time.now.to_date.strftime("%d/%m/%Y") %>
+                    <% end %>
+                    
+                </h6>
+            </td>
+        </tr>
+    </table>
 
-            </h6>
-        </td>
-    </tr>
-</table>
+

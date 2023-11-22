@@ -29,15 +29,14 @@ Rails.application.routes.draw do
     collection do 
 
       post 'display_feeds'
-
-      post 'display_parieurs'
       post 'display_demande_rattachement'
       post 'display_creer_ligue'
-
-      post 'display_parieurs_annee'
       post 'display_pilotes'
-
       post 'display_comparaison_stats'
+
+      post 'display_parieurs'
+      post 'display_parieurs_annee'
+
     end
 
   end
@@ -186,6 +185,9 @@ Rails.application.routes.draw do
 
   get 'generate_image_licences', to: 'synthese_licences#generate_image', as: 'generate_image_licences'
   get 'generate_image_rivalites', to: 'rivalites#generate_image', as: 'generate_image_rivalites'
+
+  get 'generate_image_parieurs', to: 'home#generate_image_parieurs', as: 'generate_image_parieurs'
+
 
   devise_for :admin_users, ActiveAdmin::Devise.config
   ActiveAdmin.routes(self)
