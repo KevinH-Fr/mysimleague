@@ -61,7 +61,6 @@ class User < ApplicationRecord
       '/images/profile_default.webp'
     end
   end
-  
 
   def profile_pic_format_and_size
     if profile_pic.attached?

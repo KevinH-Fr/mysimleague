@@ -21,9 +21,17 @@
         <div class="equipe-banner-wrapper d-flex align-items-center bg-secondary text-light fw-bold rounded px-2" style="width: 100%; max-width: 300px;">
        
             <%# reprender voir pourquoi image tag webp donne erreur sur generation pdf %>
-            <%#= image_tag(User.find(user_id).webp_variant, class: "mini-profile-pic me-1") %>
-            <%= User.find(user_id).nom %>
+         
+          <% if User.find(user_id).profile_pic.present? %>
+            <%= cl_image_tag(User.find(user_id).default_profile_pic.url, class: "mini-profile-pic me-1") %>
+          <% else %>
+            <%= image_tag('/images/profile_default.webp', class: "mini-profile-pic me-1") %>
+          <% end %>
+          <%=  User.find(user_id).nom %>
+          
         </div>
+
+        
         
         <div style="min-width: 80px;">
           <%= badge_score_position(data[:sum]) %>
@@ -42,7 +50,7 @@
 <div class="d-flex">
   <%#= back_button_on_event(@event.id) %>
   <button class="fa fa-solid fa-image btn btn-success m-1" data-controller="screenshot" 
-          data-nom-doc="parieurs" 
+          data-nom-doc="<%= "parieurs_#{Time.now.to_date.strftime("%d/%m/%Y")}" %>"
           data-action="click->screenshot#capture">
   </button>
 </div>

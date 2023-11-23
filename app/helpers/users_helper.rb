@@ -85,6 +85,7 @@ module UsersHelper
     
       resultats
     end
+
         
 end
   

@@ -46,7 +46,6 @@ module BadgesHelper
   end
 
 
-
   def badge_score_position(value)
     formatted_value =  number_with_delimiter(value, delimiter: " ")
   
