@@ -2,6 +2,8 @@ class ResultatsController < ApplicationController
   include ParisHelper
   include AssociationUsersHelper
   include AssociationAdminsHelper
+  include ScoringHelper
+  include UsersHelper
 
   before_action :set_resultat, only: %i[ show edit update destroy]
   before_action :authorize_admin_ligue, only: %i[ new show index create edit update destroy ]
@@ -53,6 +55,9 @@ class ResultatsController < ApplicationController
         #call maj paris liés 
         update_paris_resultats(@resultat.event_id, @resultat.association_user_id, @resultat.qualification.to_i, @resultat.course.to_i,
         @resultat.dns)
+
+        #call maj score pilote 
+        @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
 
         format.turbo_stream do
           render turbo_stream: [
@@ -118,6 +123,10 @@ class ResultatsController < ApplicationController
           @resultat.dns
         )
 
+        #call maj score pilote 
+         @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
+
+
         format.turbo_stream do
           render turbo_stream: [
 
@@ -160,6 +169,8 @@ class ResultatsController < ApplicationController
       #call maj paris liés 
       false_paris_resultats(@resultat.event_id, @resultat.association_user_id)
 
+      #call maj score pilote 
+      @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
 
       format.turbo_stream do
         render turbo_stream: [

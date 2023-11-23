@@ -111,15 +111,23 @@ module ScoringHelper
   end
   
 
-
   def ranked_pilotes
-    pilotes = YourPiloteModel.includes(:profile_pic_attachment).all
+    pilotes = User.includes(:profile_pic_attachment).all
     sorted_pilotes = pilotes.sort_by { |pilote| -scoring_pilote_sum(pilote) }
   
     ranked_pilotes = sorted_pilotes.map do |pilote|
       {
         pilote: pilote,
         rank: sorted_pilotes.index(pilote) + 1,
+        score_victoire: scoring_pilote_victoire(pilote) ,
+        score_podium: scoring_pilote_podium(pilote) ,
+        score_top10: scoring_pilote_top10(pilote) ,
+        score_nb_courses: scoring_pilote_nb_course(pilote) ,
+        score_malus_nb_courses: scoring_pilote_nb_course_malus(pilote) ,
+        score_sum_points: scoring_pilote_sum_points(pilote),
+        score_dnf: scoring_pilote_dnf(pilote) ,
+        score_dns: scoring_pilote_dns(pilote) ,
+        score_doi: scoring_pilote_doi(pilote) ,
         scoring: scoring_pilote_sum(pilote),
         # Add other scoring attributes as needed
       }
@@ -127,11 +135,26 @@ module ScoringHelper
   end
   
 
-
-
-
-
+  def ranked_pilotes_top_from_db
+    top_pilotes = User.order(score_pilote: :desc).limit(5)
+    ranked_pilotes = []
   
+    top_pilotes.each_with_index do |user, index|
+      ranked_pilotes << { 
+        user: user, 
+        rank: index + 1,
+        score: user.score_pilote
+      }
+    end
+  
+    ranked_pilotes
+  end
+  
+
+
+
+
+
 
     # anien scoring_pilote
 

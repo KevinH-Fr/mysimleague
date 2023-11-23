@@ -10,8 +10,8 @@ class Resultat < ApplicationRecord
   attribute :score, :integer, default: 0
 
   #after_create :update_pilote_score
-  after_create :update_pilote_score
-  after_update :update_pilote_score
+ # after_create :update_pilote_score
+ # after_update :update_pilote_score
 
   
   def feed_content
@@ -24,16 +24,14 @@ class Resultat < ApplicationRecord
 
   private 
 
+  #def update_pilote_score
+  #  user =  association_user.user
+  #  new_score_pilote = scoring_pilote_sum(association_user.user)
 
-  def update_pilote_score
-    user =  association_user.user
-    puts "_______________________________________________#{user.id}_________________________________"
-    new_score_pilote = scoring_pilote_sum(association_user.user)
-    user.score_pilote = 200
-    user.save
+  #  user.update_attribute(:score_pilote, 400)
 
-    puts "_____________________________________________ #{user.score_pilote}____________________________"
-  
-  end
+  #  user.save
+
+  #end
 
 end

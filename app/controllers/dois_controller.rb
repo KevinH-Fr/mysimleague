@@ -3,6 +3,8 @@ class DoisController < ApplicationController
   include AssociationUsersHelper
   include AssociationAdminsHelper
   include DoisHelper
+  include ScoringHelper
+  include UsersHelper
 
 
   before_action :set_doi, only: %i[ show edit update destroy ]
@@ -38,6 +40,10 @@ class DoisController < ApplicationController
     respond_to do |format|
       if @doi.save
 
+        #call maj score pilote 
+        @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
+
+
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update('new_doi',
@@ -65,6 +71,9 @@ class DoisController < ApplicationController
     respond_to do |format|
       if @doi.update(doi_params)
 
+        #call maj score pilote 
+        @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
+
         format.turbo_stream do
           render turbo_stream: turbo_stream.update(@doi, 
                     partial: 'dois/doi', 
@@ -89,6 +98,9 @@ class DoisController < ApplicationController
 
   def destroy
     @doi.destroy
+
+    #call maj score pilote 
+    @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
 
     respond_to do |format|
 
