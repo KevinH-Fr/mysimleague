@@ -216,8 +216,13 @@ class HomeController < ApplicationController
   end
 
   def update_scores_users
-    update_scoring
-    redirect_to root_path, notice: "update_scoring successfully."
+    update_scoring_users
+    redirect_to root_path, notice: "update_scoring_users successfully."
+  end
+
+  def update_scores_pilotes
+    update_scoring_pilotes
+    redirect_to root_path, notice: "update_scoring_pilotes successfully."
   end
     
 end

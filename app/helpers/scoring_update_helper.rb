@@ -1,9 +1,10 @@
 module ScoringUpdateHelper
  
 include ScoringHelper
+include UsersHelper
 
-    def update_scoring
-        users = User.includes(:paris, :dotds).all #, :events
+    def update_scoring_users
+        users = User.includes(:paris, :dotds).all
 
         users.each do |user|
             profile_edit_points = scoring_edit_profile(user)
@@ -15,7 +16,16 @@ include ScoringHelper
             count_dotds = user.dotds.size
             user.update(dotds_score: count_dotds)
 
-            #ajouter les autres elements à updater 
+        end
+
+    end
+
+    def update_scoring_pilotes
+        users = User.all 
+
+        users.each do |user|
+            score_pilote = scoring_pilote_sum(user)
+            user.update(score_pilote: score_pilote)
 
         end
 
