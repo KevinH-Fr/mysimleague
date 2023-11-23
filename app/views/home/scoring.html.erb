@@ -13,53 +13,39 @@
             update_scores_users_home_index_path, method: :post %>
 
 
-
+    <!-- Your existing HTML code -->
     <div class="scrollable-paragraph">
-
-        <% scoring_user.each do |user_data| %>
-            <%= link_to user_path(user_data[:user]), class: "no-underline" do %>
-                <div class="record-with-effect ps-2">
-                    <div class="row">
-                        <div class="col-8">
-                            <span class="badge p-2 bg-dark"><%= user_data[:rank] %></span>
-                            <%= image_tag(user_data[:user].webp_variant, class: "mini-profile-pic mx-2", alt: "user picture") %>        
-                            <%= truncate(user_data[:user].short_name) %>
-                            <a class="ms-2" data-bs-toggle="collapse" href="#collapseDetailsScoringUser<%= user_data[:user].id %>" role="button" aria-expanded="false">
-                                <i class="fa fa-xl fa-square-plus text-warning"></i>
-                            </a>
-
-                            <%# test score task stored in db with update %>
-                            <div class="container bg-success">
-                                <%#= user_data[:user].scores.sum(:action_count) %>
-                                verif db count action: <%= user_data[:user].action_count %> <br>
-                                verif db edit profile: <%= user_data[:user].edit_profile_score %>
-                                verif sum: <%=  scoring_user_sum(user_data[:user]) %> <br>
-                                verif db puis helper score paris: <%= scoring_paris( user_data[:user]) %>
-                                verif db puis helper score dtods: <%= scoring_dotds( user_data[:user]) %>
-                            </div>
-
-
-
-                        </div>
-                        <div class="col-4 text-end">
-                            <%= badge_scoring_medal(user_data[:rank]) %>
-                            <%= number_with_delimiter(user_data[:scoring], delimiter: ' ') %> 
-                        </div>
-
-                        <div class="collapse" id="collapseDetailsScoringUser<%= user_data[:user].id %>"> 
-                            <hr>
-                            <span class="badge bg-dark"> score paris: <%= user_data[:score_paris] %>  </span>
-                            <span class="badge bg-dark"> score dotds: <%= user_data[:score_dotds] %>  </span>
-                            <span class="badge bg-dark"> score activités sur app: <%= user_data[:user].action_count %>  </span>
-                            <span class="badge bg-dark"> score edit profile: <%= user_data[:score_edit_profile] %>  </span>
-
-                        </div>
-                        
-                    </div>
-                </div>
-            <% end %>    
+    <% ranked_users.each do |user_data| %>
+        <%= link_to user_path(user_data[:user]), class: "no-underline" do %>
+        <div class="record-with-effect ps-2">
+            <div class="row">
+            <div class="col-8">
+                <span class="badge p-2 bg-dark"><%= user_data[:rank] %></span>
+                <%= image_tag(user_data[:user].webp_variant, class: "mini-profile-pic mx-2", alt: "user picture") %>        
+                <%= truncate(user_data[:user].short_name) %>
+                <a class="ms-2" data-bs-toggle="collapse" href="#collapseDetailsScoringUser<%= user_data[:user].id %>" role="button" aria-expanded="false">
+                <i class="fa fa-xl fa-square-plus text-warning"></i>
+                </a>
+            </div>
+            <div class="col-4 text-end">
+                <%= badge_scoring_medal(user_data[:rank]) %>
+                <%= number_with_delimiter(user_data[:scoring], delimiter: ' ') %> 
+            </div>
+            <div class="collapse" id="collapseDetailsScoringUser<%= user_data[:user].id %>">
+                <hr>
+                <span class="badge bg-dark"> score paris: <%= user_data[:score_paris] %>  </span>
+                <span class="badge bg-dark"> score dotds: <%= user_data[:score_dotds] %>  </span>
+                <span class="badge bg-dark"> score activités sur app: <%= user_data[:user].action_count %>  </span>
+                <span class="badge bg-dark"> score edit profile: <%= user_data[:score_edit_profile] %>  </span>
+            </div>
+            </div>
+        </div>
         <% end %>
+    <% end %>
     </div>
+        
+
+
 </div>
 
 <hr>
@@ -89,6 +75,32 @@
                         <div class="col-4 text-end">
                             <%= badge_scoring_medal(user_data[:rank]) %>
                             <%= number_with_delimiter(user_data[:scoring], delimiter: ' ') %> 
+
+
+
+
+                            <div class="container bg-success">
+                                <%= scoring_pilote_victoire(user_data[:user]) %>
+                                <%= scoring_pilote_podium(user_data[:user]) %>
+                                <%= scoring_pilote_top10(user_data[:user]) %>
+
+                                <%= scoring_pilote_nb_course(user_data[:user]) %>
+                                <%= scoring_pilote_nb_course_malus(user_data[:user]) %>
+
+                                <%= scoring_pilote_dnf(user_data[:user]) %>
+                                <%= scoring_pilote_dns(user_data[:user]) %>
+
+                                <%= scoring_pilote_doi(user_data[:user]) %>
+
+
+                                <%= scoring_pilote_sum(user_data[:user]) %>
+
+                            </div>
+
+
+
+
+
                         </div>
                         <div class="collapse" id="collapseDetailsScoringPilote<%= user_data[:user].id %>"> 
                             <hr>

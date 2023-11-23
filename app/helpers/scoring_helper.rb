@@ -1,111 +1,139 @@
 module ScoringHelper
-    def scoring_user
+    
 
-      # ancienne methode 
-      users = User.includes(:paris, :dotds).all #, :events
-      filtered_users = users.reject { |user| user[:admin] == true }
+  def scoring_edit_profile(user)
+    profile_edit_points = 0
+    profile_edit_points += 350 if user.profile_pic.present?
+    profile_edit_points += 170 if user.twitch.present?
+    profile_edit_points += 125 if user.slogan.present?
+    profile_edit_points += 125 if user.bio.present?
+    profile_edit_points += 75 if user.controlleur_type.present?
+    profile_edit_points += 70 if user.pilote_prefere.present?
+    profile_edit_points
+  end
 
-      user_scoring_data = []
-      paris_ponderation = 10
-      dotds_ponderation = 60
+  def scoring_paris(user)
+    paris_ponderation = 10
+    score_paris = user.paris_score.to_i * paris_ponderation
+  end
+
+  def scoring_dotds(user)
+    dotds_ponderation = 60
+    score_dotds = user.dotds_score.to_i * dotds_ponderation
+  end
+
+  def scoring_user_sum(user)
+    user.action_count.to_i + scoring_edit_profile(user) + scoring_paris(user) +  scoring_dotds(user)
+  end
+    
+  def ranked_users
+    users = User.includes(profile_pic_attachment: :blob).all
+    sorted_users = users.sort_by { |user| -scoring_user_sum(user) }
+    ranked_users = sorted_users.map do |user|
+      {
+        user: user,
+        rank: sorted_users.index(user) + 1,
+        scoring: scoring_user_sum(user),
+        score_paris: scoring_paris(user),
+        score_dotds: scoring_dotds(user),
+        score_edit_profile: scoring_edit_profile(user)
+      }
+    end
+  end
+
+
+  def top_5_user_scores
+    ranked_users[0..4]
+  end
+
+
+  def top_1_user_scores
+    ranked_users.first
+  end
+
+
+
+
+
+
+  # nouveau scoring pilote 
+  # incrementer le nouveau score a chaque creation ou edition de resultat 
+  # pose probleme en cas d'édition d'un resultat car mauvause valeur incrementée 
+
+  # ajouter le field dans la db 
+  def scoring_pilote_victoire(user)
+    calculate_score(user, :tx_victoires, 12)
+  end
+  
+  def scoring_pilote_podium(user)
+    calculate_score(user, :tx_podiums, 8)
+  end
+  
+  def scoring_pilote_top10(user)
+    calculate_score(user, :tx_top10, 2)
+  end
+
+    
+  def scoring_pilote_nb_course(user)
+    calculate_score(user, :nb_courses, 118)
+  end
+
+  def scoring_pilote_nb_course_malus(user)
+    scoring_pilote_nb_course(user) == 1 ? -950 : 0
+  end 
+
+
       
-      filtered_users.each do |user|
-        profile_edit_points = 0
-        score_paris = user.paris.size * paris_ponderation
-        score_dotds = user.dotds.size * dotds_ponderation
+  def scoring_pilote_dnf(user)
+    user.association_users.joins(:resultats).where(resultats: { dnf: true }).count *  -100
+  end
 
-        profile_edit_points += 350 if user.profile_pic.present?
-        profile_edit_points += 170 if user.twitch.present?
-        profile_edit_points += 125 if user.slogan.present?
-        profile_edit_points += 125 if user.bio.present?
-        profile_edit_points += 75 if user.controlleur_type.present?
-        profile_edit_points += 70 if user.pilote_prefere.present?
+  def scoring_pilote_dns(user)
+    user.association_users.joins(:resultats).where(resultats: { dns: true }).count *  -80
+  end
 
-        score_events = user.action_count.to_i
+  def scoring_pilote_doi(user)
+    association_user_ids = user.association_users.pluck(:id)
+    Doi.where(implique_id: association_user_ids, decision: 'responsable').count * -140
+  end
 
-        scoring = score_paris + score_dotds + score_events + profile_edit_points
+
+
+  def scoring_pilote_sum_points(user)
+    user.association_users.joins(:resultats).sum(:score) * 3
+  end 
+
   
-        user_scoring_data << {
-          user: user,
-          score_paris: score_paris,
-          score_dotds: score_dotds,
-          score_events: score_events,
-          score_edit_profile: profile_edit_points,
-          scoring: scoring
-        }
-      end
+  def scoring_pilote_sum(user)
+    scoring_pilote_victoire(user) + scoring_pilote_podium(user) + scoring_pilote_top10(user) +
+    scoring_pilote_nb_course(user) + scoring_pilote_nb_course_malus(user) +
+    scoring_pilote_dnf(user) + scoring_pilote_dns(user) + scoring_pilote_doi(user) + scoring_pilote_sum_points(user)
+  end
   
-      user_scoring_data.sort_by! { |data| -data[:scoring] }
+
+
+  def ranked_pilotes
+    pilotes = YourPiloteModel.includes(:profile_pic_attachment).all
+    sorted_pilotes = pilotes.sort_by { |pilote| -scoring_pilote_sum(pilote) }
   
-      user_scoring_data.each_with_index do |data, index|
-        data[:rank] = index + 1
-      end
+    ranked_pilotes = sorted_pilotes.map do |pilote|
+      {
+        pilote: pilote,
+        rank: sorted_pilotes.index(pilote) + 1,
+        scoring: scoring_pilote_sum(pilote),
+        # Add other scoring attributes as needed
+      }
+    end
+  end
   
-      user_scoring_data
-    end
-
-    def top_5_user_scores
-      scoring_user[0..4]
-    end
-
-
-
- 
-    ###################################
-    
-
-    def scoring_edit_profile(user)
-      profile_edit_points = 0
-
-      profile_edit_points += 350 if user.profile_pic.present?
-      profile_edit_points += 170 if user.twitch.present?
-      profile_edit_points += 125 if user.slogan.present?
-      profile_edit_points += 125 if user.bio.present?
-      profile_edit_points += 75 if user.controlleur_type.present?
-      profile_edit_points += 70 if user.pilote_prefere.present?
-
-      profile_edit_points
-
-    end
-
-    def scoring_paris(user)
-      paris_ponderation = 10
-      score_paris = user.paris_score.to_i * paris_ponderation
-    end
-
-
-    def scoring_dotds(user)
-      dotds_ponderation = 60
-      score_dotds = user.dotds_score.to_i * dotds_ponderation
-    end
-
-    def scoring_user_sum(user)
-      user.action_count.to_i + scoring_edit_profile(user) + scoring_paris(user) +  scoring_dotds(user)
-    end
-    
 
 
 
 
 
+  
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    
+    # anien scoring_pilote
 
 
   
@@ -172,4 +200,12 @@ module ScoringHelper
         scoring_pilote[0..4]
     end
 
+    private
+  
+    def calculate_score(user, stat_key, ponderation)
+      user_stats = user_resultats_stats(user, false)
+      user_stats[:user_stats][stat_key].to_i * ponderation
+    end
+  
+    
   end

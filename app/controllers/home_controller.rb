@@ -17,10 +17,11 @@ class HomeController < ApplicationController
     .where('horaire >= ?', Date.today)
     .joins(division: [:saison])
     .where(divisions: { archived: [false, nil] })
-    .includes(division: [:saison], circuit: { drapeau_attachment: :blob })
+    .includes(division: [:saison])  # Add eager loading for :saison here
+    .includes(circuit: { drapeau_attachment: :blob })
     .order(:horaire)
-    .limit(4)  
-    
+    .limit(4)
+
     if current_user
       @current_user
     end

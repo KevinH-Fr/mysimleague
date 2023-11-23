@@ -2,7 +2,7 @@
 <h4 class="text-center mt-2">Scoring users</h4> 
 <div class="pt-2">
 
-    <% scoring_user[0..4].each do |user_data| %>
+    <% top_5_user_scores.each do |user_data| %>
         <%= link_to user_path(user_data[:user].id), class: "no-underline" do %>
             <div class="record-with-effect ps-2">
                 <div class="row">

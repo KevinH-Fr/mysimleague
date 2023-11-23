@@ -1,10 +1,9 @@
 module UsersHelper
-  
-    def divisions_for_current_user
-        current_user.association_users.includes(:division).map(&:division).uniq
-    end
 
-    
+  def divisions_for_current_user
+    current_user.association_users.includes(division: [:saison]).map(&:division).uniq
+  end
+  
 
     def user_resultats_stats(user, user_compare)
         if user
