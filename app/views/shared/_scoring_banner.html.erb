@@ -15,7 +15,7 @@
 
             <span class="fw-bold text-warning ms-4">Scoring pilotes</span>
 
-            <% ranked_pilotes_top_from_db.each do |user| %>
+            <% top_5_pilotes_scores.each do |user| %>
                 <span class="badge rounded bg-dark mx-2">
                     <span class=""><%= user[:rank] %></span>
                     <%= image_tag(user[:user].webp_variant, class: "mini-profile-pic mx-2", alt: "user picture") %>        

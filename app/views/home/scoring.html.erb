@@ -23,10 +23,9 @@
         
     <% end %>
 
-
-    <!-- Your existing HTML code -->
     <div class="scrollable-paragraph">
-    <% ranked_users.each do |user_data| %>
+
+        <% ranked_users_from_db.each do |user_data| %>
         <%= link_to user_path(user_data[:user]), class: "no-underline" do %>
         <div class="record-with-effect ps-2">
             <div class="row">
@@ -53,6 +52,8 @@
         </div>
         <% end %>
     <% end %>
+
+
     </div>
         
 
@@ -71,35 +72,36 @@
 
     <div class="scrollable-paragraph">
 
-        <% ranked_pilotes.each do |user_data| %>
-            <%= link_to user_path(user_data[:pilote]), class: "no-underline" do %>
+       <% ranked_pilotes_from_db.each do |user_data| %>
+            <%= link_to user_path(user_data[:user]), class: "no-underline" do %>
                 <div class="record-with-effect ps-2">
                     <div class="row">
                         <div class="col-8">
                             <span class="badge p-2 bg-dark"><%= user_data[:rank] %></span>
-                            <%= image_tag(user_data[:pilote].webp_variant, class: "mini-profile-pic mx-2", alt: "user picture") %>        
-                            <%= truncate(user_data[:pilote].nom, lenght: 10) %>
-                            <a class="ms-2" data-bs-toggle="collapse" href="#collapseDetailsScoringPilote<%= user_data[:pilote].id %>" role="button" aria-expanded="false">
+                            <%= image_tag(user_data[:user].webp_variant, class: "mini-profile-pic mx-2", alt: "user picture") %>        
+                            <%= truncate(user_data[:user].nom, lenght: 10) %>
+                            <a class="ms-2" data-bs-toggle="collapse" href="#collapseDetailsScoringPilote<%= user_data[:user].id %>" role="button" aria-expanded="false">
                                 <i class="fa fa-xl fa-square-plus text-warning"></i>
                             </a>
                         </div>
                         <div class="col-4 text-end">
                             <%= badge_scoring_medal(user_data[:rank]) %>
-                            <%= number_with_delimiter(user_data[:scoring], delimiter: ' ') %>
+                            <%= number_with_delimiter(user_data[:score], delimiter: ' ') %>
 
                         </div>
-                        <div class="collapse" id="collapseDetailsScoringPilote<%= user_data[:pilote].id %>"> 
+                        <div class="collapse" id="collapseDetailsScoringPilote<%= user_data[:user].id %>"> 
                             <hr>
-                            <span class="badge bg-dark"> score victoire: <%= user_data[:score_victoire] %>  </span>
-                            <span class="badge bg-dark"> score podium: <%= user_data[:score_podium] %>  </span>
-                            <span class="badge bg-dark"> score top10: <%= user_data[:score_top10] %>  </span>
-                            <span class="badge bg-dark"> score nb courses: <%= user_data[:score_nb_courses] %>  </span>
-                            <span class="badge bg-dark"> score nb courses malus: <%= user_data[:score_malus_nb_courses] %>  </span>
-                            <span class="badge bg-dark"> score sum points: <%= user_data[:score_sum_points] %>  </span>
-                            <span class="badge bg-dark"> score dnf: <%= user_data[:score_dnf] %>  </span>
-                            <span class="badge bg-dark"> score dns: <%= user_data[:score_dns] %>  </span>
-                            <span class="badge bg-dark"> score doi: <%= user_data[:score_doi] %>  </span>
 
+                            <% details = ranked_pilote_details(user_data[:user]) %>
+                            <span class="badge bg-dark"> score victoire: <%= details[:score_victoire] %>  </span>
+                            <span class="badge bg-dark"> score podium: <%= details[:score_podium] %>  </span>
+                            <span class="badge bg-dark"> score top10: <%= details[:score_top10] %>  </span>
+                            <span class="badge bg-dark"> score nb courses: <%= details[:score_nb_courses] %>  </span>
+                            <span class="badge bg-dark"> score nb courses malus: <%= details[:score_malus_nb_courses] %>  </span>
+                            <span class="badge bg-dark"> score sum points: <%= details[:score_sum_points] %>  </span>
+                            <span class="badge bg-dark"> score dnf: <%= details[:score_dnf] %>  </span>
+                            <span class="badge bg-dark"> score dns: <%= details[:score_dns] %>  </span>
+                            <span class="badge bg-dark"> score doi: <%= details[:score_doi] %>  </span>
 
                         </div>
                     </div>
