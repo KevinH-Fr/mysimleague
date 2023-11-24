@@ -141,7 +141,7 @@ module ScoringHelper
   end 
 
   def ranked_pilotes_from_db
-    top_pilotes = User.order(score_pilote: :desc).limit(5)
+    top_pilotes = User.order(score_pilote: :desc)
     ranked_pilotes = []
   
     top_pilotes.each_with_index do |user, index|
