@@ -161,10 +161,11 @@ module ScoringHelper
 
     def sum_user_fields(user)
 
+
       dotds_ponderation = 60
       paris_ponderation = 10
 
-      user.edit_profile_score + 
+      user.edit_profile_score.to_i + 
       user.action_count.to_i + 
       (user.paris_score.to_i * paris_ponderation) + 
       user.dotds_score.to_i  * dotds_ponderation 
