@@ -41,8 +41,8 @@ class DoisController < ApplicationController
       if @doi.save
 
         #call maj score pilote 
-        @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
-
+        @user = AssociationUser.find(@doi.implique_id).user
+        @user.update(score_pilote: scoring_pilote_sum( @user))
 
         format.turbo_stream do
           render turbo_stream: [
@@ -72,7 +72,8 @@ class DoisController < ApplicationController
       if @doi.update(doi_params)
 
         #call maj score pilote 
-        @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
+        @user = AssociationUser.find(@doi.implique_id).user
+        @user.update(score_pilote: scoring_pilote_sum( @user))
 
         format.turbo_stream do
           render turbo_stream: turbo_stream.update(@doi, 
@@ -100,7 +101,8 @@ class DoisController < ApplicationController
     @doi.destroy
 
     #call maj score pilote 
-    @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
+    @user = AssociationUser.find(@doi.implique_id).user
+    @user.update(score_pilote: scoring_pilote_sum( @user))
 
     respond_to do |format|
 

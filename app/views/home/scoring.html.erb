@@ -8,12 +8,20 @@
     </div>
 
 
-        <%# cacher pour non admin %>
-    <%= link_to 'Update all scores users', 
-            update_scores_users_home_index_path, method: :post %>
+    <% if current_user && current_user.admin %>    
 
-    <%= link_to 'Update all scores pilotes', 
-            update_scores_pilotes_home_index_path, method: :post %>
+        <div class="container-fluid text-center m-2">
+            <%= link_to 'Update all scores users', 
+                update_scores_users_home_index_path, method: :post,
+                class: "btn btn-sm btn-warning mx-1" %>
+
+            <%= link_to 'Update all scores pilotes', 
+                update_scores_pilotes_home_index_path, method: :post,
+                class: "btn btn-sm btn-warning mx-1" %>
+
+        </div>
+        
+    <% end %>
 
 
     <!-- Your existing HTML code -->

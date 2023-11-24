@@ -37,7 +37,6 @@ class ParisController < ApplicationController
         if @pari.save
           flash.now[:success] = "pari was successfully created"
 
-          #scoring_paris(resource)
 
           format.turbo_stream do
             render turbo_stream: [

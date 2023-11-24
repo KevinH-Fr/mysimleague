@@ -15,6 +15,18 @@
     </div>
 
     <% if @annee %>
+
+        <% if current_user && current_user.admin %>    
+
+          <div class="container-fluid text-center m-2">
+            <%= link_to 'Update all solde paris', 
+                update_solde_paris_home_index_path, method: :post,
+                class: "btn btn-sm btn-warning mx-1" %>
+
+          </div>
+        <% end %>
+
+
       <% somme_paris_user(@annee, User.all).each do |user_id, data| %>
         <div class="d-flex align-items-center justify-content-center my-1">
           <%= badge_score_position(data[:rank]) %>
@@ -29,10 +41,32 @@
             <%= badge_score_position(data[:sum]) %>
           </div>
 
+
+
+
+          <div class="bg-success">
+            <%= User.find(user_id).solde_paris %> verif db       
+          </div>
+
+
+
+
+
+
         </div>
       <% end %>
-      
+
+
+    <%# test avec nouvel helper ranking parieurs via db %>
+    <%# ranked_parieurs(@annee).each do |parieur| %>
+      <%#= parieur[:solde_parieur] %>
+    <%# end %>
+
+
+
     <% end %>
+
+    
 
   </div>
 

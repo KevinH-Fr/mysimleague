@@ -35,5 +35,46 @@ module ParieursHelper
   
     ranked_users_with_rank
   end  
+
+
+  def solde_paris(annee, user)
+    
+    solde_depart = 500
+    credit_semaine = 100
+    numero_semaine = Date.today.strftime('%W').to_i
+    somme_credit_semaine = credit_semaine * numero_semaine
+  
+    start_date = DateTime.new(annee.to_i, 1, 1)
+    end_date = DateTime.new(annee.to_i, 12, 31)
+  
+    user_id = user.id
+    user_paris = Pari.where(user_id: user_id)
+                  .where(created_at: start_date..end_date)
+  
+    montant_paris = user_paris.sum(:montant) #if user_paris.any?
+    solde_paris = user_paris.sum(:solde) if user_paris.any?
+  
+    solde = solde_depart.to_i + somme_credit_semaine.to_i + solde_paris.to_i - montant_paris.to_i
+    solde
+ 
+  end
+
+
+  def ranked_parieurs(annee)
+    users = User.includes(profile_pic_attachment: :blob).all
+    sorted_users = users.sort_by { |user| -solde_paris(annee, user) }
+    ranked_users = sorted_users.map do |user|
+      {
+        user: user,
+        rank: sorted_users.index(user) + 1,
+        solde_parieur: user.solde_paris
+      }
+    end
+  end
+
+  def top_1_parieur(annee)
+    ranked_parieurs(annee).first
+  end
+  
   
 end

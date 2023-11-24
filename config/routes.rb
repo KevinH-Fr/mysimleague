@@ -39,6 +39,7 @@ Rails.application.routes.draw do
 
       post 'update_scores_users'
       post 'update_scores_pilotes'
+      post 'update_solde_paris'
 
     end
 

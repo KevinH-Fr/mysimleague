@@ -18,7 +18,8 @@ class Pari < ApplicationRecord
   before_update :calcul_solde
 
   after_create :increment_user_scoring_paris
-
+  after_create :update_user_solde_paris
+  after_update :update_user_solde_paris
 
 
   def feed_content
@@ -75,6 +76,11 @@ class Pari < ApplicationRecord
 
  def increment_user_scoring_paris
     user.increment!(:paris_score, 1)
+ end
+
+ def update_user_solde_paris
+   user.solde_paris = solde_paris(created_at.year, user)    
+   user.save
  end
 
 end

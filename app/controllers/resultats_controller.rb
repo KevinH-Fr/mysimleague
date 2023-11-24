@@ -112,19 +112,9 @@ class ResultatsController < ApplicationController
       if @resultat.update(resultat_params)
         flash.now[:success] = "resultat was successfully updated"
 
-        #call maj paris liés 
-
-        puts "____call update pari depuis resultat update"
-        update_paris_resultats(
-          @resultat.event_id, 
-          @resultat.association_user_id, 
-          @resultat.qualification.to_i, 
-          @resultat.course.to_i,
-          @resultat.dns
-        )
-
         #call maj score pilote 
          @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
+
 
 
         format.turbo_stream do

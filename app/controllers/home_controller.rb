@@ -2,6 +2,10 @@ class HomeController < ApplicationController
  # include FeedsHelper
   include UsersHelper
   include ScoringUpdateHelper
+  include ParieursUpdateHelper
+  include ParieursHelper
+
+  before_action :authorize_admin, only: %i[ update_scores_users update_scores_pilotes update_solde_paris ]
 
 
   def landingpage
@@ -224,5 +228,18 @@ class HomeController < ApplicationController
     update_scoring_pilotes
     redirect_to root_path, notice: "update_scoring_pilotes successfully."
   end
-    
+
+  def update_solde_paris
+    update_solde_parieurs(annees_paris.last)
+    redirect_to root_path, notice: "update_solde_parieurs successfully."
+  end
+   
+  private
+  
+  def authorize_admin
+    unless current_user && current_user.admin 
+      redirect_to root_path, alert: "You are not authorized to perform this action."
+    end
+  end
+
 end

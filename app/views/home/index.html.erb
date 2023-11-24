@@ -79,6 +79,14 @@
    <%= render "shared/connexion" %>
 </div>
 
+
+<div class="bg-success">
+   leader parieur: <%= top_1_parieur(Date.today.year)[:user].nom %>
+   leader user: <%= top_1_user_scores[:user].nom %>
+   leader pilote: <%= top_1_pilote_scores[:user].nom %>
+
+</div>
+
 <div class="px-2"> 
    <% if @prochains_events %>
       <%= render "prochains_events" %>

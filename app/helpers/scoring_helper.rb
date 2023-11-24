@@ -147,6 +147,20 @@ module ScoringHelper
   
     ranked_pilotes
   end
+
+
+  
+
+  def top_5_pilotes_scores
+    ranked_pilotes_top_from_db[0..4]
+  end
+
+
+  def top_1_pilote_scores
+    ranked_pilotes_top_from_db.first
+  end
+
+
   
 
 
