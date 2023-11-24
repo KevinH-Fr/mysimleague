@@ -75,6 +75,11 @@ module ParieursHelper
   def top_1_parieur(annee)
     ranked_parieurs(annee).first
   end
+
+  def icon_leader_parieur(annee, user)
+    top_parieur = top_1_parieur(Date.today.year)[:user].id
+    user == top_parieur ? content_tag(:i, "", class: "fa fa-xl fa-sack-dollar me-2 text-warning") : ""
+  end
   
   
 end

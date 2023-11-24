@@ -33,6 +33,11 @@
           <div class="equipe-banner-wrapper d-flex align-items-center bg-secondary text-light fw-bold rounded px-2" style="width: 100%; max-width: 300px;">
             <%= link_to user_path(user_id), class: "no-underline text-light" do %>
               <%= image_tag(User.find(user_id).webp_variant, class: "mini-profile-pic me-1") %>
+
+              <%= icon_leader_parieur(@annee, user_id) %>
+              <%= icon_leader_user(user_id) %>
+              <%= icon_leader_pilote(user_id) %>
+
               <%= User.find(user_id).nom %>
             <% end %>
           </div>

@@ -52,6 +52,12 @@ module ScoringHelper
   end
 
 
+  def icon_leader_user(user)
+    top_user = top_1_user_scores[:user].id
+    user == top_user ? content_tag(:i, "", class: "fa fa-xl fa-star me-2 text-warning") : ""
+  end
+  
+
 
 
 
@@ -80,8 +86,6 @@ module ScoringHelper
     scoring_pilote_nb_course(user) == 1 ? -950 : 0
   end 
 
-
-      
   def scoring_pilote_dnf(user)
     user.association_users.joins(:resultats).where(resultats: { dnf: true }).count *  -100
   end
@@ -117,15 +121,15 @@ module ScoringHelper
       {
         pilote: pilote,
         rank: sorted_pilotes.index(pilote) + 1,
-        score_victoire: scoring_pilote_victoire(pilote) ,
-        score_podium: scoring_pilote_podium(pilote) ,
-        score_top10: scoring_pilote_top10(pilote) ,
-        score_nb_courses: scoring_pilote_nb_course(pilote) ,
-        score_malus_nb_courses: scoring_pilote_nb_course_malus(pilote) ,
+        score_victoire: scoring_pilote_victoire(pilote),
+        score_podium: scoring_pilote_podium(pilote),
+        score_top10: scoring_pilote_top10(pilote),
+        score_nb_courses: scoring_pilote_nb_course(pilote),
+        score_malus_nb_courses: scoring_pilote_nb_course_malus(pilote),
         score_sum_points: scoring_pilote_sum_points(pilote),
-        score_dnf: scoring_pilote_dnf(pilote) ,
-        score_dns: scoring_pilote_dns(pilote) ,
-        score_doi: scoring_pilote_doi(pilote) ,
+        score_dnf: scoring_pilote_dnf(pilote),
+        score_dns: scoring_pilote_dns(pilote),
+        score_doi: scoring_pilote_doi(pilote),
         scoring: scoring_pilote_sum(pilote),
         # Add other scoring attributes as needed
       }
@@ -148,9 +152,6 @@ module ScoringHelper
     ranked_pilotes
   end
 
-
-  
-
   def top_5_pilotes_scores
     ranked_pilotes_top_from_db[0..4]
   end
@@ -160,12 +161,14 @@ module ScoringHelper
     ranked_pilotes_top_from_db.first
   end
 
-
+  def icon_leader_pilote(user)
+    top_pilote = top_1_pilote_scores[:user].id
+    user == top_pilote ? content_tag(:i, "", class: "fa fa-xl fa-medal me-2 text-warning") : ""
+  end
   
 
 
-
-    private
+  private
   
     def calculate_score(user, stat_key, ponderation)
       user_stats = user_resultats_stats(user, false)
