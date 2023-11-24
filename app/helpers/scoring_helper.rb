@@ -32,7 +32,9 @@ module ScoringHelper
   # ranked users 
   def ranked_users_from_db
     users = User.all.includes(profile_pic_attachment: :blob)
-    sorted_users = users.sort_by { |user| -sum_user_fields(user) }
+    filtered_users = users.reject { |user| user[:admin] == true }
+
+    sorted_users = filtered_users.sort_by { |user| -sum_user_fields(user) }
     rankings = sorted_users.map.with_index do |user, index|
       {
         user: user,
@@ -161,14 +163,13 @@ module ScoringHelper
 
     def sum_user_fields(user)
 
-
       dotds_ponderation = 60
       paris_ponderation = 10
 
       user.edit_profile_score.to_i + 
       user.action_count.to_i + 
-      (user.paris_score.to_i * paris_ponderation) + 
-      user.dotds_score.to_i  * dotds_ponderation 
+      ( user.paris_score.to_i * paris_ponderation ) + 
+      ( user.dotds_score.to_i * dotds_ponderation )
     end
   
     

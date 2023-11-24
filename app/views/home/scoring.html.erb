@@ -42,11 +42,12 @@
                 <%= number_with_delimiter(user_data[:scoring], delimiter: ' ') %> 
             </div>
             <div class="collapse" id="collapseDetailsScoringUser<%= user_data[:user].id %>">
+
                 <hr>
-                <span class="badge bg-dark"> score paris: <%= user_data[:score_paris] %>  </span>
-                <span class="badge bg-dark"> score dotds: <%= user_data[:score_dotds] %>  </span>
+                <span class="badge bg-dark"> score paris: <%= scoring_paris(user_data[:user]) %>  </span>
+                <span class="badge bg-dark"> score dotds: <%= scoring_dotds(user_data[:user]) %>  </span>
                 <span class="badge bg-dark"> score activités sur app: <%= user_data[:user].action_count %>  </span>
-                <span class="badge bg-dark"> score edit profile: <%= user_data[:score_edit_profile] %>  </span>
+                <span class="badge bg-dark"> score edit profile: <%= user_data[:user].edit_profile_score %>  </span>
             </div>
             </div>
         </div>
