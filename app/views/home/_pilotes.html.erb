@@ -9,11 +9,11 @@
                         <%= link_to user_path(pilote), class: "no-underline" do  %>
                             <%= image_tag(pilote.webp_variant, class: "medium-profile-pic mx-2") %> 
 
+                            <%= pilote.nom %>
                             <%= icon_leader_parieur(Date.today.year, pilote.id) %>
                             <%= icon_leader_user(pilote.id) %>
                             <%= icon_leader_pilote(pilote.id) %>
 
-                            <%= pilote.nom %>
                         <% end %>
                     </div>
                     <div class="col-2 text-center">

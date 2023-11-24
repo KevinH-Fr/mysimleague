@@ -33,16 +33,16 @@
             <%= link_to user_path(user[:user].id), class: "no-underline text-light" do %>
               <%= image_tag(user[:user].webp_variant, class: "mini-profile-pic me-1") %>
 
+              <%= user[:user].short_name %>
               <%= icon_leader_parieur(@annee, user[:user].id) %>
               <%= icon_leader_user(user[:user].id) %>
               <%= icon_leader_pilote(user[:user].id) %>
 
-              <%= user[:user].nom %>
             <% end %>
           </div>
           
           <div style="min-width: 80px;">
-            <%= badge_score_position(user[:solde_parieur]) %>
+            <%= badge_score_position( number_to_human(user[:solde_parieur], units: { thousand: 'K', million: 'M', billion: 'B' } )) %>
           </div>
 
 

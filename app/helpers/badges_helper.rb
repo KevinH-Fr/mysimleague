@@ -101,11 +101,11 @@ module BadgesHelper
 
   def badge_scoring_medal(rank)
     if rank == 1 
-      content_tag(:i, "", class: "fa-solid fa-xl fa-medal px-2 text-warning")
+      content_tag(:i, "", class: "fa-solid fa-xl fa-medal px-1 text-warning")
     elsif rank == 2
-      content_tag(:i, "", class: "fa-solid fa-xl fa-medal px-2", style: "color: silver;")   
+      content_tag(:i, "", class: "fa-solid fa-xl fa-medal px-1", style: "color: silver;")   
     elsif rank == 3
-      content_tag(:i, "", class: "fa-solid fa-xl fa-medal px-2", style: "color: brown;")
+      content_tag(:i, "", class: "fa-solid fa-xl fa-medal px-1", style: "color: brown;")
     end 
   end
       

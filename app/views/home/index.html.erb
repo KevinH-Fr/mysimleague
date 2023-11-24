@@ -2,7 +2,7 @@
 <% description "Home page with bets, racers, next races and feeds/activities." %>
 <% keywords "Home, Races, Feeds, Activites" %>
 
-<div class="d-flex flex-wrap justify-content-center align-items-center mt-4">
+<div class="d-flex flex-wrap justify-content-center align-items-center mt-4 mb-2">
    <%= link_to menu_index_path, class: "btn btn-sm btn-dark m-1" do %>
       <i class="fa fa-solid fa-xl fa-compass"> </i>
       <span class="ms-2 fw-bold"> Menu</span>
@@ -72,29 +72,26 @@
       <% end %>
    <% end %>
 
-      
 </div>
 
 <div class="d-flex flex-wrap justify-content-center align-items-center">
    <%= render "shared/connexion" %>
 </div>
 
+<div class="px-2">
+   <h4 class="text-center my-2 mb-3">Leaders</h4> 
 
+   <%= displayed_top_1_parieur(Date.today.year) %>
+   <%= displayed_top_1_user %>
+   <%= displayed_top_1_pilote %>
+
+</div>
 
 <div class="px-2"> 
    <% if @prochains_events %>
       <%= render "prochains_events" %>
    <% end %>
 </div>
-
-<%#= render "top_scoring" %>
-
-<!--div class="d-block flex-wrap justify-content-center align-items-center px-2">   
-   <%= button_to display_feeds_home_index_path, class: "w-100 btn btn-xl btn-outline-warning " do %>
-      <i class="fa fa-solid fa-xl fa-bell"></i>
-      <span class="ms-2 fw-bold">Voir les activités</span>
-   <% end %>
-</div-->
 
 <div id="partial-container" class="p-2 mt-2">
    <%# recoit le turbo stream avec elements cliqués %>

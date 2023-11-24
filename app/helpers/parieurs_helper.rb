@@ -78,13 +78,27 @@ module ParieursHelper
   def top_1_parieur(annee)
     #ranked_parieurs(annee).first
     User.order(solde_paris: :desc).first
-
   end
 
   def icon_leader_parieur(annee, user)
     top_parieur = top_1_parieur(Date.today.year).id
-    user == top_parieur ? content_tag(:i, "", class: "fa fa-xl fa-sack-dollar me-2 text-warning") : ""
+    user == top_parieur ? content_tag(:i, "", class: "fa fa-xl fa-sack-dollar mx-1 text-warning") : ""
   end
   
+  def displayed_top_1_parieur(annee)
+    parieur = top_1_parieur(annee)
+
+    link_to user_path(parieur), class: "no-underline" do
+
+      content_tag(:div, class: "record-with-effect d-flex align-items-center p-2") do
+        concat image_tag(parieur.webp_variant, class: "mini-profile-pic me-2", alt: "user picture")
+        concat content_tag(:span, parieur.short_name, class: "fw-bold") 
+        concat content_tag(:span, number_to_human(parieur.solde_paris, units: { thousand: 'K', million: 'M', billion: 'B' }), class: "text-warning ms-2 me-1") 
+        concat content_tag(:span, "pts paris", class: "text-warning")
+        concat content_tag(:i, "", class: "fa fa-xl fa-sack-dollar mx-2 text-warning")
+      end
+
+    end
+  end
   
 end

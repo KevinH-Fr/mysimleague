@@ -56,9 +56,25 @@ module ScoringHelper
     ranked_users_from_db.first
   end
 
+  def displayed_top_1_user
+    user = top_1_user_scores[:user]
+
+    link_to user_path(user), class: "no-underline" do
+
+      content_tag(:div, class: "record-with-effect d-flex align-items-center p-2") do
+        concat image_tag(user.webp_variant, class: "mini-profile-pic me-2", alt: "user picture")
+        concat content_tag(:span, user.short_name, class: "fw-bold") 
+        concat content_tag(:span, number_to_human(sum_user_fields(user), units: { thousand: 'K', million: 'M', billion: 'B' }), class: "text-warning ms-2 me-1") 
+        concat content_tag(:span, "pts user", class: "text-warning")
+        concat content_tag(:i, "", class: "fa fa-xl fa-star mx-1 text-warning")
+      end
+
+    end 
+  end
+
   def icon_leader_user(user)
     top_user = top_1_user_scores[:user].id
-    user == top_user ? content_tag(:i, "", class: "fa fa-xl fa-star me-2 text-warning") : ""
+    user == top_user ? content_tag(:i, "", class: "fa fa-xl fa-star mx-1 text-warning") : ""
   end
 
 
@@ -148,9 +164,24 @@ module ScoringHelper
     ranked_pilotes_from_db.first
   end
 
+  def displayed_top_1_pilote
+    #reprendre
+    pilote = top_1_pilote_scores[:user]
+
+    link_to user_path(pilote), class: "no-underline" do
+      content_tag(:div, class: "record-with-effect d-flex align-items-center p-2") do
+        concat image_tag(pilote.webp_variant, class: "mini-profile-pic me-2", alt: "user picture")
+        concat content_tag(:span, pilote.short_name, class: "fw-bold") 
+        concat content_tag(:span, number_to_human(scoring_pilote_sum(pilote), units: { thousand: 'K', million: 'M', billion: 'B' }) , class: "text-warning ms-2 me-1") 
+        concat content_tag(:span, "pts pilote", class: "text-warning")
+        concat content_tag(:i, "", class: "fa fa-xl fa-medal mx-2 text-warning")
+      end
+    end 
+  end
+
   def icon_leader_pilote(user)
     top_pilote = top_1_pilote_scores[:user].id
-    user == top_pilote ? content_tag(:i, "", class: "fa fa-xl fa-medal me-2 text-warning") : ""
+    user == top_pilote ? content_tag(:i, "", class: "fa fa-xl fa-medal mx-1 text-warning") : ""
   end
   
 
