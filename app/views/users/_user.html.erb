@@ -1,7 +1,15 @@
 <div class="card-with-effect p-2" id="<%= dom_id user %>">
 
   <div class="text-light rounded p-2 my-1"> 
-    <h4 class="bg-dark rounded text-center p-2"> <%= user.nom %> </h4>
+    <h4 class="bg-dark rounded text-center p-2"> 
+      <div class="container-fluid text-center">
+        <%= icon_leader_parieur(Date.today.year, user.id) %>
+        <%= icon_leader_user(user.id) %>
+        <%= icon_leader_pilote(user.id) %>
+        <%= user.nom %> 
+      </div>
+     
+    </h4>
   </div>
 
 
@@ -36,7 +44,6 @@
           <p class="card-text fs-6">
             paris: <%= badge_solde_parieur(user) %>
           </p>
-
 
           <p class="card-text text-center my-2">
             <small class="text-warning">

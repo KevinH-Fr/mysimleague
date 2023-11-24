@@ -56,10 +56,6 @@ module ScoringHelper
     top_user = top_1_user_scores[:user].id
     user == top_user ? content_tag(:i, "", class: "fa fa-xl fa-star me-2 text-warning") : ""
   end
-  
-
-
-
 
 
   # nouveau scoring pilote 

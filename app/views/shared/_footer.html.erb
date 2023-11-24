@@ -6,7 +6,13 @@
             <%= link_to  "", user_path(current_user), 
                     data: {turbo: "false"}, class:"fa-solid fa-id-card btn btn-sm btn-warning" %>
 
-            <%= current_user.nom %> 
+
+                <div class="container-fluid text-center">
+                    <%= icon_leader_parieur(Date.today.year, current_user.id) %>
+                    <%= icon_leader_user(current_user.id) %>
+                    <%= icon_leader_pilote(current_user.id) %>
+                    <%= current_user.nom %> 
+                </div>
 
             <%= link_to "", menu_index_path(
                 ligue: prochain_event.division.saison.ligue_id, 
