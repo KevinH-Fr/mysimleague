@@ -26,26 +26,25 @@
           </div>
         <% end %>
 
-
-      <% somme_paris_user(@annee, User.all).each do |user_id, data| %>
-        <% user = User.find(user_id) %>
+      <% ranked_parieurs(@annee).each do |user| %>
         <div class="d-flex align-items-center justify-content-center my-1">
-          <%= badge_score_position(data[:rank]) %>
+          <%= badge_score_position(user[:rank]) %>
           <div class="equipe-banner-wrapper d-flex align-items-center bg-secondary text-light fw-bold rounded px-2" style="width: 100%; max-width: 300px;">
-            <%= link_to user_path(user_id), class: "no-underline text-light" do %>
-              <%= image_tag(user.webp_variant, class: "mini-profile-pic me-1") %>
+            <%= link_to user_path(user[:user].id), class: "no-underline text-light" do %>
+              <%= image_tag(user[:user].webp_variant, class: "mini-profile-pic me-1") %>
 
-              <%= icon_leader_parieur(@annee, user_id) %>
-              <%= icon_leader_user(user_id) %>
-              <%= icon_leader_pilote(user_id) %>
+              <%= icon_leader_parieur(@annee, user[:user].id) %>
+              <%= icon_leader_user(user[:user].id) %>
+              <%= icon_leader_pilote(user[:user].id) %>
 
-              <%= user.nom %>
+              <%= user[:user].nom %>
             <% end %>
           </div>
           
           <div style="min-width: 80px;">
-            <%= badge_score_position(data[:sum]) %>
+            <%= badge_score_position(user[:solde_parieur]) %>
           </div>
+
 
         </div>
       <% end %>

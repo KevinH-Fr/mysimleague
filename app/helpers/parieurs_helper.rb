@@ -4,6 +4,9 @@ module ParieursHelper
     Pari.pluck(:created_at).map(&:year).uniq
   end
 
+
+  # plus tard supprimer ce code qui n'est a priori plus utilisé que pour la verif solde quand depot pari
+  # utiliser plutot les nouvelles methodes qui prennent les vals depuis la db plus efficaces
   def somme_paris_user(annee, users)
     solde_depart = 500
     credit_semaine = 100
