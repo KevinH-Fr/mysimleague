@@ -54,7 +54,7 @@ module ParieursHelper
     user_paris = Pari.where(user_id: user_id)
                   .where(created_at: start_date..end_date)
   
-    montant_paris = user_paris.sum(:montant) #if user_paris.any?
+    montant_paris = user_paris.sum(:montant) if user_paris.any?
     solde_paris = user_paris.sum(:solde) if user_paris.any?
   
     solde = solde_depart.to_i + somme_credit_semaine.to_i + solde_paris.to_i - montant_paris.to_i
@@ -70,7 +70,7 @@ module ParieursHelper
       {
         user: user,
         rank: sorted_users.index(user) + 1,
-        solde_parieur: user.solde_paris
+        solde_parieur: user.solde_paris.to_i
       }
     end
   end

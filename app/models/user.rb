@@ -24,6 +24,8 @@ class User < ApplicationRecord
   has_many :paris
   has_many :dotds
 
+  after_create :update_user_paris
+
 
   def feed_content
     id
@@ -92,6 +94,30 @@ class User < ApplicationRecord
       '<i class="fas fa-gamepad fa-xl"></i>'.html_safe
     end
   end
+
+
+  def update_user_paris
+    val_solde_paris = solde_paris_base(Time.now.year) # Provide the user instance as the second argument
+    update(solde_paris: val_solde_paris)
+  end
+
+
+  private
+
+  def solde_paris_base(annee)
+    solde_depart = 500
+    credit_semaine = 100
+    numero_semaine = Date.today.strftime('%W').to_i
+    somme_credit_semaine = credit_semaine * numero_semaine
+
+    start_date = DateTime.new(annee.to_i, 1, 1)
+    end_date = DateTime.new(annee.to_i, 12, 31)
+
+    solde = solde_depart.to_i + somme_credit_semaine.to_i
+    solde
+  end
+
+
 
 
 
