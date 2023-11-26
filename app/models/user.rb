@@ -24,6 +24,7 @@ class User < ApplicationRecord
   has_many :paris
   has_many :dotds
 
+  before_create :initialize_score_pilote
   after_create :update_user_paris
 
 
@@ -104,6 +105,10 @@ class User < ApplicationRecord
 
   private
 
+  def initialize_score_pilote
+    self.score_pilote = 0
+  end
+  
   def solde_paris_base(annee)
     solde_depart = 500
     credit_semaine = 100
