@@ -148,7 +148,7 @@ module ScoringHelper
       ranked_pilotes << { 
         user: user, 
         rank: index + 1,
-        score: user.score_pilote
+        score: user.score_pilote.to_i
       }
     end
   
