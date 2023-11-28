@@ -40,10 +40,14 @@ class ApplicationController < ActionController::Base
     end
 
     def set_time_zone
-       
-        if session[:ligue].present?
-            Time.use_zone(Ligue.find(session[:ligue]).time_zone) {yield}
+        begin
+          ligue_id = session[:ligue]
+          ligue = Ligue.find(ligue_id)
+          Time.use_zone(ligue.time_zone) { yield }
+        rescue ActiveRecord::RecordNotFound
+          # Use French time zone as a fallback
+          Time.use_zone('Paris') { yield }
         end
-    end
-
+      end
+      
 end
