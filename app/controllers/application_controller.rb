@@ -40,7 +40,10 @@ class ApplicationController < ActionController::Base
     end
 
     def set_time_zone
-        Time.use_zone(Ligue.find(session[:ligue]).time_zone) {yield}
+       
+        if session[:ligue].present?
+            Time.use_zone(Ligue.find(session[:ligue]).time_zone) {yield}
+        end
     end
 
 end
