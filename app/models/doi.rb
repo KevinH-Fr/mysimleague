@@ -4,6 +4,7 @@ class Doi < ApplicationRecord
   belongs_to :reglement, optional: true
   belongs_to :association_admin, optional: true
 
+  validates_format_of :lien, with: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/, allow_blank: true
 
   enum responsable: [ :responsable, :fait_de_course, :autre ]
 
