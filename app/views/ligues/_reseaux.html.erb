@@ -1,45 +1,39 @@
 <div>
-
-    <% if @ligue.present? %>
-        <%# réseaux %>
-        <% if @ligue.discord.present? %>
-            <%= link_to @ligue.discord, target: '_blank', class: 'no-underline' do %>
-                <i class="mx-1 fa-brands fa-discord"></i>
-            <% end %>
+    <%# réseaux %>
+    <% if @ligue.discord.present? %>
+        <%= link_to @ligue.discord, target: '_blank', class: 'no-underline' do %>
+            <i class="mx-1 fa-brands fa-discord"></i>
         <% end %>
-
-        <% if @ligue.twitch.present? %>
-            <%= link_to @ligue.twitch, target: '_blank', class: 'no-underline' do %>
-                <i class="mx-1 fa-brands fa-twitch"></i>
-            <% end %>
-        <% end %>
-
-        <% if @ligue.twitter.present? %>
-            <%= link_to @ligue.twitter, target: '_blank', class: 'no-underline' do %>
-                <i class="mx-1 fa-brands fa-twitter"></i>
-            <% end %>
-        <% end %>
-
-        <% if @ligue.instagram.present? %>
-            <%= link_to @ligue.instagram, target: '_blank', class: 'no-underline' do %>
-                <i class="mx-1 fa-brands fa-instagram"></i>
-            <% end %>
-        <% end %>
-
-        <% if @ligue.youtube.present? %>
-            <%= link_to @ligue.youtube, target: '_blank', class: 'no-underline' do %>
-                <i class="mx-1 fa-brands fa-youtube"></i>
-            <% end %>
-        <% end %>
-
-        <% if @ligue.tiktok.present? %>
-            <%= link_to @ligue.tiktok, target: '_blank', class: 'no-underline' do %>
-                <i class="mx-1 fa-brands fa-tiktok"></i>
-            <% end %>
-        <% end %>
-
-
     <% end %>
 
+    <% if @ligue.twitch.present? %>
+        <%= link_to @ligue.twitch, target: '_blank', class: 'no-underline' do %>
+            <i class="mx-1 fa-brands fa-twitch"></i>
+        <% end %>
+    <% end %>
+
+    <% if @ligue.twitter.present? %>
+        <%= link_to @ligue.twitter, target: '_blank', class: 'no-underline' do %>
+            <i class="mx-1 fa-brands fa-twitter"></i>
+        <% end %>
+    <% end %>
+
+    <% if @ligue.instagram.present? %>
+        <%= link_to @ligue.instagram, target: '_blank', class: 'no-underline' do %>
+            <i class="mx-1 fa-brands fa-instagram"></i>
+        <% end %>
+    <% end %>
+
+    <% if @ligue.youtube.present? %>
+        <%= link_to @ligue.youtube, target: '_blank', class: 'no-underline' do %>
+            <i class="mx-1 fa-brands fa-youtube"></i>
+        <% end %>
+    <% end %>
+
+    <% if @ligue.tiktok.present? %>
+        <%= link_to @ligue.tiktok, target: '_blank', class: 'no-underline' do %>
+            <i class="mx-1 fa-brands fa-tiktok"></i>
+        <% end %>
+    <% end %>
 
 </div>
