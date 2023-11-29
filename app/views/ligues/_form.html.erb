@@ -42,14 +42,45 @@
       </div>
     </div>
 
-    <div class="my-2">
-      <span><%= "Timezone" %></span>
-      <span> <%= form.time_zone_select :time_zone %> </span>
+
+    <h4>réseaux</h4>
+
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :discord, class: "input-group-text label-colored" %>
+      <%= form.text_field :discord, class: "form-control input-colored", type: "url" %>
     </div>
 
-            
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :twitch, class: "input-group-text label-colored" %>
+      <%= form.text_field :twitch, class: "form-control input-colored", type: "url" %>
+    </div>
 
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :twitter, class: "input-group-text label-colored" %>
+      <%= form.text_field :twitter, class: "form-control input-colored", type: "url" %>
+    </div>
 
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :instagram, class: "input-group-text label-colored" %>
+      <%= form.text_field :instagram, class: "form-control input-colored", type: "url" %>
+    </div>
+
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :youtube, class: "input-group-text label-colored" %>
+      <%= form.text_field :youtube, class: "form-control input-colored", type: "url" %>
+    </div>
+
+    <div class="input-group input-group-sm my-2">
+     <%= form.label :tiktok, class: "input-group-text label-colored" %>
+      <%= form.text_field :tiktok, class: "form-control input-colored", type: "url" %>
+    </div>
+
+    <div class="my-2 custom-timezone-select">
+      <span><%= "Timezone" %></span>
+      <span class="truncate-container"> <%= form.time_zone_select :time_zone %> </span>
+    </div>
+
+        
     <%= custom_submit_button("Ligue") %>
 
   <% end %>

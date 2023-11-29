@@ -344,3 +344,20 @@ small{
  /* max-width: 1200px;
   padding: 20px;*/
 }
+
+.custom-timezone-select {
+  display: flex;
+  align-items: center;
+}
+
+.custom-timezone-select span {
+  margin-right: 10px; /* Adjust the margin as needed */
+  font-weight: bold; /* Example font weight */
+}
+
+.truncate-container {
+  max-width: 100vw; /* Set the maximum width */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add an ellipsis (...) for overflowed text */
+}
+

@@ -4,16 +4,19 @@
 
     <div class="row align-items-center">
         
-      <div class="col-6">
+      <div class="col-8">
         <%= link_to "#collapseDetailsLigue", class: "no-underline", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsLigue", "aria-expanded" => "false" do %>
           <% if ligue.logo.present? %>
             <%= image_tag(ligue.logo, class: "img-fluid rounded", width: "40") %>
           <% end %>
           <strong>Nom:</strong> <%= ligue.nom %>
+
+          <%= render  "ligues/reseaux" %>
         <% end %>
+        
       </div>
 
-      <div class="col-6 d-flex justify-content-end align-items-center">
+      <div class="col-4 d-flex justify-content-end align-items-center">
     
         <button class="btn btn-sm btn-primary fa-solid fa-eye m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetailsLigue">
         </button>
@@ -37,15 +40,18 @@
 
       <hr>  
       
-      <div class="d-inline-flex m-1">
-            <%= button_to 'admins', display_admins_ligue_menu_index_path, class: "btn btn-sm btn-outline-warning mx-1" %>
-            <%= button_to 'règlement', display_reglements_ligue_menu_index_path, class: "btn btn-sm btn-outline-secondary mx-1" %>
-         
-            <%= button_to 'Rattachements', display_rattachements_ligue_menu_index_path, class: "btn btn-sm btn-outline-success mx-1" %>
-           
-        <%#= link_to  "Rejoindre", new_rattachement_path(user: current_user.id, ligue: ligue), class: "btn btn-success" %>
-
+    <div class="d-flex flex-wrap">
+      <div class="m-1">
+        <%= button_to 'admins', display_admins_ligue_menu_index_path, class: "btn btn-sm btn-outline-warning mx-1" %>
       </div>
+      <div class="m-1">
+        <%= button_to 'règlement', display_reglements_ligue_menu_index_path, class: "btn btn-sm btn-outline-secondary mx-1" %>
+      </div>
+      <div class="m-1">
+        <%= button_to 'Rattachements', display_rattachements_ligue_menu_index_path, class: "btn btn-sm btn-outline-success mx-1" %>
+      </div>
+    </div>
+
     
       <div id="partial-ligue-container">
         <%# recoit l'update turbo stream avec une partial donnée %>

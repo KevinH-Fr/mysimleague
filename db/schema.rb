@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_11_23_225159) do
+ActiveRecord::Schema[7.0].define(version: 2023_11_29_110012) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -192,6 +192,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_11_23_225159) do
     t.integer "points_initial"
     t.integer "user_id"
     t.string "time_zone"
+    t.string "discord"
+    t.string "instagram"
+    t.string "tiktok"
+    t.string "twitch"
+    t.string "youtube"
+    t.string "twitter"
     t.index ["user_id"], name: "index_ligues_on_user_id"
   end
 

@@ -1,0 +1,39 @@
+<div>
+    <%# réseaux %>
+    <% if @ligue.discord %>
+        <%= link_to @ligue.discord, target: '_blank', class: 'no-underline' do %>
+        <i class="mx-1 fa-brands fa-discord"></i>
+        <% end %>
+    <% end %>
+
+    <% if @ligue.twitch %>
+        <%= link_to @ligue.twitch, target: '_blank', class: 'no-underline' do %>
+        <i class="mx-1 fa-brands fa-twitch"></i>
+        <% end %>
+    <% end %>
+
+    <% if @ligue.twitter %>
+        <%= link_to @ligue.twitter, target: '_blank', class: 'no-underline' do %>
+        <i class="mx-1 fa-brands fa-twitter"></i>
+        <% end %>
+    <% end %>
+
+    <% if @ligue.instagram %>
+        <%= link_to @ligue.instagram, target: '_blank', class: 'no-underline' do %>
+        <i class="mx-1 fa-brands fa-instagram"></i>
+        <% end %>
+    <% end %>
+
+    <% if @ligue.youtube %>
+        <%= link_to @ligue.youtube, target: '_blank', class: 'no-underline' do %>
+        <i class="mx-1 fa-brands fa-youtube"></i>
+        <% end %>
+    <% end %>
+
+    <% if @ligue.tiktok %>
+        <%= link_to @ligue.tiktok, target: '_blank', class: 'no-underline' do %>
+        <i class="mx-1 fa-brands fa-tiktok"></i>
+        <% end %>
+    <% end %>
+
+</div>

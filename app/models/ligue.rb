@@ -12,6 +12,10 @@ class Ligue < ApplicationRecord
 
     has_one_attached :logo
 
+    # a verifier et completer avec les aurtes fields
+    validates :discord, :instagram, :twitter, format: { with: /\A#{URI::DEFAULT_PARSER.make_regexp(%w[http https])}\z/ }, allow_blank: true
+
+    
     after_create :create_association_admin
 
     def feed_content

@@ -89,6 +89,7 @@ class LiguesController < ApplicationController
     end
 
     def ligue_params
-      params.require(:ligue).permit(:nom, :user_id, :points_initial, :reglement_defaut, :logo, :time_zone)
+      params.require(:ligue).permit(:nom, :user_id, :points_initial, :reglement_defaut, :logo, :time_zone,
+        :discord, :instagram, :tiktok, :twitch, :youtube, :twitter)
     end
 end
