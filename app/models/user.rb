@@ -27,6 +27,10 @@ class User < ApplicationRecord
   before_create :initialize_score_pilote
   after_create :update_user_paris
 
+  #after_create do
+  #  Stripe::Customer.create(email: email)
+  #end
+
 
   def feed_content
     id

@@ -170,6 +170,11 @@ Rails.application.routes.draw do
   get 'classement_pilotes/index'
 
   get 'home/index'
+
+  get '/abonnements', to: 'home#abonnements', as: 'abonnements'
+
+
+
   #get '/landingpage', to: 'home#landingpage'
   get 'landingpage/index'
 
@@ -220,10 +225,15 @@ Rails.application.routes.draw do
   #  root to: 'home#index'
   root to: 'landingpage#index'
 
-
-  
   get 'set_theme', to: 'theme#update'
-  
  # mount ActiveAnalytics::Engine, at: "analytics"
+
+
+  # stripe listen --forward-to localhost:4242/stripe/webhooks
+ # post 'stripe/webhooks', to: 'stripe/webhooks#create'
+
+ 
+ get 'purchase_success', to: 'stripe#purchase_success'
+
 
 end

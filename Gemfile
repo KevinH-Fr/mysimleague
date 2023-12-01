@@ -72,3 +72,5 @@ gem 'meta-tags'
 #gem "ahoy_matey"
 
 #gem 'whenever', require: false
+
+gem 'stripe'
