@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_01_143848) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_01_215322) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -63,6 +63,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_143848) do
     t.datetime "updated_at", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
+  end
+
+  create_table "articles", force: :cascade do |t|
+    t.string "titre"
+    t.text "content"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "stripe_product_id"
+    t.string "stripe_price_id"
+    t.integer "montant"
   end
 
   create_table "association_admins", force: :cascade do |t|
@@ -227,6 +237,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_143848) do
     t.index ["event_id"], name: "index_presences_on_event_id"
   end
 
+  create_table "purchases", force: :cascade do |t|
+    t.string "status"
+    t.integer "article_id", null: false
+    t.integer "user_id", null: false
+    t.string "stripe_ref"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["article_id"], name: "index_purchases_on_article_id"
+    t.index ["user_id"], name: "index_purchases_on_user_id"
+  end
+
   create_table "rattachements", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "ligue_id", null: false
@@ -345,6 +366,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_143848) do
   add_foreign_key "paris", "users"
   add_foreign_key "presences", "association_users"
   add_foreign_key "presences", "events"
+  add_foreign_key "purchases", "articles"
+  add_foreign_key "purchases", "users"
   add_foreign_key "rattachements", "ligues"
   add_foreign_key "rattachements", "users"
   add_foreign_key "reglements", "ligues"

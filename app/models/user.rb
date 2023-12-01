@@ -23,7 +23,8 @@ class User < ApplicationRecord
   #ajoutés pour scorgin - verifier ne donne pas d'erreurs sur existant: 
   has_many :paris
   has_many :dotds
-
+  has_many :purchases
+  
   before_create :initialize_score_pilote
   after_create :update_user_paris
 
