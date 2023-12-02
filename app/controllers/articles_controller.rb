@@ -98,7 +98,7 @@ class ArticlesController < ApplicationController
 
     def create_stripe_product_and_price(article)
       # Create a product in Stripe
-      product = Stripe::Product.create(name: article.titre, type: 'service')
+      product = Stripe::Product.create(name: article.titre, description: content, type: 'service')
     
       if article.abonnement
         # Subscription case
@@ -138,10 +138,19 @@ class ArticlesController < ApplicationController
           currency: 'eur',
           recurring: { interval: 'month' },
         })
+      else
+        # One-time payment case
+        new_price = Stripe::Price.create({
+          product: stripe_product.id,
+          currency: 'eur',
+          custom_unit_amount: { enabled: true },
+        })
       end
     
       # Update the product name in Stripe with the article title
       stripe_product.name = article.titre
+      stripe_product.description = article.content
+
       stripe_product.save
 
 

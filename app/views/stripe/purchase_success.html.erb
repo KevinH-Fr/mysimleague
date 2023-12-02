@@ -1,8 +1,65 @@
-<h1>Stripe#purchase_success</h1>
-<p>Find me in app/views/stripe/purchase_success.html.erb</p>
+
+<div class="card bg-success m-2 p-3 text-center fs-2">
+    <div> 
+        <span class="fa fa-fade" style= "font-family: Arial, sans-serif;"> paiement validé </span>
+    </div>
+</div>
+
+<div class="container text-center my-3">
+    <%= image_tag("svgs/thankyou.svg?#{Time.now.to_i}", 
+    width: 250, height: 250, alt: "Animated GIF", 
+    class: "reanimate-svg" ) %>
+</div>
+
+<div class="card border-success m-2 p-3 text-center fs-6">
+
+    Merci beaucoup pour ton soutien ! <hr>  
+
+    <% if @article.abonnement %>
+        Tu es désormais abonné: <span class="badge bg-warning my-3 p-2"> <%= @article.titre %> </span>
+    <% else %>
+        Tu a réalisé un don ponctuel !
+    <% end %>
 
 
-<%= @session_id %>
+    <%= render  @article %>
 
-<hr>
-Merci d'avoir acheté l'article <%= @article.titre %> !
+
+</div>
+
+<div class="container-fluid my-3 text-center">
+    <%= link_to home_index_path, class:"btn w-100 btn-dark fw-bold mt-2 mb-3 px-5" do %>
+        <i class="me-2 fa fa-solid fa-lg fa-home" aria-hidden="true"></i>
+        Home
+    <% end %>
+</div>
+
+
+<footer>
+  <small>
+    <p class="container-fluid text-center" style="font-style: italic;">
+      Icons by
+      <a class="no-underline" href="https://storyset.com/people">Animated illustrations by Storyset</a>
+    </p>
+  </small>   
+</footer>
+
+<script>
+  // Function to reanimate the SVG
+  function reanimateSvg() {
+    const svgElements = document.getElementsByClassName("reanimate-svg");
+
+    // Loop through all elements with the "reanimate-svg" class
+    for (let i = 0; i < svgElements.length; i++) {
+      const svgElement = svgElements[i];
+      const imageUrl = svgElement.getAttribute("src");
+
+      // Add a random query parameter to the URL to force reload
+      const newImageUrl = `${imageUrl.split("?")[0]}?t=${new Date().getTime()}`;
+      svgElement.setAttribute("src", newImageUrl);
+    }
+  }
+
+  // Call reanimateSvg every 5 seconds (5000 milliseconds)
+  setInterval(reanimateSvg, 2000);
+</script>

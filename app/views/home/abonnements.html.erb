@@ -15,7 +15,7 @@
             <h4>Abonnements</h4> 
         </div>
         <div class="container-fluid p-2 d-flex flex-wrap justify-content-center">
-            <% Article.where(abonnement: true).each do |article| %>
+            <% Article.where(abonnement: true).order(:montant).each do |article| %>
                 <%= render article %>
             <% end %>
         </div>
