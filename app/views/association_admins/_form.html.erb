@@ -1,0 +1,38 @@
+<div class="card record-with-effect m-0 my-1 p-2">  
+
+  <%= form_with(model: association_admin) do |form| %>
+    <% if association_admin.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(association_admin.errors.count, "error") %> prohibited this association_admin from being saved:</h2>
+
+        <ul>
+          <% association_admin.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :user_id, class: "input-group-text label-colored" %>
+      <%= form.collection_select :user_id, User.all, :id, :nom, 
+       { include_blank: 'Select a user' }, class: "form-select input-colored" %>
+    </div>
+
+    <%= form.hidden_field :ligue_id, value: session[:ligue] %>
+
+    <div class="form-check form-switch">
+      <%= form.label :valide, class: "form-check-label" %>
+      <%= form.check_box :valide, class: "form-check-input" %>
+    </div>
+
+    <div class="form-check form-switch">
+      <%= form.label :actif, class: "form-check-label" %>
+      <%= form.check_box :actif, class: "form-check-input" %>
+    </div>
+
+    <%= custom_submit_button("Admin") %>
+
+  <% end %>
+
+</div>

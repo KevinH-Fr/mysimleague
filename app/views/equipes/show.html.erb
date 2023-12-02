@@ -1,0 +1,15 @@
+<div class="p-2">
+
+  <%= render @equipe %>
+
+  <% if current_user && current_user.admin  %>
+    
+    <div>
+      <%= link_to "Edit this equipe", edit_equipe_path(@equipe) %> |
+      <%= link_to "Back to equipes", equipes_path %>
+
+      <%= button_to "Destroy this equipe", @equipe, method: :delete %>
+    </div>
+  <% end %>
+
+</div>

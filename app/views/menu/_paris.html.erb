@@ -1,0 +1,82 @@
+<div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
+
+    <div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
+    Pour parier c'est ici que ça se passe !
+    Chaque semaine reçois des points pour parier, fais en bon usage !
+    Les paris sont ouverts à tous !
+    </div>
+
+    <h4 class="titre-topic">
+        Paris
+
+        <% if current_user %>
+
+            <% if verif_delai_pari(@event.id) %>
+
+                <% if verif_appartenance_division(current_user, @event.division_id) %>
+                    <%= add_disabled_button %>
+                    <div class="text-center text-danger fs-6 my-2"> Les paris ne sont pas autorisés sur une division à laquelle tu participes </div> 
+                <% else %>
+                    <button class="btn btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapsePari" aria-expanded="<%= @expand_pari ? 'true' : 'false' %>">
+                        <i class="fa-solid fa-square-plus fa-xl"></i>
+                    </button>
+                    <div class="container fs-6">
+                        <%= boolean_container(true, "Les paris sont ouverts") %>  
+                    </div>
+
+
+                    <div class="collapse" id="collapsePari">
+                        <div id="new_pari">
+                            <div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">            
+                                <%= render 'paris/form', pari: Pari.new() %>
+                            </div>
+                        </div>
+                    </div>
+                <% end %>
+            <% else %>
+                <%= add_disabled_button %>
+                <%= boolean_container(false, "Les paris sont fermés") %>
+            <% end %>
+            
+        <% else %>
+
+            <div class="container fs-6">
+                <%= add_disabled_button %>
+                <%= boolean_container(false, "Connecte toi à ton compte pour parier") %>
+            </div>
+
+        <% end %>
+    </h4>
+
+    </div>
+
+
+
+    <% if @event %>
+
+        <div class="card-with-effect p-2">
+            <h5>synthèse</h5>
+            nombre paris <span class="fw-bold text-warning"><%= @nb_paris %> </span><br>
+            montant misé <span class="fw-bold text-warning"><%= number_with_delimiter(@montant_paris, delimiter: ' ', precision: 0) %> </span><br>
+
+            <% if @nb_paris > 0 %>          
+                parieur avec le plus de mises
+                <span class="fw-bold"><%= @biggest_parieur %> </span>
+                <span class="fw-bold text-warning"><%= number_with_delimiter(@sum_montant_biggest_parieur, delimiter: ' ', precision: 0) %> </span><br>
+
+                coureur avec le plus de mises
+                <span class="fw-bold"> <%= @biggest_coureur %> </span>
+                <span class="fw-bold text-warning"><%= number_with_delimiter(@sum_montant_biggest_coureur, delimiter: ' ', precision: 0) %> </span><br>
+            <% end %>
+
+        </div>
+
+        <div id="paris">
+            <% @paris.order(:id).each do |pari| %>
+                <%= render pari %>
+            <% end %>
+        </div>
+
+    <% end %>
+
+

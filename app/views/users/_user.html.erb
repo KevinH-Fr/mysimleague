@@ -1,0 +1,89 @@
+<div class="card-with-effect p-2" id="<%= dom_id user %>">
+
+  <div class="text-light rounded p-2 my-1"> 
+    <h4 class="bg-dark rounded text-center p-2"> 
+      <div class="container-fluid text-center">
+        <%= icon_leader_parieur(Date.today.year, user.id) %>
+        <%= icon_leader_user(user.id) %>
+        <%= icon_leader_pilote(user.id) %>
+        <%= user.nom %> 
+      </div>
+     
+    </h4>
+  </div>
+
+
+  <div class="my-4">
+    <div class="row g-0">
+      <div class="col-md-4">
+        <%#= image_tag(user.default_profile_pic, class: "card-img-top profile-pic mx-auto d-block my-2") %> 
+        <%= image_tag(user.webp_variant, class: "card-img-top profile-pic mx-auto d-block my-2") %>
+      </div>
+      <div class="col-md-8">
+        <div class="card-body">
+          <p class="card-text">
+           <small> slogan:</small> <%= user.slogan %>
+          </p>
+          <p class="card-text">
+           <small> bio:</small> <%= user.bio %>
+          </p>
+          <p class="card-text">
+             <small>pilote préféré: </small><%= user.pilote_prefere %>
+          </p>
+          <p class="card-text">
+             <small>controlleur:</small> <%= user.icon_controlleur %>
+          </p>
+
+          <% if user.twitch.present? %>
+            <p class="card-text">
+              <small>Twitch:</small> 
+                <%= link_to user.twitch, user.twitch %>
+            </p>            
+          <% end %>
+
+          <p class="card-text fs-6">
+            paris: <%= badge_solde_parieur(user) %>
+          </p>
+
+          <p class="card-text text-center my-2">
+            <small class="text-warning">
+              Member since <%= local_time user.created_at %>
+            </small>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <% user.association_users.each do |association_user| %>
+      <div class="d-flex align-items-center justify-content-center m-1">
+        <div class="badge bg-dark mx-1 p-2"> 
+          <%= association_user.division.saison.ligue.nom %> 
+          <%= association_user.division.saison.nom %> 
+          <%= association_user.division.nom %> 
+        </div>
+        <%= equipe_banner_with_data(association_user.equipe, association_user.user.nom, association_user.user.id) %>
+        <div class="badge bg-dark mx-1 p-2"> 
+          <%= boolean_icon(association_user.actif) %>
+        </div>
+      </div>
+    <% end %>
+
+    <% if current_user && current_user == @user %>
+
+      <div class="container-fluid mt-4">  
+        <%= link_to 'Edit Profile', edit_user_registration_path(@user),
+            class: "btn btn-primary" %>
+
+        <%= button_to "", destroy_user_session_path, method: :delete, 
+            data: {turbo: "false"},
+            class: "fa-solid fa-right-from-bracket btn btn-danger mt-2"  %>
+      </div>
+
+
+    <% end %>
+
+  </div>
+
+
+</div>
+

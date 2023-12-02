@@ -1,0 +1,77 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<%= stylesheet_link_tag "document" %>
+
+<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+ 
+  <body>
+
+    <%= render partial: "documents/entete",  locals: { titre: "Synth. Licences" } %>
+
+    <%#= tableau data class pilotes %>
+        
+    <table style="margin-left:auto;margin-right:auto">
+
+      <thead class="text-center">
+        <tr>
+          <th></th>
+          <th class="text-danger">Perte</th>
+          <th class="text-success">Gain</th>
+          <th>Solde</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% cumul_licence_user(@event).each do |user| %>
+
+          <% pilote = User.find(user[:user_id]).nom %>
+          <% equipe = AssociationUser.find(user[:association_user_id]).equipe %>
+          <tr>
+
+            <td>
+              <div class="img-banniere-doc">
+                <%= equipe_banner_with_data_document(equipe, pilote) %> 
+              </div>  
+            </td>
+ 
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center text-danger">
+                <%= user[:perte_total] %> 
+              </div>
+            </td>
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center text-success">
+                <%= user[:gain_total] %> 
+              </div>
+            </td>
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= user[:solde] %> 
+              </div>
+            </td>
+
+          </tr>
+        <% end %> 
+      </tbody>  
+    </table>
+
+  </body>
+
+  <br><br>
+
+</div>
+
+<hr>
+
+<div class="d-flex">
+  <%= back_button_on_event(@event.id) %>
+
+  <button class="fa fa-solid fa-image btn btn-primary m-1" data-controller="screenshot" 
+          data-nom-doc="<%= @event.nom_doc("licences") %>" 
+          data-action="click->screenshot#capture" class="btn btn-success">
+  </button>
+</div>

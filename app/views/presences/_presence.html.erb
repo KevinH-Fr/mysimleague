@@ -1,0 +1,30 @@
+
+<div id="<%= dom_id presence %>">
+
+  <div class="d-flex align-items-center justify-content-center my-1">
+    <div class="me-1">
+      <%= boolean_icon(presence.status) %>
+    </div>
+
+    <%= equipe_banner_with_data(
+          presence.association_user.equipe,
+          presence.association_user.user.nom,
+          presence.association_user.user.id) %> 
+
+    <div class="d-flex align-items-center ms-1">
+      <% if current_user && verif_propriete_presence(current_user, presence.association_user_id) %>
+
+        <% if verif_delai_presence(presence.event_id) %>
+          
+          <%= button_to "", edit_presence_path(presence), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square me-1" %>
+          <%= button_to "", presence, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash me-1",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        <% end %>
+
+      <% end %>
+    </div>
+  </div>
+
+</div>

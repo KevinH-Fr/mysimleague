@@ -1,0 +1,88 @@
+<div id="<%= dom_id doi %>">
+
+  <div class="card my-2 p-2">  
+
+    <div class="d-inline align-items-center justify-content-center m-0 p-0">
+
+        <% if doi.doicommissaire %>
+          <span class="badge bg-danger">
+            <i class="fa fa-solid fa-person-military-pointing"></i>
+            <span> DOI commissaire </span>
+          </span>
+        <% else %>
+          demandeur: 
+          <strong> 
+            <%= link_to AssociationUser.find(doi.demandeur_id).user.nom, user_path(AssociationUser.find(doi.demandeur_id).user.id), class: "no-underline" %>
+          </strong>        
+        <% end %>
+       
+        impliqué: 
+        <strong> 
+          <%= link_to AssociationUser.find(doi.implique_id).user.nom, user_path(AssociationUser.find(doi.implique_id).user.id), class: "no-underline" %>
+        </strong>        
+
+        <div class="my-2">
+          <%= "Description: #{doi.description}" if doi.description.present? %>
+        </div>
+
+        <div class="my-2 row text-break">
+          <div class="col-auto">
+            <i class="fa fa-solid fa-link"></i>
+          </div>
+          <div class="col">
+            <%= doi.lien if doi.lien.present? %>
+          </div>
+        </div>
+
+        <div class="my-2 row text-break">
+          <div class="col-auto">
+            <i class="fa fa-solid fa-clock"></i>
+          </div>
+          <div class="col">
+          <%= local_time(doi.created_at, :short) %>
+          </div>
+        </div>
+        
+        <%= status_badge_decision_doi(doi.decision) %>
+        <% if doi.penalite.present? || doi.penalite_temps.present? %>
+          <span class="text-danger">
+            <%=  "#{doi.penalite} points" if doi.penalite.present? %> 
+            <%=  "#{doi.penalite_temps} secondes" if doi.penalite_temps.present? %> 
+          </span>
+        <% end %>
+
+        <% if doi.reglement_id %>
+          <div class="my-2">
+            article: <%= Reglement.find(doi.reglement_id).num_article  %>
+            <%= Reglement.find(doi.reglement_id).titre_article  %>
+            <%= Reglement.find(doi.reglement_id).contenu_article  %>
+          </div>
+        <% end %>
+
+        <div class="my-2">
+          <%= "Commentaire: #{doi.commentaire}" if doi.commentaire.present? %>
+        </div>
+
+        <div class="my-2">
+          <strong> <%= "Resp. commissaire: #{AssociationAdmin.find(doi.association_admin_id).user.nom}" if doi.association_admin_id.present? %> </strong>
+        </div>
+
+      <% if current_user && verif_admin_ligue(current_user, doi.event.division.saison.ligue) %>
+
+        <div class="d-flex align-items-center">  
+          <%= link_to "", generate_image_dois_path(doi: doi), 
+                class: 'btn btn-sm btn-success fa-solid fa-image m-1' %>
+
+          <%= button_to "", edit_doi_path(doi), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+          <%= button_to "", doi, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        </div>
+      
+      <% end %>
+
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,88 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<%= stylesheet_link_tag "document" %>
+
+<div id="captureContainer" class="doc-background my-2" style="width: 100%; max-width: 500px; margin-left:auto;margin-right:auto;">
+ 
+  <body class="">
+
+    <%#= image_tag asset_url('/images/fia.png'), style: "width: 100px;", class: "img-fluid rounded" %>
+    <%= render partial: "documents/entete",  locals: { titre: "DOI" } %>
+
+    <br>
+
+    <h5 class="text-decoration-underline p-2"> Rapport DOI n° <%= @doi.id %>  </h5> 
+
+    <div class="mx-2"> 
+      <% if @doi.doicommissaire %>
+        <span class="badge bg-danger" style="font-size: medium;">
+          <i class="fa fa-solid fa-person-military-pointing"></i>
+          <span> DOI commissaire </span>
+        </span>
+      <% else %>
+        <strong> Déposé par : </strong> <%= AssociationUser.find(@doi.demandeur_id).user.nom %> <br>
+        <strong> Ecurie : </strong> <%= AssociationUser.find(@doi.demandeur_id).equipe.nom %> <br>     
+      <% end %>
+
+      <br>
+      <strong> Pilote impliqué : </strong> <%= AssociationUser.find(@doi.implique_id).user.nom %> <br>
+      <strong> Ecurie : </strong> <%= AssociationUser.find(@doi.implique_id).equipe.nom %> <br>
+      <hr>
+
+      
+      <strong> Décision : </strong>  <%= status_badge_decision_doi(@doi.decision) %> <br> <br>
+
+      <% if @doi.decision == "responsable" && @doi.reglement_id %>
+      <strong> Article enfreint : </strong> <br>
+          <% reglementId = @doi.reglement_id %> 
+          article :  <%= @doi.reglement.num_article %>  <%= @doi.reglement.titre_article %> <br>
+          description : <%= @doi.reglement.contenu_article %> <br> <br>
+      <% end %>
+
+      <strong> Commentaires : </strong> <br>
+      <%= @doi.commentaire %>
+      <br><br>
+
+      <% if @decision == "responsable" %>
+          <strong> Sanctions : </strong> <br>
+          licence :
+          <strong style="color: red;">
+              <%= @doi.penalite %> points <br>
+          </strong>
+
+          <% if @doi.penalite_temps.present? %>
+              temps : 
+              <strong style="color: red;">
+              <%= @doi.penalite_temps %> secondes <br>
+              </strong>
+          <% end %>
+      <% end %>
+
+      <strong> Décision prise suite à la réunion des commissaires </strong> <br> 
+      <strong> Responsable commissaire : </strong> <%= AssociationAdmin.find(@doi.association_admin_id).user.nom  if @doi.association_admin_id  %> <br> <br>
+
+     </div>
+
+  </body>
+
+  <br><br>
+
+</div>
+
+<hr>
+
+<div class="d-flex">
+  <%= back_button_on_event(@event.id) %>
+
+  <button class="fa fa-solid fa-image btn btn-primary m-1" data-controller="screenshot" 
+          data-nom-doc="<%= @event.nom_doc("doi") + '_' + @doi.id.to_s %>" 
+          data-action="click->screenshot#capture" class="btn btn-success">
+  </button>
+
+</div>
+
+<br>

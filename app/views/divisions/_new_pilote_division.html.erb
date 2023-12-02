@@ -1,0 +1,14 @@
+<div class="collapse" id="collapseNew">
+    <div id="new_association_user">
+        <%= render partial: "association_users/form", locals: { association_user: AssociationUser.new } %>
+    </div>
+</div>
+
+<div id="association_users">
+    <% @division.association_users.each do |pilote| %>
+        <%= render pilote %>
+    <% end %>
+</div>
+
+  nb pilotes actifs et valides: 
+  <strong><%= nb_pilotes_division(session[:division]) %> </strong> 

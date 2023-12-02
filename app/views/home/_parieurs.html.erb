@@ -1,0 +1,56 @@
+<div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
+
+  <div class="card-with-effect">
+    <h4 class="text-center">Parieurs</h4>
+
+    <div class="text-center">
+      <%# selection de l'année %>
+      <% annees_paris.each do |annee| %>
+        <%= button_to annee, display_parieurs_annee_home_index_path, params: { annee: annee }, class: "btn btn-sm btn-warning m-1" %>
+      <% end %>
+    </div>
+
+    <div class="container-fluid text-center my-2">
+      <%= link_to "", generate_image_parieurs_path(), class: 'btn fa fa-image btn-outline-success w-25' %>
+    </div>
+
+    <% if @annee %>
+
+        <% if current_user && current_user.admin %>    
+
+          <div class="container-fluid text-center m-2">
+            <%= link_to 'Update all solde paris', 
+                update_solde_paris_home_index_path, method: :post,
+                class: "btn btn-sm btn-warning mx-1" %>
+
+          </div>
+        <% end %>
+
+      <% ranked_parieurs(@annee).each do |user| %>
+        <div class="d-flex align-items-center justify-content-center my-1">
+          <%= badge_score_position(user[:rank]) %>
+          <div class="equipe-banner-wrapper d-flex align-items-center bg-secondary text-light fw-bold rounded px-2" style="width: 100%; max-width: 300px;">
+            <%= link_to user_path(user[:user].id), class: "no-underline text-light" do %>
+              <%= image_tag(user[:user].webp_variant, class: "mini-profile-pic me-1") %>
+
+              <%= user[:user].short_name %>
+              <%= icon_leader_parieur(@annee, user[:user].id) %>
+              <%= icon_leader_user(user[:user].id) %>
+              <%= icon_leader_pilote(user[:user].id) %>
+
+            <% end %>
+          </div>
+          
+          <div style="min-width: 80px;">
+            <%= badge_score_position( number_to_human(user[:solde_parieur], units: { thousand: 'K', million: 'M', billion: 'B' } )) %>
+          </div>
+
+
+        </div>
+      <% end %>
+
+    <% end %>
+
+  </div>
+
+</div>

@@ -1,0 +1,26 @@
+
+<h1>
+  Circuits
+  <% if current_user && current_user.admin %>
+    <button class="btn btn-sm btn-warning m-2" type="button" 
+      data-bs-toggle="collapse" data-bs-target="#collapseNewCircuit" aria-expanded="false">
+        <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
+  <% end %>
+</h1>
+
+<div class="collapse" id="collapseNewCircuit">
+  <div id="new_circuit">
+    <%= render partial: "circuits/form", locals: { circuit: Circuit.new } %>
+  </div>
+</div>
+
+<div id="circuits">
+  <% @circuits.each do |circuit| %>
+    <%= render circuit %>
+  <% end %>
+</div>
+
+<%== content_tag :div, class: 'd-flex align-items-center justify-content-center' do %>
+  <%==pagy_bootstrap_combo_nav_js(@pagy) %>
+<% end %>

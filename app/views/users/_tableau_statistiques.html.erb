@@ -1,0 +1,90 @@
+
+<div class="text-center p-2 mt-4">
+
+    <% stats = user_resultats_stats(@user, @user_compare) %>
+    <% if stats.present? %>
+
+        <span class="badge bg-dark my-1 fs-6 pilote1-colored">
+            nb courses <%= @user.nom %>: <%= stats[:user_stats][:nb_courses] %>
+        </span>
+
+        <% if @user_compare %>
+            <span class="badge bg-dark my-1 fs-6 pilote2-colored">
+                nb courses  <%= @user_compare.nom %>: <%= stats[:user_compare_stats][:nb_courses] %> 
+            </span>
+        <% end %>
+
+        <table class="table  table-dark text-center" style="width: 100%; margin: 0 auto;">
+            <thead class="">
+                <th>  </th>
+                <% if @user_compare %>
+                    <th colspan=2> nb</th>
+                    <th colspan=2> % </th>
+                <% else %>
+                    <th class="text-center"> nb</th>
+                    <th class="text-center"> %</th>
+                <% end %>
+            </thead>
+
+                        
+            <tbody>
+                <tr>
+                    <td>Vict.</td>
+                    <% if @user_compare %>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:nb_victoires] %>  </td>
+                        <td class="pilote2-colored"> <%= stats[:user_compare_stats][:nb_victoires] %>  </td>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:tx_victoires].to_i %>  </td>
+                        <td class="pilote2-colored"> <%= stats[:user_compare_stats][:tx_victoires].to_i %>  </td>
+
+                    <% else %>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:nb_victoires].to_i %>  </td>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:tx_victoires].to_i%>  </td>
+                    <% end %>                    
+                </tr>
+
+                <tr>
+                    <td>Pod.</td>
+                    <% if @user_compare %>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:nb_podiums] %>  </td>
+                        <td class="pilote2-colored"> <%= stats[:user_compare_stats][:nb_podiums] %>  </td>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:tx_podiums].to_i %>  </td>
+                        <td class="pilote2-colored"> <%= stats[:user_compare_stats][:tx_podiums].to_i %>  </td>
+                    <% else %>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:nb_podiums] %>  </td>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:tx_podiums].to_i %>  </td>
+                    <% end %>
+                </tr>
+
+                <tr>
+                    <td>Top5</td>
+                    <% if @user_compare %>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:nb_top5] %>  </td>
+                        <td class="pilote2-colored"> <%= stats[:user_compare_stats][:nb_top5] %>  </td>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:tx_top5].to_i %>  </td>
+                        <td class="pilote2-colored"> <%= stats[:user_compare_stats][:tx_top5].to_i %>  </td>
+                    <% else %>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:nb_top5] %>  </td>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:tx_top5].to_i %>  </td>
+                    <% end %>
+                </tr>
+
+                <tr>
+                    <td>Top10</td>
+                    <% if @user_compare %>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:nb_top10] %>  </td>
+                        <td class="pilote2-colored"> <%= stats[:user_compare_stats][:nb_top10] %>  </td>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:tx_top10].to_i %>  </td>
+                        <td class="pilote2-colored"> <%= stats[:user_compare_stats][:tx_top10].to_i %>  </td>
+                    <% else %>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:nb_top10] %>  </td>
+                        <td class="pilote1-colored"> <%= stats[:user_stats][:tx_top10].to_i %>  </td>
+                    <% end %>
+                </tr>
+
+            </tbody>
+        </table>
+
+    <% end %>
+
+</div>
+

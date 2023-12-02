@@ -1,0 +1,144 @@
+<div data-controller="form-new-doi">
+<%# data-form-new-doi-record-id="<%= doi.id %>
+
+  <div class="card m-0 my-1 p-2">  
+
+    <%= form_with(model: doi) do |form| %>
+
+      <% if doi.errors.any? %>
+        <div style="color: red">
+          <h2><%= pluralize(doi.errors.count, "error") %> prohibited this doi from being saved:</h2>
+
+          <ul>
+            <% doi.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+
+      <%= form.hidden_field :event_id, value: @event.id if @event %>
+
+      <div class="card p-2">  
+        <h4> dépôt </h4>  
+
+        <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
+          <div class="form-check form-switch h6">
+            <%= form.label :doicommissaire, "DOI commissaire", class: "form-check-label text-center" %>
+            <%= form.check_box :doicommissaire, class: "form-check-input text-center" %>
+          </div>
+        <% end %>
+        
+        <div class="row g-2">
+          <div class="col-md">
+
+            <div class="input-group input-group-sm my-1 label-colored">
+              <span class= "input-group-text label-colored"> Demandeur</span>    
+              <% if doi.persisted? %>
+                <%= form.hidden_field :demandeur_id, value: doi.demandeur_id, class: "form-control disable" %> 
+                  <div class="form-control text-center input-colored">
+                    <%= AssociationUser.find(doi.demandeur_id).user.nom if doi.demandeur_id %>
+                  </div>   
+              <% else %>
+              <%# donne erreur si pas de pilotes %>
+
+                <%# if association_user_from_user(current_user, session[:division]) %>                  
+
+                <% association_user = association_user_from_user(current_user, session[:division]) %>
+
+                <%= form.hidden_field :demandeur_id, value: association_user&.id %>
+                <div class="form-control text-center input-colored">
+                  <%= association_user ? User.find_by(id: association_user.user_id)&.nom : "" %>
+                </div>
+
+
+                <%# end %>
+
+              <% end %>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="input-group input-group-sm my-2">
+              <%= form.label :implique_id, class: "input-group-text label-colored" %>
+              <%= form.collection_select :implique_id, pilotes_division_named_with_inactifs(Division.find(session[:division])), 
+                      :first, :second, { include_blank: 'Select impliqué'},  class: "form-select input-colored" %> 
+            </div>
+          </div>
+        </div>
+
+        <div class="input-group input-group-sm my-2 ">
+          <%= form.label :description, class: "input-group-text label-colored" %>
+          <%= form.text_area :description, class: "form-control input-colored" %>
+        </div>
+
+        <div class="input-group input-group-sm my-2">
+          <%= form.label :lien, class: "input-group-text label-colored" %>
+          <%= form.text_field :lien, class: "form-control input-colored", type: "url" %>
+        </div>
+
+      </div>
+
+      <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
+
+
+        <div class="card my-2 p-2">
+          <h4> jugement </h4>  
+              
+            <div class="input-group input-group-sm my-2">
+              <%= form.label :decision, class: "input-group-text label-colored" %>
+              <%= form.select :decision, Doi.responsables.keys, { include_blank: true }, class: "form-select input-colored" %>
+            </div>
+
+            <div class="row g-2">
+              <div class="col-md">
+                <div class="input-group input-group-sm my-2">
+                  <%= form.label :reglement_id, class: "input-group-text label-colored" %>
+                  <%= form.collection_select :reglement_id,
+                        articles_reglement_ligue(session[:ligue]), :first, :second,
+                        { include_blank: 'Select article' },
+                        data: { action: "change->form-new-doi#update_penalite", form_new_doi_target: "reglement" }, 
+                        class: "form-select input-colored" %>     
+                </div>
+              </div>
+              <div class="col-md">
+                <div class="input-group input-group-sm my-2">
+                  <%= form.label :penalite, class: "input-group-text label-colored" %>
+                  <%= form.number_field :penalite, class: "form-control input-colored",
+                  data: { form_new_doi_target: "penalite_points" } %>
+                </div>
+                <div class="input-group input-group-sm my-2">
+                  <%= form.label :penalite_temps, class: "input-group-text label-colored" %>
+                  <%= form.text_field :penalite_temps, class: "form-control input-colored",
+                  data: { form_new_doi_target: "penalite_temps" } %>
+                </div>
+              </div>
+
+              <span
+                data-controller="new-doi"
+                data-form-new-doi-target="contenu_article">
+                <!-- Display other content if needed -->
+              </span>
+            </div>
+        </div>
+
+        <div class="input-group input-group-sm my-2">
+          <%= form.label :commentaire, class: "input-group-text label-colored" %>
+          <%= form.text_area :commentaire, class: "form-control input-colored", style: "min-height: 70px;" %>
+        </div>
+
+        <div class="input-group input-group-sm my-2">
+          <%= form.label :association_admin_id, "Respo. commissaire", class: "input-group-text label-colored" %>
+          <%= form.select :association_admin_id, 
+                options_from_collection_for_select(liste_admins_ligue(session[:ligue]), 'id', 'user_nom', form.object.association_admin_id), 
+                { include_blank: 'Select commissaire' }, class: "form-select input-colored" %>
+        </div>
+
+      <% end %>
+
+        <%= custom_submit_button("DOI") %>
+
+    <% end %>
+
+  </div>
+
+ </div>

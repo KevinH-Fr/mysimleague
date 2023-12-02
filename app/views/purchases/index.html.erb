@@ -1,0 +1,33 @@
+<p style="color: green"><%= notice %></p>
+
+<div class="p-2">
+  <h1>Purchases</h1>
+
+  <hr>  
+
+    <% User.all.each do |user|%>
+      <%= user.nom %>
+      
+      <% user.purchases.each do |purchase| %>
+
+        <% if purchase.status == "paid" %>
+          <%= link_to purchase_path(purchase), class: "badge bg-success text-dark mx-1" do %>
+            <%= purchase.article.titre %> 
+            <% if purchase.article.abonnement %>
+              montant: <%= number_to_currency(purchase.article.montant, precision: 0, unit: "€", format: "%n %u") %> / mois          
+            <% end %>
+          <% end %>
+        <% else %>
+          <%= link_to purchase_path(purchase), class: "badge bg-danger text-dark mx-1" do %>
+            <%= purchase.article.titre %> 
+            <% if purchase.article.abonnement %>
+              montant: <%= number_to_currency(purchase.article.montant, precision: 0, unit: "€", format: "%n %u") %> / mois          
+            <% end %>
+          <% end %>
+        <% end %>
+
+      <% end %>
+      <hr>
+    <% end %>
+    
+</div>

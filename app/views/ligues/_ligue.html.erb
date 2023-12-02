@@ -1,0 +1,65 @@
+<div id="<%= dom_id ligue %>">
+
+  <div class="card px-2 my-1">  
+
+    <div class="row align-items-center">
+        
+      <div class="col-8">
+        <%= link_to "#collapseDetailsLigue", class: "no-underline", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsLigue", "aria-expanded" => "false" do %>
+          <% if ligue.logo.present? %>
+            <%= image_tag(ligue.logo, class: "img-fluid rounded", width: "40") %>
+          <% end %>
+          <strong>Nom:</strong> <%= ligue.nom %>
+
+          
+          <%= render  "ligues/reseaux" %>
+        <% end %>
+        
+      </div>
+
+      <div class="col-4 d-flex justify-content-end align-items-center">
+    
+        <button class="btn btn-sm btn-primary fa-solid fa-eye m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetailsLigue">
+        </button>
+                
+        <% if current_user && verif_admin_ligue(current_user, ligue.id) %>
+
+          <%= button_to "", edit_ligue_path(ligue), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+          <%= button_to "", ligue, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        <% end %>
+
+      </div>
+    </div>
+
+    <div class="collapse" id="collapseDetailsLigue">
+        Créateur sur l'app:  <strong> <%= ligue.user.nom %> </strong>  |
+        Points Licence départ: <%= ligue.points_initial %> points |
+        <%= ligue.reglement_defaut ? "règlement par défaut" : "règlement personnalisé" %>
+
+      <hr>  
+      
+    <div class="d-flex flex-wrap">
+      <div class="m-1">
+        <%= button_to 'admins', display_admins_ligue_menu_index_path, class: "btn btn-sm btn-outline-warning mx-1" %>
+      </div>
+      <div class="m-1">
+        <%= button_to 'règlement', display_reglements_ligue_menu_index_path, class: "btn btn-sm btn-outline-secondary mx-1" %>
+      </div>
+      <div class="m-1">
+        <%= button_to 'Rattachements', display_rattachements_ligue_menu_index_path, class: "btn btn-sm btn-outline-success mx-1" %>
+      </div>
+    </div>
+
+    
+      <div id="partial-ligue-container">
+        <%# recoit l'update turbo stream avec une partial donnée %>
+      </div>
+
+    </div>
+
+  </div>
+</div>
+

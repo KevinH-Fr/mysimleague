@@ -1,0 +1,12 @@
+<% title "User Profile #{@user.nom}" %>
+<% description "User page informations with participations, results and statistics." %>
+<% keywords "User, Profile, Statistics, Charts, Comparison,  #{@user.nom}" %>
+
+
+<div class="p-2">
+    <%= render @user %>
+
+    <%= render  "users/statistiques" %>
+</div>
+
+<br>

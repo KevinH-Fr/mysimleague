@@ -1,0 +1,57 @@
+<div class="card p-2">
+
+  <%= form_with(model: dotd) do |form| %>
+    <% if dotd.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(dotd.errors.count, "error") %> prohibited this dotd from being saved:</h2>
+
+        <ul>
+          <% dotd.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <%= form.hidden_field :user_id, value: current_user.id %>
+
+      <%= form.hidden_field :event_id, value: session[:event] %>
+
+
+    <% if session[:event].present? || dotd.event_id.present? %>
+      <% division = Division.find(session[:division]) %>
+
+      <% pilotes_division_named(division).each_slice(2) do |pilote1, pilote2| %>
+        <div class="row flex-wrap m-1 fs-6">
+          <div class="col-md-5 rounded border align-middle mb-1">
+            <label for="pilote_<%= pilote1 %>" class="form-check-label d-flex align-items-center mb-0">
+              <div class="form-check me-2">
+                <input class="form-check-input" type="radio" name="dotd[association_user_id]" id="pilote_<%= pilote1 %>" value="<%= pilote1.first %>">
+              </div>
+
+              <% equipe = Equipe.find(AssociationUser.find(pilote1.first).equipe_id) %>
+              <%= image_tag equipe.voiture, style: "width: 100px;", class: "img-fluid rounded me-2" if equipe.voiture.present? %>
+              <span class="fw-bold"> <%= pilote1.last.truncate(14) %> </span>
+            </label>
+          </div>
+          <% if pilote2.present? %>
+            <div class="col-md-5 rounded border align-middle mb-1">
+              <label for="pilote_<%= pilote2 %>" class="form-check-label d-flex align-items-center mb-0">
+                <div class="form-check me-2">
+                  <input class="form-check-input" type="radio" name="dotd[association_user_id]" id="pilote_<%= pilote2 %>" value="<%= pilote2.first %>">
+                </div>
+                <% equipe = Equipe.find(AssociationUser.find(pilote2.first).equipe_id) %>
+                <%= image_tag equipe.voiture, style: "width: 100px;", class: "img-fluid rounded me-2" if equipe.voiture.present? %>
+                <span class="fw-bold"> <%= pilote2.last.truncate(14) %> </span>
+              </label>
+            </div>
+          <% end %>
+        </div>
+      <% end %>
+
+      <%= custom_submit_button("Voter") %>
+
+    <% end %>
+
+  <% end %>
+</div>

@@ -1,0 +1,12 @@
+
+<div data-controller="chartradar" 
+     data-chartradar-user-stats="<%= @data %>"
+     data-chartradar-user-name="<%= @user.nom.to_json %>"
+     data-chartradar-user-compare-stats="<%= @data_compare %>"
+     data-chartradar-user-compare-name="<%= @user_compare.nom.to_json if @user_compare %>">
+
+  <div class="container mt-1 text-center">
+    <canvas id="myChartRadar" height="300"></canvas>
+  </div>
+</div>
+

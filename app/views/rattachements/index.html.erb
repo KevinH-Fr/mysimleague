@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Rattachements</h1>
+
+<div id="rattachements">
+  <% @rattachements.each do |rattachement| %>
+    <%= render rattachement %>
+    <p>
+      <%= link_to "Show this rattachement", rattachement %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New rattachement", new_rattachement_path %>

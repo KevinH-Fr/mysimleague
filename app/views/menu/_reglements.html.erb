@@ -1,0 +1,26 @@
+<h4>Règlements</h4>
+
+<%# if @ligue.reglement_defaut == false %>
+    
+    <% if current_user && verif_admin_ligue(current_user, @ligue.id)  %>
+        <button class="btn btn-sm btn-primary mb-3" type="button" data-bs-toggle="collapse" data-bs-target="#collapseReglements" aria-expanded="false">
+        <span>Nouveau</span>
+        </button>
+    <% end %>
+
+    <div class="collapse" id="collapseReglements">
+        <div id="new_reglement">
+            <%= render partial: "reglements/form", locals: { reglement: Reglement.new } %>
+        </div>
+    </div>   
+
+<%# end %>
+
+<div id="reglements">
+
+    <% @reglements.each do |reglement| %>
+        <%= render reglement %>
+    <% end %>
+
+</div>
+

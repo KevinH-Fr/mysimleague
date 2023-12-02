@@ -1,0 +1,33 @@
+
+<% if current_user %>
+  <% if verif_delai_dotd(session[:event]) %>
+    <% unless verif_presence_dotd(current_user, session[:event])  %>
+    
+    <button class="btn btn-sm btn-warning m-2" type="button" 
+        data-bs-toggle="collapse" data-bs-target="#collapseNewDotd" aria-expanded="false">
+          <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
+
+      <div class="collapse" id="collapseNewDotd">
+        <div id="new_dotd">
+          <%= render partial: "dotds/form", locals: { dotd: Dotd.new } %>
+        </div>
+      </div>
+
+    <% end %>
+  <% else %>
+    <%= add_disabled_button %>
+    <div class="container">
+      <%= boolean_container(false, "Les votes sont fermés") %>
+    </div>  
+  <% end %>
+
+<% else %>
+    <%= add_disabled_button %>
+    <div class="container my-2 fs-6">
+      <%= boolean_container(false, "Connecte toi à ton compte pour voter") %>
+    </div>  
+<% end %>
+
+
+

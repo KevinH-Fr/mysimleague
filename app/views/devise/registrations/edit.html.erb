@@ -1,0 +1,93 @@
+<div class="card p-2">
+  <h2 class="text-center fw-bold">Editer compte</h2>
+
+  <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: { method: :put }) do |f| %>
+    <%= render "devise/shared/error_messages", resource: resource %>
+
+    <div class="input-group mb-2">
+      <%= f.label :email, class:"input-group-text label-with-format label-colored" %>
+      <%= f.email_field :email, autofocus: true, autocomplete: "email", class:"form-control input-colored" %>
+    </div>
+
+    <div class="input-group mb-2">
+      <%= f.label :nom, "Pseudo", class: "input-group-text label-with-format label-colored" %>
+      <%= f.text_field :nom, class:"form-control input-colored" %>
+    </div>
+
+    <div class="input-group input-group mb-2">
+      <%= f.label :profile_pic, class: "input-group-text label-colored" %>
+      <%= f.file_field :profile_pic, accept: "image/jpeg, image/png", class: "form-control input-colored"%>
+    </div>
+
+    <div class="input-group mb-2">
+      <%= f.label :controlleur, class:"input-group-text label-with-format label-colored" %>
+      <%= f.select :controlleur_type, ['volant', 'manette'], {include_blank: true}, class: "form-select input-colored" %>
+    </div>
+    <div class="input-group mb-2">
+      <%= f.label :slogan, class:"input-group-text label-with-format label-colored" %>
+      <%= f.text_area :slogan, class:"form-control input-colored" %>
+    </div>
+    <div class="input-group mb-2">
+      <%= f.label :bio, class:"input-group-text label-with-format label-colored" %>
+      <%= f.text_area :bio, class:"form-control input-colored" %>
+    </div>
+    <div class="input-group mb-2">
+      <%= f.label :pilote_prefere, class:"input-group-text label-with-format label-colored" %>
+      <%= f.text_field :pilote_prefere, class:"form-control input-colored" %>
+    </div>
+
+    <div class="input-group mb-2">
+      <%= f.label :twitch, class:"input-group-text label-with-format label-colored" %>
+      <%= f.text_field :twitch, class:"form-control input-colored" %>
+    </div>
+    
+
+    <% if devise_mapping.confirmable? && resource.pending_reconfirmation? %>
+      <div>Currently waiting confirmation for: <%= resource.unconfirmed_email %></div>
+    <% end %>
+
+    <p>
+      <a class="btn btn-outline-warning" data-bs-toggle="collapse" href="#collapseEditPassword" role="button" aria-expanded="false">
+        Change password
+      </a>
+    </p>
+    <div class="collapse" id="collapseEditPassword">
+      <h5> Change password </h5>
+      <i>(à remplir pour changer de password)</i>
+
+      <div class="input-group mb-2">
+        <%= f.label :password, class:"input-group-text label-with-format label-colored" %>
+        <%= f.password_field :password, autocomplete: "new-password", class:"form-control input-colored" %>
+      </div>
+
+      <div class="input-group mb-2">
+        <%= f.label :password_confirmation, class:"input-group-text label-with-format label-colored" %>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password", class:"form-control input-colored" %>
+      </div>
+      
+    </div>
+
+    <div class="input-group mb-2">
+      <%= f.label :current_password, class:"input-group-text label-with-format label-colored" %>
+      <%= f.password_field :current_password, autocomplete: "current-password", class:"form-control input-colored" %>
+    </div>
+    <i>(à renseigner pour valider les changements)</i>
+
+  <button type="submit" class="btn btn-primary container-fluid my-4" data-turbo="false">
+    <i class="fa-solid fa-xl fa-square-check"></i> 
+    <span class="fw-bold ms-2"> UPDATE</span>
+  </button>
+
+  <% end %>
+
+  <div>
+    Unhappy? 
+    <%= button_to "Cancel my account", registration_path(resource_name), 
+          data: { confirm: "Are you sure?", turbo_confirm: "Are you sure?" }, method: :delete,
+          class: "btn btn-sm btn-outline-danger" %>
+    <%= link_to "", :back, class: "btn btn-secondary btn-sm fa fa-arrow-rotate-left my-2" %>
+
+  </div>
+
+</div>
+

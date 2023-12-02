@@ -1,0 +1,64 @@
+<hr>
+
+<h2>  Sélection </h2>
+
+Ligues: 
+
+<% liste_ligues.each do |ligue| %>
+
+    <%= link_to url_for(ligue: ligue), class: "btn btn-outline-primary btn-sm m-2 
+        #{'fw-bold text-light btn-primary'  if params[:ligue] == ligue.id.to_s}" do %>
+         <%= ligue.nom %> 
+    <% end %>
+
+<% end %>
+
+<br>
+
+<% if params[:ligue] %>
+  
+    Saisons:
+    <% liste_saisons(params[:ligue]).each do |saison| %>
+        <%= link_to url_for(ligue: params[:ligue], saison: saison), class: "btn btn-outline-primary btn-sm m-2 
+            #{'fw-bold text-light btn-primary'  if params[:saison] == saison.id.to_s}" do %>
+            <%= saison.nom %> 
+        <% end %>
+    <% end %>
+
+    <br>
+
+    <% if params[:saison] %>
+
+        Divisions:
+        <% liste_divisions(params[:saison]).each do |division| %>
+            <%= link_to url_for(ligue: params[:ligue], saison: params[:saison], division: division), class: "btn btn-outline-primary btn-sm m-2 
+                #{'fw-bold text-light btn-primary'  if params[:division] == division.id.to_s}" do %>
+                <%= division.nom %> 
+            <% end %>
+        <% end %>
+
+        <br>
+
+        <% if params[:division] %>
+
+            Events:
+            <% liste_events(params[:division]).each do |event| %>
+
+                <%= link_to url_for(ligue: params[:ligue], saison: params[:saison], division: params[:division], event: event), 
+                        class: "btn btn-outline-primary btn-sm m-2 #{'fw-bold text-light btn-primary' if params[:event] == event.id.to_s}" do %>
+                    <%= event.numero %> | 
+                    <%= event.circuit.nom %>  | 
+                    <%= event.division.saison.ligue.nom %> |
+                    <%= event.division.saison.nom %>  | 
+                    <%= event.division.nom %>  
+                <% end %>
+            
+            <% end %>
+            
+        <% end %>
+
+    <% end %>
+
+<% end %>
+
+<hr>

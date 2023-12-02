@@ -1,0 +1,74 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<%= stylesheet_link_tag "document" %>
+
+<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+ 
+  <body>
+
+    <%= render partial: "documents/entete",  locals: { titre: "Class. Pilotes" } %>
+
+    <%#= tableau data class pilotes %>
+        
+    <table style="margin-left:auto;margin-right:auto">
+      <tbody>
+        <% somme_user(@event).each do |user| %>
+          <% nom = User.find(user[:user_id]).nom %>
+          <% equipe = AssociationUser.find(user[:association_user_id]).equipe %>
+
+          <tr>
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= user[:rank] %>
+              </div>
+            </td>
+
+            <td>  
+              <div class="contenant img-banniere-doc">
+                 <%= equipe_banner_with_data_document(equipe, nom)%> 
+
+              </div>
+            </td> 
+            <td>
+              <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                <%= user[:score] %> 
+              </div>
+            </td>
+              
+            <% if @previous_event %>
+
+              <td>
+                <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+                  <% comparison = compare_ranks(@previous_event, @event)[user[:user_id]] if @previous_event %>
+                  <%= badge_delta_rank(comparison[:delta_rank].to_i) if comparison %>
+                </div>
+              </td>
+            
+            <% end %>
+            
+          </tr>
+        <% end %> 
+      </tbody>  
+    </table>
+
+  </body>
+
+  <br><br>
+
+</div>
+
+<hr>
+
+<div class="d-flex">
+
+  <%= back_button_on_event(@event.id) %>
+
+  <button class="fa fa-solid fa-image btn btn-primary m-1" data-controller="screenshot" 
+          data-nom-doc="<%= @event.nom_doc("class_pilotes") %>" 
+          data-action="click->screenshot#capture">
+  </button>
+</div>

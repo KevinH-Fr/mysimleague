@@ -1,0 +1,49 @@
+<div id="<%= dom_id division %>">
+
+  <div class="card px-2 my-1">  
+
+    <div class="row align-items-center">
+      <div class="col-6">
+        <%= link_to "#collapseDetailsDivision", class: "no-underline", "data-bs-toggle" => "collapse", "data-bs-target" => "#collapseDetailsDivision", "aria-expanded" => "false" do %>
+          Nom: <strong> <%= division.nom %> </strong> 
+          <% if division.archived == true %>
+             | archived
+          <% end %>
+        <% end %>
+      </div>
+      <div class="col-6 d-flex justify-content-end align-items-center">
+        <button class="btn btn-sm btn-primary fa-solid fa-eye m-1" type="button" data-bs-toggle="collapse" data-bs-target="#collapseDetailsDivision" aria-expanded="false">
+        </button>
+        
+        <% if current_user && verif_admin_ligue(current_user, division.saison.ligue) %>
+          <%= button_to "", edit_division_path(division), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+          <%= button_to "", division, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        <% end %>
+          
+      </div>
+    </div>
+
+    <div class="collapse" id="collapseDetailsDivision">
+
+      <hr>
+
+      <div class="d-inline-flex">
+        <% if current_user && verif_admin_ligue(current_user, division.saison.ligue) %>
+          <%= button_to 'duplication', display_dupliquer_events_division_menu_index_path, class: "btn btn-sm btn-outline-warning m-1"  %> 
+        <% end %>
+        
+        <%= button_to 'pilotes', display_pilotes_division_menu_index_path, class: "btn btn-sm btn-outline-secondary m-1" %>
+      </div>
+      
+      <div id="partial-division-container">
+        <%# recoit l'update turbo stream avec une partial donnée %>
+      </div>
+      
+    </div>
+
+  </div>
+
+</div>

@@ -1,0 +1,46 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Event</h1>
+<%= render @event %>
+
+<div>
+  <%= link_to "Back to events", events_path %>
+</div>
+
+<hr>  
+
+<h4> Resultats 
+  <%= link_to "New resultat", new_resultat_path(event: @event.id), class: "btn btn-warning m-2" %>
+</h4>
+
+  <div id="resultats">
+    <% @event.resultats.each do |resultat| %>
+        <%= render resultat %>
+    <% end %>
+  </div>
+
+<hr>
+
+<h4> Présences 
+  
+  <% if verif_appartenance_division(current_user, @event.division) %>
+    <% unless verif_presence_existe(current_user, @event.id) %>
+      <%= link_to "Je participe!", create_presence_path(user: current_user.id, event: @event.id), method: :post, class: "btn btn-warning m-2" %>
+    <% end %>
+  <% end %>
+  
+</h4>
+
+
+<div class="collapse" id="collapsePresence">
+  <div id="new_presence">
+    <%= render partial: "presences/form", locals: { presence: Presence.new } %>
+  </div>
+</div>
+
+
+  <div id="presences">
+    <% @event.presences.each do |presence| %>
+        <%= render presence %>
+    <% end %>
+  </div>

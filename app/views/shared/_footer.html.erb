@@ -1,0 +1,47 @@
+<div class="container-fluid bg-dark p-0">
+
+    <% if current_user %>
+        <div class="flex-element text-light p-1">
+
+            <%= link_to  "", user_path(current_user), 
+                    data: {turbo: "false"}, class:"fa-solid fa-id-card btn btn-sm btn-warning" %>
+
+
+                <div class="container-fluid text-center">
+                    <%= icon_leader_parieur(Date.today.year, current_user.id) %>
+                    <%= icon_leader_user(current_user.id) %>
+                    <%= icon_leader_pilote(current_user.id) %>
+                    <%= current_user.nom %> 
+                </div>
+
+            <%= link_to "", menu_index_path(
+                ligue: prochain_event.division.saison.ligue_id, 
+                saison: prochain_event.division.saison_id, 
+                division: prochain_event.division_id, 
+                event: prochain_event),
+                class:"fa-regular fa-calendar btn btn-sm btn-primary",
+                alt: "prochaine course",
+                'aria-label' => "prochaine course" if prochain_event %>
+    
+                
+                
+
+        </div>
+    <% else %>
+        <div class="flex-element p-2">
+            <%= link_to '', new_user_session_path, 
+                    class: "fa-solid fa-user-lock btn btn-sm btn-warning",
+                    'aria-label' => "Sign In"%>
+
+            <%#= link_to "", steps_compte_step1_path, 
+            data: {turbo: "false"},
+                    class: "fa-solid fa-user-plus btn btn-primary",
+                    'aria-label' => "Sign Up" %>
+
+            <%= link_to  "", new_user_registration_path,
+                    class: "fa-solid fa-user-plus btn btn-sm btn-primary",
+                    'aria-label' => "Sign Up"  %>
+        </div>
+    <% end %>
+</div>
+

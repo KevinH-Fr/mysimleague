@@ -1,0 +1,43 @@
+<div id="<%= dom_id resultat %>">
+
+
+  <div class="d-flex align-items-center justify-content-center my-1 p-0" style="">
+    <%= badge_score_position(resultat.course) %> 
+    <%= equipe_banner_pilote_and_indicators(
+        resultat.equipe, 
+        resultat.association_user.user.nom,
+        resultat.dotd, 
+        resultat.mt, 
+        resultat.dnf, 
+        resultat.dns,
+        resultat.association_user.user.id
+        ) %>
+    <%= badge_score_position(resultat.score) %> 
+    
+  
+    <% if current_user && verif_admin_ligue(current_user, resultat.event.division.saison.ligue) %>
+      <div class="dropdown p-0 m-0">
+        <button class="btn text-center px-1 btn-sm btn-warning dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+        </button>
+        <ul class="dropdown-menu dropdown-menu-dark p-0 m-0">
+          <li>            
+            <%= button_to edit_resultat_path(resultat), method: :post, 
+                class: "dropdown-item text-light" do %>
+                <i class="fa-solid fa-pen-to-square me-1"></i>
+                <span>Editer</span>
+            <% end %>
+          </li>
+          <li>    
+            <%= button_to resultat, method: :delete, 
+              class: "dropdown-item text-danger",
+              data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'}  do %>
+                <i class="fa-solid fa-trash"></i>
+                <span>Supprimer</span>
+            <% end %>
+          </li>
+        </ul>
+      </div>
+    <% end %>
+
+  </div>
+</div>

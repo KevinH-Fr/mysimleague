@@ -1,0 +1,23 @@
+<div data-controller="scroll" data-action="click->scroll#scroll" data-scroll-target="target-scroll-id">
+</div>
+
+  <div class="d-flex align-items-center justify-content-center card-with-effect card-text-topic">
+    Vote ici pour le Driver Of The Day et suis les votes des autres !
+  </div>
+
+  <h4 class="titre-topic">
+    DOTDS
+    <%= turbo_frame_tag :content_new_dotd do %>
+      <%= render "dotds/new_dotd" %>
+    <% end %>
+  </h4>
+
+  <div id="dotds">
+    <% @dotds.each do |dotd| %>
+      <%= render dotd %>
+    <% end %>
+  </div>
+
+  <div id="partial-dotds-stats-container" class="my-1 text-center">
+    <%= render "dotds/stats" %>
+  </div>

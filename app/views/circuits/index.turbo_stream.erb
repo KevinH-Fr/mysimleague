@@ -1,0 +1,9 @@
+<%= turbo_stream.append :circuits do %>
+    <%= render @circuits %>
+<% end %>
+
+<%= turbo_stream.replace :pagination do %>
+    <%= turbo_frame_tag :pagination, loading: :lazy, src: circuits_path(format: :turbo_stream,
+        page: @pagy.next) %>    
+<% end %>
+    

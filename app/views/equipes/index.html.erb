@@ -1,0 +1,31 @@
+
+<h1 class="p-2">
+  Equipes
+  
+  <% if current_user && current_user.admin %>
+    <button class="btn btn-sm btn-warning m-2" type="button" 
+      data-bs-toggle="collapse" data-bs-target="#collapseNewEquipe" aria-expanded="false">
+        <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
+  <% end %>
+  
+</h1>
+
+<div class="collapse" id="collapseNewEquipe">
+  <div id="new_equipe">
+    <%= render partial: "equipes/form", locals: { equipe: Equipe.new } %>
+  </div>
+</div>
+
+<div id="equipes">
+  <% @equipes.each do |equipe| %>
+    <%= render equipe %>
+  <% end %>
+</div>
+
+<br>
+
+<%== content_tag :div, class: 'd-flex align-items-center justify-content-center' do %>
+  <%==pagy_bootstrap_combo_nav_js(@pagy) %>
+<% end %>
+

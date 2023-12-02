@@ -1,0 +1,112 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+<%= stylesheet_link_tag "document" %>
+
+<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+ 
+  <body>
+
+    <%= render partial: "documents/entete",  locals: { titre: "Rivalités" } %>
+
+    <%#= tableau data rivalites %>
+        
+        <%#= equipe_banner_pilote_and_indicator(
+              AssociationUser.where(user_id: rivalite.pilote1.user.id, division_id: rivalite.division_id,
+              actif: true, valide: true).last.equipe, 
+              rivalite.pilote1.id,             
+              rivalite.pilote1.user.nom, 
+              scores[:leading_pilote_id],
+              scores[:cumulative_scores][:pilote1]) %>
+
+<table style="margin-left:auto;margin-right:auto">
+  <thead class="text-center">
+    <tr>
+      <th></th>
+      <th class="text-dark">GP</th>
+      <th class="text-dark">Cumul</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @rivalites.each do |rivalite| %>
+        <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
+        <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
+
+        <tr>
+          <td>
+            <div class="img-banniere-doc">
+              <%= equipe_banner_with_data_document(rivalite.pilote1.equipe, rivalite.pilote1.user.nom) %> 
+            </div>
+          </td>
+
+          <td> 
+            <div class="col_pos_new rounded d-flex align-items-center justify-content-center">
+              <%= current_event_score[:pilote1] %> 
+            </div>
+          </td>
+          <td>
+            <div class="col_pos_new rounded d-flex align-items-center justify-content-center text-warning">
+              <%= scores[:cumulative_scores][:pilote1] %>
+            </div>
+          </td>
+
+          <td> 
+            <div class="d-flex align-items-center justify-content-center text-warning">
+              <% if  scores[:leading_pilote_id] == rivalite.pilote1_id %>
+                <i class="text-warning fa fa-xl fa-trophy"></i>              
+              <% end %>
+            </div>
+          </td>
+
+        </tr>
+        <tr>
+          <td>
+            <div class="img-banniere-doc mb-3">
+              <%= equipe_banner_with_data_document(rivalite.pilote2.equipe, rivalite.pilote2.user.nom) %> 
+            </div>
+          </td>
+          <td> 
+            <div class="col_pos_new rounded d-flex align-items-center justify-content-center mb-3">
+              <%= current_event_score[:pilote2] %> 
+            </div>
+          </td>
+          <td> 
+            <div class="col_pos_new rounded d-flex align-items-center justify-content-center text-warning mb-3">
+              <%= scores[:cumulative_scores][:pilote2] %>
+            </div>
+          </td>
+          <td> 
+            <div class="d-flex align-items-center justify-content-center text-warning mb-3">
+              <% if  scores[:leading_pilote_id] == rivalite.pilote2_id %>
+                <i class="text-warning fa fa-xl fa-trophy"></i>              
+              <% end %>
+            </div>
+          </td>
+        </tr>
+    <% end %>
+
+  </tbody>
+</table>
+
+
+  </body>
+
+  <br><br>
+
+</div>
+
+<hr>
+
+<div class="d-flex">
+  <%= back_button_on_event(@event.id) %>
+
+  <button class="fa fa-solid fa-image btn btn-primary m-1" data-controller="screenshot" 
+          data-nom-doc="<%= @event.nom_doc("rivalites") %>" 
+          data-action="click->screenshot#capture" class="btn btn-success">
+  </button>
+</div>

@@ -1,0 +1,9 @@
+<% if @data  %>
+  <div class="ms-1 p-1">
+    <img src="https://openweathermap.org/img/wn/<%= @data["weather"].first["icon"]%>@2x.png"
+            style="size: large; height: auto;" /> 
+    <%= number_with_precision(@data["main"]["temp"], precision: 1) %> °C |
+    <%= @data["main"]["humidity"] %> <small class="small_info"> % hum </small> 
+    <%#= @data["weather"].first["description"] %> 
+  </div>
+<% end %>

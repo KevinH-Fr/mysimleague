@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Rivalites</h1>
+
+<div id="rivalites">
+  <% @rivalites.each do |rivalite| %>
+    <%= render rivalite %>
+    <p>
+      <%= link_to "Show this rivalite", rivalite %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New rivalite", new_rivalite_path %>

@@ -1,0 +1,35 @@
+<div id="<%= dom_id reglement %>">
+
+  <div class="card record-with-effect mb-3">  
+
+    <div class="row align-items-center">
+      <div class="col-8">
+        <span class="fw-bold">
+          N° <%= reglement.num_article %>
+          Titre:  <%= reglement.titre_article %>
+        </span>
+          Contenu: <%= reglement.contenu_article %>
+        <span class="text-danger">
+          <%= "Penalite: #{reglement.penalite}" %>
+          <%= " Penalite temps: #{reglement.penalite_temps}" %>
+        </span>
+
+      </div>
+      <div class="col-4 d-flex justify-content-end align-items-center">
+         
+        <% if current_user %>
+          <% if verif_admin_ligue(current_user, session[:ligue]) || current_user.admin? %>
+            <%= button_to "", edit_reglement_path(reglement), method: :post, 
+                  class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+            <%= button_to "", reglement, method: :delete, 
+                  class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
+                  data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+          <% end %>
+        <% end %>
+
+        
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -1,0 +1,26 @@
+
+<h1>
+  Reglement
+  <% if current_user && current_user.admin %>
+
+     <button class="btn btn-sm btn-warning m-2" type="button" 
+      data-bs-toggle="collapse" data-bs-target="#collapseNewReglement" aria-expanded="false">
+        <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
+  
+  <% end %>
+
+</h1>
+
+<div class="collapse" id="collapseNewReglement">
+  <div id="new_reglement">
+    <%= render partial: "reglements/form", locals: { reglement: Reglement.new } %>
+  </div>
+</div>
+
+<div id="reglements">
+  <% @reglements.each do |reglement| %>
+    <%= render reglement %>
+  <% end %>
+</div>
+

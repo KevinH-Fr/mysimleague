@@ -1,0 +1,116 @@
+<%= form_with(model: rattachement) do |form| %>
+  <% if rattachement.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(rattachement.errors.count, "error") %> prohibited this rattachement from being saved:</h2>
+
+      <ul>
+        <% rattachement.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id %>
+
+  <% if controller.controller_name == "menu" %> <%# pour rattachement depuis ligue %>
+    <%= form.hidden_field :ligue_id %>
+
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :message, class: "input-group-text" %>
+      <%= form.text_area :message, class: "form-control"%>
+    </div>
+
+  <% end %> <%# pour rattachement depuis home %>
+
+  <% if controller.controller_name == "home" %> <%# pour rattachement depuis ligue %>
+
+    <div data-controller="form-rattachement">
+      <% Ligue.all.each do |ligue| %>
+        <%= form.button ligue.nom, ligue: ligue.id, type: "button", 
+          data: { action: "click->form-rattachement#setField", ligue: ligue.id, ligue_nom: ligue.nom },
+          class: "btn btn-warning" %>
+      <% end %>
+      
+      <%= form.hidden_field :ligue_id, data: { form_rattachement_target: "ligue" } %>
+
+      <div class="input-group input-group-sm my-2">
+        <%= form.label :message, class: "input-group-text" %>
+        <%= form.text_area :message, data: { form_rattachement_target: "message" }, 
+              class: "form-control"%>
+      </div>
+      
+    </div>
+
+  <% end %>
+
+
+
+  <% if rattachement.persisted? %>
+        <% if verif_appartenance_ligue(rattachement.user_id, rattachement.ligue_id) %>
+            <span class="badge bg-success">  user appartient à la ligue </span>
+        <% else %>
+            <span class="badge bg-danger">  user n'appartient pas encore à la ligue </span>
+
+            <!-- Fields for association_user 
+            a mettre en forme plus joliement
+            -->
+            <%= form.fields_for :association_user_attributes do |au_fields| %>
+              <div class="input-group input-group-sm my-2">
+                <%#= au_fields.label :ligue_id, class: "input-group-text" %>
+                <%= au_fields.hidden_field :ligue_id, value: session[:ligue], class: "form-select" %>
+              </div>
+
+              <div class="input-group input-group-sm my-2">
+                <%#= au_fields.label :user_id, class: "input-group-text" %>
+                <%#= au_fields.label :user_id, class: "form-select" %>
+                <%= au_fields.hidden_field :user_id, value: rattachement.user_id, class: "form-select" %>
+              </div>
+
+
+              <div class="row g-2">
+                <div class="col-md">
+                  <div class="form-control text-center">
+                    <%= rattachement.user.nom if rattachement.user_id %>
+                  </div>  
+                </div>
+                <div class="col-md">
+                  <div class="input-group input-group-sm my-2">
+                    <%= au_fields.label :division_id, class: "input-group-text" %>
+                    <%= au_fields.collection_select :division_id, rattachement.ligue.saisons.flat_map(&:divisions), 
+                          :id, :nom, { include_blank: 'Select division' }, class: "form-select" %>
+                  </div>
+                </div>
+                <div class="col-md">
+                  <div class="input-group input-group-sm my-2">
+                    <%= au_fields.label :equipe_id, class: "input-group-text" %>
+                    <%= au_fields.collection_select :equipe_id, Equipe.all, :id, :nom, 
+                        { include_blank: 'Select a team' }, class: "form-select" %>
+                  </div>
+                </div>
+                <div class="col-md d-flex align-items-center">
+                  <div class="form-check form-switch">
+                    <%= au_fields.label :valide, class: "form-check-label" %>
+                    <%= au_fields.check_box :valide, class: "form-check-input" %>
+                  </div>
+                </div>
+                <div class="col-md d-flex align-items-center">
+                  <div class="form-check form-switch">
+                    <%= au_fields.label :actif, class: "form-check-label" %>
+                    <%= au_fields.check_box :actif, class: "form-check-input" %>
+                  </div>
+                </div>
+              </div>
+            
+            <% end %>
+
+        <% end %>
+  <% end %>
+
+  
+
+
+
+  <%= custom_submit_button("Rattachement") %>
+
+<% end %>

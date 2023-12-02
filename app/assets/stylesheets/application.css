@@ -1,0 +1,363 @@
+/*
+ *= require_self
+ */
+
+@font-face {
+  font-family: 'F1regular';
+  src: url('/fonts/Formula1-Regular_web_0.ttf');
+  font-display: swap;
+}
+
+body, select {
+  font-family: 'F1regular';
+  font-size: small;
+  background-color: rgb(22, 22, 22);
+  color: lightgray;
+}
+
+
+::-webkit-scrollbar {
+  width: 4px; /* Width of the vertical scrollbar */
+}
+
+::-webkit-scrollbar-thumb {
+  background-color: #c8c8c9; /* Color of the scrollbar thumb */
+  border-radius: 8px; /* Rounded corners for the thumb */
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* Color of the thumb on hover */
+}
+
+::-webkit-scrollbar-track {
+  background-color: #6a6a6a; /* Color of the scrollbar track */
+}
+
+#flash {
+  margin-top: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+nav{
+  box-shadow:  2px 2px 5px #3f3f3f,
+  -2px -5px 0px #3f3f3f;
+}
+
+h4{
+  color: lightgray;
+}
+
+.card{
+  background: #282828;
+}
+
+select, input{
+  text-align: center;
+}
+
+.label-colored{
+  background-color: #2b2b2d;
+  color: lightgray;
+}
+
+.input-colored{
+  background-color: #4a4a4e;
+  color: lightgray;
+}
+
+.no-underline{
+  text-decoration: none;
+  color: lightgray;
+}
+
+ .page-max-widthed{
+  width: 100%;
+  max-width: 1000px;
+  margin-top: 60px;
+ }
+
+.flex-element{
+    display: flex;
+    align-items: center; 
+    justify-content:space-between;
+}
+
+.card-with-effect{
+  border-radius: 10px;
+  background: #201f1f;
+  box-shadow:  2px 2px 5px #3f3f3f;
+  padding: 2px;
+  margin-top: 20px;
+ /* margin-bottom: 10px;*/
+}
+
+
+.record-with-effect{
+  border-radius: 10px;
+  background: #272727;
+  box-shadow:  2px 2px 5px rgb(46, 46, 46);
+  padding: 5px;
+  margin-bottom: 12px;
+  color: lightgray;
+
+}
+
+
+
+.badge-pos{
+
+  background-color: rgb(0, 0, 0);
+  font-weight: bold;
+  color: rgb(255, 255, 255);
+  min-width: 40px;
+
+} 
+
+.text-mt-colored{
+  color: rgb(162, 26, 162);
+}
+
+
+.btn-event{
+  font-size: small;
+}
+
+.table-form-pari{
+  font-size: x-small;
+}
+
+
+
+.table-container {
+  overflow-x: auto;
+  max-width: 100%;
+}
+
+.scrolling-table {
+  width: 100%;
+  table-layout: auto;
+}
+
+.max-record-height{
+  height: 30px; 
+}
+
+.equipe-banner-wrapper{
+  width: 100%;
+  max-width: 280px;
+  padding: 0px;
+  height: 30px; 
+
+}
+
+.text-banniere{
+  color: white;
+  font-weight: bold;
+  font-size: small;
+}
+
+.titre-topic{
+  text-align: center;
+}
+
+.partial-topic{
+  background-color: #201f1f;
+
+}
+
+.card-event-topics{
+  background-color: #343232;
+  border-radius: 10px;
+  margin: 10px 0px 10px 0;
+}
+
+
+.btn-topic{
+  background-color: rgb(30, 29, 29); 
+  color: lightgray;
+  transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-topic:hover {
+  background-color:  #007bff;
+  color: white;
+}
+
+.btn-topic.active {
+  background-color: #007bff; /* Change this color to your desired active color */
+  color: #fff;
+ /* font-size: large;*/
+}
+
+.text-success-custom{
+  color: rgb(16, 200, 16);
+}
+
+.text-danger-custom{
+  color: rgb(225, 88, 88);
+}
+
+
+.btn-cote{
+  font-size: small;
+  padding: 2px;
+  padding-left: 10px;
+  padding-right: 10px;
+  margin: 1px;
+}
+
+.btn-cote.active {
+  background-color: #007bff; /* Change this color to your desired active color */
+  color: #fff;
+ /* font-size: large;*/
+}
+
+.card-text-topic{
+  background-color: #3a3a3b;
+  color: white;
+  margin: 0 50px 10px 50px;
+  padding: 10px;
+  text-align: center;
+}
+
+.profile-pic, .mini-profile-pic, .medium-profile-pic{
+  object-fit: cover;
+  object-position: center center;
+  background-color: #8a8a8d;
+  border-radius: 100px;
+  border: 2px solid white;
+}
+
+.profile-pic {
+  width: 200px;
+  height: 200px;
+}
+
+.mini-profile-pic {
+  width: 25px;
+  height: 25px;
+}
+
+.medium-profile-pic {
+  width: 50px;
+  height: 50px;
+}
+
+.icon-controlleur{
+  width: 30px;
+}
+
+.width-badge{
+  width: 90px;
+}
+
+small{
+  font-size: xx-small;
+}
+
+.pilote1-colored{
+  color: rgb(75, 100, 192);
+}
+
+.pilote2-colored{
+  color: rgb(240, 128, 128);
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  height: 100vh; /* Set the height to full viewport height */
+  overflow: hidden;
+}
+
+.video-container video {
+  min-width: 100%; /* Ensure video covers full width */
+  min-height: 100%; /* Ensure video covers full height */
+  width: auto;
+  height: auto;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.video-container span {
+/*    max-width: 80%; */
+  position: relative;
+  top: 50%; 
+  left: 50%; 
+  transform: translate(-50%, -50%);
+}
+
+    /* partie animation text defilant avec scoring */
+    .text-defilant {
+        overflow: hidden;                    
+        background: rgba(0, 0, 0, 0.8);
+        padding: 5px;
+    }
+
+    /* le bloc défilant */
+    .text-defilant > :first-child {
+        display: inline-block;                
+        padding-right: 2em;                  
+        padding-left: 100%;                  
+        white-space: nowrap;                 
+        animation: defilement-rtl 10s infinite linear;
+        animation-name: defilement-rtl;       
+        animation-duration: 25s;              
+        animation-iteration-count: infinite; 
+        animation-timing-function: linear;   
+    }
+
+    @keyframes defilement-rtl {
+    0% {
+        transform: translate3d(0,0,0);      /* position initiale à droite */
+    }
+    100% {
+        transform: translate3d(-100%,0,0);  /* position finale à gauche */
+    }
+}
+
+.scrollable-paragraph {
+  max-height: 300px; /* Set a fixed maximum height for each paragraph */
+  overflow-y: scroll; /* Enable vertical scrolling if the content exceeds the max height */
+  padding: 10px; /* Optional: Add padding for better readability */
+}
+
+
+.small-text{
+  font-size: x-small;
+}
+
+.text-helvetica{
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-size: small;
+}
+
+.container-main{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+ /* max-width: 1200px;
+  padding: 20px;*/
+}
+
+.custom-timezone-select {
+  display: flex;
+  align-items: center;
+}
+
+.custom-timezone-select span {
+  margin-right: 10px; /* Adjust the margin as needed */
+  font-weight: bold; /* Example font weight */
+}
+
+.truncate-container {
+  max-width: 100vw; /* Set the maximum width */
+  overflow: hidden;
+  text-overflow: ellipsis; /* Add an ellipsis (...) for overflowed text */
+}
+

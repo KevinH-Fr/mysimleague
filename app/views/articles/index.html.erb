@@ -1,0 +1,17 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>
+  Articles
+  <% if current_user && current_user.admin %>
+    <%= link_to new_article_path, class: "btn btn-sm btn-warning m-2" do %>
+      <i class="fa-solid fa-square-plus fa-xl"></i>  
+    <% end %>  
+  <% end %>
+</h1>
+
+<div id="articles">
+  <% @articles.each do |article| %>
+    <%= render article %>
+  <% end %>
+</div>
+

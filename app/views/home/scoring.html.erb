@@ -1,0 +1,108 @@
+
+<h4 class="text-center mt-2">Scoring users</h4> 
+
+<div class="px-2"> 
+    <div class="container text-center rounded bg-dark p-2 my-4">
+        Le scoring users met en avant ceux qui participent le plus sur l'app, par tous les moyens, 
+        notamment en faisant des paris et des votes DOTD, ou encore en éditant les infos sur ton profil !
+    </div>
+
+
+    <% if current_user && current_user.admin %>    
+
+        <div class="container-fluid text-center m-2">
+            <%= link_to 'Update scores users', 
+                update_scores_users_home_index_path, method: :post,
+                class: "btn btn-sm btn-warning m-1" %>
+
+            <%= link_to 'Update scores pilotes', 
+                update_scores_pilotes_home_index_path, method: :post,
+                class: "btn btn-sm btn-warning m-1" %>
+
+        </div>
+        
+    <% end %>
+
+    <div class="scrollable-paragraph">
+        <% ranked_users_from_db.each do |user_data| %>
+            <%= link_to user_path(user_data[:user]), class: "no-underline" do %>
+                <div class="record-with-effect ps-1">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <span class="badge p-1 bg-dark"><%= user_data[:rank] %></span>
+                            <%= image_tag(user_data[:user].webp_variant, class: "mini-profile-pic mx-1", alt: "user picture") %>        
+                            <%= truncate(user_data[:user].short_name) %>
+                            <a class="ms-1" data-bs-toggle="collapse" href="#collapseDetailsScoringUser<%= user_data[:user].id %>" role="button" aria-expanded="false">
+                            <i class="fa fa-xl fa-square-plus text-warning"></i>
+                            </a>
+                        </div>
+                        <div class="col-4 text-end">
+                            <%= badge_scoring_medal(user_data[:rank]) %>
+                            <%= number_to_human(user_data[:scoring], units: { thousand: 'K', million: 'M', billion: 'B' })%> 
+                        </div>
+                        <div class="collapse" id="collapseDetailsScoringUser<%= user_data[:user].id %>">
+                            <hr>
+                            <span class="badge bg-dark"> score paris: <%= scoring_paris(user_data[:user]) %>  </span>
+                            <span class="badge bg-dark"> score dotds: <%= scoring_dotds(user_data[:user]) %>  </span>
+                            <span class="badge bg-dark"> score activités sur app: <%= user_data[:user].action_count %>  </span>
+                            <span class="badge bg-dark"> score edit profile: <%= user_data[:user].edit_profile_score %>  </span>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    </div>
+
+</div>
+
+<hr>
+
+<h4 class="text-center mt-2">Scoring pilotes</h4> 
+
+<div class="px-2"> 
+    <div class="container text-center rounded bg-dark p-4 my-4">
+        Le scoring pilotes met en avant les pilotes qui ont les meilleurs résultats en course, 
+        avec des malus pour les DNF, DNS et DOI responsable !
+    </div>
+
+    <div class="scrollable-paragraph">
+
+       <% ranked_pilotes_from_db.each do |user_data| %>
+            <%= link_to user_path(user_data[:user]), class: "no-underline" do %>
+                <div class="record-with-effect ps-1">
+                    <div class="row align-items-center">
+                        <div class="col-8">
+                            <span class="badge p-1 bg-dark"><%= user_data[:rank] %></span>
+                            <%= image_tag(user_data[:user].webp_variant, class: "mini-profile-pic mx-1", alt: "user picture") %>        
+                            <%= truncate(user_data[:user].nom, lenght: 8) %>
+                            <a class="ms-2" data-bs-toggle="collapse" href="#collapseDetailsScoringPilote<%= user_data[:user].id %>" role="button" aria-expanded="false">
+                                <i class="fa fa-xl fa-square-plus text-warning"></i>
+                            </a>
+                        </div>
+                        <div class="col-4 text-end">
+                            <%= badge_scoring_medal(user_data[:rank]) %>
+                            <%= number_to_human(user_data[:score], units: { thousand: 'K', million: 'M', billion: 'B' })%> 
+                        </div>
+                        <div class="collapse" id="collapseDetailsScoringPilote<%= user_data[:user].id %>"> 
+                            <hr>
+
+                            <% details = ranked_pilote_details(user_data[:user]) %>
+                            <span class="badge bg-dark"> score victoire: <%= details[:score_victoire] %>  </span>
+                            <span class="badge bg-dark"> score podium: <%= details[:score_podium] %>  </span>
+                            <span class="badge bg-dark"> score top10: <%= details[:score_top10] %>  </span>
+                            <span class="badge bg-dark"> score nb courses: <%= details[:score_nb_courses] %>  </span>
+                            <span class="badge bg-dark"> score nb courses malus: <%= details[:score_malus_nb_courses] %>  </span>
+                            <span class="badge bg-dark"> score sum points: <%= details[:score_sum_points] %>  </span>
+                            <span class="badge bg-dark"> score dnf: <%= details[:score_dnf] %>  </span>
+                            <span class="badge bg-dark"> score dns: <%= details[:score_dns] %>  </span>
+                            <span class="badge bg-dark"> score doi: <%= details[:score_doi] %>  </span>
+
+                        </div>
+                    </div>
+                </div>
+            <% end %>    
+        <% end %>
+    </div>
+</div>
+
+

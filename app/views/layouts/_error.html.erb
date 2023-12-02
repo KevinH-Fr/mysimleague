@@ -1,0 +1,7 @@
+<div data-controller="autohide" style="position: fixed; z-index: 2;" class="text-center">
+  <% flash.each do |type, msg| %>
+    <div class="alert alert-danger">
+      <%= msg %>
+    </div>
+  <% end %>
+</div>

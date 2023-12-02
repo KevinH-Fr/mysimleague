@@ -1,0 +1,35 @@
+<div id="<%= dom_id rattachement %>">
+
+  <div class="card record-with-effect m-0 my-1">  
+
+    <div class="row align-items-center">
+      <div class="col-10">
+        Demande de: <%= rattachement.user.nom %>
+        Message: <%= rattachement.message %>
+
+        <%# verifier si rattachement a été fait, si oui afifcher ok, si non btn vers crea asso user %>
+        <% if verif_appartenance_ligue(rattachement.user_id, session[:ligue]) %>
+            <span class="badge bg-success">  user appartient à la ligue </span>
+        <% else %>
+            <span class="badge bg-danger">  user n'appartient pas encore à la ligue </span>
+        <% end %>
+
+      </div>
+
+      <div class="col-2 d-flex justify-content-end align-items-center">
+      
+        <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %>
+          <%= button_to "", edit_rattachement_path(rattachement), method: :post, 
+                class: "btn btn-sm btn-secondary fa-solid fa-pen-to-square m-1" %>
+          <%= button_to "", rattachement, method: :delete, 
+                class: "btn btn-sm btn-danger fa-solid fa-trash m-1",
+                data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
+        <% end %>
+
+      </div>
+    </div>
+
+
+  </div>
+
+</div>
