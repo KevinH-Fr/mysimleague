@@ -1,36 +1,40 @@
-<div id="<%= dom_id article %>">
-  <p>
-    <strong>Titre:</strong>
-    <%= article.titre %>
-  </p>
+<div id="<%= dom_id article %>" class="card bg-dark p-2 m-2 text-center" style="min-width: 250px;">
 
-  <p>
-    <strong>Content:</strong>
-    <%= article.content %>
-  </p>
+  <h5 class="text-center"> <%= article.titre %> </h5>
+  <small><%= article.content %>   </small>
 
-  <p>
-    <strong>Montant:</strong>
-    <%= article.montant %>
-  </p>
+  <div class="container-fluid text-center my-2">
+    <%= image_tag(article.image, width: 100) if article.image.present? %>
+  </div>
 
- <%= image_tag(article.image) if article.image.present? %>
-
-<div data-turbo='false'>
-
-  <% if current_user.present? && current_user.purchases.where(article_id: article.id).any? %>  
-    <div class="btn btn-warning">
-      purchased
+  <% if current_user && current_user.admin %>
+    <div class="container-fluid">
+      <%= link_to  "Edit", edit_article_path(article), class: "btn btn-sm btn-secondary m-1 w-100" %>
     </div>
-  <% else %>
-
-    <%= form_with url: :create_checkout_session do |f| %>
-      <%= f.hidden_field :id, value: article.id %>
-      <%= f.submit 'buy me', class: "btn btn-success" %>
-    <% end %>
   <% end %>
 
-</div>
+  <% if article.abonnement? %>
+    <%= number_to_currency(article.montant, precision: 2, unit: "€", format: "%n %u") %> / mois
+  <% end %>
 
+  
+  <div data-turbo='false'>
+
+    <%# if current_user.present? && current_user.purchases.where(article_id: article.id).any? %>  
+      <!--div class="btn btn-warning">
+        purchased
+      </div-->
+    <%# else %>
+
+    <% if current_user.present? %>
+      <%= form_with url: :create_checkout_session do |f| %>
+        <%= f.hidden_field :id, value: article.id %>
+        <%= f.submit 'Acheter!', class: "btn btn-success m-1 w-100" %>
+      <% end %>
+    <% end %>
+    
+    <%# end %>
+
+  </div>
 
 </div>

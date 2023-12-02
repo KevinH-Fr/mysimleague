@@ -1,9 +1,24 @@
-<div class="container-fluid p-4">
 
-    <% Article.all.each do |article| %>
-        <%= render article %>
-    <% end %>
-    
+    <div class="card m-2 p-2">
+        <div class="container-fluid text-center">
+            <h4>Abonnements</h4> 
+        </div>
+        <div class="container-fluid p-2 d-flex flex-wrap justify-content-center">
+            <% Article.where(abonnement: true).each do |article| %>
+                <%= render article %>
+            <% end %>
+        </div>
+    </div>
+
+    <div class="card m-2 p-2">
+        <div class="container-fluid text-center mt-4">
+            <h4>Versement unique</h4>
+        </div>
+        <div class="container-fluid p-2 d-flex flex-wrap justify-content-center">
+            <% Article.where(abonnement: false).each do |article| %>
+                <%= render article %>
+            <% end %>
+        </div>
+    </div>
+
 </div>
-
-

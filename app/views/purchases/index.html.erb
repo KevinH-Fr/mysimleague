@@ -1,14 +1,20 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Purchases</h1>
+<div class="p-2">
+  <h1>Purchases</h1>
 
-<div id="purchases">
-  <% @purchases.each do |purchase| %>
-    <%= render purchase %>
-    <p>
-      <%= link_to "Show this purchase", purchase %>
-    </p>
-  <% end %>
+  <hr>  
+
+    <% User.all.each do |user|%>
+      <%= user.nom %>
+      
+      <% user.purchases.each do |purchase| %>
+        <%= link_to purchase_path(purchase), class: "badge bg-warning text-dark mx-1" do %>
+          <%= purchase.article.titre %>
+          <%= purchase.article.montant %>
+        <% end %>
+      <% end %>
+      <hr>
+    <% end %>
+    
 </div>
-
-<%= link_to "New purchase", new_purchase_path %>

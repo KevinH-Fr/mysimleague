@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_01_215322) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_02_120042) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -73,6 +73,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_01_215322) do
     t.string "stripe_product_id"
     t.string "stripe_price_id"
     t.integer "montant"
+    t.boolean "abonnement"
   end
 
   create_table "association_admins", force: :cascade do |t|
