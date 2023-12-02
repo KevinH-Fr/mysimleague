@@ -9,7 +9,6 @@
       <%= user.nom %>
       
       <% user.purchases.each do |purchase| %>
-<<<<<<< HEAD
 
         <% if purchase.status == "paid" %>
           <%= link_to purchase_path(purchase), class: "badge bg-success text-dark mx-1" do %>
@@ -27,13 +26,6 @@
           <% end %>
         <% end %>
 
-=======
-        <%= link_to purchase_path(purchase), class: "badge bg-warning text-dark mx-1" do %>
-          <%= purchase.article.titre %> 
-          montant: <%= number_to_currency(purchase.article.montant, precision: 0, unit: "€", format: "%n %u") %> / mois
-
-        <% end %>
->>>>>>> 80d0890a66bc88f960c4cd1623feccce0f317536
       <% end %>
       <hr>
     <% end %>

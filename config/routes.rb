@@ -238,9 +238,6 @@ Rails.application.routes.draw do
  get 'purchase_success', to: 'stripe#purchase_success'
 
  post 'create-checkout-session', to: 'articles#create_checkout_session'
-<<<<<<< HEAD
  post 'unsubscribe-session', to: 'articles#unsubscribe_session'
-=======
->>>>>>> 80d0890a66bc88f960c4cd1623feccce0f317536
 
 end
