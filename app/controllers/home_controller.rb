@@ -83,6 +83,13 @@ class HomeController < ApplicationController
 
     @feeds.sort_by!(&:updated_at).reverse!
 
+<<<<<<< HEAD
+=======
+
+   #@pagy, feeds = pagy(feeds, items: 5)
+   # @pagy, @feeds = pagy_array(@feeds, items: 5)
+
+>>>>>>> 80d0890a66bc88f960c4cd1623feccce0f317536
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(
@@ -91,6 +98,10 @@ class HomeController < ApplicationController
       end
     end
 
+<<<<<<< HEAD
+=======
+    
+>>>>>>> 80d0890a66bc88f960c4cd1623feccce0f317536
   end
 
   def display_parieurs

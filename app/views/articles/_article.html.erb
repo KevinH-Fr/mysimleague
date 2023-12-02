@@ -21,6 +21,7 @@
   
   <div data-turbo='false'>
 
+<<<<<<< HEAD
     <% if current_user.present? && article.abonnement && current_user.purchases.where(article_id: article.id, status: 'paid').any? %>  
       <div class="btn btn-success">
         Abonné!
@@ -41,6 +42,12 @@
           <% end %>
         </div>
 
+=======
+    <% if current_user.present? && article.abonnement && current_user.purchases.where(article_id: article.id).any? %>  
+      <div class="btn btn-success">
+        Abonné!
+      </div>
+>>>>>>> 80d0890a66bc88f960c4cd1623feccce0f317536
     <% else %>
 
       <% if current_user.present? %>

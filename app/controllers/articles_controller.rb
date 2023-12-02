@@ -1,10 +1,16 @@
 class ArticlesController < ApplicationController
 
+<<<<<<< HEAD
   before_action :set_article, only: [:show, :edit, :update, :destroy, :create_checkout_session, :unsubscribe_session]
   before_action :authorize_admin, only: %i[ index new create edit update destroy ]
 
   before_action :authenticate_user!
 
+=======
+  before_action :set_article, only: [:show, :edit, :update, :destroy, :create_checkout_session]
+  before_action :authorize_admin, only: %i[ index new create edit update destroy ]
+
+>>>>>>> 80d0890a66bc88f960c4cd1623feccce0f317536
   def new
     @article = Article.new
   end
@@ -70,6 +76,7 @@ class ArticlesController < ApplicationController
   
     redirect_to session.url, allow_other_host: true, status: 303
   end
+<<<<<<< HEAD
 
 
   def unsubscribe_session
@@ -95,6 +102,8 @@ class ArticlesController < ApplicationController
 
   end
   
+=======
+>>>>>>> 80d0890a66bc88f960c4cd1623feccce0f317536
   
   def index
     @articles = Article.all
