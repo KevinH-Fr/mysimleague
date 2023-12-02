@@ -1,4 +1,15 @@
 
+<% unless current_user %>
+    <div class="container-fluid my-2 p-4 text-center">
+        <%= link_to new_user_session_path, 
+                class: "btn btn-sm btn-warning",
+                'aria-label' => "Sign In" do %>
+            Connecte toi ou créé un compte pour accéder aux abonnements
+        <% end %>
+        
+    </div>
+<% end %>
+
     <div class="card m-2 p-2">
         <div class="container-fluid text-center">
             <h4>Abonnements</h4> 
@@ -21,4 +32,4 @@
         </div>
     </div>
 
-</div>
+

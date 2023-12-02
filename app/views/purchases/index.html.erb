@@ -10,8 +10,9 @@
       
       <% user.purchases.each do |purchase| %>
         <%= link_to purchase_path(purchase), class: "badge bg-warning text-dark mx-1" do %>
-          <%= purchase.article.titre %>
-          <%= purchase.article.montant %>
+          <%= purchase.article.titre %> 
+          montant: <%= number_to_currency(purchase.article.montant, precision: 0, unit: "€", format: "%n %u") %> / mois
+
         <% end %>
       <% end %>
       <hr>

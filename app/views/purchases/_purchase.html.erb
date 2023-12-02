@@ -1,22 +1,35 @@
-<div id="<%= dom_id purchase %>">
+<div id="<%= dom_id purchase %>" class="card p-2">
+  <p>
+    <strong>User:</strong>
+    <%= purchase.user.nom %> | <%= purchase.user.email %>
+  </p>
+
+  <p>
+    <strong>Article:</strong>
+    <%= purchase.article.titre %>
+  </p>
+
+  
+  <p>
+    <strong>Montant:</strong>
+    <% if purchase.article.abonnement? %>
+      <%= number_to_currency(purchase.article.montant, precision: 2, unit: "€", format: "%n %u") %> / mois
+    <% end %>
+  </p>
+
   <p>
     <strong>Status:</strong>
     <%= purchase.status %>
   </p>
 
   <p>
-    <strong>Article:</strong>
-    <%= purchase.article_id %>
-  </p>
-
-  <p>
-    <strong>User:</strong>
-    <%= purchase.user_id %>
-  </p>
-
-  <p>
     <strong>Stripe ref:</strong>
     <%= purchase.stripe_ref %>
   </p>
+
+  <div class="m-1">
+    <%= link_to "Edit", edit_purchase_path(purchase), class: "btn btn-sm btn-secondary m-1" %>
+    <%= button_to "Destroy", purchase, method: :delete, class: "btn btn-sm btn-danger m-1" %>
+  </div>
 
 </div>

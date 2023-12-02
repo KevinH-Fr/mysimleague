@@ -1,6 +1,7 @@
 class ArticlesController < ApplicationController
 
   before_action :set_article, only: [:show, :edit, :update, :destroy, :create_checkout_session]
+  before_action :authorize_admin, only: %i[ index new create edit update destroy ]
 
   def new
     @article = Article.new
@@ -48,9 +49,7 @@ class ArticlesController < ApplicationController
   def create_checkout_session
     session = Stripe::Checkout::Session.create({
       metadata: {
-        article_id: @article.id,
-        image_url: @article.image.url  
- 
+        article_id: @article.id, 
       },
 
       customer_email: current_user.email,
@@ -60,7 +59,7 @@ class ArticlesController < ApplicationController
           quantity: 1,
         }
       ],
-      mode: 'subscription',
+      mode: 'subscription', #a changer p/r db rails article abonnement boolean
       success_url: root_url + "purchase_success?session_id={CHECKOUT_SESSION_ID}",
       cancel_url:  article_url(@article),
     })
@@ -128,6 +127,12 @@ class ArticlesController < ApplicationController
   
       # Update the article with the new Stripe price ID
       article.update(stripe_price_id: new_price.id)
+    end
+
+    def authorize_admin
+      unless current_user && current_user.admin 
+        redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
     end
 
 end
