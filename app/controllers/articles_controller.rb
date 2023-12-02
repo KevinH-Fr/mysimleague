@@ -125,7 +125,7 @@ class ArticlesController < ApplicationController
 
     def create_stripe_product_and_price(article)
       # Create a product in Stripe
-      product = Stripe::Product.create(name: article.titre, description: content, type: 'service')
+      product = Stripe::Product.create(name: article.titre, description: content)
     
       if article.abonnement
         # Subscription case
