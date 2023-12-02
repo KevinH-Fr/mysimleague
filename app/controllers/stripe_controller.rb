@@ -11,6 +11,5 @@ class StripeController < ApplicationController
       end
     end
 
-    
   end
 end

@@ -47,11 +47,13 @@ class ArticlesController < ApplicationController
   end
 
   def create_checkout_session
+    price = Stripe::Price.retrieve(@article.stripe_price_id)
+    mode = price.recurring ? 'subscription' : 'payment'
+  
     session = Stripe::Checkout::Session.create({
       metadata: {
         article_id: @article.id, 
       },
-
       customer_email: current_user.email,
       line_items: [
         {
@@ -59,15 +61,14 @@ class ArticlesController < ApplicationController
           quantity: 1,
         }
       ],
-      mode: 'subscription', #a changer p/r db rails article abonnement boolean
+      mode: mode,
       success_url: root_url + "purchase_success?session_id={CHECKOUT_SESSION_ID}",
       cancel_url:  article_url(@article),
     })
-
+  
     redirect_to session.url, allow_other_host: true, status: 303
-
   end
-
+  
   def index
     @articles = Article.all
   end
@@ -98,36 +99,56 @@ class ArticlesController < ApplicationController
     def create_stripe_product_and_price(article)
       # Create a product in Stripe
       product = Stripe::Product.create(name: article.titre, type: 'service')
-  
-      # Create a price for the product
-      price = Stripe::Price.create({
-        product: product.id,
-        unit_amount: (article.montant * 100).to_i,  # Convert to cents
-        currency: 'eur',
-        recurring: {interval: 'month'},  # Adjust based on your subscription model
-      })
-  
+    
+      if article.abonnement
+        # Subscription case
+        price = Stripe::Price.create({
+          product: product.id,
+          unit_amount: (article.montant.to_i * 100).to_i,  # Convert to cents
+          currency: 'eur',
+          recurring: { interval: 'month' },  # Adjust based on your subscription model
+        })
+      else
+        # One-time payment case
+        price = Stripe::Price.create({
+          product: product.id,
+          currency: 'eur',
+          custom_unit_amount: { enabled: true },
+        })
+      end
+    
       # Save the Stripe product and price IDs in the article
       article.update(stripe_product_id: product.id, stripe_price_id: price.id)
     end
+    
+
+
 
     def update_stripe_product_and_price(article)
       return unless article.stripe_product_id && article.stripe_price_id
-  
+    
       # Retrieve the existing Stripe product
       stripe_product = Stripe::Product.retrieve(article.stripe_product_id)
-  
-      # Create a new Stripe price for the product
-      new_price = Stripe::Price.create({
-        product: stripe_product.id,
-        unit_amount: (article.montant * 100).to_i,
-        currency: 'usd',
-        recurring: {interval: 'month'},
-      })
-  
+    
+      if article.abonnement
+        # Subscription case
+        new_price = Stripe::Price.create({
+          product: stripe_product.id,
+          unit_amount: (article.montant * 100).to_i,
+          currency: 'eur',
+          recurring: { interval: 'month' },
+        })
+      end
+    
+      # Update the product name in Stripe with the article title
+      stripe_product.name = article.titre
+      stripe_product.save
+
+
       # Update the article with the new Stripe price ID
       article.update(stripe_price_id: new_price.id)
     end
+    
 
     def authorize_admin
       unless current_user && current_user.admin 
