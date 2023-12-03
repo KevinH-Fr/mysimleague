@@ -4,14 +4,18 @@ class HomeController < ApplicationController
   include ScoringUpdateHelper
   include ParieursUpdateHelper
   include ParieursHelper
+  include PurchasesHelper
 
   before_action :authorize_admin, only: %i[ update_scores_users update_scores_pilotes update_solde_paris ]
-
+  before_action :authorize_subscriber, only: %i[ vip ]
 
   def landingpage
   end
 
   def abonnements
+  end
+
+  def vip
   end
 
   def scoring
@@ -236,6 +240,12 @@ class HomeController < ApplicationController
   
   def authorize_admin
     unless current_user && current_user.admin 
+      redirect_to root_path, alert: "You are not authorized to perform this action."
+    end
+  end
+
+  def authorize_subscriber
+    unless current_user && boolean_user_paid_purchase(current_user)
       redirect_to root_path, alert: "You are not authorized to perform this action."
     end
   end

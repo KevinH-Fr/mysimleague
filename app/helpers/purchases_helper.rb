@@ -1,7 +1,8 @@
 module PurchasesHelper
 
-    #rempalcer badge par un icon crown coloré en fonction du niveau, 
-    # ajouter un champ niveau dans article pour mapper la couleur
+    def boolean_user_paid_purchase(user)
+      user.purchases.where(status: "paid").exists?
+    end
 
     def user_paid_purchases(user)
         purchases_list = user.purchases.where(status: "paid")
@@ -24,7 +25,6 @@ module PurchasesHelper
         end
         .join(" ").html_safe
     end
-      
-      
+
 end
 

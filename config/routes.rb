@@ -174,6 +174,7 @@ Rails.application.routes.draw do
   get 'home/index'
 
   get '/abonnements', to: 'home#abonnements', as: 'abonnements'
+  get '/vip', to: 'home#vip', as: 'vip'
 
 
 

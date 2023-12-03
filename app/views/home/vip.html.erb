@@ -1,0 +1,43 @@
+
+<div class="card m-2 p-2">
+   <h4 class="text-center text-warning"> Page réservée aux VIPS </h4>
+</div>
+
+<div class="container text-center my-3">
+    <%= image_tag("svgs/thankyou.svg?#{Time.now.to_i}", 
+    width: 250, height: 250, alt: "Animated GIF", 
+    class: "reanimate-svg" ) %>
+</div>
+
+<div class="card m-2 p-2 text-center">
+   Retrouve bientôt ici, en avant première, le SetUpTool ! <br>
+   Ton meilleur allié pour comprendre et améliorer le setup de ta voiture !
+</div>
+
+<div class="container-fluid my-3 text-center">
+    <%= link_to home_index_path, class:"btn w-100 btn-dark fw-bold mt-2 mb-3 px-5" do %>
+        <i class="me-2 fa fa-solid fa-lg fa-home" aria-hidden="true"></i>
+        Home
+    <% end %>
+</div>
+
+
+<script>
+  // Function to reanimate the SVG
+  function reanimateSvg() {
+    const svgElements = document.getElementsByClassName("reanimate-svg");
+
+    // Loop through all elements with the "reanimate-svg" class
+    for (let i = 0; i < svgElements.length; i++) {
+      const svgElement = svgElements[i];
+      const imageUrl = svgElement.getAttribute("src");
+
+      // Add a random query parameter to the URL to force reload
+      const newImageUrl = `${imageUrl.split("?")[0]}?t=${new Date().getTime()}`;
+      svgElement.setAttribute("src", newImageUrl);
+    }
+  }
+
+  // Call reanimateSvg every 5 seconds (5000 milliseconds)
+  setInterval(reanimateSvg, 2000);
+</script>
