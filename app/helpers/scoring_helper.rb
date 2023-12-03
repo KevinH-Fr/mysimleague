@@ -74,7 +74,7 @@ module ScoringHelper
 
   def icon_leader_user(user)
     top_user = top_1_user_scores[:user].id
-    user == top_user ? content_tag(:i, "", class: "fa fa-xl fa-star mx-1 text-warning") : ""
+    user == top_user ? content_tag(:i, "", class: "fa fa-xl fa-star me-1 text-warning") : ""
   end
 
 

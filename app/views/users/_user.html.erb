@@ -6,7 +6,8 @@
         <%= icon_leader_parieur(Date.today.year, user.id) %>
         <%= icon_leader_user(user.id) %>
         <%= icon_leader_pilote(user.id) %>
-        <%= user.nom %> 
+        <span class="ms-2"><%= user.nom %> </span>
+        <%= user_paid_purchases(user) %>
       </div>
      
     </h4>
@@ -49,9 +50,6 @@
             <small class="text-warning">
               Member since <%= local_time user.created_at %>
             </small>
-            <div class="container text-center">
-              <%= user_paid_purchases(user) %>
-            </div>
           </p>
         </div>
       </div>

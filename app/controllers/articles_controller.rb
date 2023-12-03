@@ -120,7 +120,7 @@ class ArticlesController < ApplicationController
     end
 
     def article_params
-      params.require(:article).permit(:titre, :content, :montant, :image, :abonnement)
+      params.require(:article).permit(:titre, :content, :montant, :image, :abonnement, :niveau, :bonus_paris)
     end
 
     def create_stripe_product_and_price(article)
