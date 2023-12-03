@@ -7,6 +7,8 @@
                     data: {turbo: "false"}, class:"fa-solid fa-id-card btn btn-sm btn-warning" %>
 
 
+            
+
                 <div class="container-fluid text-center">
                     <%= icon_leader_parieur(Date.today.year, current_user.id) %>
                     <%= icon_leader_user(current_user.id) %>
@@ -14,7 +16,12 @@
                     <%= current_user.nom %> 
                 </div>
 
-            <%= link_to "", menu_index_path(
+
+            <%= link_to abonnements_path, data: {turbo: "false"}, 
+                class: "btn btn-sm btn-outline-danger fa-fade" do %>
+                    <i class="fa fa-solid fa-xl fa-heart-circle-bolt"></i>
+            <% end %>
+            <%#= link_to "", menu_index_path(
                 ligue: prochain_event.division.saison.ligue_id, 
                 saison: prochain_event.division.saison_id, 
                 division: prochain_event.division_id, 

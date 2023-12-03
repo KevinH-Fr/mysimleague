@@ -49,6 +49,9 @@
             <small class="text-warning">
               Member since <%= local_time user.created_at %>
             </small>
+            <div class="container text-center">
+              <%= user_paid_purchases(user) %>
+            </div>
           </p>
         </div>
       </div>

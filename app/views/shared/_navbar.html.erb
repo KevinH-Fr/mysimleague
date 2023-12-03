@@ -57,9 +57,13 @@
             <% end %>
           </li>
 
-
+        <% else %>
+            <li class="nav-item">
+              <%= link_to "Aide-nous !", abonnements_path, data: {turbo: "false"}, class:"nav-link text-danger fa fa-fade" %>
+            </li>
         <% end %>  
-                                                  
+
+
        
       </ul>
     </div>

@@ -15,7 +15,9 @@
     <% end %>
 
     <% if article.abonnement? %>
-      <%= number_to_currency(article.montant, precision: 2, unit: "€", format: "%n %u") %> / mois
+      <div class="fw-bold m-2">
+        <%= number_to_currency(article.montant, precision: 2, unit: "€", format: "%n %u") %> / mois
+      </div>
     <% end %>
 
     <div data-turbo='false'>

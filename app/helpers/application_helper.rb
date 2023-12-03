@@ -24,12 +24,12 @@ module ApplicationHelper
           end
     end
 
-    def prochain_event
-        Event
-          .where('horaire >= ?', Date.today)
-          .includes(division: [:saison])
-          .first
-      end
+   # def prochain_event
+   #     Event
+   #       .where('horaire >= ?', Date.today)
+   #       .includes(division: [:saison])
+   #       .first
+   #   end
       
 
 
