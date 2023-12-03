@@ -16,15 +16,14 @@
     Merci beaucoup pour ton soutien ! <hr>  
 
     <% if @article.abonnement %>
-        Tu es désormais abonné: <span class="badge bg-warning my-3 p-2"> <%= @article.titre %> </span>
+        Tu es désormais abonné !
     <% else %>
         Tu a réalisé un don ponctuel !
     <% end %>
 
-
-    <%= render  @article %>
-
-
+    <div class="card bg-dark align-items-center my-3 p-2"> <!-- Add this div for centering -->
+        <%= render  @article %>
+    </div>
 </div>
 
 <div class="container-fluid my-3 text-center">

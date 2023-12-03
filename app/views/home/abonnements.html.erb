@@ -10,24 +10,48 @@
     </div>
 <% end %>
 
+    <div class="card m-2 p-2 text-center text-warning">
+        <p class="text-success"> RaceMeIfYouCan est gratuit ! </p> 
+        <p> Ton soutien est le bienvenu pour couvrir les frais et continuer le développement !  </p> 
+    </div>
+
+
     <div class="card m-2 p-2">
-        <div class="container-fluid text-center">
+        <div class="container-fluid text-center my-1">
             <h4>Abonnements</h4> 
         </div>
-        <div class="container-fluid p-2 d-flex flex-wrap justify-content-center">
-            <% Article.where(abonnement: true).order(:montant).each do |article| %>
-                <%= render article %>
-            <% end %>
+
+        <div id="carouselExampleInterval" class="carousel slide" data-bs-ride="carousel">
+            <div class="carousel-inner">
+                <% Article.where(abonnement: true).order(:montant).each_with_index do |article, index| %>
+                    <div class="carousel-item card p-2 bg-dark text-center <%= 'active' if index == 0 %>" data-bs-interval="<%= (index + 1) * 1500 %>"
+                         style="height: 36vh;">
+                        <%= render article %>
+                    </div>
+                <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleInterval" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
+
+
+
+
     </div>
 
     <div class="card m-2 p-2">
-        <div class="container-fluid text-center mt-4">
+        <div class="container-fluid text-center my-1">
             <h4>Versement unique</h4>
         </div>
-        <div class="container-fluid p-2 d-flex flex-wrap justify-content-center">
+        <div class="bg-dark card p-2 text-center">
             <% Article.where(abonnement: false).each do |article| %>
-                <%= render article %>
+                    <%= render article %>
             <% end %>
         </div>
     </div>

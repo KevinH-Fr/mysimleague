@@ -1,33 +1,31 @@
-<div id="<%= dom_id article %>" class="card bg-dark p-2 m-2 text-center" style="min-width: 250px;">
+<div id="<%= dom_id article %>">
 
-  <h5 class="text-center"> <%= article.titre %> </h5>
-  <small><%= article.content %>   </small>
+    <h5 class="text-center"> <%= article.titre %> </h5>
+    <small><%= article.content %>   </small>
 
-  <div class="container-fluid text-center my-2">
-    <%= image_tag(article.image, width: 100) if article.image.present? %>
-  </div>
-
-  <% if current_user && current_user.admin %>
-    <div class="container-fluid">
-      <%= link_to  "Edit", edit_article_path(article), class: "btn btn-sm btn-secondary m-1 w-100" %>
-      <%#= button_to "Destroy this article", article, method: :delete %>
+    <div class="container-fluid text-center my-2">
+      <%= image_tag(article.image, width: 100) if article.image.present? %>
     </div>
-  <% end %>
 
-  <% if article.abonnement? %>
-    <%= number_to_currency(article.montant, precision: 2, unit: "€", format: "%n %u") %> / mois
-  <% end %>
-
-  
-  <div data-turbo='false'>
-
-    <% if current_user.present? && article.abonnement && current_user.purchases.where(article_id: article.id, status: 'paid').any? %>  
-      <div class="btn btn-success">
-        Abonné!
+    <% if current_user && current_user.admin %>
+      <div class="container-fluid">
+        <%= link_to  "Edit", edit_article_path(article), class: "btn btn-sm btn-secondary m-1 w-100" %>
+        <%#= button_to "Destroy this article", article, method: :delete %>
       </div>
+    <% end %>
 
+    <% if article.abonnement? %>
+      <%= number_to_currency(article.montant, precision: 2, unit: "€", format: "%n %u") %> / mois
+    <% end %>
 
-        <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample<%= article.id %>" aria-expanded="false" aria-controls="collapseExample">
+    <div data-turbo='false'>
+
+      <% if current_user.present? && article.abonnement && current_user.purchases.where(article_id: article.id, status: 'paid').any? %>  
+        <div class="btn btn-sm btn-warning">
+          Abonné!
+        </div>
+
+        <button class="btn btn-sm btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample<%= article.id %>" aria-expanded="false" aria-controls="collapseExample">
           <i class="fa fa-gear"></i>
         </button>
 
@@ -37,21 +35,22 @@
           <%= form_with url: :unsubscribe_session do |f| %>
             <%= f.hidden_field :subscription_id, value: stripe_subscription %>
             <%= f.hidden_field :id, value: article.id %>
-            <%= f.submit 'Se désabonner', class: "btn btn-outline-danger w-100 my-2", style: "font-family: Arial, sans-serif;"  %>
+            <%= f.submit 'Se désabonner', class: "btn btn-sm btn-outline-danger w-100 my-2"  %>
           <% end %>
         </div>
 
-    <% else %>
+      <% else %>
 
-      <% if current_user.present? %>
-        <%= form_with url: :create_checkout_session do |f| %>
-          <%= f.hidden_field :id, value: article.id %>
-          <%= f.submit 'Acheter', class: "btn btn-success m-1 w-100 fa fa-fade", style: "font-family: Arial, sans-serif;" %>
+        <% if current_user.present? %>
+          <%= form_with url: :create_checkout_session do |f| %>
+            <%= f.hidden_field :id, value: article.id %>
+            <%= f.submit 'Acheter', class: "btn btn-success m-1 w-100 fa fa-fade", style: "font-family: Arial, sans-serif;" %>
+          <% end %>
         <% end %>
+        
       <% end %>
-      
-    <% end %>
 
-  </div>
+    </div>
+
 
 </div>
