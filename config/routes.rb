@@ -176,6 +176,7 @@ Rails.application.routes.draw do
 
   get '/abonnements', to: 'home#abonnements', as: 'abonnements'
   get '/vip', to: 'home#vip', as: 'vip'
+  get '/model3d', to: 'home#model3d', as: 'model3d'
 
 
 

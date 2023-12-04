@@ -18,6 +18,9 @@ class HomeController < ApplicationController
   def vip
   end
 
+  def model3d
+  end
+
   def scoring
     # tempo pour contenir les infos sur le scoring meilleur pilote et meilleur user
   end
