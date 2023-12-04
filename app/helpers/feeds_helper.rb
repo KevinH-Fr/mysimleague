@@ -90,8 +90,9 @@ module FeedsHelper
             span_icon_parieur = icon_leader_parieur(Date.today.year, feed.association_user.user.id)
             span_icon_leader_user = icon_leader_user(feed.association_user.user.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.association_user.user.id)
-    
-            combined_content = span_label + span_image  + " " + span_content +  span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote
+            span_icon_abonne =  user_paid_purchases_icon(feed.association_user.user)
+
+            combined_content = span_label + span_image  + " " + span_content +  span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
         when "Pari"
             span_label = content_tag(:span, "Pari")
             span_content = content_tag(:span, feed.user.nom, class: "fw-bold mx-1")
@@ -100,8 +101,9 @@ module FeedsHelper
             span_icon_parieur = icon_leader_parieur(Date.today.year, feed.user.id)
             span_icon_leader_user = icon_leader_user(feed.user.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
+            span_icon_abonne =  user_paid_purchases_icon(feed.user)
 
-            combined_content = span_label + span_image  + " " + span_content +  span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote
+            combined_content = span_label + span_image  + " " + span_content +  span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
 
         when "User"
             span_label = content_tag(:span, "User")
@@ -111,8 +113,9 @@ module FeedsHelper
             span_icon_parieur = icon_leader_parieur(Date.today.year, feed.id)
             span_icon_leader_user = icon_leader_user(feed.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.id)
+            span_icon_abonne =  user_paid_purchases_icon(feed)
 
-            combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote
+            combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
 
         when "AssociationUser"
             span_label = content_tag(:span, "Pilote")
@@ -122,9 +125,9 @@ module FeedsHelper
             span_icon_parieur = icon_leader_parieur(Date.today.year, feed.user.id)
             span_icon_leader_user = icon_leader_user(feed.user.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
+            span_icon_abonne =  user_paid_purchases_icon(feed.user)
 
-
-            combined_content = span_label  + span_image  + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote 
+            combined_content = span_label  + span_image  + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote  + span_icon_abonne
 
         when "Doi"
             span_label = content_tag(:span, "DOI")
@@ -135,12 +138,13 @@ module FeedsHelper
                 span_icon_parieur = icon_leader_parieur(Date.today.year, feed.demandeur_id)
                 span_icon_leader_user = icon_leader_user(feed.demandeur_id)
                 span_icon_leader_pilote = icon_leader_pilote(feed.demandeur_id)
-    
+                span_icon_abonne =  user_paid_purchases_icon(User.find(feed.demandeur_id))
+
             else
                 span_content = content_tag(:span, "Commissaire", class: "fw-bold")
                 span_image =  content_tag(:i, "", class: "fa fa-xl fa-person-military-pointing mx-2")
             end 
-            combined_content = span_label + span_image +  " " + span_content  + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote 
+            combined_content = span_label + span_image +  " " + span_content  + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
 
         when "Dotd"
             span_label = content_tag(:span, "DOTD")
@@ -150,9 +154,9 @@ module FeedsHelper
             span_icon_parieur = icon_leader_parieur(Date.today.year, feed.user.id)
             span_icon_leader_user = icon_leader_user(feed.user.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
+            span_icon_abonne =  user_paid_purchases_icon(feed.user)
 
-
-            combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote
+            combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
 
         when "Presence"
             span_label = content_tag(:span, "Presence")
@@ -162,8 +166,9 @@ module FeedsHelper
             span_icon_parieur = icon_leader_parieur(Date.today.year, feed.association_user.user.id)
             span_icon_leader_user = icon_leader_user(feed.association_user.user.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.association_user.user.id)
-            
-            combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote 
+            span_icon_abonne =  user_paid_purchases_icon(feed.association_user.user)
+ 
+            combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
         else
             span_label = content_tag(:span, "Model")
             span_content = content_tag(:span, feed, class: "fw-bold")

@@ -11,6 +11,7 @@
                     <%= icon_leader_user(current_user.id) %>
                     <%= icon_leader_pilote(current_user.id) %>
                     <%= current_user.nom %> 
+                    <%= user_paid_purchases_icon(current_user) %>
                 </div>
 
                 <%= link_to abonnements_path, data: {turbo: "false"}, 
