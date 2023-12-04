@@ -25,8 +25,10 @@ module ParieursHelper
   
       montant_paris = user_paris.sum(:montant) #if user_paris.any?
       solde_paris = user_paris.sum(:solde) if user_paris.any?
+
+      bonus_paris = user.bonus_paris.sum(:montant).to_i
   
-      user_sum[user_id] = solde_depart + somme_credit_semaine + solde_paris.to_i - montant_paris.to_i
+      user_sum[user_id] = solde_depart + somme_credit_semaine + solde_paris.to_i - montant_paris.to_i + bonus_paris
     end
   
     ranked_users = user_sum.sort_by { |_, sum| -sum }
@@ -56,8 +58,9 @@ module ParieursHelper
   
     montant_paris = user_paris.sum(:montant) if user_paris.any?
     solde_paris = user_paris.sum(:solde) if user_paris.any?
-  
-    solde = solde_depart.to_i + somme_credit_semaine.to_i + solde_paris.to_i - montant_paris.to_i
+    bonus_paris = user.bonus_paris.sum(:montant).to_i
+
+    solde = solde_depart.to_i + somme_credit_semaine.to_i + solde_paris.to_i - montant_paris.to_i + bonus_paris
     solde
  
   end

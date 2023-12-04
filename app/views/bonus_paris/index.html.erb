@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Bonus paris</h1>
+
+<div id="bonus_paris">
+  <% @bonus_paris.each do |bonus_pari| %>
+    <%= render bonus_pari %>
+    <p>
+      <%= link_to "Show this bonus pari", bonus_pari %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New bonus pari", new_bonus_pari_path %>

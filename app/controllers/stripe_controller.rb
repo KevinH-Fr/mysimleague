@@ -11,6 +11,22 @@ class StripeController < ApplicationController
       Purchase.find_or_create_by(user: current_user, article: @article, stripe_ref: subscription_id ) do |purchase|
         purchase.status = 'paid'
       end
+
+      # creer une table bonus_pari : user:references, montant:intger
+
+      puts "______________ call crea bonus pari_______________________"
+      bonus_pari = BonusPari.new(
+        user: current_user,
+        montant: @article.bonus_paris
+      )
+
+            # Save the Pari record
+            if bonus_pari.save
+              puts "Pari record created successfully"
+            else
+              puts "Failed to create Pari record"
+            end
+
     end
 
   end

@@ -11,9 +11,6 @@ class Pari < ApplicationRecord
 
   validates :montant, numericality: { greater_than: 0 }
 
-  
-  #before_save :update_solde, if: :resultat_changed?
-  #before_save :calcul_solde
   before_create :calcul_solde
   before_update :calcul_solde
 
@@ -31,7 +28,6 @@ class Pari < ApplicationRecord
   end
 
   def calcul_solde  
-    puts "____________call calcul solde depuis pari model"
     if self.resultat == "true"
       self.solde = self.montant * self.cote
     elsif self.resultat == "dns"
@@ -53,17 +49,12 @@ class Pari < ApplicationRecord
 
   user = self.user_id 
   if user 
-   # puts "____________test val user depuis verif montant: #{user}"
     soldeAvant = somme_paris_user(Time.now.year, [User.find(user)])[User.find(user).id][:sum]
-
-    puts " ____________solde avant depuis verif montant: #{soldeAvant}"
 
     total = soldeAvant.to_f - montant.to_f
     if total < 0 
       errors.add(:base, "Pari impossible - Insufficient balance - solde disponible: #{soldeAvant}")
-     # puts " ------------ Pari Impossible - total: #{total}"
     else 
-     # puts " ------------ Pari Possible - total: #{total}"
     end
   end
   

@@ -2,13 +2,14 @@
 
     <h5 class="text-center"> <%= article.titre %> </h5>
     <small><%= article.content %>   </small>
+    <div><%= number_to_currency(article.bonus_paris, precision: 0, unit: "", format: "%n %u") %> points paris  </div>
 
     <div class="container-fluid text-center my-2">
       <%= image_tag(article.image, width: 100) if article.image.present? %>
     </div>
 
     <% if current_user && current_user.admin %>
-      <div class="container-fluid">
+      <div class="container">
         <%= link_to  "Edit", edit_article_path(article), class: "btn btn-sm btn-secondary m-1 w-100" %>
         <%#= button_to "Destroy this article", article, method: :delete %>
       </div>

@@ -22,6 +22,8 @@ class User < ApplicationRecord
 
   #ajoutés pour scorgin - verifier ne donne pas d'erreurs sur existant: 
   has_many :paris
+  has_many :bonus_paris
+
   has_many :dotds
   has_many :purchases
   

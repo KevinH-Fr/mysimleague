@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  resources :bonus_paris
   resources :purchases
   resources :articles
 

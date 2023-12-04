@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_03_174145) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -107,6 +107,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_03_174145) do
     t.index ["ligue_id"], name: "index_association_users_on_ligue_id"
     t.index ["rattachement_id"], name: "index_association_users_on_rattachement_id"
     t.index ["user_id"], name: "index_association_users_on_user_id"
+  end
+
+  create_table "bonus_paris", force: :cascade do |t|
+    t.integer "user_id", null: false
+    t.integer "montant"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_bonus_paris_on_user_id"
   end
 
   create_table "circuits", force: :cascade do |t|
@@ -350,6 +358,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_03_174145) do
   add_foreign_key "association_users", "ligues"
   add_foreign_key "association_users", "rattachements"
   add_foreign_key "association_users", "users"
+  add_foreign_key "bonus_paris", "users"
   add_foreign_key "divisions", "saisons"
   add_foreign_key "dois", "association_admins"
   add_foreign_key "dois", "association_users", column: "demandeur_id"
