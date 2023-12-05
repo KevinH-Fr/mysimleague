@@ -72,7 +72,7 @@ export default class extends Controller {
     window.addEventListener('click', (event) => this.onMouseClick(event), false);
     window.addEventListener('resize', () => this.onWindowResize(), false);
 
-    this.loadModel('/assets/base_f1.glb');
+    this.loadModel('/models/base_f1.glb');
     this.animate();
   }
 
