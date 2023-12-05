@@ -148,7 +148,7 @@ module FeedsHelper
 
         when "Dotd"
             span_label = content_tag(:span, "DOTD")
-            span_content = content_tag(:span, feed.user.short_name, class: "fw-bold")
+            span_content = content_tag(:span, feed.user.short_name, class: "fw-bold me-1")
             span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
 
             span_icon_parieur = icon_leader_parieur(Date.today.year, feed.user.id)
@@ -156,11 +156,11 @@ module FeedsHelper
             span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
             span_icon_abonne =  user_paid_purchases_icon(feed.user)
 
-            combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            combined_content = span_label + span_image + " " + span_content + " " + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
 
         when "Presence"
             span_label = content_tag(:span, "Presence")
-            span_content = content_tag(:span, feed.association_user.user.short_name, class: "fw-bold")
+            span_content = content_tag(:span, feed.association_user.user.short_name, class: "fw-bold me-1")
             span_image = image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
             
             span_icon_parieur = icon_leader_parieur(Date.today.year, feed.association_user.user.id)
