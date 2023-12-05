@@ -110,5 +110,26 @@ module BadgesHelper
   end
       
 
+  def badge_delta_qualif_course(delta, pilote)
+    badge_class = "badge-pos bg-black max-record-height rounded d-flex align-items-center justify-content-center m-0 text-center"
+    
+    if pilote == "pilote1"
+      text_color_class = "pilote1-colored"
+    elsif pilote == "pilote2"
+      text_color_class = "pilote2-colored"
+    end
+
+    if delta > 0
+      content_tag(:div, class: "#{badge_class}") do 
+        concat content_tag(:i, "", class: "fa-solid fa-xl fa-caret-up me-2 text-success-custom")
+        concat content_tag(:span, delta, class: "#{text_color_class}", style:"font-size: small;")
+      end
+    elsif delta < 0
+      content_tag(:div, class: "#{badge_class}") do 
+        concat content_tag(:i, "", class: "fa-solid fa-xl fa-caret-down me-2 text-danger-custom")
+        concat content_tag(:span, delta, class: "#{text_color_class}", style:"font-size: small;")
+      end
+    end
+  end
 end
   

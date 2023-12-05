@@ -149,8 +149,6 @@ class ArticlesController < ApplicationController
     end
     
 
-
-
     def update_stripe_product_and_price(article)
       return unless article.stripe_product_id && article.stripe_price_id
     

@@ -23,8 +23,7 @@
                     <th class="text-center"> nb (%)</th>
                 <% end %>
             </thead>
-
-                        
+     
             <tbody>
                 <tr>
                     <td>Vict.</td>
@@ -103,11 +102,6 @@
                     <% end %>
                 </tr>
 
-                <%# 
-                    reprendre format avec % avec nb comme au dessus
-                    ajouter delta qualif course 
-                %>
-
                 <tr>
                     <td>DNF</td>
                     <% if @user_compare %>
@@ -145,6 +139,58 @@
                         </td>
                     <% end %>
                 </tr>
+
+                <tr>
+                    <td>Moy. qualif</td>
+                    <% if @user_compare %>
+                        <td class="pilote1-colored">
+                            <%= stats[:user_stats][:moy_qualification] %> 
+                        </td>
+                        <td class="pilote2-colored"> 
+                            <%= stats[:user_compare_stats][:moy_qualification] %> 
+                        </td>
+                    <% else %>
+                        <td class="pilote1-colored">
+                            <%= stats[:user_stats][:moy_qualification] %> 
+                        </td>
+                    <% end %>
+                </tr>
+
+                <tr>
+                    <td>Moy. course</td>
+                    <% if @user_compare %>
+                        <td class="pilote1-colored">
+                            <%= stats[:user_stats][:moy_course] %> 
+                        </td>
+                        <td class="pilote2-colored"> 
+                            <%= stats[:user_compare_stats][:moy_course] %> 
+                        </td>
+                    <% else %>
+                        <td class="pilote1-colored">
+                            <%= stats[:user_stats][:moy_course] %> 
+                        </td>
+                    <% end %>
+                </tr>
+
+                <tr>
+                    <td>Delta qualif/course</td>
+                    <% if @user_compare %>
+                        <td class="pilote1-colored">
+                            <%= badge_delta_qualif_course(stats[:user_stats][:delta_qaulif_course].to_i, "pilote1") %>
+                        </td>
+                        <td class="pilote2-colored"> 
+                            <%= badge_delta_qualif_course(stats[:user_compare_stats][:delta_qaulif_course].to_i, "pilote2") %>
+                        </td>
+                    <% else %>
+                        <td class="pilote1-colored">
+                            <%= badge_delta_qualif_course(stats[:user_stats][:delta_qaulif_course].to_i, "pilote1") %>
+                        </td>
+                    <% end %>
+                </tr>
+                <%# 
+                    ajouter delta qualif course 
+                %>
+
 
             </tbody>
         </table>
