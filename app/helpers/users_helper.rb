@@ -19,8 +19,14 @@ module UsersHelper
           user_stats[:nb_top10] = Resultat.where(association_user_id: user.association_users, course: (1..10)).count
           user_stats[:nb_dnf] = Resultat.where(association_user_id: user.association_users, dnf: true).count
           user_stats[:nb_dns] = Resultat.where(association_user_id: user.association_users, dns: true).count
-          user_stats[:moy_qualification] = Resultat.where(association_user_id: user.association_users).average('CAST(qualification AS NUMERIC)').to_i
-          user_stats[:moy_course] = Resultat.where(association_user_id: user.association_users).average('CAST(course AS NUMERIC)').to_i
+          user_stats[:moy_qualification] = Resultat.where(association_user_id: user.association_users)
+            .where.not(qualification: nil, qualification: '')
+            .average('CAST(qualification AS NUMERIC)').to_i
+
+          user_stats[:moy_course] = Resultat.where(association_user_id: user.association_users)
+              .where.not(course: nil, course: '')
+              .average('CAST(course AS NUMERIC)').to_i
+
           user_stats[:delta_qaulif_course] =  user_stats[:moy_qualification] - user_stats[:moy_course] 
 
     # Calculate stats for the user_compare, if provided
@@ -32,9 +38,15 @@ module UsersHelper
             user_compare_stats[:nb_top10] = Resultat.where(association_user_id: user_compare.association_users, course: (1..10)).count
             user_compare_stats[:nb_dnf] = Resultat.where(association_user_id: user_compare.association_users, dnf: true).count
             user_compare_stats[:nb_dns] = Resultat.where(association_user_id: user_compare.association_users, dns: true).count
-            user_compare_stats[:moy_qualification] = Resultat.where(association_user_id: user_compare.association_users).average('CAST(qualification AS NUMERIC)').to_i
-            user_compare_stats[:moy_course] = Resultat.where(association_user_id: user_compare.association_users).average('CAST(course AS NUMERIC)').to_i
-            user_compare_stats[:delta_qaulif_course] =  user_compare_stats[:moy_qualification] - user_compare_stats[:moy_course] 
+            user_compare_stats[:moy_qualification] = Resultat.where(association_user_id: user_compare.association_users)
+              .where.not(qualification: nil, qualification: '')
+              .average('CAST(qualification AS NUMERIC)').to_i
+
+            user_compare_stats[:moy_course] = Resultat.where(association_user_id: user_compare.association_users)
+              .where.not(course: nil, course: '')
+              .average('CAST(course AS NUMERIC)').to_i
+
+           user_compare_stats[:delta_qaulif_course] =  user_compare_stats[:moy_qualification] - user_compare_stats[:moy_course] 
 
           end
       
