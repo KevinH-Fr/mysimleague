@@ -17,6 +17,8 @@ module UsersHelper
           user_stats[:nb_podiums] = Resultat.where(association_user_id: user.association_users, course: (1..3)).count
           user_stats[:nb_top5] = Resultat.where(association_user_id: user.association_users, course: (1..5)).count
           user_stats[:nb_top10] = Resultat.where(association_user_id: user.association_users, course: (1..10)).count
+          user_stats[:nb_dnf] = Resultat.where(association_user_id: user.association_users, dnf: true).count
+          user_stats[:nb_dns] = Resultat.where(association_user_id: user.association_users, dns: true).count
 
     # Calculate stats for the user_compare, if provided
           if user_compare
@@ -25,6 +27,9 @@ module UsersHelper
             user_compare_stats[:nb_podiums] = Resultat.where(association_user_id: user_compare.association_users, course: (1..3)).count
             user_compare_stats[:nb_top5] = Resultat.where(association_user_id: user_compare.association_users, course: (1..5)).count
             user_compare_stats[:nb_top10] = Resultat.where(association_user_id: user_compare.association_users, course: (1..10)).count
+            user_compare_stats[:nb_dnf] = Resultat.where(association_user_id: user_compare.association_users, dnf: true).count
+            user_compare_stats[:nb_dns] = Resultat.where(association_user_id: user_compare.association_users, dns: true).count
+  
           end
       
           # Calculate percentages for both users
@@ -34,11 +39,17 @@ module UsersHelper
               stats_hash[:tx_podiums] = sprintf("%.2f", (stats_hash[:nb_podiums].to_f / stats_hash[:nb_courses].to_f * 100))
               stats_hash[:tx_top5] = sprintf("%.2f", (stats_hash[:nb_top5].to_f / stats_hash[:nb_courses].to_f * 100))
               stats_hash[:tx_top10] = sprintf("%.2f", (stats_hash[:nb_top10].to_f / stats_hash[:nb_courses].to_f * 100))
+              stats_hash[:tx_dnf] = sprintf("%.2f", (stats_hash[:nb_dnf].to_f / stats_hash[:nb_courses].to_f * 100))
+              stats_hash[:tx_dns] = sprintf("%.2f", (stats_hash[:nb_dns].to_f / stats_hash[:nb_courses].to_f * 100))
+
             else
               stats_hash[:tx_victoires] = "0.00"
               stats_hash[:tx_podiums] = "0.00"
               stats_hash[:tx_top5] = "0.00"
               stats_hash[:tx_top10] = "0.00"
+              stats_hash[:tx_dnf] = "0.00"
+              stats_hash[:tx_dns] = "0.00"
+
             end
           end
       

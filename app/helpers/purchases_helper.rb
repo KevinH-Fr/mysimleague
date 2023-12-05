@@ -22,6 +22,4 @@ module PurchasesHelper
       end
     end
     
-
 end
-
