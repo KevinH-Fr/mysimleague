@@ -10,19 +10,23 @@
                     <%= icon_leader_parieur(Date.today.year, current_user.id) %>
                     <%= icon_leader_user(current_user.id) %>
                     <%= icon_leader_pilote(current_user.id) %>
-                    <%= current_user.nom %> 
+                    <span class="ms-1"><%= current_user.nom %> </span>
                     <%= user_paid_purchases_icon(current_user) %>
                 </div>
 
-                <%= link_to abonnements_path, data: {turbo: "false"}, 
+                <%#= link_to abonnements_path, data: {turbo: "false"}, 
                     class: "btn btn-sm btn-outline-danger fa-fade" do %>
-                        <i class="fa fa-solid fa-xl fa-heart-circle-bolt"></i>
-                <% end %>
+                        <!--i class="fa fa-solid fa-xl fa-heart-circle-bolt"></i-->
+                <%# end %>
 
 
                 <% if boolean_user_paid_purchase(current_user) %>
-                    <%= link_to vip_path, class: "btn btn-sm btn-outline-warning mx-1" do %>
-                        <i class="fa fa-solid fa-xl fa-crown"></i>
+                    <%= link_to vip_path, class: "btn btn-sm btn-outline-warning" do %>
+                        <i class="fa fa-solid fa fa-crown"></i>
+                    <% end %>
+                <% else %>
+                    <%= link_to abonnements_path, data: {turbo: "false"}, class: "btn btn-sm btn-outline-warning" do %>
+                        <i class="fa fa-solid fa fa-crown"></i>
                     <% end %>
                 <% end %>
 
@@ -50,7 +54,7 @@
                     class: "fa-solid fa-user-plus btn btn-primary",
                     'aria-label' => "Sign Up" %>
 
-            <%= link_to  "", new_user_registration_path,
+            <%= link_to  "", steps_compte_step1_path,
                     class: "fa-solid fa-user-plus btn btn-sm btn-primary",
                     'aria-label' => "Sign Up"  %>
         </div>

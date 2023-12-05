@@ -1,7 +1,7 @@
 <div id="<%= dom_id article %>">
   
     <h5 class="text-center"> <%= colored_by_niveau(article.niveau, article.titre) %> </h5>
-    <small class="mb-3"><%= article.content %>   </small>
+    <small class="mb-2"><%= article.content %>   </small>
     <div class="text-warning my-2"><%= number_to_currency(article.bonus_paris, precision: 0, unit: "", format: "%n %u") %> points bonus pour parier  </div>
 
     <div class="container-fluid text-center my-2">
@@ -16,7 +16,7 @@
     <% end %>
 
     <% if article.abonnement? %>
-      <div class="fw-bold m-2">
+      <div class="fw-bold m-1">
         <%= number_to_currency(article.montant, precision: 2, unit: "€", format: "%n %u") %> / mois
       </div>
     <% end %>

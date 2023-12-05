@@ -11,12 +11,12 @@
 <% end %>
 
     <div class="card m-2 p-2 text-center text-warning">
-        <p class="text-success"> RaceMeIfYouCan est gratuit ! </p> 
-        <p> Ton soutien est le bienvenu pour couvrir les frais et continuer le développement !  </p> 
+        <div class="text-success"> RaceMeIfYouCan est gratuit ! </div> 
+        <div class="my-1"> Ton soutien est le bienvenu pour couvrir les frais et continuer le développement !  </div> 
     </div>
 
 
-    <div class="card m-2 p-2">
+    <div class="card m-2 p-1">
         <div class="container-fluid text-center my-1">
             <h4>Abonnements</h4> 
         </div>
@@ -30,7 +30,7 @@
         </div>
         <div class="carousel-inner">
             <% Article.where(abonnement: true).order(:montant).each_with_index do |article, index| %>
-            <div class="carousel-item card p-2 bg-dark text-center <%= 'active' if index == 0 %>" data-bs-interval="<%= (index + 1) * 1500 %>" style="height: 45vh;">
+            <div class="carousel-item card px-2 bg-dark text-center <%= 'active' if index == 0 %>" data-bs-interval="<%= (index + 1) * 1500 %>" style="height: 52vh;">
                 <%= render article %>
             </div>
             <% end %>
@@ -49,7 +49,7 @@
 
     </div>
 
-    <div class="card m-2 p-2">
+    <div class="card m-2 p-1">
         <div class="container-fluid text-center my-1">
             <h4>Versement unique</h4>
         </div>

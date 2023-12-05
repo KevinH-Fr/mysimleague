@@ -50,7 +50,7 @@ export default class extends Controller {
     this.messageContainer.style.fontSize = '18px';
     
     // Set background color and other styles for the badge
-    this.messageContainer.style.backgroundColor = 'blue'; // Change color as needed
+    this.messageContainer.style.backgroundColor = 'black'; // Change color as needed
     this.messageContainer.style.width = "90%"; // Change color as needed
     
     this.messageContainer.style.padding = '5px'; // Adjust padding as needed

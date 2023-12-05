@@ -7,7 +7,7 @@ class HomeController < ApplicationController
   include PurchasesHelper
 
   before_action :authorize_admin, only: %i[ update_scores_users update_scores_pilotes update_solde_paris ]
-  before_action :authorize_subscriber, only: %i[ vip ]
+  before_action :authorize_subscriber, only: %i[ vip model3d ]
 
   def landingpage
   end
