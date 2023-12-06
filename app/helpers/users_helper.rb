@@ -24,8 +24,7 @@ module UsersHelper
             .average('CAST(qualification AS NUMERIC)').to_i
 
           user_stats[:moy_course] = Resultat.where(association_user_id: user.association_users)
-              .where.not(course: nil, course: '')
-              .average('CAST(course AS NUMERIC)').to_i
+              .average(:course).to_i
 
           user_stats[:delta_qaulif_course] =  user_stats[:moy_qualification] - user_stats[:moy_course] 
 
@@ -43,8 +42,7 @@ module UsersHelper
               .average('CAST(qualification AS NUMERIC)').to_i
 
             user_compare_stats[:moy_course] = Resultat.where(association_user_id: user_compare.association_users)
-              .where.not(course: nil, course: '')
-              .average('CAST(course AS NUMERIC)').to_i
+              .average(:course).to_i
 
            user_compare_stats[:delta_qaulif_course] =  user_compare_stats[:moy_qualification] - user_compare_stats[:moy_course] 
 
@@ -115,6 +113,5 @@ module UsersHelper
       resultats
     end
 
-        
 end
   
