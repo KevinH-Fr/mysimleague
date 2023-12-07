@@ -20,7 +20,7 @@ module UsersHelper
           user_stats[:nb_dnf] = Resultat.where(association_user_id: user.association_users, dnf: true).count
           user_stats[:nb_dns] = Resultat.where(association_user_id: user.association_users, dns: true).count
           user_stats[:moy_qualification] = Resultat.where(association_user_id: user.association_users)
-            .where.not(qualification: nil, qualification: '')
+            .where.not(qualification: nil)
             .average('CAST(qualification AS NUMERIC)').to_i
 
           user_stats[:moy_course] = Resultat.where(association_user_id: user.association_users)
@@ -38,7 +38,7 @@ module UsersHelper
             user_compare_stats[:nb_dnf] = Resultat.where(association_user_id: user_compare.association_users, dnf: true).count
             user_compare_stats[:nb_dns] = Resultat.where(association_user_id: user_compare.association_users, dns: true).count
             user_compare_stats[:moy_qualification] = Resultat.where(association_user_id: user_compare.association_users)
-              .where.not(qualification: nil, qualification: '')
+              .where.not(qualification: nil)
               .average('CAST(qualification AS NUMERIC)').to_i
 
             user_compare_stats[:moy_course] = Resultat.where(association_user_id: user_compare.association_users)

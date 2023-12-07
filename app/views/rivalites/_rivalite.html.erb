@@ -6,15 +6,17 @@
       <%# if @event %>     
 
         <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
-
-        <%= equipe_banner_pilote_and_indicator(
-              AssociationUser.where(user_id: rivalite.pilote1.user.id, division_id: rivalite.division_id,
-              actif: true, valide: true).last.equipe, 
-              rivalite.pilote1.id,             
-              rivalite.pilote1.user.nom, 
-              scores[:leading_pilote_id],
-              scores[:cumulative_scores][:pilote1],
-              rivalite.pilote1.user.id) %>
+          
+        <% if (association_user = AssociationUser.where(user_id: rivalite.pilote1.user.id, division_id: rivalite.division_id, actif: true, valide: true).last) %>
+          <%= equipe_banner_pilote_and_indicator(
+            association_user.equipe,
+            rivalite.pilote1.id,
+            rivalite.pilote1.user.nom,
+            scores[:leading_pilote_id],
+            scores[:cumulative_scores][:pilote1],
+            rivalite.pilote1.user.id
+          ) %>
+        <% end %>
 
 
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
@@ -24,15 +26,19 @@
         </div>
       </div>
 
+
       <div>
-        <%= equipe_banner_pilote_and_indicator(
-              AssociationUser.where(user_id: rivalite.pilote2.user.id, division_id: rivalite.division_id,
-              actif: true, valide: true).last.equipe,           
-              rivalite.pilote2.id,             
-              rivalite.pilote2.user.nom, 
-              scores[:leading_pilote_id],
-              scores[:cumulative_scores][:pilote2],
-              rivalite.pilote2.user.id) %>
+        <% if (association_user = AssociationUser.where(user_id: rivalite.pilote2.user.id, division_id: rivalite.division_id, actif: true, valide: true).last) %>
+          <%= equipe_banner_pilote_and_indicator(
+            association_user.equipe,
+            rivalite.pilote2.id,
+            rivalite.pilote2.user.nom,
+            scores[:leading_pilote_id],
+            scores[:cumulative_scores][:pilote2],
+            rivalite.pilote2.user.id
+          ) %>
+        <% end %>
+
 
         <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
@@ -57,6 +63,7 @@
             data: {turbo_method: :delete, turbo_confirm: 'Are you sure?'} %>
       <% end %>
     </div>
+
   </div>
 
 </div>
