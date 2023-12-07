@@ -7,7 +7,7 @@
 
         <% scores = calcul_rivalite(rivalite.pilote1, rivalite.pilote2, rivalite.division_id, @event.id) %>
           
-        <% if (association_user = AssociationUser.where(user_id: rivalite.pilote1.user.id, division_id: rivalite.division_id, actif: true, valide: true).last) %>
+        <% if (association_user = AssociationUser.where(user_id: rivalite.pilote1.user.id, division_id: rivalite.division_id).last) %>
           <%= equipe_banner_pilote_and_indicator(
             association_user.equipe,
             rivalite.pilote1.id,
@@ -28,7 +28,7 @@
 
 
       <div>
-        <% if (association_user = AssociationUser.where(user_id: rivalite.pilote2.user.id, division_id: rivalite.division_id, actif: true, valide: true).last) %>
+        <% if (association_user = AssociationUser.where(user_id: rivalite.pilote2.user.id, division_id: rivalite.division_id).last) %>
           <%= equipe_banner_pilote_and_indicator(
             association_user.equipe,
             rivalite.pilote2.id,
