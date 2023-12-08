@@ -18,7 +18,6 @@
     <div class="card m-2 p-1">
         <div class="container-fluid text-center my-1">
             <h4>Abonnements</h4> 
-            <div class="my-1">L'abonnement est mensuel, tu peux te désabonner à n'importe quel moment</div>
         </div>
 
         <div id="carouselAbonnements" class="carousel carousel slide" data-bs-ride="carousel">
@@ -44,12 +43,14 @@
             </button>
         </div>
 
+        <div class="text-center p-1 my-1">Tu peux te désabonner quand tu veux</div>
+
+
     </div>
 
     <div class="card m-2 p-1">
         <div class="container-fluid text-center my-1">
             <h4>Versement unique</h4>
-            <div class="my-1">Le versement est libre et ponctuel</div>
         </div>
         <div class="bg-dark card p-2 text-center">
             <% Article.where(abonnement: false).each do |article| %>
