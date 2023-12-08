@@ -28,7 +28,7 @@
             </div>
             <div class="carousel-inner">
                 <% Article.where(abonnement: true).order(:montant).each_with_index do |article, index| %>
-                <div class="carousel-item card px-2 bg-dark text-center <%= 'active' if index == 0 %>" data-bs-interval="<%= (index + 1) * 1500 %>" style="height: 52vh;">
+                <div class="carousel-item card px-2 bg-dark text-center pt-2 pb-5 <%= 'active' if index == 0 %>" data-bs-interval="<%= (index + 1) * 1500 %>" style="">
                     <%= render article %>
                 </div>
                 <% end %>

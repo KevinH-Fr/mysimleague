@@ -24,6 +24,11 @@
                         <%= boolean_container(true, "Les paris sont ouverts") %>  
                     </div>
 
+                    <%= link_to abonnements_path, data: {turbo: "false"}, class: "btn btn-sm btn-outline-warning m-1 fa-fade" do %>
+                        <i class="fa fa-solid fa-xl fa-sack-dollar"></i>
+                        <span class="ms-2 fw-bold">Obtenir plus de points paris</span>
+                    <% end %>
+
 
                     <div class="collapse" id="collapsePari">
                         <div id="new_pari">
