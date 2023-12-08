@@ -18,7 +18,7 @@
     <% ranked_parieurs(annee).take(20).each do |user| %>
       <div class="d-flex align-items-center justify-content-center my-1">
         <%= badge_score_position(user[:rank]) %>
-        <div class="equipe-banner-wrapper d-flex align-items-center bg-secondary text-light fw-bold rounded px-2" style="width: 100%; max-width: 300px;">
+        <div class="equipe-banner-wrapper d-flex align-items-center bg-custom-grey text-light fw-bold rounded px-2" style="width: 100%; max-width: 300px;">
        
             <%# reprender voir pourquoi image tag webp donne erreur sur generation pdf %>
          
@@ -32,7 +32,8 @@
           <%= icon_leader_parieur(@annee, user[:user].id) %>
           <%= icon_leader_user(user[:user].id) %>
           <%= icon_leader_pilote(user[:user].id) %>
-          
+          <%= user_paid_purchases_icon(user[:user]) %>
+
         </div>
 
         <div style="min-width: 80px;">

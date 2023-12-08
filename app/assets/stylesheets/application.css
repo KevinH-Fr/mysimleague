@@ -199,6 +199,10 @@ select, input{
   color: rgb(225, 88, 88);
 }
 
+.bg-custom-grey{
+  background-color: rgb(76, 79, 76);
+
+}
 
 .btn-cote{
   font-size: small;

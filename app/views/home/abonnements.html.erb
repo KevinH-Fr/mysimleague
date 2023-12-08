@@ -15,43 +15,41 @@
         <div class="my-1"> Ton soutien est le bienvenu pour couvrir les frais et continuer le développement !  </div> 
     </div>
 
-
     <div class="card m-2 p-1">
         <div class="container-fluid text-center my-1">
             <h4>Abonnements</h4> 
+            <div class="my-1">L'abonnement est mensuel, tu peux te désabonner à n'importe quel moment</div>
         </div>
 
-
-    <div id="carouselAbonnements" class="carousel carousel slide" data-bs-ride="carousel">
-        <div class="carousel-indicators">
-            <% Article.where(abonnement: true).order(:montant).each_with_index do |article, index| %>
-            <button type="button" data-bs-target="#carouselAbonnements" data-bs-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>" aria-current="<%= index == 0 %>" aria-label="Slide <%= index + 1 %>"></button>
-            <% end %>
-        </div>
-        <div class="carousel-inner">
-            <% Article.where(abonnement: true).order(:montant).each_with_index do |article, index| %>
-            <div class="carousel-item card px-2 bg-dark text-center <%= 'active' if index == 0 %>" data-bs-interval="<%= (index + 1) * 1500 %>" style="height: 52vh;">
-                <%= render article %>
+        <div id="carouselAbonnements" class="carousel carousel slide" data-bs-ride="carousel">
+            <div class="carousel-indicators">
+                <% Article.where(abonnement: true).order(:montant).each_with_index do |article, index| %>
+                <button type="button" data-bs-target="#carouselAbonnements" data-bs-slide-to="<%= index %>" class="<%= 'active' if index == 0 %>" aria-current="<%= index == 0 %>" aria-label="Slide <%= index + 1 %>"></button>
+                <% end %>
             </div>
-            <% end %>
+            <div class="carousel-inner">
+                <% Article.where(abonnement: true).order(:montant).each_with_index do |article, index| %>
+                <div class="carousel-item card px-2 bg-dark text-center <%= 'active' if index == 0 %>" data-bs-interval="<%= (index + 1) * 1500 %>" style="height: 52vh;">
+                    <%= render article %>
+                </div>
+                <% end %>
+            </div>
+            <button class="carousel-control-prev" type="button" data-bs-target="#carouselAbonnements" data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+            </button>
+            <button class="carousel-control-next" type="button" data-bs-target="#carouselAbonnements" data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+            </button>
         </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#carouselAbonnements" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Previous</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#carouselAbonnements" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Next</span>
-        </button>
-    </div>
-
-
 
     </div>
 
     <div class="card m-2 p-1">
         <div class="container-fluid text-center my-1">
             <h4>Versement unique</h4>
+            <div class="my-1">Le versement est libre et ponctuel</div>
         </div>
         <div class="bg-dark card p-2 text-center">
             <% Article.where(abonnement: false).each do |article| %>
@@ -59,5 +57,3 @@
             <% end %>
         </div>
     </div>
-
-
