@@ -4,7 +4,7 @@
 
   <div id="feeds" class="mt-2">
     <% @feeds.each do |feed| %>
-      <% if feed_path(feed) %>        
+      <% if feed_path(feed).present? %>        
         <%= link_to feed_path(feed), class: "no-underline text-dark" do %>
           <div class="record-with-effect-small-margin d-flex align-items-center ps-2">
             <%= feed_icon(feed) %>
