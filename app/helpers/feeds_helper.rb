@@ -184,9 +184,9 @@ module FeedsHelper
         when "Event"
             menu_index_path(ligue: feed.division.saison.ligue, saison: feed.division.saison, division: feed.division_id, event: feed)
         when "User"
-          user_path(feed) if feed.present?
+          user_path(feed) if user_path(feed).present?
         when "AssociationUser"
-          user_path(feed.user_id)
+          user_path(feed.user_id) if user_path(feed.user_id).present?
         when "Ligue"
             menu_index_path(ligue: feed)
         when "Saison"
