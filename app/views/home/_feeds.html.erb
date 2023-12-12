@@ -4,12 +4,14 @@
 
   <div id="feeds" class="mt-2">
     <% @feeds.each do |feed| %>
-      <%= link_to feed_path(feed), class: "no-underline text-dark" do %>
-        <div class="record-with-effect-small-margin d-flex align-items-center ps-2">
-          <%= feed_icon(feed) %>
-          <%= feed_label(feed) %>
-          <small class="time-ago ps-2"> <%= time_ago_in_words(feed.updated_at) %> ago </small>
-        </div>
+      <% if feed.present? %>        
+        <%= link_to feed_path(feed), class: "no-underline text-dark" do %>
+          <div class="record-with-effect-small-margin d-flex align-items-center ps-2">
+            <%= feed_icon(feed) %>
+            <%= feed_label(feed) %>
+            <small class="time-ago ps-2"> <%= time_ago_in_words(feed.updated_at) %> ago </small>
+          </div>
+        <% end %>
       <% end %>
     <% end %>
   </div>
