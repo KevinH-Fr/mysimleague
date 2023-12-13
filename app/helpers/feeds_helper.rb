@@ -106,17 +106,19 @@ module FeedsHelper
             combined_content = span_label + span_image  + " " + span_content +  span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
 
         when "User"
-            span_label = content_tag(:span, "User")
-            span_content = content_tag(:span, feed.short_name, class: "fw-bold mx-1")
-            span_image = image_tag(feed.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
-            
-            span_icon_parieur = icon_leader_parieur(Date.today.year, feed.id)
-            span_icon_leader_user = icon_leader_user(feed.id)
-            span_icon_leader_pilote = icon_leader_pilote(feed.id)
-            span_icon_abonne =  user_paid_purchases_icon(feed)
 
-            combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            if feed.present? 
+                span_label = content_tag(:span, "User")
+                span_content = content_tag(:span, feed.short_name, class: "fw-bold mx-1")
+                span_image = image_tag(feed.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
+                
+                span_icon_parieur = icon_leader_parieur(Date.today.year, feed.id)
+                span_icon_leader_user = icon_leader_user(feed.id)
+                span_icon_leader_pilote = icon_leader_pilote(feed.id)
+                span_icon_abonne =  user_paid_purchases_icon(feed)
 
+                combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            end 
         when "AssociationUser"
             span_label = content_tag(:span, "Pilote")
             span_content = content_tag(:span, feed.user.short_name, class: "fw-bold mx-1")
@@ -184,9 +186,9 @@ module FeedsHelper
         when "Event"
             menu_index_path(ligue: feed.division.saison.ligue, saison: feed.division.saison, division: feed.division_id, event: feed)
         when "User"
-          user_path(feed) if user_path(feed).present?
+          user_path(feed) 
         when "AssociationUser"
-          user_path(feed.user_id) if user_path(feed.user_id).present?
+          user_path(feed.user_id)
         when "Ligue"
             menu_index_path(ligue: feed)
         when "Saison"
