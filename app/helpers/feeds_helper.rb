@@ -140,7 +140,7 @@ module FeedsHelper
                 span_icon_parieur = icon_leader_parieur(Date.today.year, feed.demandeur_id)
                 span_icon_leader_user = icon_leader_user(feed.demandeur_id)
                 span_icon_leader_pilote = icon_leader_pilote(feed.demandeur_id)
-                span_icon_abonne = user_paid_purchases_icon(User.find(feed.demandeur_id)) if feed.demandeur_id.present?
+                span_icon_abonne = user_paid_purchases_icon(User.find(feed.demandeur_id)) if User.find(feed.demandeur_id).present?
 
             else
                 span_content = content_tag(:span, "Commissaire", class: "fw-bold")
