@@ -140,14 +140,14 @@ module FeedsHelper
                 span_icon_parieur = icon_leader_parieur(Date.today.year, feed.demandeur_id)
                 span_icon_leader_user = icon_leader_user(feed.demandeur_id)
                 span_icon_leader_pilote = icon_leader_pilote(feed.demandeur_id)
-                span_icon_abonne = '' # user_paid_purchases_icon(User.find(feed.demandeur_id))
+                #span_icon_abonne = # user_paid_purchases_icon(User.find(feed.demandeur_id))
                 #trouver pourquoi donne erreur - if present deja essayer fonctionne pas - donne content missing
 
             else
                 span_content = content_tag(:span, "Commissaire", class: "fw-bold")
                 span_image =  content_tag(:i, "", class: "fa fa-xl fa-person-military-pointing mx-2")
             end 
-            combined_content = span_label + span_image +  " " + span_content  + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            combined_content = span_label + span_image +  " " + span_content  + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote #+ span_icon_abonne
 
         when "Dotd"
             span_label = content_tag(:span, "DOTD")
