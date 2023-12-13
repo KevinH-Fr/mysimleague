@@ -4,14 +4,15 @@ module FeedsHelper
         # Define the models you want to fetch
         models_to_fetch = 
         [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence,
-            Ligue, Saison, Division, Circuit, Equipe ]
+            Ligue, Saison, Division, Circuit, Equipe, Purchase ]
 
         @feeds = []
       
         models_to_fetch.each do |model|
-          # Use the 'or' method to build a query for each model
-          recent_records = model.order(updated_at: :desc)
-          @feeds += recent_records
+
+            recent_records = model.order(updated_at: :desc)
+
+            @feeds += recent_records
         end
       
         # Sort @feeds by updated_at in descending order
@@ -49,6 +50,17 @@ module FeedsHelper
             content_tag :i, "", class: "fa fa-2x fa-solid fa-ranking-star text-primary me-2"
         when "Presence"
             content_tag :i, "", class: "fa fa-2x fa-solid fa-street-view text-warning me-2"
+
+        when "Purchase"
+                crown_color = case feed.article.niveau
+                            when 1 then "brown"
+                            when 2 then "grey"
+                            when 3 then "yellow"
+                            else "blue"
+                            end
+            
+                content_tag :i, "", class: "fa fa-2x fa-solid fa-crown me-2 fa-fade", style: "color: #{crown_color};"
+          
 
         else
             content_tag :i, "", class: "fa fa-xl fa-question-circle text-dark me-2"
@@ -171,11 +183,24 @@ module FeedsHelper
             span_icon_abonne =  user_paid_purchases_icon(feed.association_user.user)
  
             combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            
+        when "Purchase"
+                span_label = content_tag(:span, "Abonné")
+                span_content = content_tag(:span, feed.user.short_name, class: "fw-bold mx-1")
+                span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
+                
+                span_icon_parieur = icon_leader_parieur(Date.today.year, feed.user.id)
+                span_icon_leader_user = icon_leader_user(feed.user.id)
+                span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
+                span_icon_abonne =  user_paid_purchases_icon(feed.user)
+
+                combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
         else
             span_label = content_tag(:span, "Model")
             span_content = content_tag(:span, feed, class: "fw-bold")
             combined_content = span_label + " " + span_content
         end 
+            
     end
 
     def feed_path(feed)            
@@ -199,6 +224,8 @@ module FeedsHelper
             equipe_path(feed)  
         when "Circuit"
             circuit_path(feed) 
+        when "Purchase"
+            abonnements_path() 
         else
           root_path
         end

@@ -43,7 +43,7 @@ class HomeController < ApplicationController
     # friends infinite scroll
     models_to_fetch = 
       [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence,
-      Ligue, Saison, Division, Circuit, Equipe]
+      Ligue, Saison, Division, Circuit, Equipe, Purchase]
       @feeds = []
       
       # Iterate through the models and fetch the most recent 3 records for each
