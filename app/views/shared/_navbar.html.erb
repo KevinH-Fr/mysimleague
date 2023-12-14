@@ -20,6 +20,9 @@
         <li class="nav-item">
           <%= link_to "Menu", menu_index_path, class:"nav-link" %>
         </li>
+        <li class="nav-item">
+          <%= link_to "Pilotes", pilotes_path, class:"nav-link" %>
+        </li>
 
         <% if current_user && current_user.admin  %>    
           <li class="nav-item">
@@ -44,7 +47,6 @@
             <%= link_to new_user_session_path, class: "nav-link text-warning no-underline mx-1", 
                     title: "Sign In", 'aria-label' => "Sign In" do %>
               <i class="fa fa-solid fa-lg fa-user-lock" aria-hidden="true"></i>
-              <span class="ms-2 fw-bold">Sign In</span>
             <% end %>
           </li>
 
@@ -53,7 +55,6 @@
             <%= link_to steps_compte_step1_path, class: "nav-link text-primary no-underline mx-1",
                     title: "Create an Account", 'aria-label' => "Create an Account" do %>
               <i class="fa fa-solid fa-lg fa-user-plus" aria-hidden="true"></i>
-              <span class="ms-2 fw-bold">Create an Account</span>
             <% end %>
           </li>
 

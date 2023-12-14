@@ -174,6 +174,7 @@ Rails.application.routes.draw do
   get 'classement_pilotes/index'
 
   get 'home/index'
+  get '/pilotes', to: 'home#pilotes', as: 'pilotes'
 
   get '/abonnements', to: 'home#abonnements', as: 'abonnements'
   get '/vip', to: 'home#vip', as: 'vip'
@@ -246,7 +247,8 @@ Rails.application.routes.draw do
 
 
   constraints subdomain: 'setup' do
-    get '/', to: 'setup#index', as: :setup_root
+    #get '/', to: 'setup#index', as: :setup_root
+    root 'setup#index', as: :setup_root
   end
 
   root to: 'landingpage#index'

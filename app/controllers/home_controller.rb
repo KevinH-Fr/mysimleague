@@ -69,6 +69,9 @@ class HomeController < ApplicationController
       
       
     end 
+
+    def pilotes
+    end
     
  
 
