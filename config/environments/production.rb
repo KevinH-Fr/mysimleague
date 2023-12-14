@@ -116,6 +116,7 @@ Rails.application.configure do
   config.action_dispatch.tld_length = 0
 
   #config.action_controller.default_url_options = { host: 'racemeifyoucan.com' }
+  config.action_controller.default_url_options = { host: 'racemeifyoucan.com', protocol: 'https' }
 
 
 end
