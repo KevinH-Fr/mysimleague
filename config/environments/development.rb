@@ -95,6 +95,6 @@ Rails.application.configure do
   # config.action_cable.disable_request_forgery_protection = true
 
   # Enable subdomains in development
-  config.action_dispatch.tld_length = 0
+  # config.action_dispatch.tld_length = 0
 
 end

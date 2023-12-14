@@ -70,10 +70,10 @@ class HomeController < ApplicationController
       
     end 
 
-    def pilotes
-    end
-    
- 
+   # def pilotes
+   #   @q = User.ransack(params[:q])
+   #   @pilotes = @q.result(distinct: true).order(:nom)
+   # end
 
     
     def display_feeds
@@ -146,19 +146,16 @@ class HomeController < ApplicationController
     end
   end
 
-  def display_pilotes 
-
-    @pilotes = User.all 
-
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.update(
-          'partial-container', partial: 'home/pilotes'
-        )
-      end
-    end
-
-  end
+ # def display_pilotes 
+ #   @pilotes = User.all 
+ #   respond_to do |format|
+ #     format.turbo_stream do
+ #       render turbo_stream: turbo_stream.update(
+ #         'partial-container', partial: 'home/pilotes'
+ #       )
+ #     end
+ #   end
+ # end
 
   def display_scoring
     respond_to do |format|

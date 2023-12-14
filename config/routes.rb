@@ -219,14 +219,18 @@ Rails.application.routes.draw do
   }
 
 
+  #get 'users/index'
+  #get 'users' => 'users#index', as: 'users'
 
-  get 'users' => 'users#index', as: 'users'
+  get 'users', to: 'users#index'
+
 
   get 'users/show'
   get 'users/:id' => 'users#show', as: 'user'
 
   get 'users/edit'
   get 'users/:id' => 'users#edit', as: 'user_edit'
+
 
   resources :friends
 
@@ -246,10 +250,12 @@ Rails.application.routes.draw do
   post 'unsubscribe-session', to: 'articles#unsubscribe_session'
 
 
-  constraints subdomain: 'setup' do
+  get '/setup_dashboard', to: 'setup_dashboard#index'
+
+  #constraints subdomain: 'setup' do
     #get '/', to: 'setup#index', as: :setup_root
-    root 'setup#index', as: :setup_root
-  end
+  #  root 'setup#index', as: :setup_root
+  #end
 
   root to: 'landingpage#index'
 

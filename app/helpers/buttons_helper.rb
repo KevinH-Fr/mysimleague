@@ -8,6 +8,14 @@ module ButtonsHelper
         end
     end
 
+    def custom_submit_search_button
+        content_tag(:div, class: "container-fluid m-0 p-0 text-end") do
+            button_tag(type: "submit", class: "btn btn-sm bg-success text-light fw-bold") do
+                concat content_tag(:i, "", class: "fa-solid fa-xl fa-magnifying-glass-arrow-right")
+            end
+        end
+    end
+
     def back_button_on_event(event)
         event = Event.find(event)
         content_tag(:div, class: "m-1") do

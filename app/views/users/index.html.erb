@@ -1,12 +1,50 @@
+<h1 class="text-center m-2"> Users </h1>
 
-<h1>Users</h1>
+<div class="p-2 mt-2">
 
-<div id="users">
-  <% @users.each do |user| %>
-    <%= render user %>
-    <p>
-      <%= link_to "Show this user", user %>
-    </p>
-  <% end %>
+  <div class="container-fluid mt-2 mb-4">
+
+    <%= search_form_for @q, html: { class: "input-group input-group-sm my-1" } do |f| %>
+      <%= f.search_field :nom_cont, class: "form-control input-colored" %>
+      <div class="input-group-append">
+        <%= custom_submit_search_button %>
+      </div>
+    <% end %>
+  </div>
+
+
+
+  <div id="users">
+    <% @users.each do |user| %>
+        <div class="record-with-effect">
+            <div class="row d-flex align-items-center justify-content-center">
+                <div class="col-10">
+                    <%= link_to user_path(user), class: "no-underline" do  %>
+                        <%= image_tag(user.webp_variant, class: "medium-profile-pic mx-2") %> 
+                        <%= truncate(user.nom, length: 16) %>
+                        <%= icon_leader_parieur(Date.today.year, user.id) %>
+                        <%= icon_leader_user(user.id) %>
+                        <%= icon_leader_pilote(user.id) %>
+                        <%= user_paid_purchases_icon(user) %>
+
+                        <a class="ms-1" data-bs-toggle="collapse" href="#collapseDetailsUser<%= user.id %>" role="button" aria-expanded="false">
+                          <i class="fa fa-xl fa-square-plus text-secondary"></i>
+                        </a>
+
+                        <div class="px-4">
+                          <div class="collapse" id="collapseDetailsUser<%= user.id %>">
+                            <div class="badge bg-secondary my-3"> actions: <%= user.action_count %> </div>
+                            <div class="badge bg-secondary"> solde paris: <%= user.solde_paris %> </div>
+                          </div>
+                        </div>
+                    <% end %>
+                </div>
+                <div class="col-2 text-center">
+                    <%= link_to "", user_path(user), class: "btn btn-sm btn-primary fa-solid fa-eye" %> 
+                </div>
+            </div>
+        </div>
+    <% end %>
+  </div>
+
 </div>
-

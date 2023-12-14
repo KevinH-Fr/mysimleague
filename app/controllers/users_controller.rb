@@ -26,12 +26,12 @@ class UsersController < ApplicationController
 
   def create
     @user.twitch = sanitize(params[:user][:twitch])
-
   end
   
 
   def index
-    @users = User.all
+    @q = User.ransack(params[:q])
+    @users = @q.result(distinct: true).order(:nom)
   end
 
   def edit

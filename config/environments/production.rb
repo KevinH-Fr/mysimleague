@@ -115,8 +115,8 @@ Rails.application.configure do
   # enable subdomain on prod
   config.action_dispatch.tld_length = 0
 
-  config.action_controller.default_url_options = { host: 'racemeifyoucan.com' }
-  config.action_controller.default_url_options = { host: 'racemeifyoucan.com', protocol: 'https' }
+  #config.action_controller.default_url_options = { host: 'racemeifyoucan.com' }
+  #config.action_controller.default_url_options = { host: 'racemeifyoucan.com', protocol: 'https' }
   #config.action_controller.default_url_options = { host: 'mysimleague-38a099218a23.herokuapp.com' }
   #Rails.application.routes.default_url_options[:host] = 'mysimleague-38a099218a23.herokuapp.com'
 
