@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'setup/index'
   resources :bonus_paris
   resources :purchases
   resources :articles
@@ -182,6 +183,7 @@ Rails.application.routes.draw do
 
   #get '/landingpage', to: 'home#landingpage'
   get 'landingpage/index'
+  get 'landingpage/setup'
 
   get '/scoring', to: 'home#scoring', as: 'scoring'
 
@@ -228,19 +230,27 @@ Rails.application.routes.draw do
   resources :friends
 
   #  root to: 'home#index'
-  root to: 'landingpage#index'
 
   get 'set_theme', to: 'theme#update'
- # mount ActiveAnalytics::Engine, at: "analytics"
+  # mount ActiveAnalytics::Engine, at: "analytics"
 
 
   # stripe listen --forward-to localhost:4242/stripe/webhooks
- # post 'stripe/webhooks', to: 'stripe/webhooks#create'
+  # post 'stripe/webhooks', to: 'stripe/webhooks#create'
 
  
- get 'purchase_success', to: 'stripe#purchase_success'
+  get 'purchase_success', to: 'stripe#purchase_success'
 
- post 'create-checkout-session', to: 'articles#create_checkout_session'
- post 'unsubscribe-session', to: 'articles#unsubscribe_session'
+  post 'create-checkout-session', to: 'articles#create_checkout_session'
+  post 'unsubscribe-session', to: 'articles#unsubscribe_session'
+
+
+  constraints subdomain: 'setup' do
+    get '/', to: 'setup#index', as: :setup_root
+  end
+
+  root to: 'landingpage#index'
+
+
 
 end
