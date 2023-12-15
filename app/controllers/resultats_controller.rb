@@ -74,7 +74,7 @@ class ResultatsController < ApplicationController
             #ordering
             turbo_stream.update(
               'resultats', 
-              partial: "menu/resultats",
+              partial: "resultats/resultats",
               locals: { resultats: @resultats.order(:course) }
             )
           ]

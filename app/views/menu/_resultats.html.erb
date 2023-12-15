@@ -9,8 +9,8 @@
 <h4 class="titre-topic">
   Résultats
 
-    <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-bounce fa-film btn-primary mx-2' %>
-
+    <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-bounce fa-film btn-outline-primary mt-1' %>
+   
     <% if current_user && verif_admin_ligue(current_user, @event.division.saison.ligue) %>
       <button class="btn btn-sm btn-warning m-2" type="button" 
         data-bs-toggle="collapse" data-bs-target="#collapseNewEvent" aria-expanded="false">
@@ -30,9 +30,7 @@
 
 <%= render "resultats/resultats" %>
 
-<div class="container-fluid text-center my-2">
-  <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-outline-success w-25' %>
-  <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-film btn-outline-primary w-25' %>
+<div class="container-fluid text-center m-2">
+  <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-bounce fa-film btn-outline-primary mx-1 w-25' %>
+  <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-outline-success mx-1 w-25' %>
 </div>
-
-
