@@ -1,22 +1,22 @@
-<div id="<%= dom_id parametre_setup %>">
-  <p>
-    <strong>Setup:</strong>
-    <%= parametre_setup.setup_id %>
-  </p>
 
-  <p>
-    <strong>Base setup:</strong>
-    <%= parametre_setup.base_setup_id %>
-  </p>
+<div id="<%= dom_id parametre_setup %>" class="container-fluid <%= parametre_setup.filled ? 'bg-success' : 'bg-danger'%>">
 
-  <p>
-    <strong>Val parametre:</strong>
-    <%= parametre_setup.val_parametre %>
-  </p>
+    <div class="row text-light align-items-center"> <!-- Added align-items-center class -->
+      <div class="col-10">
+        <%= parametre_setup.base_setup.parametre %>
+        <%= parametre_setup.val_parametre %>      
+      </div>
+      <div class="col-2 text-end">
+        <%= button_to edit_parametre_setup_path(parametre_setup), method: :post, 
+              class: "btn btn-sm p-0" do %>
+          <i class= "fa fa-xl fa-pen-square ms-1 text-light"></i>
+        <% end %>  
+      </div>
+    </div>
 
-  <p>
-    <strong>Filled:</strong>
-    <%= parametre_setup.filled %>
-  </p>
+      <%#= button_to parametre_setup_path(parametre_setup), method: :delete, class: "btn btn-sm" do %>
+        <!--i class= "fa fa-xl fa-trash-can ms-1 text-danger"></i-->
+      <%# end %> 
 
 </div>
+

@@ -3,7 +3,7 @@ class CorrectifsController < ApplicationController
 
   def index
    # @correctifs = Correctif.all.group_by(&:problem_second)
-    @correctifs = Correctif.all
+    @correctifs =  Correctif.all.group_by(&:problem_second)
 
   end
 

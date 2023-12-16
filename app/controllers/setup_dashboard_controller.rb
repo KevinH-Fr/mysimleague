@@ -12,5 +12,8 @@ class SetupDashboardController < ApplicationController
       end
     end
   end
+
+  def model3d
+  end
   
 end

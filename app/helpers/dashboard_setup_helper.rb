@@ -11,7 +11,7 @@ module DashboardSetupHelper
         }
     
         links.map do |text, path|
-          link_to(text, path, class: "btn btn-secondary m-1")
+          link_to(text, path, class: "btn btn-sm btn-secondary m-1")
         end.join.html_safe
       end
     

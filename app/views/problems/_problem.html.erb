@@ -1,10 +1,9 @@
-<div id="<%= dom_id problem %>">
-  <p>
-    <strong>Nom:</strong>
-    <%= problem.nom %>
-    <%= link_to  "edit", edit_problem_path(problem) %>
-
-    
-  </p>
-
+<div id="<%= dom_id problem %> " class="container-fluid bg-dark text-light">
+  <div class="d-flex my-1">
+    <strong> Principal <%= problem.nom %> </strong>
+    <%= button_to "Edit", edit_problem_path(problem), method: :post, 
+          class: "btn btn-sm btn-outline-secondary mx-1 p-1" %>
+    <%= button_to "Destroy", problem_path(problem), method: :delete, 
+          class: "btn btn-sm btn-outline-danger mx-1 p-1" %>
+  </div>
 </div>

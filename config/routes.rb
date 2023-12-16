@@ -215,8 +215,8 @@ Rails.application.routes.draw do
   resources :setups do
     collection do
       post 'display_pb2'
-      post 'display_correction'
-      post 'display_details_correction'
+      post 'display_correctif'
+      post 'display_details_correctif'
     end
     member do
       post :edit

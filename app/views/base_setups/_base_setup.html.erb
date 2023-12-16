@@ -1,22 +1,27 @@
 <div id="<%= dom_id base_setup %>">
-  <p>
-    <strong>Parametre:</strong>
-    <%= base_setup.parametre %>
-  </p>
 
-  <p>
-    <strong>Val min:</strong>
-    <%= base_setup.val_min %>
-  </p>
+  <div class="d-flex align-items-center my-1">
 
-  <p>
-    <strong>Val max:</strong>
-    <%= base_setup.val_max %>
-  </p>
+    <span class="mx-1">
+      <strong>Parametre:</strong>
+      <%= base_setup.parametre %>
+    </span>
 
-  <p>
-    <strong>Explication:</strong>
-    <%= base_setup.explication %>
-  </p>
+    <span class="mx-1">  
+      <strong>min:</strong>
+      <%= base_setup.val_min %>
+    </span>
+
+    <span class="mx-1">
+      <strong>max:</strong>
+      <%= base_setup.val_max %>
+    </span>
+
+    <%= button_to "", edit_base_setup_path(base_setup), method: :post, 
+          class: "btn btn-sm btn-outline-secondary fa-solid fa-pen-to-square m-1" %>
+    <%= button_to "", base_setup_path(base_setup), method: :delete, 
+          class: "btn btn-sm btn-outline-danger fa-solid fa-trash m-1" %>
+
+  </div>
 
 </div>

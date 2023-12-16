@@ -1,15 +1,13 @@
 class SetupsController < ApplicationController
 
-  include ScoreHelper
+  include ScoreSetupHelper
 
   before_action :set_setup, only: %i[ show edit update destroy ]
 
-  # GET /setups or /setups.json
   def index
     @setups = Setup.all
   end
 
-  # GET /setups/1 or /setups/1.json
   def show
     @setup = Setup.find(params[:setup]) if params[:setup]
     session[:setup] = @setup.id if @setup  
@@ -22,12 +20,10 @@ class SetupsController < ApplicationController
 
   end
 
-  # GET /setups/new
   def new
     @setup = Setup.new
   end
 
-  # GET /setups/1/edit
   def edit
 
     respond_to do |format|
@@ -37,7 +33,6 @@ class SetupsController < ApplicationController
     end
   end
 
-  # POST /setups or /setups.json
   def create
     @setup = Setup.new(setup_params)
 
@@ -65,7 +60,6 @@ class SetupsController < ApplicationController
     end
   end
 
-  # PATCH/PUT /setups/1 or /setups/1.json
   def update
 
     respond_to do |format|
@@ -90,7 +84,6 @@ class SetupsController < ApplicationController
     end
   end
 
-  # DELETE /setups/1 or /setups/1.json
   def destroy
     @setup.destroy!
 
@@ -118,35 +111,32 @@ class SetupsController < ApplicationController
   end
 
   
-  def display_correction
+  def display_correctif
 
     @problem_secondaire_id = params[:problem_secondaire_id]
-
-    @corrections = Correction.where(problem_second_id: @problem_secondaire_id)
-
+    @correctifs = Correctif.where(problem_second_id: @problem_secondaire_id)
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(
-          'partial-corrections-container', partial: 'setups/corrections'
+          'partial-correctifs-container', partial: 'setups/correctifs'
         )
       end
     end
   end
 
-  def display_details_correction
+  def display_details_correctif
 
-    @correction = Correction.find(params[:correction_id])
+    @correctif = Correctif.find(params[:correctif_id])
 
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(
-          'partial-details-correction-container', partial: 'setups/details_correction'
+          'partial-details-correctif-container', partial: 'setups/details_correctif'
         )
       end
     end
   end
-
 
   
 

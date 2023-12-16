@@ -13,8 +13,8 @@
       <% Problem.all.each do |problem| %>
       
         <%= button_to problem.nom, display_pb2_setups_path(problem_id: problem.id), 
-          class: "btn btn m-1 p-1 btn-pb1",
-          data: { controller: "button-color", action: "click->button-color#handleClickPb1" } %>
+          class: "btn btn-secondary m-1 p-1 btn-pb1",
+          data: { controller: "button-setuptool", action: "click->button-setuptool#handleClickPb1" } %>
       <% end %>
     </div>
   

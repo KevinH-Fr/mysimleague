@@ -1,0 +1,20 @@
+
+<div class="container-fluid d-flex">
+  <h4>corrections</h4>
+  <% @correctifs.each do |correctif| %>
+    <div class="d-flex">
+      <%= button_to display_details_correctif_setups_path(correctif_id: correctif.id), 
+        class: "btn btn-sm btn-success btn-correction m-1",
+        data: { controller: "button-setuptool", action: "click->button-setuptool#handleClickCorrection" } do %>
+        <%= correctif.sens %>
+        <%= correctif.base_setup.parametre %>
+      <% end %>
+
+    </div>
+  <% end %>
+</div>
+
+<%# rempalcer par collapse bs %>
+<div id="partial-details-correctif-container">
+  <%# recoit l'update turbo stream avec une partial donnée %>
+</div>

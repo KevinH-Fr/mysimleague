@@ -1,14 +1,45 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Base setups</h1>
+<div class="p-2">
 
-<div id="base_setups">
-  <% @base_setups.each do |base_setup| %>
-    <%= render base_setup %>
-    <p>
-      <%= link_to "Show this base setup", base_setup %>
-    </p>
+  <h1>
+    Base setups
+    <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewBaseSetup" aria-expanded="false">
+      <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
+  </h1>
+
+  <div class="collapse" id="collapseNewBaseSetup">
+    <div id="new_base_setup">
+      <%= render partial: "base_setups/form", locals: { base_setup: BaseSetup.new } %>
+    </div>
+  </div>
+
+  <div class="card my-2"> 
+    <div class="d-flex"> 
+      select a game :
+      <% Game.all.each do |game| %>
+        <%= link_to game.nom, url_for(game: game), class: "btn btn-primary m-1" %>
+      <% end %>
+    </div>
+    
+  </div>
+
+
+  <% if params[:game] %>
+    <div id="base_setups">
+        <% @base_setups.where(game_id: params[:game]).each do |base_setup| %>
+          <div class="card my-2">
+            <%= render base_setup %>
+          </div>
+        <% end %>
+    </div>
   <% end %>
+    
 </div>
 
-<%= link_to "New base setup", new_base_setup_path %>
+
+<div class="my-3">
+    <%= back_button_setup_dashboard %>
+    <%= back_button_root %>
+</div>

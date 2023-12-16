@@ -1,14 +1,35 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Comportements</h1>
+<div class="p-2">
+  <h1>
+    Comportements
+    <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewComportement" aria-expanded="false">
+      <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
+  </h1>
 
-<div id="comportements">
-  <% @comportements.each do |comportement| %>
-    <%= render comportement %>
-    <p>
-      <%= link_to "Show this comportement", comportement %>
-    </p>
-  <% end %>
+  <div class="collapse" id="collapseNewComportement">
+    <div id="new_comportement">
+      <%= render partial: "comportements/form", locals: { comportement: Comportement.new } %>
+    </div>
+  </div>
+
+  <div id="comportements">
+    <% @comportements_grouped.each do |label_categorie, comportements| %>
+      <div class="card my-2">
+        <h3><%= label_categorie %></h3>
+        <ul>
+          <% comportements.each do |comportement| %>
+            <%= render comportement %>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+  </div>
 </div>
 
-<%= link_to "New comportement", new_comportement_path %>
+
+<div class="my-3">
+    <%= back_button_setup_dashboard %>
+    <%= back_button_root %>
+</div>

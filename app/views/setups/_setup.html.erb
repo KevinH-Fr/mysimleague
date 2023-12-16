@@ -2,7 +2,7 @@
 
   <div class="row m-0 p-1">
 
-      <div class="col-8 ps-3">
+      <div class="col-8 ps-3 d-flex align-items-center">
             <%= link_to setup_path(setup), class: "no-underline" do %>
                   <%= setup.game.nom %> |
                   <%= setup.game.version %> |
@@ -11,13 +11,12 @@
       </div>
 
       <div class="col-4 d-flex justify-content-end align-items-center">
-            <%= link_to "show", setup_path(setup), 
-                  class: "btn btn-sm btn-outline-primary mx-1 p-1" %>
-
-            <%= button_to "Edit", edit_setup_path(setup), method: :post, 
-                  class: "btn btn-sm btn-outline-secondary mx-1  p-1" %>
-            <%= button_to "Destroy", setup_path(setup), method: :delete, 
-                  class: "btn btn-sm btn-outline-danger ms-1 p-1" %>
+            <%= link_to "", setup_path(setup), 
+                  class: "btn btn-sm btn-outline-primary fa-solid fa-eye m-1" %>
+            <%= button_to "", edit_setup_path(setup), method: :post, 
+                  class: "btn btn-sm btn-outline-secondary fa-solid fa-pen-to-square m-1" %>
+            <%= button_to "", setup_path(setup), method: :delete, 
+                  class: "btn btn-sm btn-outline-danger fa-solid fa-trash m-1" %>
       </div>
 
   </div>

@@ -1,37 +1,35 @@
-<%= form_with(model: parametre_setup) do |form| %>
-  <% if parametre_setup.errors.any? %>
-    <div style="color: red">
-      <h2><%= pluralize(parametre_setup.errors.count, "error") %> prohibited this parametre_setup from being saved:</h2>
+  <%= form_with(model: parametre_setup) do |form| %>
+    <% if parametre_setup.errors.any? %>
+      <div style="color: red">
+        <h2><%= pluralize(parametre_setup.errors.count, "error") %> prohibited this parametre_setup from being saved:</h2>
 
-      <ul>
-        <% parametre_setup.errors.each do |error| %>
-          <li><%= error.full_message %></li>
-        <% end %>
-      </ul>
+        <ul>
+          <% parametre_setup.errors.each do |error| %>
+            <li><%= error.full_message %></li>
+          <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+      <% if parametre_setup.persisted? %>
+        <%= form.hidden_field :setup_id %> 
+      <% else %>
+        <%= form.hidden_field :setup_id, value: session[:setup] %> 
+      <% end %>
+
+      <%#= form.label :base_setup_id, style: "display: block" %>
+      <%#= form.collection_select :base_setup_id, BaseSetup.all, :id, :parametre %>
+      <%= form.hidden_field :base_setup_id %>
+
+
+    <div class="input-group input-group-sm">
+      <%= form.label :val_parametre, parametre_setup.base_setup.parametre, class: "input-group-text label-colored" %>
+      
+      <%= form.text_field :val_parametre, class: "form-control input-colored",
+            style: "width: 80px;" %>   
+      <div class="input-group-append ms-1">  <%= custom_submit_button("") %> </div>
+      
     </div>
+
+
   <% end %>
-
-  <div>
-    <%= form.label :setup_id, style: "display: block" %>
-    <%= form.text_field :setup_id %>
-  </div>
-
-  <div>
-    <%= form.label :base_setup_id, style: "display: block" %>
-    <%= form.text_field :base_setup_id %>
-  </div>
-
-  <div>
-    <%= form.label :val_parametre, style: "display: block" %>
-    <%= form.text_field :val_parametre %>
-  </div>
-
-  <div>
-    <%= form.label :filled, style: "display: block" %>
-    <%= form.check_box :filled %>
-  </div>
-
-  <div>
-    <%= form.submit %>
-  </div>
-<% end %>

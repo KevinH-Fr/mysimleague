@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_16_155142) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_16_194552) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -179,21 +179,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_155142) do
     t.index ["problem_id"], name: "index_correctifs_on_problem_id"
     t.index ["problem_second_id"], name: "index_correctifs_on_problem_second_id"
     t.index ["setup_id"], name: "index_correctifs_on_setup_id"
-  end
-
-  create_table "corrections", force: :cascade do |t|
-    t.integer "base_setup_id", null: false
-    t.integer "setup_id"
-    t.string "nom"
-    t.string "sens"
-    t.integer "probleme_id", null: false
-    t.integer "probleme_second_id", null: false
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["base_setup_id"], name: "index_corrections_on_base_setup_id"
-    t.index ["probleme_id"], name: "index_corrections_on_probleme_id"
-    t.index ["probleme_second_id"], name: "index_corrections_on_probleme_second_id"
-    t.index ["setup_id"], name: "index_corrections_on_setup_id"
   end
 
   create_table "divisions", force: :cascade do |t|
@@ -477,10 +462,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_155142) do
   add_foreign_key "correctifs", "problem_seconds"
   add_foreign_key "correctifs", "problems"
   add_foreign_key "correctifs", "setups"
-  add_foreign_key "corrections", "base_setups"
-  add_foreign_key "corrections", "probleme_seconds"
-  add_foreign_key "corrections", "problemes"
-  add_foreign_key "corrections", "setups"
   add_foreign_key "divisions", "saisons"
   add_foreign_key "dois", "association_admins"
   add_foreign_key "dois", "association_users", column: "demandeur_id"

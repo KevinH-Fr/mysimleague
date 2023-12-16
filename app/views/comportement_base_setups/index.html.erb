@@ -1,14 +1,32 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Comportement base setups</h1>
+<div class="p-2">
 
-<div id="comportement_base_setups">
-  <% @comportement_base_setups.each do |comportement_base_setup| %>
-    <%= render comportement_base_setup %>
-    <p>
-      <%= link_to "Show this comportement base setup", comportement_base_setup %>
-    </p>
-  <% end %>
+  <h1>
+    Comportement base setups
+    <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewComportementBaseSetup" aria-expanded="false">
+      <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
+  </h1>
+
+  <div class="collapse" id="collapseNewComportementBaseSetup">
+    <div id="new_comportement_base_setup">
+      <%= render partial: "comportement_base_setups/form", locals: { comportement_base_setup: ComportementBaseSetup.new } %>
+    </div>
+  </div>
+
+  <div id="comportement_base_setups">
+    <% @comportement_base_setups.each do |comportement_base_setup| %>
+      <div class="card my-2">
+        <%= render comportement_base_setup %>
+      </div>
+    <% end %>
+  </div>
+
 </div>
 
-<%= link_to "New comportement base setup", new_comportement_base_setup_path %>
+
+<div class="my-3">
+    <%= back_button_setup_dashboard %>
+    <%= back_button_root %>
+</div>

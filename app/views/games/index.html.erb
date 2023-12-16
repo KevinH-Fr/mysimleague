@@ -1,14 +1,31 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Games</h1>
+<div class="p-2">
+  <h1>
+    Games
+    <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewGame" aria-expanded="false">
+      <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>  
+  </h1>
 
-<div id="games">
-  <% @games.each do |game| %>
-    <%= render game %>
-    <p>
-      <%= link_to "Show this game", game %>
-    </p>
-  <% end %>
+  <div class="collapse" id="collapseNewGame">
+    <div id="new_game">
+      <%= render partial: "games/form", locals: { game: Game.new } %>
+    </div>
+  </div>
+
+  <div id="games">
+    <% @games.each do |game| %>
+      <div class="card my-2">
+        <%= render game %>
+      </div>
+    <% end %>
+  </div>
+
 </div>
 
-<%= link_to "New game", new_game_path %>
+
+<div class="my-3">
+    <%= back_button_setup_dashboard %>
+    <%= back_button_root %>
+</div>

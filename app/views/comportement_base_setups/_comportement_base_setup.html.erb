@@ -1,17 +1,16 @@
 <div id="<%= dom_id comportement_base_setup %>">
-  <p>
-    <strong>Base setup:</strong>
-    <%= comportement_base_setup.base_setup_id %>
-  </p>
-
-  <p>
-    <strong>Comportement:</strong>
-    <%= comportement_base_setup.comportement_id %>
-  </p>
-
-  <p>
-    <strong>Sens:</strong>
+  <div class="d-flex my-1">
     <%= comportement_base_setup.sens %>
-  </p>
+    <%= comportement_base_setup.base_setup.parametre %>
+    <span class="badge bg-secondary mx-2"> 
+      <%= comportement_base_setup.comportement.nom %>
+    </span>
+
+    <%= button_to "Edit", edit_comportement_base_setup_path(comportement_base_setup), method: :post, 
+          class: "btn btn-sm btn-outline-secondary mx-1 p-1" %>
+    <%= button_to "Destroy", comportement_base_setup_path(comportement_base_setup), method: :delete, 
+          class: "btn btn-sm btn-outline-danger mx-1 p-1" %>
+
+  </div>
 
 </div>

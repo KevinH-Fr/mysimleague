@@ -1,23 +1,27 @@
 <p style="color: green"><%= notice %></p>
 
-<h1 class="text-light"> 
-  Setups
-  <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewSetup" aria-expanded="false">
-    <i class="fa-solid fa-square-plus fa-xl"></i>
-  </button>
+<div class="p-2">
 
-</h1>
+  <h1 class="text-light"> 
+    Setups
+    <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewSetup" aria-expanded="false">
+      <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
 
-<div class="collapse" id="collapseNewSetup">
-  <div id="new_setup">
-    <%= render partial: "setups/form", locals: { setup: Setup.new } %>
-  </div>
-</div>
+  </h1>
 
-<div id="setups">
-  <% @setups.each do |setup| %>
-    <div class="card bg-dark text-light my-2">
-      <%= render setup %>
+  <div class="collapse" id="collapseNewSetup">
+    <div id="new_setup">
+      <%= render partial: "setups/form", locals: { setup: Setup.new } %>
     </div>
-  <% end %>
+  </div>
+
+  <div id="setups">
+    <% @setups.each do |setup| %>
+      <div class="card bg-dark text-light my-2">
+        <%= render setup %>
+      </div>
+    <% end %>
+  </div>
+
 </div>
