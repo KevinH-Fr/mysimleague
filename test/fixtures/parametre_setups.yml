@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  setup: one
+  base_setup: one
+  val_parametre: 9.99
+  filled: false
+
+two:
+  setup: two
+  base_setup: two
+  val_parametre: 9.99
+  filled: false

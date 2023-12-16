@@ -1,0 +1,9 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  game: one
+  val_categorie: MyString
+
+two:
+  game: two
+  val_categorie: MyString

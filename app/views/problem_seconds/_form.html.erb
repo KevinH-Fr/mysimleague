@@ -1,0 +1,29 @@
+<%= form_with(model: problem_second) do |form| %>
+  <% if problem_second.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(problem_second.errors.count, "error") %> prohibited this problem_second from being saved:</h2>
+
+      <ul>
+        <% problem_second.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <% if problem_second.persisted? %>
+    <%= form.hidden_field :problem_id %> 
+  <% else %>
+    <%= form.hidden_field :problem_id, value: problem_id  %> 
+  <% end %>
+
+
+    <div class="input-group input-group-sm">
+      <%= form.label :nom, class: "input-group-text label-colored" %>
+      <%= form.text_field :nom, class: "form-control input-colored",
+            style: "width: 80px;" %>   
+      <div class="input-group-append ms-1">  <%= custom_submit_button("") %> </div>
+      
+    </div>
+
+<% end %>

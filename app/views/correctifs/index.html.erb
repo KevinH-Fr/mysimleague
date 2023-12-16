@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Correctifs</h1>
+
+<div id="correctifs">
+  <% @correctifs.each do |correctif| %>
+    <%= render correctif %>
+    <p>
+      <%= link_to "Show this correctif", correctif %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New correctif", new_correctif_path %>

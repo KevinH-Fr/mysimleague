@@ -1,0 +1,17 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  base_setup: one
+  setup: one
+  nom: MyString
+  sens: MyString
+  probleme: one
+  probleme_second: one
+
+two:
+  base_setup: two
+  setup: two
+  nom: MyString
+  sens: MyString
+  probleme: two
+  probleme_second: two

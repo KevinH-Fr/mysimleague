@@ -1,0 +1,49 @@
+<div id="score" class="card bg-dark text-light my-2">
+
+  <div class="card-header black-colored">
+    <h2>Score</h2>
+  </div>
+
+  <div class="card-body">
+
+    <%= render "setups/chartradar" %>
+
+    <%  @delta_data = compare_scores(@initial_score, synthese_performance_data(Setup.find(session[:setup]))) %>
+
+    <div class="row">
+      <% categorie_performances_with_details(Setup.find(session[:setup])).each do |comportement_details| %>
+
+        <div class="col-sm-4 col-md-4 col-lg-4">
+          <div class="card border-light bg-dark text-light m-1">
+            <div class="card-header border-light">
+              <strong>
+                <%= comportement_details[:category] %>
+                Score: <%= calculate_average_score(comportement_details[:details]).to_i %>
+                <% matching_entry = @delta_data.find { |entry| entry['category'] == comportement_details[:category] } %>
+                <% if matching_entry %>
+                  Delta: <%= matching_entry['difference'] %>
+                <% else %>
+                  Delta: N/A
+                <% end %>
+              </strong>
+              <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= comportement_details[:category] %>" aria-expanded="false">
+                <i class="fa-solid fa-eye fa-sm text-primary"></i>
+              </button>
+            </div>
+
+            <div class="collapse" id="collapse<%= comportement_details[:category] %>">
+              <div class="card-body border-light">
+                <% comportement_details[:details].each do |details| %>
+                  <div class="details">
+                    <%= details[:base_setup] %>: <%= details[:score] %>
+                  </div>
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>
+      <% end %>
+
+    </div>
+  </div>
+</div>

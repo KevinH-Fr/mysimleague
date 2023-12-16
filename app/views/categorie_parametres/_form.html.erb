@@ -1,0 +1,27 @@
+<%= form_with(model: categorie_parametre) do |form| %>
+  <% if categorie_parametre.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(categorie_parametre.errors.count, "error") %> prohibited this categorie_parametre from being saved:</h2>
+
+      <ul>
+        <% categorie_parametre.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :game_id, style: "display: block" %>
+    <%= form.collection_select :game_id, Game.all, :id, :nom %>
+  </div>
+
+  <div>
+    <%= form.label :val_categorie, style: "display: block" %>
+    <%= form.text_field :val_categorie %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

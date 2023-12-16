@@ -1,0 +1,21 @@
+
+<div class="container-fluid d-flex m-1">
+    <strong class="mx-1">Secondaire</strong>
+
+    <% if @problemes_secondaires.present? %>
+
+      <% @problemes_secondaires.each do |probleme_secondaire| %>
+          <%= button_to probleme_secondaire.nom, 
+              display_correction_setups_path(probleme_secondaire_id: probleme_secondaire.id), 
+                  class: "btn btn btn-pb2 mx-1",
+                  data: { controller: "button-color", action: "click->button-color#handleClickPb2" } %>
+      <% end %>
+    
+    <% end %>
+    
+
+</div>
+
+    <div id="partial-corrections-container">
+      <%# recoit l'update turbo stream avec une partial donnée %>
+    </div>

@@ -1,0 +1,2 @@
+module CorrectifsHelper
+end

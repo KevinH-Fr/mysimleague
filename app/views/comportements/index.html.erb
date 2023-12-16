@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Comportements</h1>
+
+<div id="comportements">
+  <% @comportements.each do |comportement| %>
+    <%= render comportement %>
+    <p>
+      <%= link_to "Show this comportement", comportement %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New comportement", new_comportement_path %>

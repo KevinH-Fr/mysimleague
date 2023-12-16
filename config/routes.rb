@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+
+
   get 'setup/index'
   resources :bonus_paris
   resources :purchases
@@ -166,6 +168,75 @@ Rails.application.routes.draw do
       post :edit
     end
   end
+
+
+
+  # partie setup tool 
+
+  resources :categorie_parametres
+
+  resources :comportements do
+    member do
+      post :edit
+    end
+  end
+
+  resources :base_setups do
+    member do
+      post :edit
+    end
+  end
+
+  resources :comportement_base_setups do
+    member do
+      post :edit
+    end
+  end
+
+  resources :problems do
+    member do
+      post :edit
+    end
+  end
+
+  
+  resources :problem_seconds do
+    member do
+      post :edit
+    end
+  end
+
+  resources :correctifs do 
+    member do
+      post :edit
+    end
+  end
+
+  resources :setups do
+    collection do
+      post 'display_pb2'
+      post 'display_correction'
+      post 'display_details_correction'
+    end
+    member do
+      post :edit
+    end
+  end
+
+  resources :games do
+    member do
+      post :edit
+    end
+  end
+
+  resources :parametre_setups do 
+    member do
+      post :edit 
+    end
+  end
+
+
+  # fin partie setup tool
 
   get 'steps_compte/step1'
   get 'steps_compte/step2'

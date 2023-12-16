@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Base setups</h1>
+
+<div id="base_setups">
+  <% @base_setups.each do |base_setup| %>
+    <%= render base_setup %>
+    <p>
+      <%= link_to "Show this base setup", base_setup %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New base setup", new_base_setup_path %>

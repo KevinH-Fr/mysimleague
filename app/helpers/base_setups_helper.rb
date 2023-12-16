@@ -1,0 +1,2 @@
+module BaseSetupsHelper
+end

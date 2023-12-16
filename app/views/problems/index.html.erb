@@ -1,0 +1,47 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>
+  Problemes
+  <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewProbleme" aria-expanded="false">
+    <i class="fa-solid fa-square-plus fa-xl"></i>
+  </button>
+</h1>
+
+<div class="collapse" id="collapseNewProbleme">
+  <div id="new_problem">
+    <%= render partial: "problems/form", locals: { problem: Problem.new } %>
+  </div>
+</div>
+
+<div id="problems">
+  <% @problems.each do |problem| %>
+    <div class="card my-2">
+      <%= render problem %>
+    
+      <div class="container-fluid bg-secondary">
+
+        <strong>
+          Seconds
+          <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= problem.id %>" aria-expanded="false">
+            <i class="fa-solid fa-square-plus fa-xl"></i>
+          </button>
+        </strong>
+
+        <div class="collapse" id="collapse<%= problem.id %>">
+        <div id="new_problem_second_<%= problem.id %>" class="card">
+          <%= render partial: "problem_seconds/form", locals: { problem_second: ProblemSecond.new, problem_id: problem.id } %>
+        </div>
+        </div>
+
+        <div id="problem_seconds">
+          <% if problem.problem_seconds %>
+            <% problem.problem_seconds.each do |problem_second| %>
+              <%= render  problem_second %>
+            <% end %>
+          <% end %>
+      </div>
+
+      </div>
+    </div>
+  <% end %>
+</div>

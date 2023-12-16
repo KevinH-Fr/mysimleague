@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @base_setup %>
+
+<div>
+  <%= link_to "Edit this base setup", edit_base_setup_path(@base_setup) %> |
+  <%= link_to "Back to base setups", base_setups_path %>
+
+  <%= button_to "Destroy this base setup", @base_setup, method: :delete %>
+</div>

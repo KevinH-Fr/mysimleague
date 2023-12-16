@@ -1,0 +1,37 @@
+<%= form_with(model: parametre_setup) do |form| %>
+  <% if parametre_setup.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(parametre_setup.errors.count, "error") %> prohibited this parametre_setup from being saved:</h2>
+
+      <ul>
+        <% parametre_setup.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :setup_id, style: "display: block" %>
+    <%= form.text_field :setup_id %>
+  </div>
+
+  <div>
+    <%= form.label :base_setup_id, style: "display: block" %>
+    <%= form.text_field :base_setup_id %>
+  </div>
+
+  <div>
+    <%= form.label :val_parametre, style: "display: block" %>
+    <%= form.text_field :val_parametre %>
+  </div>
+
+  <div>
+    <%= form.label :filled, style: "display: block" %>
+    <%= form.check_box :filled %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

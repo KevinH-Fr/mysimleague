@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Corrections</h1>
+
+<div id="corrections">
+  <% @corrections.each do |correction| %>
+    <%= render correction %>
+    <p>
+      <%= link_to "Show this correction", correction %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New correction", new_correction_path %>

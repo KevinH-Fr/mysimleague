@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @categorie_parametre %>
+
+<div>
+  <%= link_to "Edit this categorie parametre", edit_categorie_parametre_path(@categorie_parametre) %> |
+  <%= link_to "Back to categorie parametres", categorie_parametres_path %>
+
+  <%= button_to "Destroy this categorie parametre", @categorie_parametre, method: :delete %>
+</div>

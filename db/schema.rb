@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_16_000031) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -109,12 +109,31 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
     t.index ["user_id"], name: "index_association_users_on_user_id"
   end
 
+  create_table "base_setups", force: :cascade do |t|
+    t.string "parametre"
+    t.decimal "val_min"
+    t.decimal "val_max"
+    t.text "explication"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "categorie_parametre_id"
+    t.index ["categorie_parametre_id"], name: "index_base_setups_on_categorie_parametre_id"
+  end
+
   create_table "bonus_paris", force: :cascade do |t|
     t.integer "user_id", null: false
     t.integer "montant"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_bonus_paris_on_user_id"
+  end
+
+  create_table "categorie_parametres", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.string "val_categorie"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_categorie_parametres_on_game_id"
   end
 
   create_table "circuits", force: :cascade do |t|
@@ -125,6 +144,54 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
     t.string "longitude"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+  end
+
+  create_table "comportement_base_setups", force: :cascade do |t|
+    t.integer "base_setup_id", null: false
+    t.integer "comportement_id", null: false
+    t.string "sens"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["base_setup_id"], name: "index_comportement_base_setups_on_base_setup_id"
+    t.index ["comportement_id"], name: "index_comportement_base_setups_on_comportement_id"
+  end
+
+  create_table "comportements", force: :cascade do |t|
+    t.string "nom"
+    t.boolean "principal"
+    t.string "label_categorie"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "correctifs", force: :cascade do |t|
+    t.integer "base_setup_id", null: false
+    t.integer "setup_id"
+    t.string "nom"
+    t.string "sens"
+    t.integer "problem_id", null: false
+    t.integer "problem_second_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["base_setup_id"], name: "index_correctifs_on_base_setup_id"
+    t.index ["problem_id"], name: "index_correctifs_on_problem_id"
+    t.index ["problem_second_id"], name: "index_correctifs_on_problem_second_id"
+    t.index ["setup_id"], name: "index_correctifs_on_setup_id"
+  end
+
+  create_table "corrections", force: :cascade do |t|
+    t.integer "base_setup_id", null: false
+    t.integer "setup_id"
+    t.string "nom"
+    t.string "sens"
+    t.integer "probleme_id", null: false
+    t.integer "probleme_second_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["base_setup_id"], name: "index_corrections_on_base_setup_id"
+    t.index ["probleme_id"], name: "index_corrections_on_probleme_id"
+    t.index ["probleme_second_id"], name: "index_corrections_on_probleme_second_id"
+    t.index ["setup_id"], name: "index_corrections_on_setup_id"
   end
 
   create_table "divisions", force: :cascade do |t|
@@ -194,6 +261,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "games", force: :cascade do |t|
+    t.string "nom"
+    t.string "version"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "licences", force: :cascade do |t|
     t.integer "event_id", null: false
     t.integer "association_user_id", null: false
@@ -222,6 +296,17 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
     t.index ["user_id"], name: "index_ligues_on_user_id"
   end
 
+  create_table "parametre_setups", force: :cascade do |t|
+    t.integer "setup_id", null: false
+    t.integer "base_setup_id", null: false
+    t.decimal "val_parametre"
+    t.boolean "filled"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["base_setup_id"], name: "index_parametre_setups_on_base_setup_id"
+    t.index ["setup_id"], name: "index_parametre_setups_on_setup_id"
+  end
+
   create_table "paris", force: :cascade do |t|
     t.integer "event_id", null: false
     t.integer "user_id", null: false
@@ -246,6 +331,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
     t.datetime "updated_at", null: false
     t.index ["association_user_id"], name: "index_presences_on_association_user_id"
     t.index ["event_id"], name: "index_presences_on_event_id"
+  end
+
+  create_table "problem_seconds", force: :cascade do |t|
+    t.string "nom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer "problem_id", null: false
+    t.index ["problem_id"], name: "index_problem_seconds_on_problem_id"
+  end
+
+  create_table "problems", force: :cascade do |t|
+    t.string "nom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "purchases", force: :cascade do |t|
@@ -321,6 +420,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
     t.index ["ligue_id"], name: "index_saisons_on_ligue_id"
   end
 
+  create_table "setups", force: :cascade do |t|
+    t.integer "game_id", null: false
+    t.string "nom"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["game_id"], name: "index_setups_on_game_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -358,7 +465,19 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
   add_foreign_key "association_users", "ligues"
   add_foreign_key "association_users", "rattachements"
   add_foreign_key "association_users", "users"
+  add_foreign_key "base_setups", "categorie_parametres"
   add_foreign_key "bonus_paris", "users"
+  add_foreign_key "categorie_parametres", "games"
+  add_foreign_key "comportement_base_setups", "base_setups"
+  add_foreign_key "comportement_base_setups", "comportements"
+  add_foreign_key "correctifs", "base_setups"
+  add_foreign_key "correctifs", "problem_seconds"
+  add_foreign_key "correctifs", "problems"
+  add_foreign_key "correctifs", "setups"
+  add_foreign_key "corrections", "base_setups"
+  add_foreign_key "corrections", "probleme_seconds"
+  add_foreign_key "corrections", "problemes"
+  add_foreign_key "corrections", "setups"
   add_foreign_key "divisions", "saisons"
   add_foreign_key "dois", "association_admins"
   add_foreign_key "dois", "association_users", column: "demandeur_id"
@@ -373,11 +492,14 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
   add_foreign_key "licences", "association_users"
   add_foreign_key "licences", "events"
   add_foreign_key "ligues", "users"
+  add_foreign_key "parametre_setups", "base_setups"
+  add_foreign_key "parametre_setups", "setups"
   add_foreign_key "paris", "association_users"
   add_foreign_key "paris", "events"
   add_foreign_key "paris", "users"
   add_foreign_key "presences", "association_users"
   add_foreign_key "presences", "events"
+  add_foreign_key "problem_seconds", "problems"
   add_foreign_key "purchases", "articles"
   add_foreign_key "purchases", "users"
   add_foreign_key "rattachements", "ligues"
@@ -390,4 +512,5 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_04_172102) do
   add_foreign_key "rivalites", "association_users", column: "pilote2_id"
   add_foreign_key "rivalites", "divisions"
   add_foreign_key "saisons", "ligues"
+  add_foreign_key "setups", "games"
 end

@@ -1,0 +1,42 @@
+<div class="container-fluid p-0"> 
+   <div id="parametre_setups">
+
+        <div class="row m-0">
+
+            <% base_setups = BaseSetup.where(game: @setup.game_id) %>
+            <% base_setups.group_by(&:categorie_parametre).each do |categorie_parametre, base_setups| %>
+            
+                <div class="col-sm-6 col-md-4 col-lg-4">
+
+                    <div class="card bg-dark border-light mb-1">
+                    
+                        <div class="card-header border-light text-center text-light fw-bold m-0 p-1">
+                        <% if categorie_parametre %>
+                            <%= categorie_parametre.val_categorie %>
+                            <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= categorie_parametre.id %>" aria-expanded="false">
+                            <i class="fa-solid fa-eye fa-sm text-primary"></i>
+                            </button>
+                        <% end %>
+                        </div>
+
+                        <div class="collapse" id="collapse<%= categorie_parametre.id %>">
+                            <div class="card-body border-light bg-dark m-0 p-1 text-center">
+                                <% base_setups.each do |base_setup| %>
+                                    <% parametre_setup = @setup.parametre_setups.find_by(base_setup: base_setup) %>
+                                    <% if parametre_setup %>
+                                        <div class="m-0 p-1">
+                                        <%= render parametre_setup %>
+                                        </div>
+                                    <% end %>
+                                <% end %>
+                            </div>
+                        </div>
+
+
+                    </div>
+                </div>
+
+            <% end %>
+        </div>
+   </div>
+</div>

@@ -1,0 +1,14 @@
+<p style="color: green"><%= notice %></p>
+
+<h1>Setups</h1>
+
+<div id="setups">
+  <% @setups.each do |setup| %>
+    <%= render setup %>
+    <p>
+      <%= link_to "Show this setup", setup %>
+    </p>
+  <% end %>
+</div>
+
+<%= link_to "New setup", new_setup_path %>

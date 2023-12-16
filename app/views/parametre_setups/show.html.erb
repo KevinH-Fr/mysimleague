@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @parametre_setup %>
+
+<div>
+  <%= link_to "Edit this parametre setup", edit_parametre_setup_path(@parametre_setup) %> |
+  <%= link_to "Back to parametre setups", parametre_setups_path %>
+
+  <%= button_to "Destroy this parametre setup", @parametre_setup, method: :delete %>
+</div>

@@ -1,0 +1,13 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  parametre: MyString
+  val_min: 9.99
+  val_max: 9.99
+  explication: MyText
+
+two:
+  parametre: MyString
+  val_min: 9.99
+  val_max: 9.99
+  explication: MyText

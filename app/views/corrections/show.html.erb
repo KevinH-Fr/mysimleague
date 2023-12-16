@@ -1,0 +1,10 @@
+<p style="color: green"><%= notice %></p>
+
+<%= render @correction %>
+
+<div>
+  <%= link_to "Edit this correction", edit_correction_path(@correction) %> |
+  <%= link_to "Back to corrections", corrections_path %>
+
+  <%= button_to "Destroy this correction", @correction, method: :delete %>
+</div>

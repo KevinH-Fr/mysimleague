@@ -1,0 +1,20 @@
+
+<div class="container-fluid d-flex">
+  <h4>corrections</h4>
+  <% @corrections.each do |correction| %>
+    <div class="d-flex">
+      <%= button_to display_details_correction_setups_path(correction_id: correction.id), 
+        class: "btn btn-sm btn-correction m-1",
+        data: { controller: "button-color", action: "click->button-color#handleClickCorrection" } do %>
+        <%= correction.sens %>
+        <%= correction.base_setup.parametre %>
+      <% end %>
+
+    </div>
+  <% end %>
+</div>
+
+<%# rempalcer par collapse bs %>
+<div id="partial-details-correction-container">
+  <%# recoit l'update turbo stream avec une partial donnée %>
+</div>

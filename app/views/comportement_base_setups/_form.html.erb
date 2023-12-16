@@ -1,0 +1,34 @@
+<%= form_with(model: comportement_base_setup) do |form| %>
+  <% if comportement_base_setup.errors.any? %>
+    <div style="color: red">
+      <h2><%= pluralize(comportement_base_setup.errors.count, "error") %> prohibited this comportement_base_setup from being saved:</h2>
+
+      <ul>
+        <% comportement_base_setup.errors.each do |error| %>
+          <li><%= error.full_message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div>
+    <%= form.label :sens, style: "display: block" %>
+    <%= form.select :sens, [['monter', 'monter'], ['descendre', 'descendre']], prompt: 'Select Sens' %>
+  </div>
+  
+  <div>
+    <%= form.label :base_setup_id, style: "display: block" %>
+    <%= form.collection_select :base_setup_id, BaseSetup.all, :id, :parametre %>
+  </div>
+
+  <div>
+    <%= form.label :comportement_id, style: "display: block" %>
+    <%= form.collection_select :comportement_id, Comportement.all, :id, :nom %>
+  </div>
+
+
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>

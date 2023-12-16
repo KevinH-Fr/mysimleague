@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  base_setup: one
+  comportement: one
+  sens: MyString
+
+two:
+  base_setup: two
+  comportement: two
+  sens: MyString
