@@ -12,8 +12,25 @@
   <% end %>
 
   <div>
+    <%= form.label :game_id, style: "display: block" %>
+    <%= form.collection_select :game_id, Game.all, :id, :nom %>
+  </div>
+
+  <div>
+    <%= form.label :categorie_parametre_id, style: "display: block" %>
+    <%= form.collection_select :categorie_parametre_id, CategorieParametre.all, :id, :val_categorie %>
+  </div>
+
+
+  <div>
     <%= form.label :parametre, style: "display: block" %>
     <%= form.text_field :parametre %>
+  </div>
+
+
+  <div>
+    <%= form.label :explication, style: "display: block" %>
+    <%= form.text_area :explication %>
   </div>
 
   <div>
@@ -24,11 +41,6 @@
   <div>
     <%= form.label :val_max, style: "display: block" %>
     <%= form.text_field :val_max %>
-  </div>
-
-  <div>
-    <%= form.label :explication, style: "display: block" %>
-    <%= form.text_area :explication %>
   </div>
 
   <div>

@@ -11,15 +11,18 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :game_id, style: "display: block" %>
-    <%= form.text_field :game_id %>
+  <div class="input-group input-group-sm">
+    <%= form.label :game, class: "input-group-text label-colored" %> 
+    <%= form.collection_select :game_id, Game.all, :id, :nom,  class: "form-select input-colored",
+        style: "width: 80px;" %>        
   </div>
 
-  <div>
-    <%= form.label :nom, style: "display: block" %>
-    <%= form.text_field :nom %>
+  <div class="input-group input-group-sm">
+    <%= form.label :nom, class: "input-group-text label-colored" %> 
+    <%= form.text_field :nom,  class: "form-control input-colored",
+        style: "width: 80px;" %>        
   </div>
+
 
   <div>
     <%= form.submit %>

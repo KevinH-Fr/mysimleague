@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_16_000031) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_16_155142) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -117,7 +117,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_000031) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "categorie_parametre_id"
+    t.integer "game_id", null: false
     t.index ["categorie_parametre_id"], name: "index_base_setups_on_categorie_parametre_id"
+    t.index ["game_id"], name: "index_base_setups_on_game_id"
   end
 
   create_table "bonus_paris", force: :cascade do |t|
@@ -466,6 +468,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_000031) do
   add_foreign_key "association_users", "rattachements"
   add_foreign_key "association_users", "users"
   add_foreign_key "base_setups", "categorie_parametres"
+  add_foreign_key "base_setups", "games"
   add_foreign_key "bonus_paris", "users"
   add_foreign_key "categorie_parametres", "games"
   add_foreign_key "comportement_base_setups", "base_setups"

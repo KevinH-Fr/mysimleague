@@ -1,10 +1,22 @@
 <p style="color: green"><%= notice %></p>
 
-<%= render @setup %>
+<div class="card bg-dark text-light my-2">
+  <div class="container-fluid d-flex align-items-center text-light">
+    <h1 class="me-1"> <%= @setup.nom %> </h1>
+    <%= render @setup %>
+  </div> 
+</div>
+
+<div class="card bg-dark text-light my-2">
+  <%= render  "parametres_setup" %>
+</div>
 
 <div>
-  <%= link_to "Edit this setup", edit_setup_path(@setup) %> |
-  <%= link_to "Back to setups", setups_path %>
-
-  <%= button_to "Destroy this setup", @setup, method: :delete %>
+  <%= render "score" %>
 </div>
+
+<%= render  "probleme_principal" %>
+
+
+<hr>
+<%= link_to "Back to setups", setups_path, class: "btn btn-dark" %>
