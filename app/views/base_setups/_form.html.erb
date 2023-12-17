@@ -11,36 +11,49 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :game_id, style: "display: block" %>
-    <%= form.collection_select :game_id, Game.all, :id, :nom %>
+  <div class="row g-2">
+    <div class="col-md">
+      <div class="input-group input-group-sm my-2">
+        <%= form.label :game_id, class: "input-group-text label-colored" %>
+        <% if @game_id.present? %>
+          <%= form.collection_select :game_id, Game.all, :id, :nom, { selected: @game_id, include_blank: true }, class: "form-control input-colored" %>
+        <% else %>
+          <%= form.collection_select :game_id, Game.all, :id, :nom, { include_blank: true }, class: "form-control input-colored" %>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-md">
+      <div class="input-group input-group-sm my-2">
+        <%= form.label :categorie, class: "input-group-text label-colored" %>
+        <%= form.collection_select :categorie_parametre_id, CategorieParametre.all, :id, :val_categorie, {include_blank: true}, class: "form-control input-colored" %>
+      </div>
+    </div>
   </div>
 
-  <div>
-    <%= form.label :categorie_parametre_id, style: "display: block" %>
-    <%= form.collection_select :categorie_parametre_id, CategorieParametre.all, :id, :val_categorie %>
+  <div class="input-group input-group-sm my-2">
+    <%= form.label :parametre, class: "input-group-text label-colored" %>
+    <%= form.text_field :parametre, class: "form-control input-colored" %>
+  </div>
+
+  <div class="input-group input-group-sm my-2">
+    <%= form.label :explication, class: "input-group-text label-colored" %>
+    <%= form.text_area :explication, class: "form-control input-colored" %>
   </div>
 
 
-  <div>
-    <%= form.label :parametre, style: "display: block" %>
-    <%= form.text_field :parametre %>
-  </div>
-
-
-  <div>
-    <%= form.label :explication, style: "display: block" %>
-    <%= form.text_area :explication %>
-  </div>
-
-  <div>
-    <%= form.label :val_min, style: "display: block" %>
-    <%= form.text_field :val_min %>
-  </div>
-
-  <div>
-    <%= form.label :val_max, style: "display: block" %>
-    <%= form.text_field :val_max %>
+  <div class="row g-2">
+    <div class="col">
+      <div class="input-group input-group-sm my-2">
+        <%= form.label :val_min, class: "input-group-text label-colored" %>
+        <%= form.text_field :val_min, class: "form-control input-colored" %>
+      </div>
+    </div>
+    <div class="col">
+      <div class="input-group input-group-sm my-2">
+        <%= form.label :val_max, class: "input-group-text label-colored" %>
+        <%= form.text_field :val_max, class: "form-control input-colored" %>
+      </div>
+    </div>
   </div>
 
   <div>

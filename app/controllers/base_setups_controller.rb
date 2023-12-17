@@ -4,6 +4,7 @@ class BaseSetupsController < ApplicationController
   # GET /base_setups or /base_setups.json
   def index
     @base_setups = BaseSetup.all
+    @game_id = params[:game] if params[:game]
   end
 
   # GET /base_setups/1 or /base_setups/1.json

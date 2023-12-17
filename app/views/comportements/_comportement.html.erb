@@ -1,17 +1,15 @@
 <div id="<%= dom_id comportement %>">
-  <p>
-    <strong>Nom:</strong>
+
+  <div class="d-flex my-1">
     <%= comportement.nom %>
-  </p>
 
-  <p>
-    <strong>Principal:</strong>
+    <strong class="mx-1">principal:</strong>
     <%= comportement.principal %>
-  </p>
 
-  <p>
-    <strong>Label categorie:</strong>
-    <%= comportement.label_categorie %>
-  </p>
+    <%= button_to "Edit", edit_comportement_path(comportement), method: :post, 
+          class: "btn btn-sm btn-outline-secondary mx-1 p-1" %>
+    <%= button_to "Destroy", comportement_path(comportement), method: :delete, 
+          class: "btn btn-sm btn-outline-danger mx-1 p-1" %>
+  </div>
 
 </div>

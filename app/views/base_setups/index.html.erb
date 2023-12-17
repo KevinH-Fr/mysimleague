@@ -26,16 +26,24 @@
   </div>
 
 
-  <% if params[:game] %>
-    <div id="base_setups">
-        <% @base_setups.where(game_id: params[:game]).each do |base_setup| %>
-          <div class="card my-2">
-            <%= render base_setup %>
+  <div class="container-fluid d-flex">
+    <% if params[:game] %>
+      <div id="base_setups" class="row">
+        <% @base_setups.where(game_id: params[:game]).group_by(&:categorie_parametre).each do |categorie, base_setups| %>
+          <div class="col-md-6"> <!-- Adjust the column size as needed -->
+            <div class="card my-2 p-2">
+              <h3><%= categorie.val_categorie %></h3>
+              <% base_setups.each do |base_setup| %>
+                <%= render base_setup %>
+              <% end %>
+            </div>
           </div>
         <% end %>
-    </div>
-  <% end %>
-    
+      </div>
+    <% end %>
+  </div>
+
+      
 </div>
 
 

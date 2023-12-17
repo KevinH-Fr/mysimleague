@@ -4,4 +4,6 @@ class Correctif < ApplicationRecord
   belongs_to :problem
   belongs_to :problem_second
 
+  validates :sens, presence: true, allow_blank: false
+
 end

@@ -1,37 +1,41 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>
-  Corrections
-  <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewCorrectif" aria-expanded="false">
-    <i class="fa-solid fa-square-plus fa-xl"></i>
-  </button>
-</h1>
+<div class="p-2">
 
-<div class="collapse" id="collapseNewCorrectif">
-  <div id="new_correctif">
-    <%= render partial: "correctifs/form", locals: { correctif: Correctif.new } %>
-  </div>
-</div>
+  <h1>
+    Corrections
+    <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewCorrectif" aria-expanded="false">
+      <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
+  </h1>
 
-<div id="correctifs">
-  <% @correctifs.each do |probleme_second, correctifs| %>
-    <div class="card my-2">
-      <!-- Display information related to probleme_second_id if needed -->
-      <p class="fw-bold">
-        Probleme: 
-        <%= probleme_second.problem.nom %>
-        <%= probleme_second.nom %>
-      </p>
-      
-      <% correctifs.each do |correctif| %>
-        <%= render correctif %>
-      <% end %>
+  <div class="collapse" id="collapseNewCorrectif">
+    <div id="new_correctif">
+      <%= render partial: "correctifs/form", locals: { correctif: Correctif.new } %>
     </div>
-  <% end %>
-</div>
+  </div>
+
+  <div id="correctifs">
+    <% @correctifs.each do |probleme_second, correctifs| %>
+      <div class="card my-2">
+        <!-- Display information related to probleme_second_id if needed -->
+        <p class="fw-bold">
+          Probleme: 
+          <%= probleme_second.problem.nom %>
+          <%= probleme_second.nom %>
+        </p>
+        
+        <% correctifs.each do |correctif| %>
+          <%= render correctif %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 
 
-<div class="my-3">
-    <%= back_button_setup_dashboard %>
-    <%= back_button_root %>
+  <div class="my-3">
+      <%= back_button_setup_dashboard %>
+      <%= back_button_root %>
+  </div>
+
 </div>
