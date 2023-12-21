@@ -33,7 +33,7 @@ class ComportementBaseSetupsController < ApplicationController
 
         format.turbo_stream do
           render turbo_stream: [
-            turbo_stream.update('new_comportement_base_setup', partial: 'comportement_base_setups/form', locals: { comportement_base_setup: Comportement.new }),
+            turbo_stream.update('new_comportement_base_setup', partial: 'comportement_base_setups/form', locals: { comportement_base_setup: ComportementBaseSetup.new }),
             turbo_stream.prepend('comportement_base_setups', partial: 'comportement_base_setups/comportement_base_setup', locals: { comportement_base_setup: @comportement_base_setup })
           ]
         end

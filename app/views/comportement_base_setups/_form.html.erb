@@ -11,24 +11,22 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :sens, style: "display: block" %>
-    <%= form.select :sens, [['monter', 'monter'], ['descendre', 'descendre']], prompt: 'Select Sens' %>
+
+  <div class="input-group input-group-sm my-2">
+    <%= form.label :sens, class: "input-group-text label-colored" %>
+    <%= form.select :sens, [['monter', 'monter'], ['descendre', 'descendre']], prompt: 'Select Sens', class: "form-control input-colored" %>
   </div>
   
-  <div>
-    <%= form.label :base_setup_id, style: "display: block" %>
-    <%= form.collection_select :base_setup_id, BaseSetup.all, :id, :parametre %>
+  <div class="input-group input-group-sm my-2">
+    <%= form.label :base_setup_id, class: "input-group-text label-colored" %>
+    <%= form.collection_select :base_setup_id, BaseSetup.all, :id, :parametre, class: "form-control input-colored" %>
   </div>
 
-  <div>
-    <%= form.label :comportement_id, style: "display: block" %>
-    <%= form.collection_select :comportement_id, Comportement.all, :id, :nom %>
+  <div class="input-group input-group-sm my-2">
+    <%= form.label :comportement_id, class: "input-group-text label-colored" %>
+    <%= form.collection_select :comportement_id, Comportement.all, :id, :nom, class: "form-control input-colored" %>
   </div>
 
+  <%= custom_submit_button("Valider") %>
 
-
-  <div>
-    <%= form.submit %>
-  </div>
 <% end %>

@@ -13,10 +13,10 @@
       <%#= correctif.probleme.nom %>
       <%#= correctif.probleme_second.nom %>
    
-    <%= button_to "Edit", edit_correctif_path(correctif), method: :post, 
-          class: "btn btn-sm btn-outline-secondary mx-1 p-1" %>
-    <%= button_to "Destroy", correctif_path(correctif), method: :delete, 
-          class: "btn btn-sm btn-outline-danger mx-1 p-1" %>
+    <%= button_to "", edit_correctif_path(correctif), method: :post, 
+          class: "btn btn-sm btn-outline-secondary fa-solid fa-pen-to-square m-1" %>
+    <%= button_to "", correctif_path(correctif), method: :delete, 
+          class: "btn btn-sm btn-outline-danger fa-solid fa-trash m-1" %>
 
   </div>
 
