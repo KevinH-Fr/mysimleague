@@ -20,7 +20,7 @@
             User.find(pilote[:user_id]).id) %> 
         <div class="d-flex align-items-center justify-content-center">
 
-          <%= link_to '+', synthese_licences_details_path(user: pilote[:association_user_id], event: @event ),
+          <%= link_to '+', synthese_licences_details_path(user: pilote[:user_id], event: @event ),
                  class: "btn btn-sm btn-outline-warning m-1 p-0",
                  style: "width: 12px;" %>
 
