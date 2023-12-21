@@ -19,6 +19,11 @@
             User.find(pilote[:user_id]).nom,
             User.find(pilote[:user_id]).id) %> 
         <div class="d-flex align-items-center justify-content-center">
+
+          <%= link_to '+', synthese_licences_details_path(user: pilote[:association_user_id], event: @event ),
+                 class: "btn btn-sm btn-outline-warning m-1 p-0",
+                 style: "width: 12px;" %>
+
           <%= badge_points_licence(pilote[:perte_total].to_s, "perte") %> 
           <%= badge_points_licence(pilote[:gain_total].to_s, "gain") %> 
           <%= badge_points_licence(pilote[:solde].to_s, "solde") %> 

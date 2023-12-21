@@ -53,7 +53,7 @@ Rails.application.routes.draw do
 
   end
 
-  get 'synthese_licences/index'
+  get 'synthese_licences/details'
 
   get 'parieurs/index'
   get 'cotes/index'
@@ -235,6 +235,12 @@ Rails.application.routes.draw do
     end
   end
 
+
+  resources :synthese_licences do
+    member do
+      get 'details'
+    end
+  end
 
   # fin partie setup tool
 

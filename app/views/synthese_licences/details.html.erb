@@ -1,0 +1,41 @@
+<div class="p-2">
+
+
+    <h2 class="text-center m-2"> details licence</h2>
+
+    pilote: <%= @user.nom %> <br>
+    event: <%= @event.short_name %>  <br>
+
+    <hr>
+
+<table class="table table-bordered border-light text-light">
+    <thead>
+        <tr class="text-center  align-middle">
+            <th>Event</th>
+            <th>Perte (cumul) </th>
+            <th>Gain (cumul) </th>
+            <th>Solde</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        <% @events.each do |event| %>
+
+            <% licences = cumul_licence_user(event).select { |data| data[:user_id] == @user.id }.find { |data| data[:user_id] == @user.id } %>
+
+            <tr class="text-center  align-middle">
+                <td><%= event.short_name %></td>
+                <td class="text-danger"><%= licences ? licences[:perte_total] : 0 %></td>
+                <td class="text-success"><%= licences ? licences[:gain_total] : 0 %></td>
+                <td class="text-light fw-bold"><%= licences ? licences[:solde] : 0 %></td>
+            </tr>
+        <% end %>
+    </tbody>
+</table>
+
+
+
+
+
+</div>
+
