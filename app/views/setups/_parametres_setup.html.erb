@@ -10,15 +10,17 @@
 
                     <div class="card bg-dark border-light mb-1">
                     
-                        <div class="card-header border-light text-center text-light fw-bold m-0 p-1">
-                        <% if categorie_parametre %>
-                            <%= categorie_parametre.val_categorie %>
-                            <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= categorie_parametre.id %>" aria-expanded="false">
-                            <i class="fa-solid fa-eye fa-sm text-primary"></i>
-                            </button>
-                        <% end %>
-                        </div>
+                        <%= link_to "#", class: "btn", type: "button", data: { bs_toggle: "collapse", bs_target: "#collapse#{categorie_parametre.id}", bs_expanded: "false" } do %>
 
+                            <div class="card-header text-center text-light fw-bold m-0 p-0">
+                                <% if categorie_parametre %>
+                                    <%= categorie_parametre.val_categorie %>
+                                    <i class="ms-1 fa-solid fa-eye fa-sm text-primary"></i>
+                                <% end %>
+                            </div>
+                        
+                        <% end %>
+                        
                         <div class="collapse" id="collapse<%= categorie_parametre.id %>">
                             <div class="card-body border-light bg-dark m-0 p-1 text-center">
                                 <% base_setups.each do |base_setup| %>

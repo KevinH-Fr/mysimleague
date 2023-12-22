@@ -9,20 +9,19 @@
     </button>
   </h1>
 
-  <div class="collapse" id="collapseNewCategorieParametre">
-    <div id="new_categorie_parametre">
-      <%= render partial: "categorie_parametres/form", locals: { categorie_parametre: CategorieParametre.new } %>
+  <div class="card my-2 p-1"> 
+    <div class="d-flex align-items-center"> 
+      Séléction jeu :
+      <% Game.all.each do |game| %>
+        <%= link_to game.nom, url_for(game: game), class: "btn btn-sm btn-primary m-1" %>
+      <% end %>
     </div>
   </div>
 
-  <div class="card my-2"> 
-    <div class="d-flex"> 
-      select a game :
-      <% Game.all.each do |game| %>
-        <%= link_to game.nom, url_for(game: game), class: "btn btn-primary m-1" %>
-      <% end %>
+  <div class="collapse" id="collapseNewCategorieParametre">
+    <div id="new_categorie_parametre" class="card my-1 p-1">
+      <%= render partial: "categorie_parametres/form", locals: { categorie_parametre: CategorieParametre.new } %>
     </div>
-    
   </div>
 
   <div class="container-fluid d-flex">

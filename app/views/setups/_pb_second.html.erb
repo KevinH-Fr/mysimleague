@@ -1,13 +1,15 @@
 
-<div class="container-fluid d-flex m-1">
-    <strong class="mx-1">Secondaire</strong>
+
+<strong class="mx-1">Précision</strong> 
+
+<div class="d-flex flex-wrap m-1">
 
     <%# if @problemes_secondaires.present? %>
 
       <% @problems_secondaires.each do |problem_secondaire| %>
           <%= button_to problem_secondaire.nom, 
               display_correctif_setups_path(problem_secondaire_id: problem_secondaire.id), 
-                  class: "btn btn-secondary btn-pb2 mx-1",
+                  class: "btn btn-sm btn-outline-primary btn-pb2 m-1",
                   data: { controller: "button-setuptool", action: "click->button-setuptool#handleClickPb2" } %>
       <% end %>
     
@@ -16,6 +18,6 @@
 
 </div>
 
-    <div id="partial-correctifs-container">
-      <%# recoit l'update turbo stream avec une partial donnée %>
-    </div>
+  <div id="partial-correctifs-container">
+    <%# recoit l'update turbo stream avec une partial donnée %>
+  </div>

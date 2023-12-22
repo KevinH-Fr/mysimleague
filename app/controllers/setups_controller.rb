@@ -39,20 +39,20 @@ class SetupsController < ApplicationController
     respond_to do |format|
       if @setup.save
 
-        format.turbo_stream do
-          render turbo_stream: [
-            turbo_stream.update('new_setup', partial: 'setups/form', locals: { setup: Setup.new }),
-            turbo_stream.prepend('setups', partial: 'setups/setup', locals: { setup: @setup })
-          ]
-        end
+       # format.turbo_stream do
+       #   render turbo_stream: [
+       #     turbo_stream.update('new_setup', partial: 'setups/form', locals: { setup: Setup.new }),
+       #     turbo_stream.prepend('setups', partial: 'setups/setup', locals: { setup: @setup })
+       #   ]
+       # end
 
         format.html { redirect_to setup_url(@setup), notice: "Setup was successfully created." }
         format.json { render :show, status: :created, location: @setup }
       else
 
-        format.turbo_stream do
-          render turbo_stream: turbo_stream.update('new_setup', partial: 'setups/form', locals: { setup: @setup})
-        end
+       # format.turbo_stream do
+       #   render turbo_stream: turbo_stream.update('new_setup', partial: 'setups/form', locals: { setup: @setup})
+       # end
 
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @setup.errors, status: :unprocessable_entity }

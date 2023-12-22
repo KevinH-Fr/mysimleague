@@ -1,13 +1,16 @@
-<p style="color: green"><%= notice %></p>
 
-<div class="card bg-dark text-light my-2">
+<div class="card bg-dark text-light m-2">
   <div class="container-fluid d-flex align-items-center text-light">
     <h1 class="me-1"> <%= @setup.nom %> </h1>
     <%= render @setup %>
   </div> 
+  <small class="container-fluid d-flex align-items-center text-light p-2">
+    <%#= @setup.nom %> 
+    ajouter commentaires et circuit
+  </small> 
 </div>
 
-<div class="card bg-dark text-light my-2">
+<div class="card bg-dark text-light m-2 p-1">
   <%= render  "parametres_setup" %>
 </div>
 

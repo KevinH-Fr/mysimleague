@@ -33,6 +33,9 @@ export default class extends Controller {
           beginAtZero: true,
           pointLabels: {
             color: 'white'
+          },
+          grid: {
+            color: 'grey' // Set the color of the scale lines to white
           }
         }
       },

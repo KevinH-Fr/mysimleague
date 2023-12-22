@@ -1,10 +1,10 @@
 
-<div class="container-fluid d-flex">
+<div class="container-fluid d-flex flex-wrap">
   <h4>corrections</h4>
   <% @correctifs.each do |correctif| %>
     <div class="d-flex">
       <%= button_to display_details_correctif_setups_path(correctif_id: correctif.id), 
-        class: "btn btn-sm btn-success btn-correction m-1",
+        class: "btn btn-sm btn-outline-success btn-correction m-1",
         data: { controller: "button-setuptool", action: "click->button-setuptool#handleClickCorrection" } do %>
         <%= correctif.sens %>
         <%= correctif.base_setup.parametre %>

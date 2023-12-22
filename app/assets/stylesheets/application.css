@@ -204,6 +204,10 @@ select, input{
 
 }
 
+.custom-darkgrey{
+  background-color: rgb(0, 0, 0);
+}
+
 .btn-cote{
   font-size: small;
   padding: 2px;

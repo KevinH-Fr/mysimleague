@@ -11,17 +11,18 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :game_id, style: "display: block" %>
-    <%= form.collection_select :game_id, Game.all, :id, :nom %>
-  </div>
+      <div class="input-group input-group-sm my-1">
+        <%= form.label :game_id, class: "input-group-text label-colored"  %>
+        <%= form.collection_select :game_id, Game.all, :id, :nom,  class: "form-control input-colored" %>
+      </div>
+      <div class="input-group input-group-sm my-1">
+        <%= form.label :categorie, class: "input-group-text label-colored"  %>
+        <%= form.text_field :val_categorie,  class: "form-control input-colored" %>
+      </div>
 
   <div>
-    <%= form.label :val_categorie, style: "display: block" %>
-    <%= form.text_field :val_categorie %>
-  </div>
-
-  <div>
-    <%= form.submit %>
+    <%= custom_submit_button("valider") %> 
   </div>
 <% end %>
+
+
