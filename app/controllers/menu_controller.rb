@@ -171,7 +171,7 @@ class MenuController < ApplicationController
   def display_dois
 
     @event = Event.find(session[:event])
-    @dois = @event.dois if @event 
+    @dois = @event.dois.order(:created_at) if @event 
 
     respond_to do |format|
       format.turbo_stream do

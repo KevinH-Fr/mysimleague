@@ -172,8 +172,12 @@ Rails.application.routes.draw do
 
 
   # partie setup tool 
-
-  resources :categorie_parametres
+ 
+  resources :categorie_parametres do
+    member do
+      post :edit
+    end
+  end
 
   resources :comportements do
     member do

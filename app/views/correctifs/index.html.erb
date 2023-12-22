@@ -17,13 +17,14 @@
 
   <div id="correctifs">
     <% @correctifs.each do |probleme_second, correctifs| %>
-      <div class="card my-2">
+      <div class="card my-1">
         <!-- Display information related to probleme_second_id if needed -->
         <p class="fw-bold">
           Probleme: 
           <%= probleme_second.problem.nom %>
           <%= probleme_second.nom %>
         </p>
+        <hr>
         
         <% correctifs.each do |correctif| %>
           <%= render correctif %>

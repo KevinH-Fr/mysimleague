@@ -1,14 +1,49 @@
 <p style="color: green"><%= notice %></p>
 
-<h1>Categorie parametres</h1>
+<div class="p-2">
 
-<div id="categorie_parametres">
-  <% @categorie_parametres.each do |categorie_parametre| %>
-    <%= render categorie_parametre %>
-    <p>
-      <%= link_to "Show this categorie parametre", categorie_parametre %>
-    </p>
-  <% end %>
+  <h1>
+    Categorie Parametre
+    <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewCategorieParametre" aria-expanded="false">
+      <i class="fa-solid fa-square-plus fa-xl"></i>
+    </button>
+  </h1>
+
+  <div class="collapse" id="collapseNewCategorieParametre">
+    <div id="new_categorie_parametre">
+      <%= render partial: "categorie_parametres/form", locals: { categorie_parametre: CategorieParametre.new } %>
+    </div>
+  </div>
+
+  <div class="card my-2"> 
+    <div class="d-flex"> 
+      select a game :
+      <% Game.all.each do |game| %>
+        <%= link_to game.nom, url_for(game: game), class: "btn btn-primary m-1" %>
+      <% end %>
+    </div>
+    
+  </div>
+
+  <div class="container-fluid d-flex">
+    <% if params[:game] %>
+
+      <div id="categorie_parametres" class="row">
+        <% @categorie_parametres.where(game_id: params[:game]).each do |categorie_parametre| %>
+          <div class="col-md-6"> <!-- Adjust the column size as needed -->
+            <div class="card my-1 p-2">
+              <%= render categorie_parametre %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    
+    <% end %>
+  </div>
+  
 </div>
 
-<%= link_to "New categorie parametre", new_categorie_parametre_path %>
+<div class="my-3">
+    <%= back_button_setup_dashboard %>
+    <%= back_button_root %>
+</div>

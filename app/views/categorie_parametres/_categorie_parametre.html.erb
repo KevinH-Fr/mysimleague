@@ -1,12 +1,15 @@
 <div id="<%= dom_id categorie_parametre %>">
-  <p>
-    <strong>Game:</strong>
-    <%= categorie_parametre.game_id %>
-  </p>
 
-  <p>
-    <strong>Val categorie:</strong>
+  <div class="d-flex align-items-center">
+   
     <%= categorie_parametre.val_categorie %>
-  </p>
 
+    <%= link_to "", categorie_parametre_path(categorie_parametre), 
+          class: "btn btn-sm btn-outline-primary fa-solid fa-eye m-1" %>
+    <%= button_to "", edit_categorie_parametre_path(categorie_parametre), method: :post, 
+          class: "btn btn-sm btn-outline-secondary fa-solid fa-pen-to-square m-1" %>
+    <%= button_to "", categorie_parametre_path(categorie_parametre), method: :delete, 
+          class: "btn btn-sm btn-outline-danger fa-solid fa-trash m-1" %>
+
+  </div>
 </div>
