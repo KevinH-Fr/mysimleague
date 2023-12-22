@@ -10,32 +10,45 @@
 
     <%  @delta_data = compare_scores(@initial_score, synthese_performance_data(Setup.find(session[:setup]))) %>
 
-    <div class="row">
+    <div class="row my-1">
       <% categorie_performances_with_details(Setup.find(session[:setup])).each do |comportement_details| %>
 
         <div class="col-sm-4 col-md-4 col-lg-4">
-          <div class="card border-light bg-dark text-light m-1">
-            <div class="card-header border-light">
-              <strong>
-                <%= comportement_details[:category] %>
-                Score: <%= calculate_average_score(comportement_details[:details]).to_i %>
-                <% matching_entry = @delta_data.find { |entry| entry['category'] == comportement_details[:category] } %>
-                <% if matching_entry %>
-                  Delta: <%= matching_entry['difference'] %>
-                <% else %>
-                  Delta: N/A
-                <% end %>
-              </strong>
-              <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= comportement_details[:category] %>" aria-expanded="false">
-                <i class="fa-solid fa-eye fa-sm text-primary"></i>
-              </button>
-            </div>
+          <div class="card border-light bg-dark text-light m-1 p-0">
+
+            <%= link_to "#", class: "btn btn-sm text-light p-0", type: "button", 
+                  data: { bs_toggle: "collapse", bs_target: "#collapse#{comportement_details[:category]}", bs_expanded: "false" } do %>
+
+              <div class="card-header">
+
+                <div class="row m-0 p-0 align-items-center">
+                  <div class="col-10">
+
+                    <strong>
+                      <%= comportement_details[:category] %>
+                      <div class="badge bg-primary fs-6 ms-1"> <%= calculate_average_score(comportement_details[:details]).to_i %> </div>
+                      <% matching_entry = @delta_data.find { |entry| entry['category'] == comportement_details[:category] } %>
+                      <% if matching_entry && matching_entry['difference'] != 0 %>
+                        <%= positif_negatif_badge(matching_entry['difference']) %>
+                      <% end %>
+                    </strong>
+                  </div>
+                  <div class="col-2">
+                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= comportement_details[:category] %>" aria-expanded="false">
+                      <i class="fa-solid fa-eye fa-sm text-primary"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+            
+            <% end %>
+            
 
             <div class="collapse" id="collapse<%= comportement_details[:category] %>">
               <div class="card-body border-light">
                 <% comportement_details[:details].each do |details| %>
                   <div class="details">
-                    <%= details[:base_setup] %>: <%= details[:score] %>
+                    <%= details[:base_setup] %> <div class="badge bg-light text-dark ms-1"> <%= details[:score] %> </div>
                   </div>
                 <% end %>
               </div>

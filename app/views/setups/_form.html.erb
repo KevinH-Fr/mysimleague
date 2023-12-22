@@ -15,7 +15,7 @@
     <div class="col">
       <div class="input-group input-group-sm">
         <%= form.label :game, class: "input-group-text label-colored" %> 
-        <%= form.collection_select :game_id, Game.all, :id, :nom, 
+        <%= form.collection_select :game_id, Game.all, :id, :game_version, 
            { include_blank: '' }, class: "form-select input-colored" %>        
       </div>
     </div>

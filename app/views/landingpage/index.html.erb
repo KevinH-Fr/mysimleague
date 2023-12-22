@@ -22,16 +22,16 @@
       <% end %>
 
       <% unless current_user %>
-        <%= link_to new_user_session_path, class:"btn w-100 btn-warning fw-bold mt-2 mb-1 px-5", 
+        <%= link_to new_user_session_path, class:"btn w-100 btn-warning fw-bold mt-2 mb-1 px-3", 
             title: "Sign In", 'aria-label' => "Sign In" do %>
-          <i class="me-2 fa fa-solid fa-lg fa-user-lock" aria-hidden="true"></i>
-          Sign in
+          <i class="me-1 fa fa-solid fa-lg fa-user-lock" aria-hidden="true"></i>
+          Se connecter
         <% end %>
         
-        <%= link_to steps_compte_step1_path, class:"btn w-100 btn-primary fw-bold mt-1 mb-5 px-5",
+        <%= link_to steps_compte_step1_path, class:"btn w-100 btn-primary fw-bold mt-1 mb-5 px-3",
           title: "Create Account", 'aria-label' => "Create an Account" do %>
-          <i class="me-2 fa fa-solid fa-lg fa-user-plus" aria-hidden="true"></i>
-          Create account
+          <i class="me-1 fa fa-solid fa-lg fa-user-plus" aria-hidden="true"></i>
+          Créer un compte
         <% end %>
       <% end %>
 

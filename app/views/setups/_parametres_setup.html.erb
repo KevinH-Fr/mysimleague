@@ -14,20 +14,26 @@
 
                             <div class="card-header text-center text-light fw-bold m-0 p-0">
                                 <% if categorie_parametre %>
-                                    <%= categorie_parametre.val_categorie %>
-                                    <i class="ms-1 fa-solid fa-eye fa-sm text-primary"></i>
+                                    <div class="row m-0 p-0">
+                                        <div class="col-10">
+                                            <%= categorie_parametre.val_categorie %>                                
+                                        </div>
+                                        <div class="col-2">
+                                            <i class="ms-1 fa-solid fa-eye fa-sm text-primary"></i>                                        
+                                        </div>
+                                    </div>
                                 <% end %>
                             </div>
                         
                         <% end %>
                         
                         <div class="collapse" id="collapse<%= categorie_parametre.id %>">
-                            <div class="card-body border-light bg-dark m-0 p-1 text-center">
+                            <div class="card-body border-light bg-dark m-0 p-0 text-center">
                                 <% base_setups.each do |base_setup| %>
                                     <% parametre_setup = @setup.parametre_setups.find_by(base_setup: base_setup) %>
                                     <% if parametre_setup %>
-                                        <div class="m-0 p-1">
-                                        <%= render parametre_setup %>
+                                        <div class="container">
+                                            <%= render parametre_setup %>
                                         </div>
                                     <% end %>
                                 <% end %>

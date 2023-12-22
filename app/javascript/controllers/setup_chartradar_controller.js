@@ -35,7 +35,7 @@ export default class extends Controller {
             color: 'white'
           },
           grid: {
-            color: 'grey' // Set the color of the scale lines to white
+            color: 'rgb(60, 60, 60)' 
           }
         }
       },

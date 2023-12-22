@@ -49,7 +49,6 @@ class ParametreSetupsController < ApplicationController
               locals: { parametre_setup: @parametre_setup }
             ),
 
-
             turbo_stream.update('score', 
               partial: 'setups/score'
             )   
@@ -75,11 +74,12 @@ class ParametreSetupsController < ApplicationController
 
     session[:setup] = @parametre_setup.setup.id
 
-    # Calculate the initial score here and store it in the session
-    @initial_score = synthese_performance_data(@parametre_setup.setup)     
-
+    
     respond_to do |format|
       if @parametre_setup.update(parametre_setup_params.merge(filled: true))
+        
+        # Calculate the initial score here and store it in the session
+        @initial_score = synthese_performance_data(@parametre_setup.setup)     
 
         format.turbo_stream do
           render turbo_stream: [
@@ -94,7 +94,7 @@ class ParametreSetupsController < ApplicationController
               partial: 'setups/score'
             ),   
 
-            turbo_stream.update('chartradar', 
+            turbo_stream.append('chartradar', 
               partial: 'setups/chartradar'
             )   
           ]

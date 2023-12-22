@@ -1,7 +1,8 @@
 
-<div id="<%= dom_id parametre_setup %>" class="container-fluid rounded <%= parametre_setup.filled ? 'bg-success' : 'bg-danger'%>">
+<div id="<%= dom_id parametre_setup %>">
 
-    <div class="row text-light align-items-center p-1"> <!-- Added align-items-center class -->
+    <div class="row text-light align-items-center p-0 m-1
+     rounded <%= parametre_setup.filled ? 'bg-success' : 'bg-danger'%>">
       <div class="col-10">
         <%= parametre_setup.base_setup.parametre %>
         <%= parametre_setup.val_parametre %>      

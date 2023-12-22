@@ -1,20 +1,25 @@
 
+<strong class="mx-1">Solutions</strong>
 <div class="container-fluid d-flex flex-wrap">
-  <h4>corrections</h4>
   <% @correctifs.each do |correctif| %>
     <div class="d-flex">
-      <%= button_to display_details_correctif_setups_path(correctif_id: correctif.id), 
-        class: "btn btn-sm btn-outline-success btn-correction m-1",
-        data: { controller: "button-setuptool", action: "click->button-setuptool#handleClickCorrection" } do %>
-        <%= correctif.sens %>
+      <%= link_to "#", class: "btn btn-sm btn-outline-success btn-correction m-1", type: "button", 
+            data: { bs_toggle: "collapse", bs_target: "#collapse#{correctif.id}", bs_expanded: "false",
+            controller: "button-setuptool", action: "click->button-setuptool#handleClickCorrection" } do %>
+
+        <%= icon_sens_modif(correctif.sens) %>
         <%= correctif.base_setup.parametre %>
       <% end %>
-
     </div>
+
+    <div class="container-fluid">
+      <div class="collapse" id="collapse<%= correctif.id %>">
+        explication <%= correctif.base_setup.explication %>
+      </div>
+    </div>
+
   <% end %>
 </div>
 
-<%# rempalcer par collapse bs %>
-<div id="partial-details-correctif-container">
-  <%# recoit l'update turbo stream avec une partial donnée %>
-</div>
+
+

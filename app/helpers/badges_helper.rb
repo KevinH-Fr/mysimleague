@@ -16,6 +16,14 @@ module BadgesHelper
     end
   end
 
+  def positif_negatif_badge(value)
+    if value > 0
+      content_tag(:span, value, class: "badge bg-success")
+    else
+      content_tag(:span, value, class: "badge bg-danger")
+    end
+  end
+
   def boolean_badge(value)
     if value > 0
       content_tag(:span, number_with_delimiter(value.to_i, delimiter: ' ', precision: 0), class: "badge bg-success")
