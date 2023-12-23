@@ -1,14 +1,14 @@
 <div id="score" class="card bg-dark text-light m-2">
 
-  <div class="card-header black-colored">
+  <div class="card-header p-0 px-1 black-colored">
     <h2>Score</h2>
   </div>
 
-  <div class="card-body">
+  <div class="card-body p-1">
 
     <%= render "setups/chartradar" %>
 
-    <%  @delta_data = compare_scores(@initial_score, synthese_performance_data(Setup.find(session[:setup]))) %>
+    <%  @delta_data = compare_scores(session[:initial_score], session[:new_score]) %>
 
     <div class="row my-1">
       <% categorie_performances_with_details(Setup.find(session[:setup])).each do |comportement_details| %>
@@ -20,10 +20,8 @@
                   data: { bs_toggle: "collapse", bs_target: "#collapse#{comportement_details[:category]}", bs_expanded: "false" } do %>
 
               <div class="card-header">
-
                 <div class="row m-0 p-0 align-items-center">
                   <div class="col-10">
-
                     <strong>
                       <%= comportement_details[:category] %>
                       <div class="badge bg-primary fs-6 ms-1"> <%= calculate_average_score(comportement_details[:details]).to_i %> </div>
@@ -34,7 +32,7 @@
                     </strong>
                   </div>
                   <div class="col-2">
-                    <button class="btn" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= comportement_details[:category] %>" aria-expanded="false">
+                    <button class="btn btn-sm" type="button" data-bs-toggle="collapse" data-bs-target="#collapse<%= comportement_details[:category] %>" aria-expanded="false">
                       <i class="fa-solid fa-eye fa-sm text-primary"></i>
                     </button>
                   </div>

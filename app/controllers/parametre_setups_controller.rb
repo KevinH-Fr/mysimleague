@@ -1,16 +1,15 @@
 class ParametreSetupsController < ApplicationController
 
   include ScoreHelper
+  include SetupsHelper
 
   before_action :set_parametre_setup, only: %i[ show edit update destroy ]
-  before_action :authorize_admin, only: %i[ new create edit update index destroy ]
-
-  # GET /parametre_setups or /parametre_setups.json
+  before_action :authorize_edit_user, only: %i[ show new create edit update destroy ]
+  
   def index
     @parametre_setups = ParametreSetup.all
   end
 
-  # GET /parametre_setups/1 or /parametre_setups/1.json
   def show
   end
 
@@ -74,12 +73,14 @@ class ParametreSetupsController < ApplicationController
 
     session[:setup] = @parametre_setup.setup.id
 
+    session[:initial_score] = synthese_performance_data(@parametre_setup.setup)     
+    puts "__________session initial score _______________ #{session[:initial_score]}"
     
     respond_to do |format|
       if @parametre_setup.update(parametre_setup_params.merge(filled: true))
         
-        # Calculate the initial score here and store it in the session
-        @initial_score = synthese_performance_data(@parametre_setup.setup)     
+        session[:new_score]  = synthese_performance_data(@parametre_setup.setup)     
+        puts "__________session new score _______________ #{session[:new_score]}"
 
         format.turbo_stream do
           render turbo_stream: [
@@ -149,8 +150,8 @@ class ParametreSetupsController < ApplicationController
       params.require(:parametre_setup).permit(:setup_id, :base_setup_id, :val_parametre, :filled)
     end
 
-    def authorize_admin
-      unless current_user && current_user.admin 
+    def authorize_edit_user
+      unless current_user && verif_user_setup(current_user, @parametre_setup.setup.user_id) 
         redirect_to root_path, alert: "You are not authorized to perform this action."
       end
     end

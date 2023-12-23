@@ -5,13 +5,17 @@
             <div class="col-9 ps-2 align-items-center">
                   <%= link_to setup_path(setup), class: "no-underline" do %>
                         <%= setup.nom %>
-                        <div class="badge bg-primary">   <%= setup.game.game_version %> </div>                        
+                        <div class="badge bg-primary">   <%= setup.game.game_version %> </div>    
+
+                        <small class="container-fluid">
+                              <%= setup.circuit.nom  %> 
+                              <%= setup.commentaires %> 
+                        </small> 
+
                   <% end %>
             </div>
 
             <div class="col-3 d-flex justify-content-end align-items-center">
-
-
                   <div class="dropdown p-0 m-0">
                         <button class="btn text-center px-2 btn-sm btn-secondary fa fa-ellipsis-vertical" type="button" data-bs-toggle="dropdown" aria-expanded="false">
                         </button>
@@ -39,18 +43,8 @@
                               </li>
                         </ul>
                   </div>
-
             </div>      
 
       </div>
-
-      <small class="container-fluid d-flex align-items-center text-light p-2">
-            <% if @setup %>
-                  <%= @setup.circuit.nom  %> 
-                  <%= @setup.commentaires %> 
-            <% end %>
-      </small> 
-
-
 
 </div>

@@ -339,6 +339,10 @@ small{
   font-size: x-small;
 }
 
+.very-small-text{
+  font-size: 2px;
+}
+
 .text-helvetica{
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   font-size: small;

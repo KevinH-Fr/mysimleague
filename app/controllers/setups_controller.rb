@@ -19,10 +19,6 @@ class SetupsController < ApplicationController
 
     data = []
 
-    if @setup  
-      @initial_score = synthese_performance_data(@setup)    
-    end
-
   end
 
   def new
