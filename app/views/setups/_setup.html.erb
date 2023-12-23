@@ -2,7 +2,7 @@
 
       <div class="row m-0 p-1">
 
-            <div class="col-9 ps-2 d-flex align-items-center">
+            <div class="col-9 ps-2 align-items-center">
                   <%= link_to setup_path(setup), class: "no-underline" do %>
                         <%= setup.nom %>
                         <div class="badge bg-primary">   <%= setup.game.game_version %> </div>                        
@@ -10,15 +10,36 @@
             </div>
 
             <div class="col-3 d-flex justify-content-end align-items-center">
-                  <% unless controller.controller_name == 'setups' && controller.action_name == 'show' %>
-                        <%= link_to "", setup_path(setup), 
-                              class: "btn btn-sm btn-outline-primary fa-solid fa-eye m-1" %>
-                  <% end %>
-                  
-                  <%= button_to "", edit_setup_path(setup), method: :post, 
-                        class: "btn btn-sm btn-outline-secondary fa-solid fa-pen-to-square m-1" %>
-                  <%= button_to "", setup_path(setup), method: :delete, 
-                        class: "btn btn-sm btn-outline-danger fa-solid fa-trash m-1" %>
+
+
+                  <div class="dropdown p-0 m-0">
+                        <button class="btn text-center px-2 btn-sm btn-secondary fa fa-ellipsis-vertical" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-dark p-0 m-0">
+                              <li>            
+                                    <%= link_to setup_path(setup), class: "dropdown-item text-light" do %>
+                                          <i class="fa-solid fa-eye me-1"></i>
+                                          <span>Ouvrir</span>
+                                    <% end %>
+                              </li>
+                              <li>            
+                                    <%= button_to edit_setup_path(setup), method: :post, 
+                                          class: "dropdown-item text-light" do %>
+                                          <i class="fa-solid fa-pen-to-square me-1"></i>
+                                          <span>Editer</span>
+                                    <% end %>
+                              </li>
+                              <li>    
+                                    <%= button_to setup, method: :delete, 
+                                          class: "dropdown-item text-danger",
+                                          data: {turbo_method: :delete, turbo_confirm: 'Certain?'}  do %>
+                                          <i class="fa-solid fa-trash"></i>
+                                          <span>Supprimer</span>
+                                    <% end %>
+                              </li>
+                        </ul>
+                  </div>
+
             </div>      
 
       </div>

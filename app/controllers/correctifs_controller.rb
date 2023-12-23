@@ -1,5 +1,6 @@
 class CorrectifsController < ApplicationController
   before_action :set_correctif, only: %i[ show edit update destroy ]
+  before_action :authorize_admin, only: %i[ new create edit update index destroy ]
 
   def index
    # @correctifs = Correctif.all.group_by(&:problem_second)
@@ -88,6 +89,12 @@ class CorrectifsController < ApplicationController
 
     def correctif_params
       params.fetch(:correctif, {}).permit(:base_setup_id, :setup_id, :nom, :sens, :problem_id, :problem_second_id)
+    end
+
+    def authorize_admin
+      unless current_user && current_user.admin 
+        redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
     end
 
 end

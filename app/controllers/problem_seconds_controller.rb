@@ -1,5 +1,7 @@
 class ProblemSecondsController < InheritedResources::Base
 
+  before_action :authorize_admin, only: %i[ new create edit update index destroy ]
+
   def create
     @problem_second = ProblemSecond.new(problem_second_params)
 
@@ -23,4 +25,10 @@ class ProblemSecondsController < InheritedResources::Base
       params.require(:problem_second).permit(:problem_id, :nom)
     end
 
+    def authorize_admin
+      unless current_user && current_user.admin 
+        redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
+    end
+    
 end

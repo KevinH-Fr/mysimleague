@@ -1,6 +1,7 @@
 class CategorieParametresController < InheritedResources::Base
 
   before_action :set_categorie_parametre, only: %i[ show edit update destroy ]
+  before_action :authorize_admin, only: %i[ new create edit update index destroy ]
 
   def create
     @categorie_parametre = CategorieParametre.new(categorie_parametre_params)
@@ -85,4 +86,10 @@ class CategorieParametresController < InheritedResources::Base
       params.require(:categorie_parametre).permit(:game_id, :val_categorie)
     end
 
+    def authorize_admin
+      unless current_user && current_user.admin 
+        redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
+    end
+    
 end

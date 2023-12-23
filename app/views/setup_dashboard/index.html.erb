@@ -1,7 +1,6 @@
 <h1 class="text-center m-2">Setup Dashboard</h1>
 
-
-<div class="p-2 mt-2">
+<div class="p-1 mt-2">
 
     <% if current_user && current_user.admin %>
         <div class="card bg-dark my-2 p-2">
@@ -24,7 +23,7 @@
         </div>
     </div>
             
-    <div class="collapse" id="collapse_correcteur">
+    <div class="collapse my-1" id="collapse_correcteur">
 
         <div class="card bg-dark">
             <%= render "correcteur" %>

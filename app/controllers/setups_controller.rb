@@ -1,8 +1,11 @@
 class SetupsController < ApplicationController
 
   include ScoreSetupHelper
+  include SetupsHelper
 
   before_action :set_setup, only: %i[ show edit update destroy ]
+  before_action :authorize_edit_user, only: %i[ show new create edit update destroy ]
+
 
   def index
     @setups = Setup.where(user_id: current_user)
@@ -156,4 +159,11 @@ class SetupsController < ApplicationController
     def setup_params
       params.require(:setup).permit(:game_id, :user_id, :circuit_id, :nom, :commentaires)
     end
+
+    def authorize_edit_user
+      unless current_user && verif_user_setup(current_user, @setup.user_id) 
+        redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
+    end
+
 end

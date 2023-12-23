@@ -2,8 +2,8 @@ class ParametreSetupsController < ApplicationController
 
   include ScoreHelper
 
-
   before_action :set_parametre_setup, only: %i[ show edit update destroy ]
+  before_action :authorize_admin, only: %i[ new create edit update index destroy ]
 
   # GET /parametre_setups or /parametre_setups.json
   def index
@@ -148,4 +148,11 @@ class ParametreSetupsController < ApplicationController
     def parametre_setup_params
       params.require(:parametre_setup).permit(:setup_id, :base_setup_id, :val_parametre, :filled)
     end
+
+    def authorize_admin
+      unless current_user && current_user.admin 
+        redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
+    end
+    
 end

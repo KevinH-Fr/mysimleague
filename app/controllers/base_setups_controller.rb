@@ -1,5 +1,6 @@
 class BaseSetupsController < ApplicationController
   before_action :set_base_setup, only: %i[ show edit update destroy ]
+  before_action :authorize_admin, only: %i[ new create edit update index destroy ]
 
   # GET /base_setups or /base_setups.json
   def index
@@ -93,6 +94,12 @@ class BaseSetupsController < ApplicationController
       @base_setup = BaseSetup.find(params[:id])
     end
 
+    def authorize_admin
+      unless current_user && current_user.admin 
+        redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
+    end
+    
     # Only allow a list of trusted parameters through.
     def base_setup_params
       params.require(:base_setup).permit(:game_id, :categorie_parametre_id, :parametre, :explication, :val_min, :val_max)

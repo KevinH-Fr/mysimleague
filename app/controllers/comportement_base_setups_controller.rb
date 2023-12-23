@@ -1,21 +1,18 @@
 class ComportementBaseSetupsController < ApplicationController
   before_action :set_comportement_base_setup, only: %i[ show edit update destroy ]
+  before_action :authorize_admin, only: %i[ new create edit update index destroy ]
 
-  # GET /comportement_base_setups or /comportement_base_setups.json
   def index
     @comportement_base_setups = ComportementBaseSetup.all
   end
 
-  # GET /comportement_base_setups/1 or /comportement_base_setups/1.json
   def show
   end
 
-  # GET /comportement_base_setups/new
   def new
     @comportement_base_setup = ComportementBaseSetup.new
   end
 
-  # GET /comportement_base_setups/1/edit
   def edit
     respond_to do |format|
       format.turbo_stream do
@@ -24,7 +21,6 @@ class ComportementBaseSetupsController < ApplicationController
     end
   end
 
-  # POST /comportement_base_setups or /comportement_base_setups.json
   def create
     @comportement_base_setup = ComportementBaseSetup.new(comportement_base_setup_params)
 
@@ -96,4 +92,11 @@ class ComportementBaseSetupsController < ApplicationController
     def comportement_base_setup_params
       params.require(:comportement_base_setup).permit(:sens, :base_setup_id, :comportement_id, :comportement_base_setups)
     end
+
+    def authorize_admin
+      unless current_user && current_user.admin 
+        redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
+    end
+    
 end

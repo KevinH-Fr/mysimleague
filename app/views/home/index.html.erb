@@ -9,6 +9,17 @@
    <% end %>
    
    <% if current_user %>
+
+      <%= button_to display_demande_rattachement_home_index_path, class: "btn btn-sm btn btn-warning m-1" do %>
+         <i class="fa fa-solid fa-xl fa-people-group"></i>
+         <span class="ms-2 fw-bold">Rejoindre ligue</span>
+      <% end %>
+
+      <%= button_to display_creer_ligue_home_index_path, class: "btn btn-sm btn btn-primary m-1" do %>
+         <i class="fa fa-solid fa-xl fa-people-group"></i>
+         <span class="ms-2 fw-bold">Créer ligue</span>
+      <% end %>
+
       <div class="dropdown">
          <button class="btn btn-sm btn-secondary dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-solid fa-xl fa-layer-group"></i>
@@ -37,15 +48,7 @@
          </ul>
       </div>
 
-      <%= button_to display_demande_rattachement_home_index_path, class: "btn btn-sm btn btn-warning m-1" do %>
-         <i class="fa fa-solid fa-xl fa-people-group"></i>
-         <span class="ms-2 fw-bold">Rejoindre ligue</span>
-      <% end %>
 
-      <%= button_to display_creer_ligue_home_index_path, class: "btn btn-sm btn btn-primary m-1" do %>
-         <i class="fa fa-solid fa-xl fa-people-group"></i>
-         <span class="ms-2 fw-bold">Créer ligue</span>
-      <% end %>
 
    <% end %>
 
@@ -64,16 +67,15 @@
       <span class="ms-2 fw-bold">Users</span>
    <% end %>
 
-   <%= link_to setup_dashboard_path, class: "btn btn-sm btn-success m-1 fa-fade" do %>
-      <i class="fa fa-solid fa-xl fa-toolbox"></i>
-      <span class="ms-2 fw-bold">SetupTool</span>
-   <% end %>
-
-
    <% if current_user %>
       <%= link_to user_path(current_user, anchor: 'partial-container'), class: "btn btn-sm btn-primary m-1" do %>
          <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
          <span class="ms-2 fw-bold">Mes stats</span>
+      <% end %>
+
+      <%= link_to setup_dashboard_path, class: "btn btn-sm btn-success m-1 fa-bounce" do %>
+         <i class="fa fa-solid fa-xl fa-toolbox"></i>
+         <span class="ms-2 fw-bold">SetupTool</span>
       <% end %>
 
       <%= link_to abonnements_path, data: {turbo: "false"}, class: "btn btn-sm btn-outline-danger m-1" do %>

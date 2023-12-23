@@ -1,25 +1,18 @@
-
 <strong class="mx-1">Solutions</strong>
-<div class="container-fluid d-flex flex-wrap">
+<div class="container-fluid d-flex flex-wrap m-0 p-0">
   <% @correctifs.each do |correctif| %>
-    <div class="d-flex">
-      <%= link_to "#", class: "btn btn-sm btn-outline-success btn-correction m-1", type: "button", 
+    <div class="d-inline-block">
+      <%= link_to "#", class: "btn btn-sm btn-outline-success btn-correction small-text m-1", type: "button", 
             data: { bs_toggle: "collapse", bs_target: "#collapse#{correctif.id}", bs_expanded: "false",
             controller: "button-setuptool", action: "click->button-setuptool#handleClickCorrection" } do %>
 
         <%= icon_sens_modif(correctif.sens) %>
         <%= correctif.base_setup.parametre %>
       <% end %>
-    </div>
 
-    <div class="container-fluid">
       <div class="collapse" id="collapse<%= correctif.id %>">
         explication <%= correctif.base_setup.explication %>
       </div>
     </div>
-
   <% end %>
 </div>
-
-
-
