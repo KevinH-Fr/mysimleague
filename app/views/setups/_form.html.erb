@@ -11,8 +11,10 @@
     </div>
   <% end %>
 
-  <div class="row my-1">
-    <div class="col">
+  <%= form.hidden_field :user_id, value: current_user.id, data: { form_pari_target: "parieur" } %>
+
+  <div class="row">
+    <div class="col-sm my-1">
       <div class="input-group input-group-sm">
         <%= form.label :game, class: "input-group-text label-colored" %> 
         <%= form.collection_select :game_id, Game.all, :id, :game_version, 
@@ -20,7 +22,7 @@
       </div>
     </div>
 
-    <div class="col">
+    <div class="col-sm my-1">
       <div class="input-group input-group-sm">
         <%= form.label :nom, class: "input-group-text label-colored" %> 
         <%= form.text_field :nom,  class: "form-control input-colored",
@@ -28,8 +30,18 @@
       </div>    
     </div>
 
-
   </div>
+
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :circuit_id, class: "input-group-text label-colored" %>
+      <%= form.collection_select :circuit_id, @circuits, :id, :circuit_nom_complet,
+        { include_blank: 'Select a circuit' }, class: "form-select input-colored" %>
+    </div>
+
+    <div class="input-group input-group-sm my-2">
+      <%= form.label :commentaires, class: "input-group-text label-colored" %>
+      <%= form.text_area :commentaires, class: "form-control input-colored" %>
+    </div>
 
     <div>
       <%= custom_submit_button("valider") %> 

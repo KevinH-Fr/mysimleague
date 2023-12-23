@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_16_194552) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_22_233208) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -412,7 +412,12 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_194552) do
     t.string "nom"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "user_id"
+    t.integer "circuit_id"
+    t.text "commentaires"
+    t.index ["circuit_id"], name: "index_setups_on_circuit_id"
     t.index ["game_id"], name: "index_setups_on_game_id"
+    t.index ["user_id"], name: "index_setups_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
@@ -496,5 +501,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_16_194552) do
   add_foreign_key "rivalites", "association_users", column: "pilote2_id"
   add_foreign_key "rivalites", "divisions"
   add_foreign_key "saisons", "ligues"
+  add_foreign_key "setups", "circuits"
   add_foreign_key "setups", "games"
+  add_foreign_key "setups", "users"
 end

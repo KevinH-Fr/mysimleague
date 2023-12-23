@@ -1,5 +1,8 @@
 class Setup < ApplicationRecord
   belongs_to :game
+  belongs_to :user
+  belongs_to :circuit 
+  
   has_many :parametre_setups, dependent: :destroy
   
   after_create :create_parametre_setups_for_related_base_setups

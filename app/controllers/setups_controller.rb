@@ -5,7 +5,9 @@ class SetupsController < ApplicationController
   before_action :set_setup, only: %i[ show edit update destroy ]
 
   def index
-    @setups = Setup.all
+    @setups = Setup.where(user_id: current_user)
+    @circuits = Circuit.all.order(:pays) 
+
   end
 
   def show
@@ -22,9 +24,12 @@ class SetupsController < ApplicationController
 
   def new
     @setup = Setup.new
+    
   end
 
   def edit
+
+    @circuits = Circuit.all.order(:pays) 
 
     respond_to do |format|
       format.turbo_stream do
@@ -35,6 +40,7 @@ class SetupsController < ApplicationController
 
   def create
     @setup = Setup.new(setup_params)
+    @circuits = Circuit.all.order(:pays) 
 
     respond_to do |format|
       if @setup.save
@@ -148,6 +154,6 @@ class SetupsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def setup_params
-      params.require(:setup).permit(:game_id, :nom)
+      params.require(:setup).permit(:game_id, :user_id, :circuit_id, :nom, :commentaires)
     end
 end

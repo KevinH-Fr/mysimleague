@@ -4,11 +4,8 @@
 
             <div class="col-9 ps-2 d-flex align-items-center">
                   <%= link_to setup_path(setup), class: "no-underline" do %>
-                        <div class="badge bg-primarys">   <%= setup.game.game_version %> </div>
-                        <% unless controller.controller_name == 'setups' && controller.action_name == 'show' %>
-                              <%= setup.nom %>
-                        <% end %>
-                        
+                        <%= setup.nom %>
+                        <div class="badge bg-primary">   <%= setup.game.game_version %> </div>                        
                   <% end %>
             </div>
 
@@ -25,6 +22,14 @@
             </div>      
 
       </div>
+
+      <small class="container-fluid d-flex align-items-center text-light p-2">
+            <% if @setup %>
+                  <%= @setup.circuit.nom  %> 
+                  <%= @setup.commentaires %> 
+            <% end %>
+      </small> 
+
 
 
 </div>

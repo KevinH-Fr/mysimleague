@@ -8,6 +8,7 @@ class Circuit < ApplicationRecord
     has_one_attached :drapeau
 
     has_many :events
+    
 
     def feed_content
         id

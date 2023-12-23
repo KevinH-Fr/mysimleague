@@ -26,6 +26,7 @@ class User < ApplicationRecord
 
   has_many :dotds
   has_many :purchases
+  has_many :setups
   
   before_create :initialize_score_pilote
   after_create :update_user_paris
