@@ -14,13 +14,12 @@
                   data: { bs_toggle: "collapse", bs_target: "#collapse_comportement#{comportement_details[:category]}", bs_expanded: "false" } do %>
               <div class="card-header p-1">
                 <div class="row m-0 p-0 align-items-center">
-                  <div class="col-6 ps-1 m-0 text-start">
+                  <div class="col-6 ps-1 m-0 text-start" style="font-size: smaller;">
                     <strong>
                       <%= comportement_details[:category] %>
                     </strong>
                   </div>
-                  <div class="col-6 m-0 p-0 text-end">
-                    <div class="badge bg-primary fs-6 ms-1"> <%= calculate_average_score(comportement_details[:details]).to_i %> </div>
+                  <div class="col-3 m-0 p-0 text-center" style="font-size: smaller;">
                     <% if @delta_data %>
                       <% matching_entry = @delta_data.find { |entry| entry['category'] == comportement_details[:category] } %>
                       <% if matching_entry && matching_entry['difference'] != 0 %>
@@ -28,6 +27,9 @@
                       <% end %>                      
                     <% end %>
                   </div>
+                  <div class="col-3 m-0 p-0 text-end">
+                    <div class="badge bg-primary ms-1" style="font-size: smaller;"> <%= calculate_average_score(comportement_details[:details]).to_i %> </div>
+                  </div> 
 
                 </div>
               </div>
