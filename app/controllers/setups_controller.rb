@@ -1,10 +1,10 @@
 class SetupsController < ApplicationController
 
-  include ScoreSetupHelper
+  include ScoreHelper
   include SetupsHelper
 
   before_action :set_setup, only: %i[ show edit update destroy ]
-  before_action :authorize_edit_user, only: %i[ show new create edit update destroy ]
+  before_action :authorize_edit_user, only: %i[ show new edit update destroy ]
 
 
   def index
@@ -16,6 +16,11 @@ class SetupsController < ApplicationController
   def show
     @setup = Setup.find(params[:setup]) if params[:setup]
     session[:setup] = @setup.id if @setup  
+
+    session[:score] = synthese_performance_data(@setup)   
+    session[:score_details] = categorie_performances_with_details(Setup.find(session[:setup]))
+    @delta_data = compare_scores(session[:initial_score], session[:new_score])
+
 
     data = []
 
@@ -66,6 +71,8 @@ class SetupsController < ApplicationController
   end
 
   def update
+
+  #  @score_details = categorie_performances_with_details(Setup.find(session[:setup]))
 
     respond_to do |format|
       if @setup.update(setup_params)

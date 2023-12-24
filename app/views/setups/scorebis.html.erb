@@ -7,7 +7,7 @@
     <%= render "setups/chartradar" %>
 
     <div class="row my-1">
-      <% session[:score_details].each do |comportement_details| %>
+      <% @score_details.each do |comportement_details| %>
         <div class="col-sm-4 col-md-4 col-lg-4">
           <div class="card border-light bg-dark text-light m-1 p-0">
             <%= link_to "#", class: "btn btn-sm text-light p-0", type: "button", 

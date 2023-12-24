@@ -73,14 +73,24 @@ class ParametreSetupsController < ApplicationController
 
     session[:setup] = @parametre_setup.setup.id
 
-    session[:initial_score] = synthese_performance_data(@parametre_setup.setup)     
-    puts "__________session initial score _______________ #{session[:initial_score]}"
+    @delta_data = compare_scores(session[:initial_score], session[:new_score])
+
+
+
+    #session[:initial_score] = synthese_performance_data(@parametre_setup.setup)     
+    #puts "__________session initial score _______________ #{session[:initial_score]}"
+    #@score_details = categorie_performances_with_details(Setup.find(session[:setup]))
+    #@delta_data = compare_scores(session[:initial_score], session[:new_score])
+
     
     respond_to do |format|
       if @parametre_setup.update(parametre_setup_params.merge(filled: true))
         
-        session[:new_score]  = synthese_performance_data(@parametre_setup.setup)     
-        puts "__________session new score _______________ #{session[:new_score]}"
+        session[:score] = synthese_performance_data(@parametre_setup.setup)   
+        session[:score_details] = categorie_performances_with_details(Setup.find(session[:setup]))
+
+        #session[:new_score]  = synthese_performance_data(@parametre_setup.setup)     
+        #puts "__________session new score _______________ #{session[:new_score]}"
 
         format.turbo_stream do
           render turbo_stream: [
@@ -131,8 +141,6 @@ class ParametreSetupsController < ApplicationController
           )   
         ]
       end
-      
-    
       
       format.html { redirect_to parametre_setups_url, notice: "Parametre setup was successfully destroyed." }
       format.json { head :no_content }

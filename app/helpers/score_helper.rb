@@ -58,12 +58,22 @@ module ScoreHelper
         result[:score] = 0
       else
         score = if comportement_influenceur.sens == "monter"
-                  100 - (valOptimale - valSetup) * coefBase100
+                  puts "____call calcul monter_____________"
+                 100 - (valOptimale - valSetup) * coefBase100
                 else
-                  (valPire - valSetup) * coefBase100 
+                  puts "____call calcul descente"
+                  puts "____val opti #{valOptimale} ___ valsetup #{valSetup}"
+
+                  if valOptimale == valSetup 
+                    100 
+                  else
+                    (valPire - valSetup) * coefBase100 
+                  end
+                  # ici essayer corriger erreur sur barre anti rouli avant au min 
+                  
                 end
     
-       # puts "______________ monter #{result[:base_setup]} ___ val opti #{valOptimale} ___ val courante #{valSetup} ___ score #{score}"
+        puts "______________  #{result[:base_setup]} ___ val opti #{valOptimale} ___ val courante #{valSetup} ___ coef #{coefBase100} _____score #{score}"
     
         result[:score] = score.to_i
       end

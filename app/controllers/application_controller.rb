@@ -49,5 +49,6 @@ class ApplicationController < ActionController::Base
           Time.use_zone('Paris') { yield }
         end
       end
+
       
 end
