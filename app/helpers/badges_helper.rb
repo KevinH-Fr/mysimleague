@@ -19,12 +19,12 @@ module BadgesHelper
   def positif_negatif_badge(value)
     
     if value > 0
-      content_tag(:div, class: "badge border border-success") do 
+      content_tag(:div, class: "fa fa-fade badge border border-success") do 
         concat content_tag(:i, "", class: "fa-solid fa-xl fa-caret-up me-1 text-success")
         concat content_tag(:span, value, style:"font-size: small;")
       end
     else
-      content_tag(:div, class: "badge border border-danger") do 
+      content_tag(:div, class: "fa fa-fade badge border border-danger") do 
         concat content_tag(:i, "", class: "fa-solid fa-xl fa-caret-down me-1 text-danger")
         concat content_tag(:span, value, style:"font-size: small;")
       end

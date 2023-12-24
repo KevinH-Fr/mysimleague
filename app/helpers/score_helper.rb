@@ -10,8 +10,6 @@ module ScoreHelper
     comportements_and_details
   end
 
-
-
   private
 
   def calculate_categorie_performance_with_details(setup, categorie)
@@ -61,19 +59,16 @@ module ScoreHelper
                   puts "____call calcul monter_____________"
                  100 - (valOptimale - valSetup) * coefBase100
                 else
-                  puts "____call calcul descente"
-                  puts "____val opti #{valOptimale} ___ valsetup #{valSetup}"
 
                   if valOptimale == valSetup 
                     100 
                   else
                     (valPire - valSetup) * coefBase100 
                   end
-                  # ici essayer corriger erreur sur barre anti rouli avant au min 
                   
                 end
     
-        puts "______________  #{result[:base_setup]} ___ val opti #{valOptimale} ___ val courante #{valSetup} ___ coef #{coefBase100} _____score #{score}"
+      #   puts "______________  #{result[:base_setup]} ___ val opti #{valOptimale} ___ val courante #{valSetup} ___ coef #{coefBase100} _____score #{score}"
     
         result[:score] = score.to_i
       end
