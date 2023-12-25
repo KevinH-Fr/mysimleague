@@ -11,14 +11,18 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :base_setup_id, style: "display: block" %>
-    <%= form.collection_select :base_setup_id, BaseSetup.all, :id, :parametre, { prompt: "Select" }  %>
+  <div class="input-group input-group-sm my-1">
+    <%= form.label :base_setup_id, class: "input-group-text label-colored" %>
+    <%= form.collection_select :base_setup_id, BaseSetup.all, :id, :parametre, { prompt: "Select" }, class: "form-control input-colored" %>
   </div>
 
-  <div>
-    <%= form.label :sens, style: "display: block" %>
-    <%= form.select :sens, options_for_select(["", "monter", "descendre"]) %>
+  <div class="input-group input-group-sm my-1">
+    <%= form.label :sens, class: "input-group-text label-colored" %>
+    <% if correctif.persisted? %>
+      <%= form.select :sens, options_for_select(["monter", "descendre"], selected: correctif.sens), class: "form-control input-colored" %>
+    <% else %>
+      <%= form.select :sens, options_for_select(["", "monter", "descendre"]), class: "form-control input-colored" %>
+    <% end %>
   </div>
 
 
@@ -26,9 +30,11 @@
     <%= form.button "Validate", formaction: new_correctif_path, formmethod: :get, 
           data: { turbo_frame: :problem_second_field, form_element_target: "submitbtn" } %>
 
-    <div>
-      <%= form.label :problem_id, style: "display: block" %>
-      <%= form.collection_select :problem_id, Problem.all, :id, :nom , {include_blank: true}, { data: { action: "change->form-element#remotesubmit"}} %>
+    <div class="input-group input-group-sm my-1">
+      <%= form.label :problem_id, class: "input-group-text label-colored" %>
+      <%= form.collection_select :problem_id, Problem.all, :id, :nom , {include_blank: true}, 
+            { data: { action: "change->form-element#remotesubmit"}, 
+            class: "form-control input-colored" } %>
     </div>
 
   </div>
@@ -46,8 +52,6 @@
 
   <% end %>
   
+  <div class="input-group-append ms-1">  <%= custom_submit_button_icon_only %> </div>
 
-  <div class="my-2">
-    <%= form.submit %>
-  </div>
 <% end %>

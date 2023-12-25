@@ -1,10 +1,10 @@
-<div id="<%= dom_id problem_second %>">
+<div id="<%= dom_id problem_second %>" class="mb-1">
 
   <div class="d-flex my-1">
     <%= problem_second.nom %>
 
     <%= button_to "", edit_problem_second_path(problem_second), method: :post, 
-          class: "btn btn-sm btn-outline-dark fa-solid fa-pen-to-square m-1" %>
+          class: "btn btn-sm btn-outline-secondary fa-solid fa-pen-to-square m-1" %>
     <%= button_to "", problem_second_path(problem_second), method: :delete, 
           class: "btn btn-sm btn-outline-danger fa-solid fa-trash m-1" %>
 

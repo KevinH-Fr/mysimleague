@@ -8,11 +8,14 @@
 
         <%= icon_sens_modif(correctif.sens) %>
         <%= correctif.base_setup.parametre %>
+
+        <div class="collapse" id="collapse<%= correctif.id %>">
+          <br>
+          explication <%= correctif.base_setup.explication %>
+        </div>
+
       <% end %>
 
-      <div class="collapse" id="collapse<%= correctif.id %>">
-        explication <%= correctif.base_setup.explication %>
-      </div>
     </div>
   <% end %>
 </div>
