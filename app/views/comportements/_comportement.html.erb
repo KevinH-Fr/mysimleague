@@ -1,15 +1,20 @@
 <div id="<%= dom_id comportement %>">
 
-  <div class="d-flex align-items-center">
-    <%= comportement.nom %>
-
-    <strong class="mx-1">principal:</strong>
-    <%= comportement.principal %>
-
-    <%= button_to "", edit_comportement_path(comportement), method: :post, 
-          class: "btn btn-sm btn-outline-secondary fa-solid fa-pen-to-square m-1" %>
-    <%= button_to "", comportement_path(comportement), method: :delete, 
-          class: "btn btn-sm btn-outline-danger fa-solid fa-trash m-1" %>
-  </div>
+    <div class="row">
+      <div class="col-9">
+        <%= comportement.nom %>
+        <% if comportement.principal %>
+          <br> principal
+        <% end %>
+        <%= content_tag(:i, nil, class: "mx-1 fa fa-xl #{comportement.icon}") %>
+      
+      </div>
+      <div class="col-3 text-end">
+        <%= button_to "", edit_comportement_path(comportement), method: :post, 
+              class: "btn btn-sm btn-outline-secondary fa-solid fa-pen-to-square m-1" %>
+        <%= button_to "", comportement_path(comportement), method: :delete, 
+              class: "btn btn-sm btn-outline-danger fa-solid fa-trash m-1" %>
+      </div>
+    </div>
 
 </div>

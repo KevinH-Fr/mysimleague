@@ -16,10 +16,10 @@
   </div>
 
   <div class="card my-2"> 
-    <div class="d-flex"> 
+    <div class="d-flex align-items-center"> 
       select a game :
       <% Game.all.each do |game| %>
-        <%= link_to game.nom, url_for(game: game), class: "btn btn-primary m-1" %>
+        <%= link_to game.nom, url_for(game: game), class: "btn btn-sm btn-primary m-1" %>
       <% end %>
     </div>
     

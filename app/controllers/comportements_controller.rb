@@ -93,7 +93,7 @@ class ComportementsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def comportement_params
-      params.require(:comportement).permit(:nom, :principal, :label_categorie)
+      params.require(:comportement).permit(:nom, :principal, :label_categorie, :icon)
     end
 
     def authorize_admin

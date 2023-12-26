@@ -40,6 +40,7 @@ class ProblemsController < InheritedResources::Base
   def edit
 
     respond_to do |format|
+      format.html
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(@problem, partial: 'problems/form', locals: { problem: @problem })
       end

@@ -1,13 +1,15 @@
 
 <div id="<%= dom_id parametre_setup %>">
 
-    <div class="row text-light align-items-center p-0 m-1
+    <div class="row text-light align-items-center justifiy-content-center p-1 m-1
      rounded <%= parametre_setup.filled ? 'bg-success' : 'bg-danger'%>">
-      <div class="col-10">
+      <div class="col-8 align-items-start">
         <%= parametre_setup.base_setup.parametre %>
-        <%= parametre_setup.formatted_val %>            
       </div>
-      <div class="col-2 text-end ">
+      <div class="col-2 align-items-center">
+        <div class="badge bg-light text-dark"> <%= parametre_setup.formatted_val %>  </div>            
+      </div>
+      <div class="col-2 text-end">
         <%= button_to edit_parametre_setup_path(parametre_setup), method: :post, 
               class: "btn btn-sm p-0" do %>
           <i class= "fa fa-xl fa-pen-square ms-1 text-light"></i>

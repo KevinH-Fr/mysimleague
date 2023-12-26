@@ -16,6 +16,9 @@
                 <div class="row m-0 p-0 align-items-center">
                   <div class="col-6 ps-1 m-0 text-start" style="font-size: smaller;">
                     <strong>
+                      <% comportement = Comportement.find_by(label_categorie: comportement_details[:category]) %>
+                      <% comportement.id if comportement %>
+                      <%= content_tag(:i, nil, class: "fa fa-xl #{comportement.icon} mx-1") %>
                       <%= comportement_details[:category] %>
                     </strong>
                   </div>
