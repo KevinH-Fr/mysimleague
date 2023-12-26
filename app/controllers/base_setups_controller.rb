@@ -102,6 +102,6 @@ class BaseSetupsController < ApplicationController
     
     # Only allow a list of trusted parameters through.
     def base_setup_params
-      params.require(:base_setup).permit(:game_id, :categorie_parametre_id, :parametre, :explication, :val_min, :val_max)
+      params.require(:base_setup).permit(:game_id, :categorie_parametre_id, :parametre, :explication, :val_min, :val_max, :number_format)
     end
 end

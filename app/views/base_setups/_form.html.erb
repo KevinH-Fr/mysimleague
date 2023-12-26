@@ -40,6 +40,10 @@
     <%= form.text_area :explication, class: "form-control input-colored" %>
   </div>
 
+  <div class="input-group input-group-sm my-2">
+    <%= form.label :number_format, class: "input-group-text label-colored" %>
+    <%= form.select :number_format, options_for_select(['', 'decimals', 'entiers'], base_setup.number_format), {}, class: "form-select input-colored" %>
+  </div>
 
   <div class="row g-2">
     <div class="col">

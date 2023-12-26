@@ -6,6 +6,14 @@ class ParametreSetup < ApplicationRecord
 
  validate :validate_val_parametre_range, on: :update
 
+  def formatted_val
+    if base_setup.number_format == 'entiers'
+      val_parametre.to_i
+    else
+      val_parametre
+    end
+  end
+
   private
 
   def validate_val_parametre_range

@@ -5,7 +5,7 @@
      rounded <%= parametre_setup.filled ? 'bg-success' : 'bg-danger'%>">
       <div class="col-10">
         <%= parametre_setup.base_setup.parametre %>
-        <%= parametre_setup.val_parametre %>      
+        <%= parametre_setup.formatted_val %>            
       </div>
       <div class="col-2 text-end ">
         <%= button_to edit_parametre_setup_path(parametre_setup), method: :post, 
