@@ -16,9 +16,10 @@
     <%= form.text_field :nom, class: "form-control input-colored" %>
   </div>
 
-  <div class="input-group input-group-sm mb-1">
-    <%= form.label :principal, class: "input-group-text label-colored" %>
-    <%= form.check_box :principal, class: "form-control input-colored" %>
+
+  <div class="form-check form-switch">
+    <%= form.label :principal, class: "form-check-label fs-6" %>
+    <%= form.check_box :principal, class: "form-check-input fs-6" %>
   </div>
 
   <div class="input-group input-group-sm mb-1">

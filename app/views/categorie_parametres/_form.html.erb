@@ -13,7 +13,7 @@
 
       <div class="input-group input-group-sm my-1">
         <%= form.label :game_id, class: "input-group-text label-colored"  %>
-        <%= form.collection_select :game_id, Game.all, :id, :nom,  class: "form-control input-colored" %>
+        <%= form.collection_select :game_id, Game.all, :id, :nom,  class: "form-select input-colored" %>
       </div>
       <div class="input-group input-group-sm my-1">
         <%= form.label :categorie, class: "input-group-text label-colored"  %>
