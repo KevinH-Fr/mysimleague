@@ -8,6 +8,7 @@ class SetupsController < ApplicationController
 
 
   def index
+    @count_all_setups = Setup.all.count
     @setups = Setup.where(user_id: current_user)
     @circuits = Circuit.all.order(:pays) 
 
