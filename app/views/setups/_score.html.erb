@@ -8,7 +8,7 @@
 
     <div class="row my-1">
       <% session[:score_details].each do |comportement_details| %>
-        <div class="col-sm-4 col-md-4 col-lg-4">
+        <div class="col-md-6 col-lg-4">
           <div class="card border-light bg-dark text-light m-1 p-0">
             <%= link_to "#", class: "btn btn-sm text-light p-0", type: "button", 
                   data: { bs_toggle: "collapse", bs_target: "#collapse_comportement#{comportement_details[:category]}", bs_expanded: "false" } do %>
@@ -18,11 +18,11 @@
                     <strong>
                       <% comportement = Comportement.find_by(label_categorie: comportement_details[:category]) %>
                       <% comportement.id if comportement %>
-                      <%= content_tag(:i, nil, class: "fa fa-xl #{comportement.icon} mx-1") %>
+                      <%= content_tag(:i, nil, class: "fa fa-xl text-warning #{comportement.icon} mx-2") %>
                       <%= comportement_details[:category] %>
                     </strong>
                   </div>
-                  <div class="col-2 m-0 p-0 text-center" style="font-size: smaller;">
+                  <div class="col-2 mt-1" style="font-size: smaller;">
                     <% if @delta_data %>
                       <% matching_entry = @delta_data.find { |entry| entry['category'] == comportement_details[:category] } %>
                       <% if matching_entry && matching_entry['difference'] != 0 %>
@@ -30,7 +30,7 @@
                       <% end %>                      
                     <% end %>
                   </div>
-                  <div class="col-2 m-0 p-0 text-center">
+                  <div class="col-2 mt-1 text-center">
                     <div class="badge bg-primary ms-1" style="font-size: smaller;"> <%= calculate_average_score(comportement_details[:details]).to_i %> </div>
                   </div> 
 

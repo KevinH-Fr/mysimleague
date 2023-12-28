@@ -1,22 +1,25 @@
 
-<h1>Friends
+<div class="p-2">
 
-  <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
-    <span>Nouveau</span>
-  </button>
+  <h1>Friends
 
-</h1>
+    <button class="btn btn-primary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+      <span>Nouveau</span>
+    </button>
 
-<hr>
+  </h1>
 
-<div class="collapse" id="collapseExample">
-  <div id="new_friend">
-    <%= render partial: "friends/form", locals: { friend: Friend.new } %>
+  <hr>
+
+  <div class="collapse" id="collapseExample">
+    <div id="new_friend">
+      <%= render partial: "friends/form", locals: { friend: Friend.new } %>
+    </div>
   </div>
+
+  <div id="friends"> </div>
+
+  <%= link_to "New friend", new_friend_path %>
+
+  <%= turbo_frame_tag :pagination, loading: :lazy, src: friends_path(format: :turbo_stream) %>
 </div>
-
-<div id="friends"> </div>
-
-<%= link_to "New friend", new_friend_path %>
-
-<%= turbo_frame_tag :pagination, loading: :lazy, src: friends_path(format: :turbo_stream) %>

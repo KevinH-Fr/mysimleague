@@ -40,6 +40,7 @@ gem 'devise', github: "heartcombo/devise", branch: "main"
 
 gem 'requestjs-rails'
 gem 'jquery-rails'
+
 gem 'wicked_pdf'
 
 gem "wkhtmltopdf-binary", group: :development

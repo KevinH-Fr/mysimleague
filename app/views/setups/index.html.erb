@@ -2,8 +2,10 @@
 
 <div class="p-2">
 
-  <h1 class="text-light"> 
+  <h1 class="text-light d-flex align-items-center"> 
     Setups
+    <small class="badge fs-6 bg-primary ms-2"> total: <%= @setups.count %> </small>
+    
     
     <% if current_user %>
       <button class="btn btn-sm btn-warning m-2" type="button" data-bs-toggle="collapse" data-bs-target="#collapseNewSetup" aria-expanded="false">

@@ -8,7 +8,6 @@ import "@rails/request.js"
 import "jquery"
 import "jquery_ujs"
 
-
 import LocalTime from "local-time"
 LocalTime.start()
 
