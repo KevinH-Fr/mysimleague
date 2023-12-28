@@ -35,6 +35,8 @@ class SetupsController < ApplicationController
 
   def edit
 
+    puts "____call edit setup ________ #{@setup.id}"
+
     @circuits = Circuit.all.order(:pays) 
 
     respond_to do |format|

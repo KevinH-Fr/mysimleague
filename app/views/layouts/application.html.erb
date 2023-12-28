@@ -31,11 +31,13 @@
     <div class="d-flex justify-content-center align-items-center">
       <div class="page-max-widthed">
         <main class="p-0">
-          <div id="flash" class="container-fluid position-fixed top-0 start-50 translate-middle-x">
+          <div id="flash" class="container-fluid position-fixed top-0 start-50 translate-middle-x" style="z-index: 10;">
             <%= render partial: "layouts/flash" %>
           </div>
 
-          <%= yield %>
+          <div style="z-index: 0;">
+            <%= yield %>
+          </div>
         </main>
       </div>
     </div>

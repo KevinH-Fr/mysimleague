@@ -44,9 +44,10 @@
     <% problem = form.object.problem_id %>
 
     <% if problem %>
-      <div>
-        <%= form.label :problem_second_id, style: "display: block" %>
-        <%= form.collection_select :problem_second_id, Problem.find(problem).problem_seconds, :id, :nom %>
+      <div class="input-group input-group-sm my-1">
+        <%= form.label :problem_second_id,  class: "input-group-text label-colored" %>
+        <%= form.collection_select :problem_second_id, Problem.find(problem).problem_seconds, :id, :nom,
+              class: "form-control input-colored" %>
       </div>        
     <% end %>
 

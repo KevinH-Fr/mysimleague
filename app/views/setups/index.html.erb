@@ -20,7 +20,7 @@
 
   <% if current_user %>
 
-    <div class="collapse" id="collapseNewSetup">
+    <div class="collapse" id="collapseNewSetup"> 
       <div id="new_setup" class="card p-2">
         <%= render partial: "setups/form", locals: { setup: Setup.new } %>
       </div>

@@ -1,11 +1,9 @@
 <div id="<%= dom_id comportement_base_setup %>">
   <div class="row m-0 p-0">
     <div class="col-9 align-items-center m-0">
-      <%#= comportement_base_setup.sens %>
-      <%#= comportement_base_setup.base_setup.parametre %>
-      <span class="badge border border-success m-0 p-1"> 
-        <%= comportement_base_setup.comportement.nom %>
-      </span>      
+        <span class="badge border border-success m-0 p-1"> 
+          <%= comportement_base_setup.comportement.nom %>
+        </span>            
     </div>
     <div class="col-3 d-flex align-items-center p-1">
       <%= button_to "", edit_comportement_base_setup_path(comportement_base_setup), method: :post, 
