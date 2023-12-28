@@ -10,8 +10,7 @@ module ScoreSetupHelper
       comportements_and_details
     end
   
-  
-  
+
     private
   
     def calculate_categorie_performance_with_details(setup, categorie)
@@ -60,10 +59,10 @@ module ScoreSetupHelper
           score = if comportement_influenceur.sens == "monter"
                     100 - (valOptimale - valSetup) * coefBase100
                   else
-                    (valPire - valSetup) * coefBase100 
+                     (valPire - valSetup) * (100 / (valPire - valOptimale) )
                   end
       
-         # puts "______________ monter #{result[:base_setup]} ___ val opti #{valOptimale} ___ val courante #{valSetup} ___ score #{score}"
+       #  puts "______________ #{result[:base_setup]} ___ val opti #{valOptimale} ___ val courante #{valSetup} ___ coef #{coefBase100}__________ score #{score}"
       
           result[:score] = score.to_i
         end

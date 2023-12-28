@@ -1,6 +1,6 @@
 class SetupsController < ApplicationController
 
-  include ScoreHelper
+  include ScoreSetupHelper
   include SetupsHelper
 
   before_action :set_setup, only: %i[ show edit update destroy ]
@@ -34,8 +34,6 @@ class SetupsController < ApplicationController
   end
 
   def edit
-
-    puts "____call edit setup ________ #{@setup.id}"
 
     @circuits = Circuit.all.order(:pays) 
 

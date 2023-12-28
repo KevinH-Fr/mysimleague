@@ -1,6 +1,6 @@
 class ParametreSetupsController < ApplicationController
 
-  include ScoreHelper
+  include ScoreSetupHelper
   include SetupsHelper
 
   before_action :set_parametre_setup, only: %i[ show edit update destroy ]
