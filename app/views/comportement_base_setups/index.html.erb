@@ -21,7 +21,9 @@
     <% @comportement_base_setups.group_by { |setup| [setup.sens, setup.base_setup.parametre] }.each do |group, setups| %>
       <div class="card my-2">
         <h3 class="text-start container-fluid bg-dark p-1 fs-6">
-         <%= group[0] %> <%= group[1] %>
+         <%#= group[0] %> 
+         <span class="mx-2"> <%= icon_sens_modif(group[0]) %> </span>
+           <%= group[1] %>
         </h3>
 
         <% setups.each do |comportement_base_setup| %>

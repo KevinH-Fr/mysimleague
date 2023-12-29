@@ -3,7 +3,7 @@ class ComportementBaseSetupsController < ApplicationController
   before_action :authorize_admin, only: %i[ new create edit update index destroy ]
 
   def index
-    @comportement_base_setups = ComportementBaseSetup.all
+    @comportement_base_setups = ComportementBaseSetup.order(:base_setup_id, :sens)
   end
 
   def show
