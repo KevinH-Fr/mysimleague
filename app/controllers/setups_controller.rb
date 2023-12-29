@@ -18,8 +18,9 @@ class SetupsController < ApplicationController
     @setup = Setup.find(params[:setup]) if params[:setup]
     session[:setup] = @setup.id if @setup  
 
-    session[:score] = synthese_performance_data(@setup)   
-    session[:score_details] = categorie_performances_with_details(Setup.find(session[:setup]))
+    # sans score dans session car trop lourd ? passer valeur autrement pour comparaison score
+    #session[:score] = synthese_performance_data(@setup)   
+    #session[:score_details] = categorie_performances_with_details(Setup.find(session[:setup]))
  
     if session[:initial_score].present?
       @delta_data = compare_scores(session[:initial_score], session[:score])
