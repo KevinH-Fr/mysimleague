@@ -23,7 +23,7 @@ class SetupsController < ApplicationController
     #session[:score_details] = categorie_performances_with_details(Setup.find(session[:setup]))
  
     if session[:initial_score].present?
-      @delta_data = compare_scores(session[:initial_score], session[:score])
+      @delta_data = compare_scores(session[:initial_score], synthese_performance_data(@setup))
     end
 
     data = []

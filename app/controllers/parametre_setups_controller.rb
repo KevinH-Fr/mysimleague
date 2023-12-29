@@ -78,8 +78,8 @@ class ParametreSetupsController < ApplicationController
     respond_to do |format|
       if @parametre_setup.update(parametre_setup_params.merge(filled: true))
         
-        session[:score] = synthese_performance_data(@parametre_setup.setup)   
-        session[:score_details] = categorie_performances_with_details(Setup.find(session[:setup]))
+      #  session[:score] = synthese_performance_data(@parametre_setup.setup)   
+      #  session[:score_details] = categorie_performances_with_details(Setup.find(session[:setup]))
 
         @delta_data = compare_scores(session[:initial_score], session[:score])
 
