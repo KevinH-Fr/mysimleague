@@ -6,7 +6,6 @@ class SetupsController < ApplicationController
   before_action :set_setup, only: %i[ show edit update destroy ]
   before_action :authorize_edit_user, only: %i[ show new edit update destroy ]
 
-
   def index
     @count_all_setups = Setup.all.count
     @setups = Setup.where(user_id: current_user)
@@ -18,13 +17,9 @@ class SetupsController < ApplicationController
     @setup = Setup.find(params[:setup]) if params[:setup]
     session[:setup] = @setup.id if @setup  
 
-    # sans score dans session car trop lourd ? passer valeur autrement pour comparaison score
-    #session[:score] = synthese_performance_data(@setup)   
-    #session[:score_details] = categorie_performances_with_details(Setup.find(session[:setup]))
- 
-    if session[:initial_score].present?
-      @delta_data = compare_scores(session[:initial_score], synthese_performance_data(@setup))
-    end
+    #if SetupsInitialScore.where(setup:  @setup.id).present?
+      @delta_data = compare_scores(initial_score_json, synthese_performance_data(Setup.find(session[:setup])))
+    #end
 
     data = []
 

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_12_26_133225) do
+ActiveRecord::Schema[7.0].define(version: 2023_12_29_144542) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -422,6 +422,16 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_26_133225) do
     t.index ["user_id"], name: "index_setups_on_user_id"
   end
 
+  create_table "setups_initial_scores", force: :cascade do |t|
+    t.integer "setup_id", null: false
+    t.integer "comportement_id", null: false
+    t.integer "initial_score"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["comportement_id"], name: "index_setups_initial_scores_on_comportement_id"
+    t.index ["setup_id"], name: "index_setups_initial_scores_on_setup_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -506,4 +516,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_12_26_133225) do
   add_foreign_key "setups", "circuits"
   add_foreign_key "setups", "games"
   add_foreign_key "setups", "users"
+  add_foreign_key "setups_initial_scores", "comportements"
+  add_foreign_key "setups_initial_scores", "setups"
 end

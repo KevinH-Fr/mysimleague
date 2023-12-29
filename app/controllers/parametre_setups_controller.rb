@@ -3,7 +3,7 @@ class ParametreSetupsController < ApplicationController
   include ScoreSetupHelper
   include SetupsHelper
 
-  before_action :set_parametre_setup, only: %i[ show edit update destroy ]
+  before_action :set_parametre_setup, only: %i[ show edit update destroy create_setups_initial_scores ]
   before_action :authorize_edit_user, only: %i[ show new create edit update destroy ]
   
   def index
@@ -72,17 +72,15 @@ class ParametreSetupsController < ApplicationController
   def update
 
     session[:setup] = @parametre_setup.setup.id
+    @setup =  @parametre_setup.setup
 
-    session[:initial_score] = synthese_performance_data(@parametre_setup.setup)   
+    create_setups_initial_scores
     
     respond_to do |format|
       if @parametre_setup.update(parametre_setup_params.merge(filled: true))
         
-      #  session[:score] = synthese_performance_data(@parametre_setup.setup)   
-      #  session[:score_details] = categorie_performances_with_details(Setup.find(session[:setup]))
-
-        @delta_data = compare_scores(session[:initial_score], session[:score])
-
+        @delta_data = compare_scores(initial_score_json, synthese_performance_data(Setup.find(session[:setup])))
+ 
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update(
@@ -96,9 +94,6 @@ class ParametreSetupsController < ApplicationController
               partial: 'setups/score'
             ),   
 
-            turbo_stream.append('chartradar', 
-              partial: 'setups/chartradar'
-            )   
           ]
          
         end
@@ -152,6 +147,24 @@ class ParametreSetupsController < ApplicationController
     def authorize_edit_user
       unless current_user && verif_user_setup(current_user, @parametre_setup.setup.user_id) 
         redirect_to root_path, alert: "You are not authorized to perform this action."
+      end
+    end
+
+
+    def create_setups_initial_scores
+
+      SetupsInitialScore.where(setup_id: @setup.id).destroy_all
+
+      # Use your helper method to get comportements and details
+      comportements_and_details = categorie_performances_with_details(@setup)
+  
+      # Create a record for each comportement
+      comportements_and_details.each do |comportement_details|
+        SetupsInitialScore.create(
+          setup_id: @setup.id,
+          comportement: Comportement.find_by(label_categorie: comportement_details[:category]),
+          initial_score: comportement_details[:average_score]
+        )
       end
     end
     

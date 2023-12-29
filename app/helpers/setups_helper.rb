@@ -12,6 +12,16 @@ module SetupsHelper
           true
         end
     end
+
+    def initial_score_json
+        result_array = SetupsInitialScore.where(setup_id: @setup.id).map do |initial_setup|
+          {
+            "category": initial_setup.comportement.label_categorie,
+            "score": initial_setup.initial_score
+          }
+        end 
+        result_array.to_json
+    end
   
     
 end

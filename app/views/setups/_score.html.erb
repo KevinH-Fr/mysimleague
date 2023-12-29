@@ -23,6 +23,7 @@
                     </strong>
                   </div>
                   <div class="col-2 mt-1" style="font-size: smaller;">
+
                     <% if @delta_data %>
                       <% matching_entry = @delta_data.find { |entry| entry['category'] == comportement_details[:category] } %>
                       <% if matching_entry && matching_entry['difference'] != 0 %>

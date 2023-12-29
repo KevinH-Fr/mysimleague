@@ -4,6 +4,7 @@ class Setup < ApplicationRecord
   belongs_to :circuit 
   
   has_many :parametre_setups, dependent: :destroy
+  has_many :setups_initial_scores, dependent: :destroy
   
   after_create :create_parametre_setups_for_related_base_setups
 
