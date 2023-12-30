@@ -22,12 +22,25 @@
       <%= form.hidden_field :base_setup_id %>
 
 
-    <div class="input-group input-group-sm">
-      <%= form.label :val_parametre, parametre_setup.base_setup.parametre, class: "input-group-text label-colored", style: "font-size: smaller;" %>
-      <%= form.number_field :val_parametre, class: "form-control input-colored", step: 1, value: parametre_setup.formatted_val %>
-      <div class="input-group-append ms-1">  <%= custom_submit_button_icon_only %> </div>
-      
+    <div class="container-fluid row m-0 px-2 mt-1">
+      <div class="col-8 m-0 p-1">
+        <%= form.range_field :val_parametre, class: 'form-control-range fixed-width-slider', 
+          data: { controller: 'parametre-setup', parametre_id: parametre_setup.id },
+          min: parametre_setup.base_setup.val_min, 
+          max: parametre_setup.base_setup.val_max,
+          step: parametre_setup.format_step,
+          value: parametre_setup.formatted_val %>
+      </div>
+      <div class="col-2 p-0">
+        <span class="badge bg-primary" id="rangeval_<%= parametre_setup.id %>"><%= parametre_setup.formatted_val %></span>
+      </div>
+      <div class="col-2 text-center">
+        <%= custom_submit_button_icon_only %>
+      </div>
     </div>
+
+
+
 
 
   <% end %>

@@ -7,10 +7,18 @@ class ParametreSetup < ApplicationRecord
  validate :validate_val_parametre_range, on: :update
 
   def formatted_val
-    if base_setup.number_format == 'entiers'
+    if base_setup.number_format == 'entiers' || nil
       val_parametre.to_i
     else
       val_parametre
+    end
+  end
+
+  def format_step
+    if base_setup.number_format == 'entiers' || nil
+      1
+    else
+      0.1
     end
   end
 
