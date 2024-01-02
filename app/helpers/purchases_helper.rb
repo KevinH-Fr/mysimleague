@@ -17,7 +17,7 @@ module PurchasesHelper
                 end
     
         content_tag(:span, best_purchase.article.titre, class: "badge") do
-          content_tag(:i, "", class: "fa fa-2x fa-crown mx-0", style: "color: #{color}")
+          content_tag(:i, "", class: "fa fa-2x fa-fade fa-crown mx-0", style: "color: #{color}")
         end
       end
     end
