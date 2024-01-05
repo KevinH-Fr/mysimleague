@@ -268,6 +268,7 @@ Rails.application.routes.draw do
   get 'landingpage/setup'
 
   get '/scoring', to: 'home#scoring', as: 'scoring'
+  get '/parieurs', to: 'home#parieurs', as: 'parieurs'
 
   get 'animation', to: 'resultats#animation', as: 'animation'
   get 'animation_class_pilotes', to: 'classement_pilotes#animation', as: 'animation_class_pilotes'

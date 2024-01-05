@@ -5,20 +5,20 @@
 
     <div class="text-center">
       <%# selection de l'année %>
-      <% annees_paris.each do |annee| %>
-        <%= button_to annee, display_parieurs_annee_home_index_path, params: { annee: annee }, class: "btn btn-sm btn-warning m-1" %>
-      <% end %>
+      <%# annees_paris.each do |annee| %>
+        <%#= button_to annee, display_parieurs_annee_home_index_path, params: { annee: annee }, class: "btn btn-sm btn-warning m-1" %>
+      <%# end %>
     </div>
 
     <div class="container-fluid text-center my-2">
       <%= link_to "", generate_image_parieurs_path(), class: 'btn fa fa-image btn-outline-success w-25' %>
     </div>
 
-    <% if @annee %>
+    <%# if @annee %>
 
         <% if current_user && current_user.admin %>    
 
-          <div class="container-fluid text-center m-2">
+          <div class="container-fluid text-center my-2">
             <%= link_to 'Update all solde paris', 
                 update_solde_paris_home_index_path, method: :post,
                 class: "btn btn-sm btn-warning mx-1" %>
@@ -26,7 +26,7 @@
           </div>
         <% end %>
 
-      <% ranked_parieurs(@annee).each do |user| %>
+      <% ranked_parieurs().each do |user| %>
         <div class="d-flex align-items-center justify-content-center my-1">
           <%= badge_score_position(user[:rank]) %>
           <div class="equipe-banner-wrapper d-flex align-items-center bg-custom-grey text-light fw-bold rounded px-2" style="width: 100%; max-width: 300px;">
@@ -34,7 +34,7 @@
               <%= image_tag(user[:user].webp_variant, class: "mini-profile-pic me-1") %>
 
               <%= user[:user].short_name %>
-              <%= icon_leader_parieur(@annee, user[:user].id) %>
+              <%= icon_leader_parieur(user[:user].id) %>
               <%= icon_leader_user(user[:user].id) %>
               <%= icon_leader_pilote(user[:user].id) %>
               <%= user_paid_purchases_icon(user[:user]) %>
@@ -50,7 +50,7 @@
         </div>
       <% end %>
 
-    <% end %>
+    <%# end %>
 
   </div>
 

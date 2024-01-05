@@ -62,16 +62,19 @@
         <div class="card-with-effect p-2">
             <h5>synthèse</h5>
             nombre paris <span class="fw-bold text-warning"><%= @nb_paris %> </span><br>
-            montant misé <span class="fw-bold text-warning"><%= number_with_delimiter(@montant_paris, delimiter: ' ', precision: 0) %> </span><br>
+            montant misé <span class="fw-bold text-warning">
+            <%= number_to_human(@montant_paris, units: { thousand: 'K', million: 'M', billion: 'B' } ) %> </span><br>
 
             <% if @nb_paris > 0 %>          
                 parieur avec le plus de mises
                 <span class="fw-bold"><%= @biggest_parieur %> </span>
-                <span class="fw-bold text-warning"><%= number_with_delimiter(@sum_montant_biggest_parieur, delimiter: ' ', precision: 0) %> </span><br>
+                <span class="fw-bold text-warning">
+                <%= number_to_human(@sum_montant_biggest_parieur, units: { thousand: 'K', million: 'M', billion: 'B' } ) %> </span><br>
 
                 coureur avec le plus de mises
                 <span class="fw-bold"> <%= @biggest_coureur %> </span>
-                <span class="fw-bold text-warning"><%= number_with_delimiter(@sum_montant_biggest_coureur, delimiter: ' ', precision: 0) %> </span><br>
+                <span class="fw-bold text-warning">
+                <%= number_to_human(@sum_montant_biggest_coureur, units: { thousand: 'K', million: 'M', billion: 'B' } ) %> </span><br>
             <% end %>
 
         </div>

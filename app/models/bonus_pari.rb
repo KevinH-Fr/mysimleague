@@ -8,7 +8,7 @@ class BonusPari < ApplicationRecord
   private
 
   def update_user_solde_paris
-    user.solde_paris = solde_paris(created_at.year, user)    
+    user.solde_paris = solde_paris(user)    
     user.save
   end
  

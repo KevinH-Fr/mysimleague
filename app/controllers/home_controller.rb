@@ -103,17 +103,17 @@ class HomeController < ApplicationController
 
   end
 
-  def display_parieurs
+  def parieurs
 
    # @event = Event.find(session[:event])
 
-    respond_to do |format|
-      format.turbo_stream do
-        render turbo_stream: turbo_stream.update(
-          'partial-container', partial: 'home/parieurs'
-        )
-      end
-    end
+   # respond_to do |format|
+   #   format.turbo_stream do
+   #     render turbo_stream: turbo_stream.update(
+   #       'partial-container', partial: 'home/parieurs'
+   #     )
+   #   end
+   # end
   end
 
   def display_parieurs_annee

@@ -109,7 +109,7 @@ module BadgesHelper
   end
 
   def badge_solde_parieur(user)
-      solde_parieur = somme_paris_user(Time.now.year, User.all)[user.id][:sum]
+      solde_parieur = somme_paris_user(User.all)[user.id][:sum]
       solde_parieur_formatted = number_with_delimiter(solde_parieur, delimiter: " ")
       
       content_tag(:span, "solde #{solde_parieur_formatted} points", class: "badge bg-dark fs-5 p-1 my-2")

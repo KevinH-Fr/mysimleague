@@ -49,7 +49,7 @@ class Pari < ApplicationRecord
 
   user = self.user_id 
   if user 
-    soldeAvant = somme_paris_user(Time.now.year, [User.find(user)])[User.find(user).id][:sum]
+    soldeAvant = somme_paris_user([User.find(user)])[User.find(user).id][:sum]
 
     total = soldeAvant.to_f - montant.to_f
     if total < 0 
@@ -70,7 +70,7 @@ class Pari < ApplicationRecord
  end
 
  def update_user_solde_paris
-   user.solde_paris = solde_paris(created_at.year, user)    
+   user.solde_paris = solde_paris( user)    
    user.save
  end
 

@@ -13,9 +13,9 @@
     <%= render partial: "documents/entete",  locals: { titre: "Parieurs" } %>
     <%#= tableau data parieurs %>
 
-    <% annee = Time.now.to_date.strftime("%Y") %>
+    <%# annee = Time.now.to_date.strftime("%Y") %>
 
-    <% ranked_parieurs(annee).take(20).each do |user| %>
+    <% ranked_parieurs().take(20).each do |user| %>
       <div class="d-flex align-items-center justify-content-center my-1">
         <%= badge_score_position(user[:rank]) %>
         <div class="equipe-banner-wrapper d-flex align-items-center bg-custom-grey text-light fw-bold rounded px-2" style="width: 100%; max-width: 300px;">
@@ -29,7 +29,7 @@
           <% end %>
 
           <%=  User.find(user[:user].id).nom %>
-          <%= icon_leader_parieur(@annee, user[:user].id) %>
+          <%= icon_leader_parieur(user[:user].id) %>
           <%= icon_leader_user(user[:user].id) %>
           <%= icon_leader_pilote(user[:user].id) %>
           <%= user_paid_purchases_icon(user[:user]) %>
