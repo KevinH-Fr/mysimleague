@@ -17,8 +17,8 @@
     <%= form.hidden_field :ligue_id %>
 
     <div class="input-group input-group-sm my-2">
-      <%= form.label :message, class: "input-group-text" %>
-      <%= form.text_area :message, class: "form-control"%>
+      <%= form.label :message, class: "input-group-text label-colored" %>
+      <%= form.text_area :message, class: "form-control input-colored"%>
     </div>
 
   <% end %> <%# pour rattachement depuis home %>
@@ -26,18 +26,19 @@
   <% if controller.controller_name == "home" %> <%# pour rattachement depuis ligue %>
 
     <div data-controller="form-rattachement">
+      <span class="badge me-2">Ligue </span>
       <% Ligue.all.each do |ligue| %>
         <%= form.button ligue.nom, ligue: ligue.id, type: "button", 
           data: { action: "click->form-rattachement#setField", ligue: ligue.id, ligue_nom: ligue.nom },
-          class: "btn btn-warning" %>
+          class: "btn btn-sm btn-warning" %>
       <% end %>
       
       <%= form.hidden_field :ligue_id, data: { form_rattachement_target: "ligue" } %>
 
       <div class="input-group input-group-sm my-2">
-        <%= form.label :message, class: "input-group-text" %>
+        <%= form.label :message, class: "input-group-text label-colored" %>
         <%= form.text_area :message, data: { form_rattachement_target: "message" }, 
-              class: "form-control"%>
+              class: "form-control input-colored"%>
       </div>
       
     </div>
