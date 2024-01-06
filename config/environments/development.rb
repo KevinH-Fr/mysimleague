@@ -97,4 +97,6 @@ Rails.application.configure do
   # Enable subdomains in development
   # config.action_dispatch.tld_length = 0
 
+  config.i18n.default_locale = :fr
+
 end

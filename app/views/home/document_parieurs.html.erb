@@ -28,7 +28,7 @@
             <%= image_tag('/images/profile_default.webp', class: "mini-profile-pic me-1") %>
           <% end %>
 
-          <%=  User.find(user[:user].id).nom %>
+          <%= User.find(user[:user].id).nom %>
           <%= icon_leader_parieur(user[:user].id) %>
           <%= icon_leader_user(user[:user].id) %>
           <%= icon_leader_pilote(user[:user].id) %>

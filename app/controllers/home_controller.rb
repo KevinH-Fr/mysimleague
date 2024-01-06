@@ -235,7 +235,7 @@ class HomeController < ApplicationController
   end
 
   def update_solde_paris
-    update_solde_parieurs(annees_paris.last)
+    update_solde_parieurs()
     redirect_to root_path, notice: "update_solde_parieurs successfully."
   end
    

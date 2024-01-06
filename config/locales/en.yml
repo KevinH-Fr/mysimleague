@@ -31,3 +31,12 @@
 
 en:
   hello: "Hello world"
+
+  time:
+    distance_in_words:
+      x_seconds:
+        one: "1 second"
+        other: "%{count} seconds"
+      about_x_hours:
+        one: "1 hour"
+        other: "%{count} hours"

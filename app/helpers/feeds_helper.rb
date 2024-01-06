@@ -52,15 +52,14 @@ module FeedsHelper
             content_tag :i, "", class: "fa fa-2x fa-solid fa-street-view text-warning me-2"
 
         when "Purchase"
-                crown_color = case feed.article.niveau
-                            when 1 then "brown"
-                            when 2 then "grey"
-                            when 3 then "yellow"
-                            else "blue"
-                            end
-            
-                content_tag :i, "", class: "fa fa-2x fa-solid fa-crown me-2 fa-fade", style: "color: #{crown_color};"
-          
+            crown_color = case feed.article.niveau
+                        when 1 then "brown"
+                        when 2 then "grey"
+                        when 3 then "yellow"
+                        else "blue"
+                        end
+            content_tag :i, "", class: "fa fa-2x fa-solid fa-crown me-2 fa-fade", style: "color: #{crown_color};"
+        
 
         else
             content_tag :i, "", class: "fa fa-xl fa-question-circle text-dark me-2"
@@ -185,7 +184,7 @@ module FeedsHelper
             combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
             
         when "Purchase"
-                span_label = content_tag(:span, "Abonné")
+                span_label = content_tag(:span, "VIP")
                 span_content = content_tag(:span, feed.user.short_name, class: "fw-bold mx-1")
                 span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
                 

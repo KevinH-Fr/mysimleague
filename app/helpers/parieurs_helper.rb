@@ -64,7 +64,7 @@ module ParieursHelper
     solde_paris = user_paris.sum(:solde) if user_paris.any?
     bonus_paris = user.bonus_paris.sum(:montant).to_i
 
-    solde = solde_depart.to_i + somme_credit_semaine.to_i + solde_paris.to_i - montant_paris.to_i + bonus_paris
+    solde = solde_depart.to_i + somme_credit_semaine.to_i + solde_paris.to_i - montant_paris.to_i + bonus_paris.to_i
     solde
  
   end

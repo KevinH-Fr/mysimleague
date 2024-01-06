@@ -3,10 +3,14 @@
     <% @feeds.each do |feed| %>
       <%= link_to feed_path(feed), class: "no-underline text-dark" do %>
         <div class="record-with-effect d-flex align-items-center ps-2">
+        
           <%= feed_icon(feed) %> 
           <%= feed_label(feed) %>
 
-          <small class="time-ago ps-2"> <%= time_ago_in_words(feed.updated_at) %> ago </small>
+          <small class="time-ago text-secondary ps-1"> 
+            <%= distance_of_time_in_words(feed.updated_at, Time.current, scope: 'time.distance_in_words') %> 
+          </small>
+
         </div>
       <% end %>
     <% end %>
