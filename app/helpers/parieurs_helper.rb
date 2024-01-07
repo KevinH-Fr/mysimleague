@@ -11,10 +11,11 @@ module ParieursHelper
   #  def somme_paris_user(annee, users)
 
   def somme_paris_user(users)
-    solde_depart = 500
-    credit_semaine = 100
-    numero_semaine = Date.today.strftime('%W').to_i
-    somme_credit_semaine = credit_semaine * numero_semaine
+    solde_depart =  5000 #500 - 5000 pour integrer les 10 semaines passées avec credit semaine, enlever crédit semaine
+   # credit_semaine = 100
+    #numero_semaine = Date.today.strftime('%W').to_i
+
+   # somme_credit_semaine = credit_semaine * numero_semaine
   
     #start_date = DateTime.new(annee.to_i, 1, 1)
     #end_date = DateTime.new(annee.to_i, 12, 31)
@@ -31,7 +32,7 @@ module ParieursHelper
 
       bonus_paris = user.bonus_paris.sum(:montant).to_i
   
-      user_sum[user_id] = solde_depart + somme_credit_semaine + solde_paris.to_i - montant_paris.to_i + bonus_paris
+      user_sum[user_id] = solde_depart + solde_paris.to_i - montant_paris.to_i + bonus_paris #+ somme_credit_semaine 
     end
   
     ranked_users = user_sum.sort_by { |_, sum| -sum }
@@ -48,10 +49,12 @@ module ParieursHelper
  # def solde_paris(annee, user)
   def solde_paris(user)
     
-    solde_depart = 500
-    credit_semaine = 100
-    numero_semaine = Date.today.strftime('%W').to_i
-    somme_credit_semaine = credit_semaine * numero_semaine
+   # solde_depart = 500
+    solde_depart =  5000 #500 - 5000 pour integrer les 10 semaines passées avec credit semaine, enlever crédit semaine
+
+   # credit_semaine = 100
+   # numero_semaine = Date.today.strftime('%W').to_i
+   # somme_credit_semaine = credit_semaine * numero_semaine
   
    # start_date = DateTime.new(annee.to_i, 1, 1)
    # end_date = DateTime.new(annee.to_i, 12, 31)
@@ -64,7 +67,7 @@ module ParieursHelper
     solde_paris = user_paris.sum(:solde) if user_paris.any?
     bonus_paris = user.bonus_paris.sum(:montant).to_i
 
-    solde = solde_depart.to_i + somme_credit_semaine.to_i + solde_paris.to_i - montant_paris.to_i + bonus_paris.to_i
+    solde = solde_depart.to_i  + solde_paris.to_i - montant_paris.to_i + bonus_paris.to_i # + somme_credit_semaine.to_i
     solde
  
   end
