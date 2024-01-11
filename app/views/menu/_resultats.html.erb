@@ -30,7 +30,7 @@
 
 <%= render "resultats/resultats" %>
 
-<div class="container-fluid text-center m-2">
+<div class="container text-center m-2">
   <%= link_to "", animation_path(event: @event.id), class: 'btn fa fa-bounce fa-film btn-outline-primary mx-1 w-25' %>
   <%= link_to "", generate_image_resultats_path(event: @event.id), class: 'btn fa fa-image btn-outline-success mx-1 w-25' %>
 </div>

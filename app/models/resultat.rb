@@ -40,7 +40,9 @@ class Resultat < ApplicationRecord
     users_with_paris = paris_for_resultat.includes(:user).map(&:user).uniq
 
     users_with_paris.each do |user|
-      user.update(solde_paris:  solde_paris(annees_paris.last, user))
+    #  user.update(solde_paris:  solde_paris(annees_paris.last, user))
+       user.update(solde_paris:  solde_paris(user))
+
     end
     
   end
