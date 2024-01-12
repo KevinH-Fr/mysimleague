@@ -1,13 +1,13 @@
       <% unless current_user %>
         
-            <%= link_to new_user_session_path, class: "btn btn-sm btn-warning m-2" do %>
+            <%= link_to new_user_session_path, class: "btn btn-sm btn-warning m-1" do %>
                <i class="fa fa-solid fa-xl fa-user-lock"></i>
-               <span class="ms-2 fw-bold">Se connecter</span>
+               <span class="ms-1 fw-bold">Connexion</span>
             <% end %>
 
-            <%= link_to steps_compte_step1_path, class: "btn btn-sm btn-primary m-2" do %>
+            <%= link_to steps_compte_step1_path, class: "btn btn-sm btn-primary m-1" do %>
                <i class="fa fa-solid fa-xl fa-user-plus"></i>
-               <span class="ms-2 fw-bold">Creer compte</span>
+               <span class="ms-1 fw-bold">Nouveau</span>
             <% end %>
 
       <% end %>  

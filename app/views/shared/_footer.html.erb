@@ -22,11 +22,11 @@
 
                 <% if boolean_user_paid_purchase(current_user) %>
                     <%= link_to vip_path, class: "btn btn-sm btn-outline-warning" do %>
-                        <i class="fa fa-solid fa fa-crown"></i>
+                        <i class="fa fa-solid fa-fade fa-crown"></i>
                     <% end %>
                 <% else %>
                     <%= link_to abonnements_path, data: {turbo: "false"}, class: "btn btn-sm btn-outline-warning" do %>
-                        <i class="fa fa-solid fa fa-crown"></i>
+                        <i class="fa fa-solid fa-fade fa-crown"></i>
                     <% end %>
                 <% end %>
 

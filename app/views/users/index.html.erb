@@ -20,7 +20,7 @@
                     <%= link_to user_path(user), class: "no-underline" do  %>
                         <%= image_tag(user.webp_variant, class: "medium-profile-pic mx-2") %> 
                         <%= truncate(user.nom, length: 16) %>
-                        <%= icon_leader_parieur(Date.today.year, user.id) %>
+                        <%= icon_leader_parieur(user.id) %>
                         <%= icon_leader_user(user.id) %>
                         <%= icon_leader_pilote(user.id) %>
                         <%= user_paid_purchases_icon(user) %>

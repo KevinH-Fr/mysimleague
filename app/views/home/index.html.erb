@@ -3,9 +3,9 @@
 <% keywords "Home, Races, Feeds, Activites" %>
 
 <div class="d-flex flex-wrap justify-content-center align-items-center mt-4 mb-2">
-   <%= link_to menu_index_path, class: "btn btn-sm btn-dark m-1" do %>
+   <%= link_to menu_index_path, class: "btn btn-sm btn-outline-light m-1" do %>
       <i class="fa fa-solid fa-xl fa-compass"> </i>
-      <span class="ms-2 fw-bold"> Menu</span>
+      <span class="ms-1 fw-bold"> Menu</span>
    <% end %>
 
 
@@ -18,30 +18,30 @@
    <% if current_user %>
 
       <div class="dropdown">
-         <button class="btn btn-sm btn-warning dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+         <button class="btn btn-sm btn-outline-warning dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-solid fa-xl fa-people-group"></i>
-            <span class="ms-2 fw-bold">Ligue</span>
+            <span class="ms-1 fw-bold">Ligue</span>
          </button>
          <ul class="dropdown-menu dropdown-menu-dark">
             <li>
                <%= button_to display_demande_rattachement_home_index_path, class: "dropdown-item text-warning" do %>
-                  <i class="fa fa-solid fa-xl fa-people-group"></i>
-                  <span class="ms-2 fw-bold">Rejoindre ligue</span>
+                  <i class="fa fa-solid fa-people-group"></i>
+                  <span class="ms-1 fw-bold">Rejoindre ligue</span>
                <% end %>
             </li>
             <li>
                <%= button_to display_creer_ligue_home_index_path, class: "dropdown-item text-primary" do %>
-                  <i class="fa fa-solid fa-xl fa-people-group"></i>
-                  <span class="ms-2 fw-bold">Créer ligue</span>
+                  <i class="fa fa-solid fa-people-group"></i>
+                  <span class="ms-1 fw-bold">Créer ligue</span>
                <% end %>
             </li>   
          </ul>
       </div>
 
       <div class="dropdown">
-         <button class="btn btn-sm btn-secondary dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+         <button class="btn btn-sm btn-outline-secondary dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-solid fa-xl fa-layer-group"></i>
-            <span class="ms-2 fw-bold">Mes divisions</span>
+            <span class="ms-1 fw-bold">Mes divisions</span>
          </button>
          <ul class="dropdown-menu dropdown-menu-dark">
             <% divisions_for_current_user.each do |division| %>
@@ -53,14 +53,14 @@
             <% end %>
             <li>
                <%= button_to display_demande_rattachement_home_index_path, class: "dropdown-item text-warning" do %>
-                  <i class="fa fa-solid fa-xl fa-people-group"></i>
-                  <span class="ms-2 fw-bold">Rejoindre ligue</span>
+                  <i class="fa fa-solid fa-people-group"></i>
+                  <span class="ms-1 fw-bold">Rejoindre ligue</span>
                <% end %>
             </li>
             <li>
                <%= button_to display_creer_ligue_home_index_path, class: "dropdown-item text-primary" do %>
-                  <i class="fa fa-solid fa-xl fa-people-group"></i>
-                  <span class="ms-2 fw-bold">Créer ligue</span>
+                  <i class="fa fa-solid fa-people-group"></i>
+                  <span class="ms-1 fw-bold">Créer ligue</span>
                <% end %>
             </li>   
          </ul>
@@ -68,39 +68,67 @@
 
    <% end %>
 
-   <%#= button_to display_parieurs_home_index_path, class: "btn btn-sm btn-success m-1" do %>
-   <%= link_to parieurs_path, class: "btn btn-sm btn-success m-1" do %>
-      <i class="fa fa-solid fa-xl fa-money-bill-wave"></i>
-      <span class="ms-2 fw-bold">Parieurs</span>
-   <% end %>
 
-   <%= link_to scoring_path, class: "btn btn-sm btn-warning m-1" do %>
-      <i class="fa fa-solid fa-xl fa-medal"></i>
-      <span class="ms-2 fw-bold">Scoring</span>
-   <% end %>
 
-   <%= link_to users_path, class: "btn btn-sm btn-dark m-1" do %>
-      <i class="fa fa-solid fa-xl fa-id-card"></i>
-      <span class="ms-2 fw-bold">Users</span>
-   <% end %>
+   <div class="dropdown">
+      <button class="btn btn-sm btn-outline-light dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
+         <i class="fa fa-solid fa-xl fa-ranking-star"></i>
+         <span class="ms-1 fw-bold">Users</span>
+      </button>
+      <ul class="dropdown-menu dropdown-menu-dark">
+         <li> 
+            <%= link_to users_path, class: "dropdown-item text-light m-1" do %>
+               <i class="fa fa-solid fa-id-card"></i>
+               <span class="ms-1 fw-bold">Profiles</span>
+            <% end %>
+         </li>    
+         <li> 
+            <%= link_to parieurs_path, class: "dropdown-item text-success m-1" do %>
+               <i class="fa fa-solid fa-money-bill-wave"></i>
+               <span class="ms-1 fw-bold">Parieurs</span>
+            <% end %>
+         </li>
+         <li> 
+            <%= link_to scoring_path, class: "dropdown-item text-warning m-1" do %>
+               <i class="fa fa-solid fa-medal"></i>
+               <span class="ms-1 fw-bold">Scoring</span>
+            <% end %>
+         </li>        
+      </ul>
+   </div>
+
+   <%#= link_to parieurs_path, class: "btn btn-sm btn-success m-1" do %>
+      <!--i class="fa fa-solid fa-xl fa-money-bill-wave"></i>
+      <span class="ms-2 fw-bold">Parieurs</span-->
+   <%# end %>
+
+   <%#= link_to scoring_path, class: "btn btn-sm btn-warning m-1" do %>
+      <!--i class="fa fa-solid fa-xl fa-medal"></i>
+      <span class="ms-2 fw-bold">Scoring</span-->
+   <%# end %>
+
+   <%#= link_to users_path, class: "btn btn-sm btn-dark m-1" do %>
+      <!--i class="fa fa-solid fa-xl fa-id-card"></i>
+      <span class="ms-2 fw-bold">Users</span-->
+   <%# end %>
 
    <% if current_user %>
-      <%= link_to user_path(current_user, anchor: 'partial-container'), class: "btn btn-sm btn-primary m-1" do %>
+      <%= link_to user_path(current_user, anchor: 'partial-container'), class: "btn btn-sm btn-outline-primary m-1" do %>
          <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
-         <span class="ms-2 fw-bold">Mes stats</span>
+         <span class="ms-1 fw-bold">Stats</span>
       <% end %>
 
-      <%= link_to setup_dashboard_path, class: "btn btn-sm btn-success m-1 fa-bounce" do %>
-         <i class="fa fa-solid fa-xl fa-toolbox"></i>
-         <span class="ms-2 fw-bold">SetupTool</span>
+      <%= link_to setup_dashboard_path, class: "btn btn-sm btn-outline-success m-1 fa-fade" do %>
+         <i class="fa fa-solid fa-xl fa-screwdriver-wrench"></i>
+         <span class="ms-1 fw-bold">SetupTool</span>
       <% end %>
 
       <%= link_to abonnements_path, data: {turbo: "false"}, class: "btn btn-sm btn-outline-danger m-1" do %>
          <i class="fa fa-solid fa-xl fa-heart-circle-bolt"></i>
-         <span class="ms-2 fw-bold">Soutenir !</span>
+         <!--span class="ms-2 fw-bold">Soutenir !</span-->
       <% end %>
 
-      <div class="container-fluid my-3 px-4">
+      <!--div class="container-fluid my-3 px-4">
          <% if boolean_user_paid_purchase(current_user) %>
             <%= link_to vip_path, class: "btn btn-sm btn-outline-warning mx-1 w-100 fa-fade" do %>
                <i class="fa fa-solid fa-xl fa-crown me-1"></i>
@@ -113,7 +141,7 @@
             <% end %>
             
          <% end %>   
-      </div>
+      </div-->
 
    <% end %>
 
@@ -122,6 +150,8 @@
 <div class="d-flex flex-wrap justify-content-center align-items-center">
    <%= render "shared/connexion" %>
 </div>
+
+<hr>
 
 <div class="px-2">
    <h4 class="text-center my-2 mb-3">Leaders</h4> 
