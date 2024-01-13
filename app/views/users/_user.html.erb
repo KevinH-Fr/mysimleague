@@ -71,15 +71,23 @@
 
     <% if current_user && current_user == @user %>
 
-      <div class="container-fluid mt-4">  
-        <%= link_to 'Edit Profile', edit_user_registration_path(@user),
-            class: "btn btn-primary" %>
+    <hr>
+    
+      <div class="container-fluid mt-4 d-flex align-items-center justify-content-center">  
 
-        <%= button_to "", destroy_user_session_path, method: :delete, 
-            data: {turbo: "false"},
-            class: "fa-solid fa-right-from-bracket btn btn-danger mt-2"  %>
+            <%= link_to edit_user_registration_path(@user), class: "btn btn-sm btn-secondary mx-1" do %>
+              <i class="fa fa-solid fa-xl fa-pen-to-square"></i>
+              <span>Editer</span>
+            <% end %>
+            
+            <%= button_to destroy_user_session_path, method: :delete, 
+                data: {turbo: "false"}, class: "btn btn-sm btn-danger mx-1" do %>
+                  <i class="fa fa-solid fa-xl fa-right-from-bracket"></i>
+                  <span>Déconnexion</span>
+            <% end %>
+            
+
       </div>
-
 
     <% end %>
 
