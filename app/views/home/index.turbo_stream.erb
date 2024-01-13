@@ -1,7 +1,7 @@
 <%# feeds infinite scroll pagination %>
 <%= turbo_stream.append :feeds do %>
     <% @feeds.each do |feed| %>
-      <%= link_to feed_path(feed), class: "no-underline text-dark" do %>
+      <%= link_to feed_path(feed), class: "no-underline" do %>
         <div class="record-with-effect d-flex align-items-center ps-2">
         
           <%= feed_icon(feed) %> 

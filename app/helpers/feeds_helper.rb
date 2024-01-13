@@ -58,8 +58,8 @@ module FeedsHelper
                         when 3 then "yellow"
                         else "blue"
                         end
-            content_tag :i, "", class: "fa fa-2x fa-solid fa-crown me-2 fa-fade", style: "color: #{crown_color};"
-        
+            
+                content_tag :i, "", class: "fa fa-2x fa-solid fa-crown me-2 fa-fade", style: "color: #{crown_color};"
 
         else
             content_tag :i, "", class: "fa fa-xl fa-question-circle text-dark me-2"
@@ -95,58 +95,85 @@ module FeedsHelper
             combined_content = span_label + " " + span_content
         when "Resultat"
             span_label = content_tag(:span, "Resultat")
-            span_content = content_tag(:span, feed.association_user.user.short_name, class: "fw-bold mx-1")
-            span_image = image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
-   
+
+            span_content = link_to(user_path(feed.association_user.user.id), class: "no-underline") do
+                content_tag(:span, feed.association_user.user.short_name, class: "fw-bold me-1")
+            end 
+
+            span_image = link_to(user_path(feed.association_user.user.id)) do
+                image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic ms-2 mx-1", alt: "user picture")
+            end
+
             span_icon_parieur = icon_leader_parieur(feed.association_user.user.id)
             span_icon_leader_user = icon_leader_user(feed.association_user.user.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.association_user.user.id)
             span_icon_abonne =  user_paid_purchases_icon(feed.association_user.user)
 
-            combined_content = span_label + span_image  + " " + span_content +  span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            combined_content = content_tag(:div, class: "d-flex align-items-center") do
+                span_label + span_image + "  " + span_content + span_icon_parieur + span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            end
+
         when "Pari"
             span_label = content_tag(:span, "Pari")
-            span_content = content_tag(:span, feed.user.nom, class: "fw-bold mx-1")
-            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
-        
+            
+            span_content = link_to(user_path(feed.user.id), class: "no-underline") do
+                content_tag(:span, feed.user.nom, class: "fw-bold me-1")
+            end
+
+            span_image = link_to(user_path(feed.user.id)) do
+                image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-2 mx-1", alt: "user picture")
+            end 
+
             span_icon_parieur = icon_leader_parieur(feed.user.id)
             span_icon_leader_user = icon_leader_user(feed.user.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
             span_icon_abonne =  user_paid_purchases_icon(feed.user)
 
-            combined_content = span_label + span_image  + " " + span_content +  span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            combined_content = content_tag(:div, class: "d-flex align-items-center") do
+                span_label + span_image  + " " + span_content +  span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            end 
 
         when "User"
 
             if feed.present? 
                 span_label = content_tag(:span, "User")
-                span_content = content_tag(:span, feed.short_name, class: "fw-bold mx-1")
-                span_image = image_tag(feed.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
+                span_content = content_tag(:span, feed.short_name, class: "fw-bold me-1")
+                span_image = image_tag(feed.webp_variant, class: "mini-profile-pic ms-2 mx-1", alt: "user picture")
                 
                 span_icon_parieur = icon_leader_parieur(feed.id)
                 span_icon_leader_user = icon_leader_user(feed.id)
                 span_icon_leader_pilote = icon_leader_pilote(feed.id)
                 span_icon_abonne =  user_paid_purchases_icon(feed)
 
-                combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+                combined_content = content_tag(:div, class: "d-flex align-items-center") do
+                    span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+                end 
             end 
         when "AssociationUser"
             span_label = content_tag(:span, "Pilote")
-            span_content = content_tag(:span, feed.user.short_name, class: "fw-bold mx-1")
-            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
+            span_content = content_tag(:span, feed.user.short_name, class: "fw-bold")
+            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-3 mx-1", alt: "user picture")
 
             span_icon_parieur = icon_leader_parieur(feed.user.id)
             span_icon_leader_user = icon_leader_user(feed.user.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
             span_icon_abonne =  user_paid_purchases_icon(feed.user)
 
-            combined_content = span_label  + span_image  + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote  + span_icon_abonne
+            combined_content = content_tag(:div, class: "d-flex align-items-center") do
+                span_label + span_image  + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote  + span_icon_abonne
+            end 
 
         when "Doi"
             span_label = content_tag(:span, "DOI")
             if feed.demandeur_id.present?
-                span_content = content_tag(:span, AssociationUser.find(feed.demandeur_id).user.short_name, class: "fw-bold")
-                span_image = image_tag(AssociationUser.find(feed.demandeur_id).user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
+
+                span_content = link_to(user_path(AssociationUser.find(feed.demandeur_id).user.id), class: "no-underline") do
+                    content_tag(:span, AssociationUser.find(feed.demandeur_id).user.short_name, class: "fw-bold mx-1")
+                end 
+
+                span_image = link_to(user_path(AssociationUser.find(feed.demandeur_id).user.id)) do
+                    image_tag(AssociationUser.find(feed.demandeur_id).user.webp_variant, class: "mini-profile-pic ms-2 me-1", alt: "user picture")
+                end 
 
                 span_icon_parieur = icon_leader_parieur(AssociationUser.find(feed.demandeur_id).user.id)
                 span_icon_leader_user = icon_leader_user(AssociationUser.find(feed.demandeur_id).user.id)
@@ -155,45 +182,72 @@ module FeedsHelper
 
             else
                 span_content = content_tag(:span, "Commissaire", class: "fw-bold")
-                span_image =  content_tag(:i, "", class: "fa fa-xl fa-person-military-pointing mx-2")
+                span_image = content_tag(:i, "", class: "fa fa-xl fa-person-military-pointing ms-2 mx-1")
             end 
-            combined_content = span_label + span_image +  " " + span_content  + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+
+            combined_content = content_tag(:div, class: "d-flex align-items-center") do
+                span_label + span_image +  " " + span_content  + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            end 
 
         when "Dotd"
             span_label = content_tag(:span, "DOTD")
-            span_content = content_tag(:span, feed.user.short_name, class: "fw-bold me-1")
-            span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
+
+            span_content = link_to(user_path(feed.user.id), class: "no-underline") do
+                content_tag(:span, feed.user.short_name, class: "fw-bold me-1")
+            end 
+
+            span_image = link_to(user_path(feed.user.id)) do
+                span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-3 mx-1", alt: "user picture")
+            end 
 
             span_icon_parieur = icon_leader_parieur(feed.user.id)
             span_icon_leader_user = icon_leader_user(feed.user.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
             span_icon_abonne =  user_paid_purchases_icon(feed.user)
 
-            combined_content = span_label + span_image + " " + span_content + " " + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            combined_content = content_tag(:div, class: "d-flex align-items-center") do
+                span_label + span_image + " " + span_content + " " + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            end 
 
         when "Presence"
             span_label = content_tag(:span, "Presence")
-            span_content = content_tag(:span, feed.association_user.user.short_name, class: "fw-bold me-1")
-            span_image = image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
-            
+
+            span_content = link_to(user_path(feed.association_user.user.id), class: "no-underline") do
+                content_tag(:span, feed.association_user.user.short_name, class: "fw-bold me-1")
+            end 
+
+            span_image = link_to(user_path(feed.association_user.user.id)) do
+                image_tag(feed.association_user.user.webp_variant, class: "mini-profile-pic ms-2 mx-1", alt: "user picture")
+            end 
+
             span_icon_parieur = icon_leader_parieur(feed.association_user.user.id)
             span_icon_leader_user = icon_leader_user(feed.association_user.user.id)
             span_icon_leader_pilote = icon_leader_pilote(feed.association_user.user.id)
             span_icon_abonne =  user_paid_purchases_icon(feed.association_user.user)
  
-            combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
-            
+            combined_content = content_tag(:div, class: "d-flex align-items-center") do
+                span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            end 
+
         when "Purchase"
                 span_label = content_tag(:span, "VIP")
-                span_content = content_tag(:span, feed.user.short_name, class: "fw-bold mx-1")
-                span_image = image_tag(feed.user.webp_variant, class: "mini-profile-pic mx-2", alt: "user picture")
-                
+
+                span_content = link_to(user_path(feed.user.id), class: "no-underline") do
+                    content_tag(:span, feed.user.short_name, class: "fw-bold me-1")
+                end
+
+                span_image = link_to(user_path(feed.user.id)) do
+                    image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-2 me-1", alt: "user picture")
+                end 
+
                 span_icon_parieur = icon_leader_parieur(feed.user.id)
                 span_icon_leader_user = icon_leader_user(feed.user.id)
                 span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
                 span_icon_abonne =  user_paid_purchases_icon(feed.user)
 
-                combined_content = span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+                combined_content = content_tag(:div, class: "d-flex align-items-center") do
+                    span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+                end 
         else
             span_label = content_tag(:span, "Model")
             span_content = content_tag(:span, feed, class: "fw-bold")
@@ -229,7 +283,6 @@ module FeedsHelper
           root_path
         end
       end
-
 
 
 
