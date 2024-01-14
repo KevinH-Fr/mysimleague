@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
  #     ActiveAnalytics.record_request(request)
  #   end
   
-    
+
     def event_courant 
         if params[:event]
             @event = Event.find(params[:event]) 

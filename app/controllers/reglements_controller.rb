@@ -127,7 +127,7 @@ class ReglementsController < ApplicationController
 
   def authorize_admin_ligue
     unless current_user && (verif_admin_ligue(current_user, session[:ligue]) || current_user.admin?)
-      redirect_to root_path, alert: "You are not authorized to perform this action."
+      redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
     end
   end
   

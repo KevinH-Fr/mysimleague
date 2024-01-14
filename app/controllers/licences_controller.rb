@@ -27,7 +27,7 @@ class LicencesController < ApplicationController
     calcul_recup_licence(@event).each do |pilote|
       if pilote[:recup_applicable] == true
         Licence.create(association_user_id: pilote[:id], event_id: @event.id, gain: pilote[:nb_points_recup])
-        puts "________________create licence recup pour asso user: #{pilote[:id]}"
+      #  puts "________________create licence recup pour asso user: #{pilote[:id]}"
       end
     end
 
@@ -38,7 +38,7 @@ class LicencesController < ApplicationController
       event: @event.id
     )
 
-    flash[:notice] = "Licences updated successfully." 
+    flash[:notice] = I18n.t('notices.successfully_updated')
 
 
   end
@@ -57,7 +57,7 @@ class LicencesController < ApplicationController
 
     def authorize_admin_ligue
       unless current_user && verif_admin_ligue(current_user, session[:ligue]) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 

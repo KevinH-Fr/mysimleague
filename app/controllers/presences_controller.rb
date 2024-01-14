@@ -23,7 +23,7 @@ class PresencesController < ApplicationController
       if @presence.update(presence_params)
 
         format.turbo_stream do
-          flash.now[:success] = "presence was successfully updated"
+          flash.now[:success] = I18n.t('notices.successfully_updated')
 
           render turbo_stream: [ 
             turbo_stream.update(@presence, 
@@ -62,7 +62,7 @@ class PresencesController < ApplicationController
 
     respond_to do |format|
       if @presence.save
-        flash.now[:success] = "presence was successfully created"
+        flash.now[:success] = I18n.t('notices.successfully_created')
 
         format.turbo_stream do
           render turbo_stream: [
@@ -101,7 +101,7 @@ class PresencesController < ApplicationController
     @presence.destroy
   
     respond_to do |format|
-      flash.now[:success] = "presence was successfully destroyed"
+      flash.now[:success] = I18n.t('notices.successfully_destroyed')
       format.turbo_stream do
 
         render turbo_stream: [
@@ -128,19 +128,19 @@ class PresencesController < ApplicationController
 
     def authorize_user_ligue
       unless current_user && verif_appartenance_division(current_user, session[:division]) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 
     def authorize_edit_user
       unless current_user && verif_propriete_presence(current_user, @presence.association_user_id) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 
     def check_datetime_user_presence
       unless current_user && verif_delai_presence(Event.find(session[:event]).id)
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert:  I18n.t('notices.unauthorized_action') 
       end
     end
 

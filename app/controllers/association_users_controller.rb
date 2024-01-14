@@ -62,7 +62,7 @@ class AssociationUsersController < ApplicationController
           ]
         end
 
-        format.html { redirect_to association_user_url(@association_user), notice: "asso user was successfully created." }
+        format.html { redirect_to association_user_url(@association_user), notice: I18n.t('notices.successfully_created') }
         format.json { render :show, status: :created, location: @association_user }
       else
 
@@ -103,7 +103,7 @@ class AssociationUsersController < ApplicationController
           ]
         end
 
-        format.html { redirect_to association_user_url(@association_user), notice: "Association was successfully updated." }
+        format.html { redirect_to association_user_url(@association_user), notice: I18n.t('notices.successfully_updated') }
         format.json { render :show, status: :ok, location: @association_user }
       else
 
@@ -136,7 +136,7 @@ class AssociationUsersController < ApplicationController
           ]
       end
 
-      format.html { redirect_to association_users_url, notice: "Association was successfully destroyed." }
+      format.html { redirect_to association_users_url, notice: I18n.t('notices.successfully_destroyed')}
       format.json { head :no_content }
     end
   end
@@ -145,7 +145,7 @@ class AssociationUsersController < ApplicationController
 
     def authorize_admin_ligue
       unless current_user && verif_admin_ligue(current_user, session[:ligue]) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 

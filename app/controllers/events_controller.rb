@@ -47,7 +47,7 @@ class EventsController < ApplicationController
               saison: @event.division.saison.id, 
               division: @event.division.id,
               event: @event.id
-            ), notice: "event was successfully created" }
+            ), notice: I18n.t('notices.successfully_created') }
           
           format.json { render :show, status: :created, location: @event }
 
@@ -73,7 +73,7 @@ class EventsController < ApplicationController
 
     respond_to do |format|
       if @event.update(event_params)
-        flash.now[:success] = "event was successfully updated"
+        flash.now[:success] = I18n.t('notices.successfully_updated')
 
         format.turbo_stream do
           render turbo_stream: [
@@ -111,7 +111,7 @@ class EventsController < ApplicationController
         ligue: @event.division.saison.ligue, 
         saison: @event.division.saison,
         division: @event.division),
-        notice: "Event was successfully destroyed." }
+        notice: I18n.t('notices.successfully_destroyed')}
       format.json { head :no_content }
     end
   end
@@ -151,7 +151,7 @@ class EventsController < ApplicationController
 
     def authorize_admin_ligue
       unless current_user && verif_admin_ligue(current_user, session[:ligue]) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: "Tu n'es pas autorisé(e) à faire cette action"
       end
     end
 

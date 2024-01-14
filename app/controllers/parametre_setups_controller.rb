@@ -146,7 +146,7 @@ class ParametreSetupsController < ApplicationController
 
     def authorize_edit_user
       unless current_user && verif_user_setup(current_user, @parametre_setup.setup.user_id) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 

@@ -55,7 +55,7 @@ class SetupsController < ApplicationController
        #   ]
        # end
 
-        format.html { redirect_to setup_url(@setup), notice: "Setup was successfully created." }
+        format.html { redirect_to setup_url(@setup), notice: I18n.t('notices.successfully_created') }
         format.json { render :show, status: :created, location: @setup }
       else
 
@@ -81,7 +81,7 @@ class SetupsController < ApplicationController
           render turbo_stream: turbo_stream.update(@setup, partial: 'setups/setup', locals: { setup: @setup })
         end
 
-        format.html { redirect_to setup_url(@setup), notice: "Setup was successfully updated." }
+        format.html { redirect_to setup_url(@setup), notice: I18n.t('notices.successfully_updated') }
         format.json { render :show, status: :ok, location: @setup }
       else
 
@@ -100,7 +100,7 @@ class SetupsController < ApplicationController
 
     respond_to do |format|
       format.turbo_stream { render turbo_stream: turbo_stream.remove(@setup) }
-      format.html { redirect_to setups_url, notice: "Setup was successfully destroyed." }
+      format.html { redirect_to setups_url, notice: I18n.t('notices.successfully_destroyed') }
       format.json { head :no_content }
     end
   end
@@ -164,7 +164,7 @@ class SetupsController < ApplicationController
 
     def authorize_edit_user
       unless current_user && verif_user_setup(current_user, @setup.user_id) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 

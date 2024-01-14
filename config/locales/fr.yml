@@ -28,3 +28,10 @@ fr:
       about_x_years:
         one: "1 an"
         other: "%{count} ans"
+
+
+  notices:
+    successfully_created: "Création réussie."
+    successfully_updated: "Mise à jour réussie."
+    successfully_destroyed: "Suppression réussie."
+    unauthorized_action: "Tu n'es pas autorisé(e) à effectuer cette action"

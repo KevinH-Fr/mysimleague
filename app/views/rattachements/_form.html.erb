@@ -26,14 +26,22 @@
   <% if controller.controller_name == "home" %> <%# pour rattachement depuis ligue %>
 
     <div data-controller="form-rattachement">
-      <span class="badge me-2">Ligue </span>
-      <% Ligue.all.each do |ligue| %>
-        <%= form.button ligue.nom, ligue: ligue.id, type: "button", 
+
+      <div class="input-group input-group-sm my-2">
+        <%= form.label :ligue, class: "input-group-text label-colored" %>
+        <%= form.select :ligue_id, Ligue.all.map { |ligue| [ligue.nom, ligue.id] }, 
+              {}, class: "form-control input-colored" %>
+      </div>
+
+
+      <!--span class="badge me-2">Ligue </span-->
+      <%# Ligue.all.each do |ligue| %>
+        <%#= form.button ligue.nom, ligue: ligue.id, type: "button", 
           data: { action: "click->form-rattachement#setField", ligue: ligue.id, ligue_nom: ligue.nom },
           class: "btn btn-sm btn-warning" %>
-      <% end %>
-      
-      <%= form.hidden_field :ligue_id, data: { form_rattachement_target: "ligue" } %>
+      <%# end %>
+      <%#= form.hidden_field :ligue_id, data: { form_rattachement_target: "ligue" } %>
+
 
       <div class="input-group input-group-sm my-2">
         <%= form.label :message, class: "input-group-text label-colored" %>

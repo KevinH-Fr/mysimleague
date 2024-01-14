@@ -56,7 +56,7 @@ class DoisController < ApplicationController
           ]
         end
 
-        format.html { redirect_to doi_url(@doi), notice: "Doi was successfully created." }
+        format.html { redirect_to doi_url(@doi), notice: I18n.t('notices.successfully_created') }
         format.json { render :show, status: :created, location: @doi }
       else
 
@@ -81,7 +81,7 @@ class DoisController < ApplicationController
                     locals: { doi: @doi })
         end
 
-        format.html { redirect_to doi_url(@doi), notice: "Doi was successfully updated." }
+        format.html { redirect_to doi_url(@doi), notice: I18n.t('notices.successfully_edited') }
         format.json { render :show, status: :ok, location: @doi }
       else
 
@@ -110,7 +110,7 @@ class DoisController < ApplicationController
         render turbo_stream: turbo_stream.remove(@doi)
       end
 
-      format.html { redirect_to dois_url, notice: "Doi was successfully destroyed." }
+      format.html { redirect_to dois_url, notice: I18n.t('notices.successfully_destroyed')}
       format.json { head :no_content }
     end
   end
@@ -131,7 +131,7 @@ class DoisController < ApplicationController
       else
         # If not an admin ligue, check division membership
         unless current_user && verif_appartenance_division(current_user, session[:division]) 
-          redirect_to root_path, alert: "You are not authorized to perform this action."
+          redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
         end
       end
     end
@@ -139,7 +139,7 @@ class DoisController < ApplicationController
 
     def user_connected_doi_ouvert
       unless verif_admin_ligue(current_user, session[:ligue]) || verif_delai_doi(session[:event])        
-          redirect_to root_path, alert: "You are not authorized to perform this action."
+          redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
     

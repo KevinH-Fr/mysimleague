@@ -50,7 +50,7 @@ class ResultatsController < ApplicationController
 
     respond_to do |format|
       if @resultat.save
-        flash.now[:success] = "resultat was successfully created"
+        flash.now[:success] = I18n.t('notices.successfully_created')
 
         #call maj paris liés 
         update_paris_resultats(@resultat.event_id, @resultat.association_user_id, @resultat.qualification.to_i, @resultat.course.to_i,
@@ -110,7 +110,7 @@ class ResultatsController < ApplicationController
 
     respond_to do |format|
       if @resultat.update(resultat_params)
-        flash.now[:success] = "resultat was successfully updated"
+        flash.now[:success] = I18n.t('notices.successfully_updated')
 
         #call maj score pilote 
          @resultat.association_user.user.update(score_pilote: scoring_pilote_sum(  @resultat.association_user.user))
@@ -154,7 +154,7 @@ class ResultatsController < ApplicationController
     @resultat.destroy
 
     respond_to do |format|
-      flash.now[:success] = "resultat was successfully destroyed"
+      flash.now[:success] = I18n.t('notices.successfully_destroyed')
 
       #call maj paris liés 
       false_paris_resultats(@resultat.event_id, @resultat.association_user_id)
@@ -216,7 +216,7 @@ class ResultatsController < ApplicationController
 
     def authorize_admin_ligue
       unless current_user && verif_admin_ligue(current_user, session[:ligue]) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 

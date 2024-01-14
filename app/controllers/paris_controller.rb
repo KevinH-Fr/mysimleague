@@ -35,7 +35,7 @@ class ParisController < ApplicationController
 
       respond_to do |format|
         if @pari.save
-          flash.now[:success] = "pari was successfully created"
+          flash.now[:success] = I18n.t('notices.successfully_created')
 
 
           format.turbo_stream do
@@ -107,19 +107,19 @@ class ParisController < ApplicationController
 
     def user_connected_pari_ouvert
       unless current_user && verif_delai_pari(Event.find(session[:event]).id)
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 
     def authorize_edit_user
       unless current_user && verif_user_pari(current_user, @pari.user_id) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 
     def user_not_in_division
       if verif_appartenance_division(current_user, Event.find(session[:event]).division_id)
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
     

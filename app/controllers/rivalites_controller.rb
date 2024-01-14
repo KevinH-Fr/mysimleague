@@ -13,7 +13,7 @@ class RivalitesController < InheritedResources::Base
     respond_to do |format|
       if @rivalite.save
 
-        flash.now[:success] = "rivalité was successfully created"
+        flash.now[:success] = I18n.t('notices.successfully_created')
 
         format.turbo_stream do
           render turbo_stream: [
@@ -70,7 +70,7 @@ def update
         render turbo_stream: turbo_stream.update(@rivalite, partial: 'rivalites/rivalite', locals: { rivalite: @rivalite })
       end
 
-      format.html { redirect_to rivalite_url(@rivalite), notice: "rivalite was successfully updated." }
+      format.html { redirect_to rivalite_url(@rivalite), notice: I18n.t('notices.successfully_updated')}
       format.json { render :show, status: :ok, location: @rivalite }
     else
 
@@ -98,7 +98,7 @@ def destroy
       ]
     end
 
-    format.html { redirect_to rivalites_url, notice: "rivalite was successfully destroyed." }
+    format.html { redirect_to rivalites_url, notice: I18n.t('notices.successfully_destroyed') }
     format.json { head :no_content }
   end
 end
@@ -118,7 +118,7 @@ end
 
   def authorize_admin_ligue
     unless current_user && verif_admin_ligue(current_user, session[:ligue]) 
-      redirect_to root_path, alert: "You are not authorized to perform this action."
+      redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
     end
   end
 

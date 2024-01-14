@@ -48,7 +48,7 @@ class AssociationAdminsController < ApplicationController
           ]
         end
 
-        format.html { redirect_to association_admin_url(@association_admin), notice: "Reglement was successfully created." }
+        format.html { redirect_to association_admin_url(@association_admin), notice: I18n.t('notices.successfully_created') }
         #format.html { redirect_back(fallback_location: url_for, notice: 'admin created.') }
         format.json { render :show, status: :created, location: @association_admin }
       else
@@ -69,7 +69,7 @@ class AssociationAdminsController < ApplicationController
                     locals: { association_admin: @association_admin })
         end
 
-        format.html { redirect_to association_admin_url(@association_admin), notice: "Association was successfully updated." }
+        format.html { redirect_to association_admin_url(@association_admin), notice: I18n.t('notices.successfully_updated') }
         format.json { render :show, status: :ok, location: @association_admin }
       else
 
@@ -92,7 +92,7 @@ class AssociationAdminsController < ApplicationController
       format.turbo_stream do
         render turbo_stream: turbo_stream.remove(@association_admin)
       end
-      format.html { redirect_to association_admins_url, notice: "Association admin was successfully destroyed." }
+      format.html { redirect_to association_admins_url, notice: I18n.t('notices.successfully_destroyed') }
       format.json { head :no_content }
     end
   end
@@ -101,7 +101,7 @@ class AssociationAdminsController < ApplicationController
 
     def authorize_admin_ligue
       unless current_user && verif_admin_ligue(current_user, session[:ligue]) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
     

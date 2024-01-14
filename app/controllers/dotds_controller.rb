@@ -37,7 +37,7 @@ class DotdsController < ApplicationController
 
         respond_to do |format|
           if @dotd.save
-            flash.now[:success] = "dotd was successfully created"
+            flash.now[:success] = I18n.t('notices.successfully_created')
 
             format.turbo_stream do
               render turbo_stream: [
@@ -87,7 +87,7 @@ class DotdsController < ApplicationController
 
       respond_to do |format|
         if @dotd.update(dotd_params)
-          flash.now[:success] = "dotd was successfully updated"
+          flash.now[:success] = I18n.t('notices.successfully_updated')
 
           format.turbo_stream do
             render turbo_stream: [
@@ -125,7 +125,7 @@ class DotdsController < ApplicationController
     @dotd.destroy
 
     respond_to do |format|
-      flash.now[:success] = "dotd was successfully destroyed"
+      flash.now[:success] = I18n.t('notices.successfully_destroyed')
 
       format.turbo_stream do
         render turbo_stream: [
@@ -154,19 +154,19 @@ class DotdsController < ApplicationController
     
     def user_connected_dotd_ouvert
       unless current_user && verif_delai_dotd(session[:event])
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 
     def user_first_vote
       if verif_presence_dotd(current_user.id, session[:event])
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 
     def authorize_edit_user
       unless current_user && verif_user_dotd(current_user, @dotd.user_id) 
-        redirect_to root_path, alert: "You are not authorized to perform this action."
+        redirect_to root_path, alert: I18n.t('notices.unauthorized_action') 
       end
     end
 
