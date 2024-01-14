@@ -36,3 +36,12 @@
   <% end %>
   
 </div>
+
+
+    <div class="my-3 d-flex justify-content-center align-items-center">
+        <%= back_button_setup_dashboard %>
+        <%= back_button_root %>
+        <%= link_to abonnements_path, data: {turbo: "false"}, class: "btn btn-sm btn-outline-danger m-1" do %>
+           <i class="fa fa-solid fa-xl fa-heart-circle-bolt"></i>
+        <% end %>
+    </div>
