@@ -4,7 +4,7 @@ module FeedsHelper
         # Define the models you want to fetch
         models_to_fetch = 
         [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence,
-            Ligue, Saison, Division, Circuit, Equipe, Purchase ]
+            Ligue, Saison, Division, Circuit, Equipe, Purchase, Setup ]
 
         @feeds = []
       
@@ -50,6 +50,9 @@ module FeedsHelper
             content_tag :i, "", class: "fa fa-2x fa-solid fa-ranking-star text-primary me-2"
         when "Presence"
             content_tag :i, "", class: "fa fa-2x fa-solid fa-street-view text-warning me-2"
+
+        when "Setup"
+            content_tag :i, "", class: "fa fa-2x fa-solid fa-screwdriver-wrench text-success me-2"
 
         when "Purchase"
             crown_color = case feed.article.niveau
@@ -230,24 +233,45 @@ module FeedsHelper
             end 
 
         when "Purchase"
-                span_label = content_tag(:span, "VIP")
+            span_label = content_tag(:span, "VIP")
 
-                span_content = link_to(user_path(feed.user.id), class: "no-underline") do
-                    content_tag(:span, feed.user.short_name, class: "fw-bold me-1")
-                end
+            span_content = link_to(user_path(feed.user.id), class: "no-underline") do
+                content_tag(:span, feed.user.short_name, class: "fw-bold me-1")
+            end
 
-                span_image = link_to(user_path(feed.user.id)) do
-                    image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-2 me-1", alt: "user picture")
-                end 
+            span_image = link_to(user_path(feed.user.id)) do
+                image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-2 me-1", alt: "user picture")
+            end 
 
-                span_icon_parieur = icon_leader_parieur(feed.user.id)
-                span_icon_leader_user = icon_leader_user(feed.user.id)
-                span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
-                span_icon_abonne =  user_paid_purchases_icon(feed.user)
+            span_icon_parieur = icon_leader_parieur(feed.user.id)
+            span_icon_leader_user = icon_leader_user(feed.user.id)
+            span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
+            span_icon_abonne =  user_paid_purchases_icon(feed.user)
 
-                combined_content = content_tag(:div, class: "d-flex align-items-center") do
-                    span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
-                end 
+            combined_content = content_tag(:div, class: "d-flex align-items-center") do
+                span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            end 
+    
+        when "Setup"
+            span_label = content_tag(:span, "Setup")
+
+            span_content = link_to(user_path(feed.user.id), class: "no-underline") do
+                content_tag(:span, feed.user.short_name, class: "fw-bold me-1")
+            end 
+
+            span_image = link_to(user_path(feed.user.id)) do
+                image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-2 mx-1", alt: "user picture")
+            end 
+
+            span_icon_parieur = icon_leader_parieur(feed.user.id)
+            span_icon_leader_user = icon_leader_user(feed.user.id)
+            span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
+            span_icon_abonne =  user_paid_purchases_icon(feed.user)
+    
+            combined_content = content_tag(:div, class: "d-flex align-items-center") do
+              span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            end 
+
         else
             span_label = content_tag(:span, "Model")
             span_content = content_tag(:span, feed, class: "fw-bold")
@@ -279,6 +303,8 @@ module FeedsHelper
             circuit_path(feed) 
         when "Purchase"
             abonnements_path() 
+        when "Setup"
+            setup_dashboard_path 
         else
           root_path
         end
