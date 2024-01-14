@@ -17,9 +17,12 @@ class ParametreSetup < ApplicationRecord
   def format_step
     if base_setup.number_format == 'entiers' || nil
       1
-    else
+    elsif base_setup.number_format == 'dixiemes'
       0.1
+    elsif base_setup.number_format == 'centiemes'
+      0.01
     end
+
   end
 
   private
