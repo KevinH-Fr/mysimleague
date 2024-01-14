@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-md fixed-top navbar-dark bg-dark">
+<nav class="navbar navbar-expand-lg fixed-top navbar-dark bg-dark">
   <div class="container-fluid m-0 p-0">
     <div class="text-start">
         
@@ -12,17 +12,55 @@
     <div class="collapse navbar-collapse px-2" id="navbarNav">
       <ul class="navbar-nav px-2">
         <li class="nav-item">
-          <%= link_to "Welcome", root_path, class:"nav-link" %>
+          <%= link_to root_path, class:"nav-link text-warning" do %>
+            <i class="fa fa-xl fa-solid fa-flag-checkered"></i>
+            <span class="ms-1 fw-bold">Welcome</span>
+          <% end %>
         </li>
         <li class="nav-item">
-          <%= link_to "Home", home_index_path, class:"nav-link" %>
+          <%= link_to home_index_path, class:"nav-link" do %>
+            <i class="fa fa-xl fa-solid fa-home"></i>
+            <span class="ms-1 fw-bold">Home</span>
+          <% end %>
+          
         </li>
         <li class="nav-item">
-          <%= link_to "Menu", menu_index_path, class:"nav-link" %>
+          <%= link_to menu_index_path, class:"nav-link text-light" do %>
+            <i class="fa fa-xl fa-solid fa-compass"></i>
+            <span class="ms-1 fw-bold">Menu</span>
+          <% end %>
+           
         </li>
-        <li class="nav-item">
-          <%= link_to "Users", users_path, class:"nav-link" %>
+
+        <li class="nav-item dropdown m-0 p-0">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-solid fa-users"></i>
+              <span class="ms-1 fw-bold">Users</span>
+              
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark m-0 p-0">
+              <li> 
+                  <%= link_to users_path, class: "dropdown-item text-light" do %>
+                    <i class="fa fa-solid fa-id-card"></i>
+                    <span class="ms-1 fw-bold">Profiles</span>
+                  <% end %>
+              </li>    
+              <li> 
+                  <%= link_to parieurs_path, class: "dropdown-item text-success" do %>
+                    <i class="fa fa-solid fa-money-bill-wave"></i>
+                    <span class="ms-1 fw-bold">Parieurs</span>
+                  <% end %>
+              </li>
+              <li> 
+                  <%= link_to scoring_path, class: "dropdown-item text-warning" do %>
+                    <i class="fa fa-solid fa-medal"></i>
+                    <span class="ms-1 fw-bold">Scoring</span>
+                  <% end %>
+              </li>        
+            </ul>
+
         </li>
+
 
         <% if current_user && current_user.admin  %>    
           <li class="nav-item">
@@ -59,9 +97,35 @@
           </li>
 
         <% else %>
-            <!--li class="nav-item">
-              <%#= link_to "Soutenir !", abonnements_path, data: {turbo: "false"}, class:"nav-link text-danger fa fa-fade" %>
-            </li-->
+
+          <li class="nav-item">
+            <%= link_to user_path(current_user, anchor: 'partial-container'), class: "nav-link text-primary no-underline" do %>
+              <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
+              <span class="ms-1 fw-bold">Stats</span>
+            <% end %>
+          </li>
+          
+          <li class="nav-item">
+            <%= link_to setup_dashboard_path, class:  "nav-link text-success no-underline" do %>
+              <i class="fa fa-solid fa-xl fa-screwdriver-wrench"></i>
+              <span class="ms-1 fw-bold">SetupTool</span>
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to user_path(current_user), class: "nav-link text-warning no-underline" do %>
+              <i class="fa fa-solid fa-xl fa-user"></i>
+              <span class="ms-1 fw-bold">Mon compte</span>
+            <% end %>
+          </li>
+
+          <li class="nav-item">
+            <%= link_to abonnements_path, data: {turbo: "false"}, class: "nav-link text-danger no-underline" do %>
+              <i class="fa fa-solid fa-xl fa-heart-circle-bolt"></i>
+              <span class="ms-1 fw-bold">Soutenir</span>
+            <% end %>
+          </li>
+
         <% end %>  
 
 
