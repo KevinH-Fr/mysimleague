@@ -1,0 +1,46 @@
+
+<div class="container-fluid d-flex m-1 p-1 text-center">
+
+  <div class="container rounded-pill m-1 p-2 text-light fw-bold fs-6" style="background-color: rgba(255, 255, 255, 0.2);">
+    <div class="row align-items-center justify-content-center">
+      <div class="col p-0">
+        <i class="fa fa-user-group"></i>
+      </div>
+      <div class="col-lg p-0 d-none d-lg-block text-center">
+        users
+      </div>
+      <div class="col p-0">
+        <div data-controller="counter" data-target-value="<%= @nb_users %>"></div>
+      </div>  
+    </div>
+  </div>
+
+  <div class="container rounded-pill m-1 p-2 text-light fw-bold fs-6" style="background-color: rgba(255, 255, 255, 0.2);">
+    <div class="row align-items-center justify-content-center">
+      <div class="col p-0">
+        <i class="fa fa-flag-checkered"></i>
+      </div>
+      <div class="col-lg p-0 d-none d-lg-block text-center">
+        courses
+      </div>
+      <div class="col p-0">
+        <div data-controller="counter" data-target-value="<%= @nb_courses %>"></div>
+      </div>  
+    </div>
+  </div>
+
+  <div class="container rounded-pill m-1 p-2 text-light fw-bold fs-6" style="background-color: rgba(255, 255, 255, 0.2);">
+    <div class="row align-items-center justify-content-center">
+      <div class="col p-0">
+        <i class="fa fa-money-bill-wave"></i>
+      </div>
+      <div class="col-lg p-0 d-none d-lg-block text-center">
+        paris
+      </div>
+      <div class="col p-0">
+        <div data-controller="counter" data-target-value="<%= @nb_paris %>"></div>
+      </div>  
+    </div>
+  </div>
+
+</div>
