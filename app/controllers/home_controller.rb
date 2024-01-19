@@ -66,6 +66,10 @@ class HomeController < ApplicationController
         format.html
         format.turbo_stream
       end
+
+      @nb_users = User.all.count
+      @nb_courses = Event.all.count
+      @nb_paris = Pari.all.count
       
       
     end 
