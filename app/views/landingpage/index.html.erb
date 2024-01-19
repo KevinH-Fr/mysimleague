@@ -16,6 +16,18 @@
     </h1>
 
     <div class="container" style="max-width: 800px;">
+
+      <%#= 
+        test ajout nb users avec animation 
+        idem test nb paris 
+        nb courses etc 
+      %>
+
+      <%= render 'counter' %>
+
+
+
+
       <%= link_to home_index_path, class:"btn w-100 btn-dark fw-bold mt-2 mb-3 px-5" do %>
         <i class="me-2 fa fa-solid fa-lg fa-home" aria-hidden="true"></i>
         Home
@@ -266,6 +278,7 @@
 
 </div>
 
+
 <footer>
   <small>
     <p style="font-style: italic;">
@@ -294,3 +307,4 @@
   // Call reanimateSvg every 5 seconds (5000 milliseconds)
   setInterval(reanimateSvg, 2000);
 </script>
+

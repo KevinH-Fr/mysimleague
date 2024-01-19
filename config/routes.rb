@@ -255,6 +255,7 @@ Rails.application.routes.draw do
   get 'classement_pilotes/index'
 
   get 'home/index'
+
   get '/pilotes', to: 'home#pilotes', as: 'pilotes'
 
   get '/abonnements', to: 'home#abonnements', as: 'abonnements'

@@ -2,7 +2,7 @@
 
 pin "application", preload: true
 pin "@hotwired/turbo-rails", to: "turbo.min.js", preload: true
-pin "@hotwired/stimulus", to: "stimulus.min.js", preload: true
+pin "@hotwired/stimulus", to: "https://ga.jspm.io/npm:@hotwired/stimulus@3.2.2/dist/stimulus.js"
 pin "@hotwired/stimulus-loading", to: "stimulus-loading.js", preload: true
 
 
@@ -18,4 +18,3 @@ pin "@kurkle/color", to: "https://ga.jspm.io/npm:@kurkle/color@0.3.2/dist/color.
 pin "three", to: "https://ga.jspm.io/npm:three@0.158.0/build/three.module.js"
 
 pin_all_from "app/javascript/controllers", under: "controllers"
-
