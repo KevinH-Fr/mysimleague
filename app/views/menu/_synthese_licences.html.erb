@@ -4,31 +4,64 @@
   Retrouve ici la synthèse des licences pilotes !
   </div>
 
-  <h4 class="titre-topic">
-    synthèse licences 
-    <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
-      <%= link_to  "update", update_licences_path(@event), class: "btn btn-sm btn-primary" %>
-    <% end %>
-  </h4>
-  <%#= link_to  "supprimer licences", supprimer_licences_path(@event), class: "btn btn-danger" %>
+  <% if @event.division.licence_equipe %>
 
-  <% cumul_licence_user(@event).each do |pilote| %>
-    <div class=" d-flex align-items-center justify-content-center my-1 p-0" style="">
-        <%= equipe_banner_with_data(
-            AssociationUser.find(pilote[:association_user_id]).equipe, 
-            User.find(pilote[:user_id]).nom,
-            User.find(pilote[:user_id]).id) %> 
-        <div class="d-flex align-items-center justify-content-center">
+    <h4 class="titre-topic">
+      synthèse licences équipe
+      <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
+        <%= link_to  "update", update_licences_equipe_path(@event), class: "btn btn-sm btn-primary" %>
+      <% end %>
+    </h4>
 
-          <%= link_to '+', synthese_licences_details_path(user: pilote[:user_id], event: @event ),
-                 class: "btn btn-sm btn-outline-warning m-1 p-0",
-                 style: "width: 12px;" %>
+    <% cumul_licence_equipe(@event).each do |equipe| %>
+      <div class=" d-flex align-items-center justify-content-center my-1 p-0" style="">
 
-          <%= badge_points_licence(pilote[:perte_total].to_s, "perte") %> 
-          <%= badge_points_licence(pilote[:gain_total].to_s, "gain") %> 
-          <%= badge_points_licence(pilote[:solde].to_s, "solde") %> 
+          <%= equipe_banner_with_data(
+              AssociationUser.find(equipe[:equipe_id]).equipe, 
+              AssociationUser.find(equipe[:equipe_id]).equipe.nom, 
+              User.find(equipe[:equipe_id]).id) %> 
+
+          <div class="d-flex align-items-center justify-content-center">
+
+            <%#= link_to '+', synthese_licences_details_path(user: pilote[:user_id], event: @event ),
+                  class: "btn btn-sm btn-outline-warning m-1 p-0",
+                  style: "width: 12px;" %>
+
+            <%= badge_points_licence(equipe[:perte_total].to_s, "perte") %> 
+            <%= badge_points_licence(equipe[:gain_total].to_s, "gain") %> 
+            <%= badge_points_licence(equipe[:solde].to_s, "solde") %> 
+          </div>
         </div>
-      </div>
+    <% end %>
+
+  <% else %>
+
+    <h4 class="titre-topic">
+      synthèse licences 
+      <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
+        <%= link_to  "update", update_licences_path(@event), class: "btn btn-sm btn-primary" %>
+      <% end %>
+    </h4>
+
+    <% cumul_licence_user(@event).each do |pilote| %>
+      <div class=" d-flex align-items-center justify-content-center my-1 p-0" style="">
+          <%= equipe_banner_with_data(
+              AssociationUser.find(pilote[:association_user_id]).equipe, 
+              User.find(pilote[:user_id]).nom,
+              User.find(pilote[:user_id]).id) %> 
+          <div class="d-flex align-items-center justify-content-center">
+
+            <%= link_to '+', synthese_licences_details_path(user: pilote[:user_id], event: @event ),
+                  class: "btn btn-sm btn-outline-warning m-1 p-0",
+                  style: "width: 12px;" %>
+
+            <%= badge_points_licence(pilote[:perte_total].to_s, "perte") %> 
+            <%= badge_points_licence(pilote[:gain_total].to_s, "gain") %> 
+            <%= badge_points_licence(pilote[:solde].to_s, "solde") %> 
+          </div>
+        </div>
+    <% end %>
+
   <% end %>
 
   <br>

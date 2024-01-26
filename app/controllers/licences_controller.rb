@@ -40,6 +40,40 @@ class LicencesController < ApplicationController
 
     flash[:notice] = I18n.t('notices.successfully_updated')
 
+  end
+
+
+  def update_licences_equipe
+
+    @event = event_courant #from appli controller
+    @dois = @event.dois
+
+    #effacer existants avant creation
+    Licence.where(event_id: @event.id).destroy_all
+
+    # creer licences avec pena depuis doi
+    @dois.each do |doi|
+      Licence.create(
+        association_user_id: doi.implique_id, 
+        event_id: @event.id, 
+        perte: doi.penalite )
+    end
+
+      calcul_recup_licence(@event).each do |pilote|
+      if pilote[:recup_applicable] == true
+        Licence.create(association_user_id: pilote[:id], event_id: @event.id, gain: pilote[:nb_points_recup])
+      #  puts "________________create licence recup pour asso user: #{pilote[:id]}"
+      end
+    end
+
+    redirect_to menu_index_path(
+      ligue: @event.division.saison.ligue, 
+      saison: @event.division.saison.id, 
+      division: @event.division.id,
+      event: @event.id
+    )
+
+    flash[:notice] = I18n.t('notices.successfully_updated')
 
   end
 

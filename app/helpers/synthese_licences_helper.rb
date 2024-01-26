@@ -109,8 +109,5 @@ module SyntheseLicencesHelper
   end
 
   
-  
-  
-
 
 end

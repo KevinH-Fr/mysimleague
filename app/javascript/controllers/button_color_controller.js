@@ -24,18 +24,15 @@ export default class extends Controller {
 
   changeIconColor(button, isActive) {
     const icon = button.querySelector(".fa");
-    const originalColorClass = button.dataset.originalColor;
-    
+    const originalColor = button.dataset.originalColor || "text-light";
+    const iconColor = button.dataset.iconColor || originalColor;
+
     if (isActive) {
-      const activeColorClass = "text-light";
-  
-      icon.classList.remove(originalColorClass);
-      icon.classList.add(activeColorClass);
+      icon.style.color = "white";
     } else {
-  
-      icon.classList.remove("text-light");
-      icon.classList.add(originalColorClass);
+      icon.style.color = iconColor;
     }
   }
+
   
 }

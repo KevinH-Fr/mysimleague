@@ -21,13 +21,11 @@ class UsersController < ApplicationController
     @data_resultats = resultats.to_json
     @data_resultats_compare = []
 
-
   end
 
   def create
     @user.twitch = sanitize(params[:user][:twitch])
   end
-  
 
   def index
     @q = User.ransack(params[:q])

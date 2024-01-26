@@ -161,6 +161,8 @@ Rails.application.routes.draw do
   end
 
   get 'update_licences/:event', to: 'licences#update_licences', as: 'update_licences'
+  get 'update_licences_equipe/:event', to: 'licences#update_licences_equipe', as: 'update_licences_equipe'
+
   get 'supprimer_licences/:event', to: 'licences#supprimer_licences', as: 'supprimer_licences'
 
   resources :dois do
