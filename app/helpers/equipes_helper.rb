@@ -49,7 +49,21 @@ module EquipesHelper
           end
     end
 
+    def equipes_division(division)
+      association_users = AssociationUser.includes(:user)
+      .where(
+        division_id: division,
+        actif: true,
+        valide: true
+      )
 
+      equipe_ids = association_users.pluck(:equipe_id).uniq
+      equipes = Equipe.where(id: equipe_ids)
+
+      equipes
+
+    end
+    
 
   end
   

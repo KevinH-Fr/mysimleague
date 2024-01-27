@@ -228,6 +228,7 @@ class MenuController < ApplicationController
 
     @event = Event.find(session[:event])
     @licences = @event.licences if @event 
+    @licences_equipes = @event.licences_equipes if @event 
 
     respond_to do |format|
       format.turbo_stream do

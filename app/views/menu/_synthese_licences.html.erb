@@ -5,34 +5,45 @@
   </div>
 
   <% if @event.division.licence_equipe %>
-
+  <%# adapter pour passer sur licence equipe %>
     <h4 class="titre-topic">
       synthèse licences équipe
       <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
-        <%= link_to  "update", update_licences_equipe_path(@event), class: "btn btn-sm btn-primary" %>
+        <%= link_to  "update", update_licences_equipes_path(@event), class: "btn btn-sm btn-primary" %>
       <% end %>
     </h4>
 
+
     <% cumul_licence_equipe(@event).each do |equipe| %>
+
       <div class=" d-flex align-items-center justify-content-center my-1 p-0" style="">
+        <%= equipe_banner_with_data(
+            Equipe.find(equipe[:equipe_id]), 
+            Equipe.find(equipe[:equipe_id]).nom,
+             Equipe.find(equipe[:equipe_id]).nom) %> 
+        <div class="d-flex align-items-center justify-content-center">
 
-          <%= equipe_banner_with_data(
-              AssociationUser.find(equipe[:equipe_id]).equipe, 
-              AssociationUser.find(equipe[:equipe_id]).equipe.nom, 
-              User.find(equipe[:equipe_id]).id) %> 
+          <%= link_to '+', synthese_licences_equipe_details_path(equipe: equipe[:equipe_id], event: @event ),
+                class: "btn btn-sm btn-outline-warning m-1 p-0",
+                style: "width: 12px;" %>
 
-          <div class="d-flex align-items-center justify-content-center">
-
-            <%#= link_to '+', synthese_licences_details_path(user: pilote[:user_id], event: @event ),
-                  class: "btn btn-sm btn-outline-warning m-1 p-0",
-                  style: "width: 12px;" %>
-
-            <%= badge_points_licence(equipe[:perte_total].to_s, "perte") %> 
-            <%= badge_points_licence(equipe[:gain_total].to_s, "gain") %> 
-            <%= badge_points_licence(equipe[:solde].to_s, "solde") %> 
-          </div>
+          <%= badge_points_licence(equipe[:perte_total].to_s, "perte") %> 
+          <%= badge_points_licence(equipe[:gain_total].to_s, "gain") %> 
+          <%= badge_points_licence(equipe[:solde].to_s, "solde") %> 
         </div>
+      </div>
+
+
     <% end %>
+    
+
+    <div class="container-fluid my-2 text-center">
+      <%= link_to "", generate_image_licences_equipe_path(event: @event.id), class: 'btn fa fa-image btn-outline-success w-50' %>
+      <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+    </div>
+    
+
+    
 
   <% else %>
 
@@ -62,13 +73,14 @@
         </div>
     <% end %>
 
+    <div class="container-fluid my-2 text-center">
+      <%= link_to "", generate_image_licences_path(event: @event.id), class: 'btn fa fa-image btn-outline-success w-50' %>
+      <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
+    </div>
+
   <% end %>
 
   <br>
 
-  <div class="container-fluid my-2 text-center">
-    <%= link_to "", generate_image_licences_path(event: @event.id), class: 'btn fa fa-image btn-outline-success w-50' %>
-    <%#= link_to "Animation", animation_path(event: @event.id), class: 'btn btn-primary' %>
-  </div>
 
 </div>

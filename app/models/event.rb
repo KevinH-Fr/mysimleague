@@ -7,6 +7,8 @@ class Event < ApplicationRecord
   has_many :paris, dependent: :destroy
   has_many :dotds, dependent: :destroy
   has_many :licences, dependent: :destroy
+  has_many :licences_equipes, dependent: :destroy
+
   has_many :dois, dependent: :destroy
   has_many :presences, dependent: :destroy
   

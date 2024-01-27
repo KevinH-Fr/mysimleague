@@ -23,9 +23,9 @@
         <h4> dépôt </h4>  
 
         <% if current_user && verif_admin_ligue(current_user, session[:ligue]) %> 
-          <div class="form-check form-switch h6">
-            <%= form.label :doicommissaire, "DOI commissaire", class: "form-check-label text-center" %>
-            <%= form.check_box :doicommissaire, class: "form-check-input text-center" %>
+          <div class="form-check form-switch h6 text-start mb-2">
+            <%= form.label :doicommissaire, "DOI commissaire", class: "form-check-label" %>
+            <%= form.check_box :doicommissaire, class: "form-check-input" %>
           </div>
         <% end %>
         

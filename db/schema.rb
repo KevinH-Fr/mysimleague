@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2024_01_26_183359) do
+ActiveRecord::Schema[7.0].define(version: 2024_01_27_095431) do
   create_table "active_admin_comments", force: :cascade do |t|
     t.string "namespace"
     t.text "body"
@@ -269,6 +269,17 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_26_183359) do
     t.index ["event_id"], name: "index_licences_on_event_id"
   end
 
+  create_table "licences_equipes", force: :cascade do |t|
+    t.integer "event_id", null: false
+    t.integer "equipe_id", null: false
+    t.integer "gain"
+    t.integer "perte"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["equipe_id"], name: "index_licences_equipes_on_equipe_id"
+    t.index ["event_id"], name: "index_licences_equipes_on_event_id"
+  end
+
   create_table "ligues", force: :cascade do |t|
     t.string "nom"
     t.boolean "reglement_defaut", default: true
@@ -493,6 +504,8 @@ ActiveRecord::Schema[7.0].define(version: 2024_01_26_183359) do
   add_foreign_key "events", "divisions"
   add_foreign_key "licences", "association_users"
   add_foreign_key "licences", "events"
+  add_foreign_key "licences_equipes", "equipes"
+  add_foreign_key "licences_equipes", "events"
   add_foreign_key "ligues", "users"
   add_foreign_key "parametre_setups", "base_setups"
   add_foreign_key "parametre_setups", "setups"

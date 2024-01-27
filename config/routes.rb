@@ -54,6 +54,7 @@ Rails.application.routes.draw do
   end
 
   get 'synthese_licences/details'
+  get 'synthese_licences_equipe/details'
 
   get 'parieurs/index'
   get 'cotes/index'
@@ -161,7 +162,7 @@ Rails.application.routes.draw do
   end
 
   get 'update_licences/:event', to: 'licences#update_licences', as: 'update_licences'
-  get 'update_licences_equipe/:event', to: 'licences#update_licences_equipe', as: 'update_licences_equipe'
+  get 'update_licences_equipe/:event', to: 'licences_equipes#update_licences_equipes', as: 'update_licences_equipes'
 
   get 'supprimer_licences/:event', to: 'licences#supprimer_licences', as: 'supprimer_licences'
 
@@ -248,6 +249,13 @@ Rails.application.routes.draw do
     end
   end
 
+  
+  resources :synthese_licences_equipe do
+    member do
+      get 'details'
+    end
+  end
+
   # fin partie setup tool
 
   get 'steps_compte/step1'
@@ -288,6 +296,8 @@ Rails.application.routes.draw do
   get 'generate_image_dois', to: 'dois#generate_image', as: 'generate_image_dois'
 
   get 'generate_image_licences', to: 'synthese_licences#generate_image', as: 'generate_image_licences'
+  get 'generate_image_licences_equipe', to: 'synthese_licences_equipe#generate_image', as: 'generate_image_licences_equipe'
+
   get 'generate_image_rivalites', to: 'rivalites#generate_image', as: 'generate_image_rivalites'
 
   get 'generate_image_parieurs', to: 'home#generate_image_parieurs', as: 'generate_image_parieurs'
