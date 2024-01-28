@@ -278,4 +278,17 @@ class MenuController < ApplicationController
     end
   end
 
+  def display_stats_event
+    @event = Event.find(session[:event])
+
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update(
+          'partial-container', partial: 'menu/stats_event'
+        )
+      end
+    end
+  end
+
+
 end

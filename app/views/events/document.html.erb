@@ -1,0 +1,81 @@
+
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+
+
+
+<%= stylesheet_link_tag "document" %>
+
+
+<div id="captureContainer" class="doc-background my-2" style="width: 600px; margin: 0 auto;">
+
+  <body>
+
+  <%= render partial: "documents/entete",  locals: { titre: "Stats Event" } %>
+
+    <%#= tableau data resultats %>
+        
+  <div class="overlay-content">
+
+    <div class="container badge-container rounded-pill m-1 text-light fw-bold fs-4" style="background-color: rgba(255, 255, 255, 0.2);">
+      <div class="row align-items-center justify-content-center p-2">
+        <div class="col p-0 m-0">
+          <i class="fa fa-user-group"></i>
+        </div>
+        <div class="col p-0 text-center">
+          paris
+        </div>
+        <div class="col p-1">
+           120 
+        </div>  
+      </div>
+    </div>
+
+    <div class="container rounded-pill m-1 text-light fw-bold fs-4" style="background-color: rgba(255, 255, 255, 0.2);">
+      <div class="row align-items-center justify-content-center p-2">
+        <div class="col p-0 m-0">
+          <i class="fa fa-user-group"></i>
+        </div>
+        <div class="col p-0 text-center">
+          DOI
+        </div>
+        <div class="col p-1">
+           120 
+        </div>  
+      </div>
+    </div>
+
+    <div class="container rounded-pill m-1 text-light fw-bold fs-4" style="background-color: rgba(255, 255, 255, 0.2);">
+      <div class="row align-items-center justify-content-center p-2">
+        <div class="col p-0 m-0">
+          <i class="fa fa-user-group"></i>
+        </div>
+        <div class="col p-0 text-center">
+          DOTD
+        </div>
+        <div class="col p-1">
+           120 
+        </div>  
+      </div>
+    </div>
+
+  </div>
+
+
+
+  </body>
+
+  <br><br>
+
+</div>
+
+
+<div class="d-flex">
+  <%= back_button_on_event(@event.id) %>
+  <button class="fa fa-solid fa-image btn btn-success m-1" data-controller="screenshot" 
+          data-nom-doc="<%= @event.nom_doc("stats") %>" 
+          data-action="click->screenshot#capture">
+  </button>
+</div>

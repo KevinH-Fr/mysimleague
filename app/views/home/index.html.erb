@@ -40,7 +40,7 @@
       <div class="dropdown">
          <button class="btn btn-sm btn-outline-secondary dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-solid fa-xl fa-layer-group"></i>
-            <span class="ms-1 fw-bold">Mes divisions</span>
+            <span class="ms-1 fw-bold">Mes div.</span>
          </button>
          <ul class="dropdown-menu dropdown-menu-dark">
             <% divisions_for_current_user.each do |division| %>
@@ -109,21 +109,6 @@
          <i class="fa fa-solid fa-xl fa-heart-circle-bolt"></i>
       <% end %>
 
-      <!--div class="container-fluid my-3 px-4">
-         <% if boolean_user_paid_purchase(current_user) %>
-            <%= link_to vip_path, class: "btn btn-sm btn-outline-warning mx-1 w-100 fa-fade" do %>
-               <i class="fa fa-solid fa-xl fa-crown me-1"></i>
-               <span> Accès VIP </span>
-            <% end %>
-         <% else %>
-            <%= link_to abonnements_path, data: {turbo: "false"}, class: "btn btn-sm btn-outline-warning w-100 fa-fade" do %>
-               <i class="fa fa-solid fa-xl fa-crown me-1"></i>
-               <span> Abonne toi pour l'accès VIP </span>
-            <% end %>
-            
-         <% end %>   
-      </div-->
-
    <% end %>
 
 </div>
@@ -132,12 +117,19 @@
    <%= render "shared/connexion" %>
 </div>
 
+
+<%# afficher link to menu event de la prochaine course du current_user %>
+<div class="container text-center my-2">
+   <%= user_prochaine_course(current_user) %>
+</div>
+   
+
 <hr>
 
 <%= render 'landingpage/counters' %>
 
 <div class="px-2">
-   <h4 class="text-center my-2 mb-3">Leaders</h4> 
+   <h4 class="text-center my-3">Leaders</h4> 
 
    <%= displayed_top_1_parieur(Date.today.year) %>
    <%= displayed_top_1_user %>

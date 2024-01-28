@@ -138,6 +138,12 @@ class EventsController < ApplicationController
     redirect_to menu_index_path(ligue: session[:ligue], saison: session[:saison] , division: session[:division] ) # Redirect back to the events page or adjust as needed
   end
   
+  def generate_image_stats_event
+
+    @event = Event.find(params[:event])
+    render "events/document"
+
+  end
 
   private
 

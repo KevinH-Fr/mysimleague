@@ -12,49 +12,50 @@
     <div class="collapse navbar-collapse px-2" id="navbarNav">
       <ul class="navbar-nav px-2">
         <li class="nav-item">
-          <%= link_to root_path, class:"nav-link text-warning" do %>
+          <%= link_to root_path, class: "nav-link text-warning d-flex align-items-center" do %>
             <i class="fa fa-xl fa-solid fa-flag-checkered"></i>
-            <span class="ms-1 fw-bold">Welcome</span>
+            <span class="ms-2 fw-bold">Welcome</span>
           <% end %>
         </li>
+
         <li class="nav-item">
-          <%= link_to home_index_path, class:"nav-link" do %>
+          <%= link_to home_index_path, class:"nav-link d-flex align-items-center" do %>
             <i class="fa fa-xl fa-solid fa-home"></i>
-            <span class="ms-1 fw-bold">Home</span>
+            <span class="ms-2 fw-bold">Home</span>
           <% end %>
           
         </li>
         <li class="nav-item">
-          <%= link_to menu_index_path, class:"nav-link text-light" do %>
+          <%= link_to menu_index_path, class:"nav-link text-light d-flex align-items-center" do %>
             <i class="fa fa-xl fa-solid fa-compass"></i>
-            <span class="ms-1 fw-bold">Menu</span>
+            <span class="ms-2 fw-bold">Menu</span>
           <% end %>
            
         </li>
 
         <li class="nav-item dropdown m-0 p-0">
             <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-              <i class="fa fa-solid fa-users"></i>
-              <span class="ms-1 fw-bold">Users</span>
+              <i class="fa fa-xl fa-solid fa-users"></i>
+              <span class="ms-2 fw-bold">Users</span>
               
             </a>
             <ul class="dropdown-menu dropdown-menu-dark m-0 p-0">
               <li> 
                   <%= link_to users_path, class: "dropdown-item text-light" do %>
                     <i class="fa fa-solid fa-id-card"></i>
-                    <span class="ms-1 fw-bold">Profiles</span>
+                    <span class="ms-2 fw-bold">Profiles</span>
                   <% end %>
               </li>    
               <li> 
                   <%= link_to parieurs_path, class: "dropdown-item text-success" do %>
                     <i class="fa fa-solid fa-money-bill-wave"></i>
-                    <span class="ms-1 fw-bold">Parieurs</span>
+                    <span class="ms-2 fw-bold">Parieurs</span>
                   <% end %>
               </li>
               <li> 
                   <%= link_to scoring_path, class: "dropdown-item text-warning" do %>
                     <i class="fa fa-solid fa-medal"></i>
-                    <span class="ms-1 fw-bold">Scoring</span>
+                    <span class="ms-2 fw-bold">Scoring</span>
                   <% end %>
               </li>        
             </ul>
@@ -64,20 +65,26 @@
 
         <% if current_user && current_user.admin  %>    
           <li class="nav-item">
-            <%= link_to  "Admin", admin_root_path, class:"nav-link text-warning" %>
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+              <i class="fa fa-xl fa-solid fa-user-shield"></i>
+              <span class="ms-2 fw-bold">Admin</span>
+            </a>
+            <ul class="dropdown-menu dropdown-menu-dark m-0 p-0">
+              <li> 
+                <%= link_to  "Admin", admin_root_path, class:"nav-link text-warning" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to  "Equipes", equipes_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to  "Circuits", circuits_path, class:"nav-link" %>
+              </li>
+              <li class="nav-item">
+                <%= link_to  "Règlements", reglements_path, class:"nav-link" %>
+              </li>
+            </ul>
           </li>   
-          <!--li class="nav-item">
-            <%#= link_to 'Stats', "/analytics", class:"nav-link text-warning" %> 
-          </li-->
-          <li class="nav-item">
-            <%= link_to  "Equipes", equipes_path, class:"nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to  "Circuits", circuits_path, class:"nav-link" %>
-          </li>
-          <li class="nav-item">
-            <%= link_to  "Règlements", reglements_path, class:"nav-link" %>
-          </li>
+
         <% end %>    
 
         <% unless current_user %>
@@ -99,30 +106,30 @@
         <% else %>
 
           <li class="nav-item">
-            <%= link_to user_path(current_user, anchor: 'partial-container'), class: "nav-link text-primary no-underline" do %>
+            <%= link_to user_path(current_user, anchor: 'partial-container'), class: "nav-link text-primary no-underline d-flex align-items-center" do %>
               <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
-              <span class="ms-1 fw-bold">Stats</span>
+              <span class="ms-2 fw-bold">Stats</span>
             <% end %>
           </li>
           
           <li class="nav-item">
-            <%= link_to setup_dashboard_path, class:  "nav-link text-success no-underline" do %>
+            <%= link_to setup_dashboard_path, class:  "nav-link text-success no-underline d-flex align-items-center" do %>
               <i class="fa fa-solid fa-xl fa-screwdriver-wrench"></i>
-              <span class="ms-1 fw-bold">SetupTool</span>
+              <span class="ms-2 fw-bold">SetupTool</span>
             <% end %>
           </li>
 
           <li class="nav-item">
-            <%= link_to user_path(current_user), class: "nav-link text-warning no-underline" do %>
+            <%= link_to user_path(current_user), class: "nav-link text-warning no-underline d-flex align-items-center" do %>
               <i class="fa fa-solid fa-xl fa-user"></i>
-              <span class="ms-1 fw-bold">Mon compte</span>
+              <span class="ms-2 fw-bold">Compte</span>
             <% end %>
           </li>
 
           <li class="nav-item">
-            <%= link_to abonnements_path, data: {turbo: "false"}, class: "nav-link text-danger no-underline" do %>
+            <%= link_to abonnements_path, data: {turbo: "false"}, class: "nav-link text-danger no-underline d-flex align-items-center" do %>
               <i class="fa fa-solid fa-xl fa-heart-circle-bolt"></i>
-              <span class="ms-1 fw-bold">Soutenir</span>
+              <span class="ms-2 fw-bold">Soutenir</span>
             <% end %>
           </li>
 

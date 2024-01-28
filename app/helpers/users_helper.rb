@@ -113,5 +113,30 @@ module UsersHelper
       resultats
     end
 
+    def user_prochaine_course(user)
+      if user
+        association_users = user.association_users.where(actif: true, valide: true)
+       
+          division_ids = association_users.pluck(:division_id)
+          related_events = Event.where(division_id: division_ids)
+          
+          # Find the event that is closest to Now
+          closest_event = related_events.where('horaire >= ?', Time.now).order('horaire ASC').first
+            
+          if closest_event
+            link_to menu_index_path(ligue: closest_event.division.saison.ligue.id, saison: closest_event.division.saison.id, division: closest_event.division.id, event: closest_event), 
+                  class: "btn btn-outline-light btn-xl m-1 p-3" do
+              concat content_tag(:span, "Ma prochaine course", class: "fst-italic text-secondary")
+              concat tag(:br, class: "mb-2")  # Add a line break here
+              concat image_tag(closest_event.circuit.drapeau, class: "img-fluid rounded mx-2", width: "25", height: "15") if closest_event.circuit.drapeau.present?
+              concat content_tag(:span, "n° #{closest_event.event_full_name}", class: "fw-bold")
+          end
+
+        end 
+
+      end
+    end    
+    
+
 end
   

@@ -27,6 +27,8 @@ Rails.application.routes.draw do
       post 'display_synthese_licences'
       post 'display_classement_equipes'
       post 'display_classement_pilotes'
+      post 'display_stats_event'
+
     end
 
   end
@@ -301,6 +303,8 @@ Rails.application.routes.draw do
   get 'generate_image_rivalites', to: 'rivalites#generate_image', as: 'generate_image_rivalites'
 
   get 'generate_image_parieurs', to: 'home#generate_image_parieurs', as: 'generate_image_parieurs'
+
+  get 'generate_image_stats_event', to: 'events#generate_image_stats_event', as: 'generate_image_stats_event'
 
 
   devise_for :admin_users, ActiveAdmin::Devise.config
