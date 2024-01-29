@@ -1,60 +1,38 @@
-<div class="overlay-content">
 
-  <div class="container badge-container rounded-pill m-1 text-light fw-bold fs-4" style="background-color: rgba(255, 255, 255, 0.2);">
-    <div class="row align-items-center justify-content-center p-2">
-      <div class="col p-0 m-0">
-        <i class="fa fa-user-group"></i>
-      </div>
-      <div class="col p-0 text-center">
-        paris
-      </div>
-      <div class="col p-1">
-        <div data-controller="counter" data-target-value="<%= 120 %>"></div>
-      </div>  
-    </div>
+
+<div class="d-flex justify-content-between p-2 mx-1">
+  <div class="container rounded p-2 text-center" style="background-color: rgba(255, 255, 255, 0.2);">
+      <i class="mx-1 fa fa-xl fa-money-bill-wave"></i>
+
+      <span class="fw-bold mx-2">  Paris </span>
+
+      <span>  nb: </span>
+      <span data-controller="counter" data-target-value="<%= @nb_paris %>"></span>
+
+      <span class="ms-2">  mises: </span>
+      <span data-controller="counter" data-target-value="<%= @sum_paris %>"></span>
+
+      <hr class="my-2">
+
+      <%= user_badge_with_infos(@pari_with_biggest_solde.user, "meilleur gain", @pari_with_biggest_solde.solde) %>
+      <%= user_badge_with_infos(@pari_with_highest_cote.user, "meilleure cote", @pari_with_highest_cote.cote) %>
+
   </div>
 
-  <div class="container rounded-pill m-1 text-light fw-bold fs-4" style="background-color: rgba(255, 255, 255, 0.2);">
-    <div class="row align-items-center justify-content-center p-2">
-      <div class="col p-0 m-0">
-        <i class="fa fa-user-group"></i>
-      </div>
-      <div class="col p-0 text-center">
-        DOI
-      </div>
-      <div class="col p-1">
-        <div data-controller="counter" data-target-value="<%= 6 %>"></div>
-      </div>  
-    </div>
-  </div>
-
-  <div class="container rounded-pill m-1 text-light fw-bold fs-4" style="background-color: rgba(255, 255, 255, 0.2);">
-    <div class="row align-items-center justify-content-center p-2">
-      <div class="col p-0 m-0">
-        <i class="fa fa-user-group"></i>
-      </div>
-      <div class="col p-0 text-center">
-        DOTD
-      </div>
-      <div class="col p-1">
-        <div data-controller="counter" data-target-value="<%= 22 %>"></div>
-      </div>  
-    </div>
-  </div>
 
 </div>
 
 
 
 
+
+
+
 <%# reprendre : 
-    - ajouter btn pour telecharger video 
-    - ajouter info sur la course en haut à droite
-    - ajouter info ou autre en bas
     - positionner les badges counters horizontalement
-    - ajouter les autres infos counters 
-    - info nb pos gain max entre qualif et course
-    - ajouter les bons icons 
-    - passer dans race me 
+
+      nb dotds 
+      nb doi 
+      plus gros gain position polite entre qualif et course 
 
 %>

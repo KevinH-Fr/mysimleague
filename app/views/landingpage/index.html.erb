@@ -37,6 +37,12 @@
           <i class="me-1 fa fa-solid fa-lg fa-user-plus" aria-hidden="true"></i>
           Créer un compte
         <% end %>
+      <% else %>
+        <%# afficher link to menu event de la prochaine course du current_user %>
+        <div class="container text-center my-2">
+          <%= user_prochaine_course(current_user) %>
+        </div>
+          
       <% end %>
 
     </div>

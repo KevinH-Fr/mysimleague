@@ -125,11 +125,11 @@ module UsersHelper
             
           if closest_event
             link_to menu_index_path(ligue: closest_event.division.saison.ligue.id, saison: closest_event.division.saison.id, division: closest_event.division.id, event: closest_event), 
-                  class: "btn btn-outline-light btn-xl m-1 p-3" do
-              concat content_tag(:span, "Ma prochaine course", class: "fst-italic text-secondary")
-              concat tag(:br, class: "mb-2")  # Add a line break here
+                  class: "btn btn-outline-light btn-xl m-0 p-3" do
+              concat content_tag(:div, "Ma prochaine course", class: "fst-italic text-light mb-1")
+             # concat tag(:br, class: "m-0")  # Add a line break here
               concat image_tag(closest_event.circuit.drapeau, class: "img-fluid rounded mx-2", width: "25", height: "15") if closest_event.circuit.drapeau.present?
-              concat content_tag(:span, "n° #{closest_event.event_full_name}", class: "fw-bold")
+              concat content_tag(:div, "n° #{closest_event.event_full_name}", class: "fw-bold")
           end
 
         end 
@@ -137,6 +137,23 @@ module UsersHelper
       end
     end    
     
+
+    def user_badge_with_infos(user, category, value)
+
+      link_to user_path(user), class: "no-underline" do
+  
+        content_tag(:div, class: "record-with-effect d-flex align-items-center p-2") do
+          concat image_tag(user.webp_variant, class: "mini-profile-pic me-2", alt: "user picture")
+          concat content_tag(:span, user.short_name, class: "fw-bold") 
+          concat content_tag(:span, category, class: "mx-2 text-warning")
+          concat content_tag(:span, number_to_human(value, units: { thousand: 'K', million: 'M', billion: 'B' }), class: "text-warning ms-2 me-1 fw-bold") 
+          concat content_tag(:i, "", class: "fa fa-xl fa-sack-dollar mx-2 text-warning")
+        end
+  
+      end
+  
+
+    end
 
 end
   

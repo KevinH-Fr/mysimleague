@@ -281,6 +281,17 @@ class MenuController < ApplicationController
   def display_stats_event
     @event = Event.find(session[:event])
 
+
+    @paris = @event.paris 
+    @nb_paris = @paris.count.to_i
+    @sum_paris = @paris.sum(:montant).to_i
+
+    won_paris = @paris.where(resultat: "true")
+
+    @pari_with_biggest_solde = won_paris.order(solde: :desc).first
+    
+    @pari_with_highest_cote = won_paris.order(cote: :desc).first
+
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.update(
