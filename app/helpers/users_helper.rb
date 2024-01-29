@@ -147,11 +147,26 @@ module UsersHelper
           concat content_tag(:span, user.short_name, class: "fw-bold") 
           concat content_tag(:span, category, class: "mx-2 text-warning")
           concat content_tag(:span, number_to_human(value, units: { thousand: 'K', million: 'M', billion: 'B' }), class: "text-warning ms-2 me-1 fw-bold") 
-          concat content_tag(:i, "", class: "fa fa-xl fa-sack-dollar mx-2 text-warning")
         end
   
       end
   
+
+    end
+
+
+    
+    def user_badge_with_infos_document(user, category, value)
+
+      content_tag(:div, class: "record-with-effect d-flex align-items-center p-2") do
+        
+        concat cl_image_tag(user.profile_pic.url, class: "mini-profile-pic me-2", alt: "user picture")
+      #cl_image_tag(equipe.banniere.url, 
+        
+        concat content_tag(:span, user.short_name, class: "fw-bold") 
+        concat content_tag(:span, category, class: "mx-2 text-warning")
+        concat content_tag(:span, number_to_human(value, units: { thousand: 'K', million: 'M', billion: 'B' }), class: "text-warning ms-2 me-1 fw-bold") 
+      end
 
     end
 

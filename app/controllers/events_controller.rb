@@ -141,6 +141,42 @@ class EventsController < ApplicationController
   def generate_image_stats_event
 
     @event = Event.find(params[:event])
+
+
+    if @event 
+
+      @paris = @event.paris 
+      @nb_paris = @paris.count.to_i
+      @sum_paris = @paris.sum(:montant).to_i
+
+      won_paris = @paris.where(resultat: "true")
+
+      @pari_with_biggest_solde = won_paris.order(solde: :desc).first
+      
+      @pari_with_highest_cote = won_paris.order(cote: :desc).first
+
+      @nb_dotds = @event.dotds.count
+
+      @association_user_with_most_votes = @event.dotds.joins(:association_user)
+      .group('association_users.id')
+      .order('COUNT(dotds.id) DESC')
+      .first
+
+      @nb_votes_association_user_dotd = @event.dotds.joins(:association_user)
+      .group('association_users.id')
+      .order('COUNT(dotds.id) DESC')
+      .count(:id)
+
+      @nb_dois = @event.dois.count
+
+
+      @resultat_with_biggest_delta = @event.resultats
+                                  .select('*, qualification - course AS delta')
+                                  .order('delta DESC')
+                                  .first
+      
+    end 
+    
     render "events/document"
 
   end

@@ -19,47 +19,70 @@
         
   <div class="overlay-content">
 
-    <div class="container badge-container rounded-pill m-1 text-light fw-bold fs-4" style="background-color: rgba(255, 255, 255, 0.2);">
-      <div class="row align-items-center justify-content-center p-2">
-        <div class="col p-0 m-0">
-          <i class="fa fa-user-group"></i>
-        </div>
-        <div class="col p-0 text-center">
-          paris
-        </div>
-        <div class="col p-1">
-           120 
-        </div>  
+    <div class="p-2 m-0">
+      <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
+          <i class="mx-1 fa fa-xl fa-money-bill-wave"></i>
+
+          <span class="fw-bold mx-1">  Paris </span>
+
+          <span>  nb: </span>
+          <span class=""><%= @nb_paris %> </span>
+
+          <span class="ms-2">  mises: </span>
+          <span class=""><%= @sum_paris %> </span>
+
+          <hr class="my-2">
+
+          <%= user_badge_with_infos_document(@pari_with_biggest_solde.user, "meilleur gain", @pari_with_biggest_solde.solde) %>
+
       </div>
+
+      <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
+        <i class="mx-1 fa fa-xl fa-star"></i>
+
+        <span class="fw-bold mx-1">  DOTD </span>
+
+        <span>  nb: </span>
+        <span class=""><%= @nb_dotds %> </span>
+
+        <hr class="my-2">
+
+        <%= user_badge_with_infos_document(@association_user_with_most_votes.association_user.user, "nb votes", @nb_votes_association_user_dotd.count ) %>
+
+      </div>
+
+
+
+      <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
+        <i class="mx-1 fa fa-xl fa-magnifying-glass"></i>
+
+        <span class="fw-bold mx-1">  DOI </span>
+
+        <span>  nb: </span>
+        <span class=""><%= @nb_dois %> </span>
+
+      </div>
+
+
+      <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
+        <i class="mx-1 fa fa-xl fa-flag-checkered"></i>
+
+        <span class="fw-bold mx-1">  Meilleure remontée </span>
+
+        <hr class="my-2">
+
+        <%= user_badge_with_infos_document(@resultat_with_biggest_delta.association_user.user, "delta qualif. course", @resultat_with_biggest_delta.qualification.to_i - @resultat_with_biggest_delta.course.to_i ) %>
+
+      </div>
+
+
     </div>
 
-    <div class="container rounded-pill m-1 text-light fw-bold fs-4" style="background-color: rgba(255, 255, 255, 0.2);">
-      <div class="row align-items-center justify-content-center p-2">
-        <div class="col p-0 m-0">
-          <i class="fa fa-user-group"></i>
-        </div>
-        <div class="col p-0 text-center">
-          DOI
-        </div>
-        <div class="col p-1">
-           120 
-        </div>  
-      </div>
-    </div>
 
-    <div class="container rounded-pill m-1 text-light fw-bold fs-4" style="background-color: rgba(255, 255, 255, 0.2);">
-      <div class="row align-items-center justify-content-center p-2">
-        <div class="col p-0 m-0">
-          <i class="fa fa-user-group"></i>
-        </div>
-        <div class="col p-0 text-center">
-          DOTD
-        </div>
-        <div class="col p-1">
-           120 
-        </div>  
-      </div>
-    </div>
+
+
+
+
 
   </div>
 

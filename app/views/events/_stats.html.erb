@@ -1,10 +1,10 @@
 
 
-<div class="d-flex justify-content-between p-2 mx-1">
-  <div class="container rounded p-2 text-center" style="background-color: rgba(255, 255, 255, 0.2);">
+<div class="p-2 m-0">
+  <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
       <i class="mx-1 fa fa-xl fa-money-bill-wave"></i>
 
-      <span class="fw-bold mx-2">  Paris </span>
+      <span class="fw-bold mx-1">  Paris </span>
 
       <span>  nb: </span>
       <span data-controller="counter" data-target-value="<%= @nb_paris %>"></span>
@@ -19,20 +19,46 @@
 
   </div>
 
+  <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
+    <i class="mx-1 fa fa-xl fa-star"></i>
+
+    <span class="fw-bold mx-1">  DOTD </span>
+
+    <span>  nb: </span>
+    <span data-controller="counter" data-target-value="<%= @nb_dotds %>"></span>
+
+    <hr class="my-2">
+
+    <%= user_badge_with_infos(@association_user_with_most_votes.association_user.user, "nb votes", @nb_votes_association_user_dotd.count ) %>
+
+  </div>
+
+
+
+  <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
+    <i class="mx-1 fa fa-xl fa-magnifying-glass"></i>
+
+    <span class="fw-bold mx-1">  DOI </span>
+
+    <span>  nb: </span>
+    <span data-controller="counter" data-target-value="<%= @nb_dois %>"></span>
+
+  </div>
+
+
+  <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
+    <i class="mx-1 fa fa-xl fa-flag-checkered"></i>
+
+    <span class="fw-bold mx-1">  Meilleure remontée </span>
+
+    <hr class="my-2">
+
+    <%= user_badge_with_infos(@resultat_with_biggest_delta.association_user.user, "delta qualif. course", @resultat_with_biggest_delta.qualification.to_i - @resultat_with_biggest_delta.course.to_i ) %>
+
+  </div>
+
 
 </div>
 
 
 
-
-
-
-
-<%# reprendre : 
-    - positionner les badges counters horizontalement
-
-      nb dotds 
-      nb doi 
-      plus gros gain position polite entre qualif et course 
-
-%>
