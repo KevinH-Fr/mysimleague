@@ -312,9 +312,10 @@ class MenuController < ApplicationController
       @most_common_implique_id = @implique_id_counts.max_by { |_, count| count }&.first
 
       @resultat_with_biggest_delta = @event.resultats
-      .select('*, (COALESCE(CAST(qualification AS SIGNED), 0) - COALESCE(CAST(course AS SIGNED), 0)) AS delta')
+      .select('*, (COALESCE(CAST(qualification AS INTEGER), 0) - COALESCE(CAST(course AS INTEGER), 0)) AS delta')
       .order('delta DESC')
       .first
+    
     
     
       
