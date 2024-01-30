@@ -161,7 +161,6 @@ module UsersHelper
       content_tag(:div, class: "record-with-effect d-flex align-items-center p-2") do
         
         concat cl_image_tag(user.profile_pic.url, class: "mini-profile-pic me-2", alt: "user picture")
-      #cl_image_tag(equipe.banniere.url, 
         
         concat content_tag(:span, user.short_name, class: "fw-bold") 
         concat content_tag(:span, category, class: "mx-2 text-warning")
