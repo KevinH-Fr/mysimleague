@@ -113,26 +113,27 @@ module UsersHelper
       resultats
     end
 
+
     def user_prochaine_course(user)
       if user
         association_users = user.association_users.where(actif: true, valide: true)
        
-          division_ids = association_users.pluck(:division_id)
-          related_events = Event.where(division_id: division_ids)
+        division_ids = association_users.pluck(:division_id)
+        related_events = Event.where(division_id: division_ids)
+        
+        # Find the event that is closest to Now
+        closest_event = related_events.where('horaire >= ?', Time.now).order('horaire ASC').first
           
-          # Find the event that is closest to Now
-          closest_event = related_events.where('horaire >= ?', Time.now).order('horaire ASC').first
-            
-          if closest_event
-            link_to menu_index_path(ligue: closest_event.division.saison.ligue.id, saison: closest_event.division.saison.id, division: closest_event.division.id, event: closest_event), 
-                  class: "btn btn-outline-light btn-xl m-0 p-3" do
-              concat content_tag(:div, "Ma prochaine course", class: "fst-italic text-light mb-1")
-             # concat tag(:br, class: "m-0")  # Add a line break here
-              concat image_tag(closest_event.circuit.drapeau, class: "img-fluid rounded mx-2", width: "25", height: "15") if closest_event.circuit.drapeau.present?
-              concat content_tag(:div, "n° #{closest_event.event_full_name}", class: "fw-bold")
+        if closest_event
+          link_to menu_index_path(ligue: closest_event.division.saison.ligue.id, saison: closest_event.division.saison.id, division: closest_event.division.id, event: closest_event), 
+                class: "btn btn-outline-primary m-0 p-2" do
+            concat content_tag(:div, "Ma prochaine course", class: "fst-italic text-light mb-1")
+            concat content_tag(:div, image_tag(closest_event.circuit.drapeau, class: "img-fluid rounded mx-2", width: "25", height: "15") + closest_event.short_name, class: "fw-bold text-light")
           end
+        end
+        
 
-        end 
+ 
 
       end
     end    
@@ -150,18 +151,14 @@ module UsersHelper
         end
   
       end
-  
 
     end
-
-
     
     def user_badge_with_infos_document(user, category, value)
 
       content_tag(:div, class: "record-with-effect d-flex align-items-center p-2") do
         
         concat cl_image_tag(user.profile_pic.url, class: "mini-profile-pic me-2", alt: "user picture")
-        
         concat content_tag(:span, user.short_name, class: "fw-bold") 
         concat content_tag(:span, category, class: "mx-2 text-warning")
         concat content_tag(:span, number_to_human(value, units: { thousand: 'K', million: 'M', billion: 'B' }), class: "text-warning ms-2 me-1 fw-bold") 
