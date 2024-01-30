@@ -129,7 +129,7 @@ module UsersHelper
                 class: "btn btn-outline-primary m-0 p-2" do
             concat content_tag(:div, "Ma prochaine course", class: "fst-italic text-light mb-1")
             concat content_tag(:div, image_tag(closest_event.circuit.drapeau, class: "img-fluid rounded mx-2", width: "25", height: "15") + 
-                  truncate(closest_event.short_name, length: 10), class: "fw-bold text-light")
+                  truncate(closest_event.short_name, length: 16), class: "fw-bold text-light")
           end
         end 
 
