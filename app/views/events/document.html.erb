@@ -7,7 +7,7 @@
 <%= stylesheet_link_tag "document" %>
 
 <div id="captureContainer" class="doc-background my-1" 
-     style="width: 600px; margin: 0 auto; background-image: url('images/stats_bg.webp');">
+     style="width: 600px; max-height: 900px; margin: 0 auto; background-image: url('images/stats_bg.webp');  background-size: cover;">
 
   <body>
 
@@ -67,7 +67,7 @@
             <hr class="text-light">   
             <div class="container w-75 mt-2">
               <%= user_badge_with_infos_document(@pari_with_biggest_solde.user, "meilleur gain", @pari_with_biggest_solde.solde) %>
-              <%= user_badge_with_infos(@pari_with_highest_cote.user, "meilleure cote", @pari_with_highest_cote.cote) %>
+              <%= user_badge_with_infos_document(@pari_with_highest_cote.user, "meilleure cote", @pari_with_highest_cote.cote) %>
             </div>
           </div>
 
