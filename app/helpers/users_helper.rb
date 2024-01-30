@@ -156,7 +156,12 @@ module UsersHelper
 
       content_tag(:div, class: "record-with-effect d-flex align-items-center p-2") do
         
-        concat cl_image_tag(user.profile_pic.url, class: "mini-profile-pic me-2", alt: "user picture")
+        if user.profile_pic.present?
+          concat cl_image_tag(user.default_profile_pic.url, class: "mini-profile-pic me-2", alt: "user picture")
+        else 
+          concat image_tag('/images/profile_default.webp', class: "mini-profile-pic me-2", alt: "user picture")
+        end 
+
         concat content_tag(:span, user.short_name, class: "fw-bold") 
         concat content_tag(:span, category, class: "mx-2 text-warning")
         concat content_tag(:span, number_to_human(value, units: { thousand: 'K', million: 'M', billion: 'B' }), class: "text-warning ms-2 me-1 fw-bold") 

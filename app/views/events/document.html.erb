@@ -48,109 +48,88 @@
             </td>
         </tr>
     </table>
-
-    <%#= tableau data resultats %>
         
-  <div class="overlay-content">
+    <div class="overlay-content">
 
-    <div class="p-2 m-0">
+      <div class="p-4 m-0">
 
-    <%#= alignement vertical dans entete paris icon etc 
-      et idems avec les autres
-     %>
+        <% if @paris.present? %>
 
-      <% if @paris.present? %>
-
-        <div class="row px-2 py-1">
-          <div class="col d-flex align-items-center rounded p-2 m-2" style="background-color: rgba(0, 0, 0, 0.6);">
-
-            <div class="container text-light text-center">
+          <div class="container text-center p-2 mb-3 rounded" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class= "d-flex align-items-center justify-content-center text-light">
               <i class="mx-1 fa fa-2xl fa-money-bill-wave text-success"></i>
-              <span class="fw-bold fs-2 mx-1">  Paris </span> 
-              <span class="fs-5"> nb: </span>
+              <span class="fw-bold fs-3 mx-3">  Paris </span> 
+              <span class="fs-5 me-1"> nb: </span>
               <span class="fs-5 fw-bold"> <%= @nb_paris %> </span>
-              <span class="ms-3 fs-5">  mises: </span>
+              <span class="ms-3 fs-5 me-1">  mises: </span>
               <span class="fs-5 fw-bold"><%= number_to_human(@sum_paris, units: { thousand: 'K', million: 'M', billion: 'B' })  %> </span>
-              <hr>   
-
-              <div class="container w-75 mt-2">
-                <%= user_badge_with_infos_document(@pari_with_biggest_solde.user, "meilleur gain", @pari_with_biggest_solde.solde) %>
-              </div>
+            </div>
+            <hr class="text-light">   
+            <div class="container w-75 mt-2">
+              <%= user_badge_with_infos_document(@pari_with_biggest_solde.user, "meilleur gain", @pari_with_biggest_solde.solde) %>
             </div>
           </div>
-        </div>
 
-      <% end %>
-
-      <% if @nb_dotds.present? %>
-        <% if @association_user_with_most_votes.present? %>
-
-          <div class="row px-2 py-1">
-            <div class="col d-flex align-items-center rounded p-2 m-2" style="background-color: rgba(0, 0, 0, 0.6);">
-
-              <div class="container text-light text-center">
-                <i class="mx-1 fa fa-2xl fa-star text-warning"></i>
-                <span class="fw-bold fs-2 mx-1">  DOTD </span> 
-                <span class="fs-5"> nb: </span>
-                <span class="fs-5 fw-bold"> <%= @nb_dotds %> </span>
-                <hr>   
-
-                <div class="container w-75 mt-2">
-                  <%= user_badge_with_infos_document(@association_user_with_most_votes.association_user.user, "nb votes", @nb_votes_association_user_dotd.count ) %>
-                </div>
-              </div>
-            </div>
-          </div>
-        
         <% end %>
-      <% end %>
 
-      <% if @dois.present? %>
+        <% if @nb_dotds.present? %>
+          <% if @association_user_with_most_votes.present? %>
 
-        <div class="row px-2 py-1">
-          <div class="col d-flex align-items-center rounded p-2 m-2" style="background-color: rgba(0, 0, 0, 0.6);">
-
-            <div class="container text-light text-center">
-              <i class="mx-1 fa fa-2xl fa-magnifying-glass text-danger"></i>
-              <span class="fw-bold fs-2 mx-1">  DOI </span> 
-              <span class="fs-5"> nb: </span>
-              <span class="fs-5 fw-bold"> <%= @dois.count %> </span>
-              <hr>   
-
+            <div class="container text-center p-2 mb-3 rounded" style="background-color: rgba(0, 0, 0, 0.6);">
+              <div class= "d-flex align-items-center justify-content-center text-light">
+                <i class="mx-1 fa fa-2xl fa-star text-warning"></i>
+                <span class="fw-bold fs-3 mx-3">  DOTD </span> 
+                <span class="fs-5 me-1"> nb: </span>
+                <span class="fs-5 fw-bold"> <%= @nb_dotds %> </span>
+              </div>
+              <hr class="text-light">   
               <div class="container w-75 mt-2">
-                <%= user_badge_with_infos_document(AssociationUser.find(@most_common_implique_id).user, "nb DOI", @implique_id_counts[@most_common_implique_id] ) %>
+                <%= user_badge_with_infos_document(@association_user_with_most_votes.association_user.user, "nb votes", @nb_votes_association_user_dotd.count ) %>
               </div>
             </div>
+          
+          <% end %>
+        <% end %>
+
+        <div class="container text-center p-2 mb-3 rounded" style="background-color: rgba(0, 0, 0, 0.6);">
+          <div class= "d-flex align-items-center justify-content-center text-light">
+            <i class="mx-1 fa fa-2xl fa-magnifying-glass text-danger"></i>
+            <span class="fw-bold fs-3 mx-3">  DOI </span> 
+            <span class="fs-5 me-1"> nb: </span>
+            <span class="fs-5 fw-bold"> <%= @dois.count %> </span>
           </div>
+
+          <% if @dois.present? %>
+            <hr class="text-light">   
+            <div class="container w-75 mt-2">
+              <%= user_badge_with_infos_document(AssociationUser.find(@most_common_implique_id).user, "nb DOI", @implique_id_counts[@most_common_implique_id] ) %>
+            </div>
+          <% end %>
         </div>
 
-      <% end %>
 
-      <% if @resultat_with_biggest_delta.present? %>
+        <% if @resultat_with_biggest_delta.present? %>
 
-        <div class="row px-2 py-1">
-          <div class="col d-flex align-items-center rounded p-2 m-2" style="background-color: rgba(0, 0, 0, 0.6);">
+          <div class="container text-center p-2 mb-3 rounded" style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class= "d-flex align-items-center justify-content-center text-light">
 
-            <div class="container text-light text-center">
               <i class="mx-1 fa fa-2xl fa-flag-checkered text-secondary"></i>
-              <span class="fw-bold fs-2 mx-1">  Meilleure remontée </span> 
-              <hr>   
+              <span class="fw-bold fs-3 mx-3">  Meilleure remontée </span> 
+            </div>
 
-              <div class="container w-75 mt-2">
-                <%= user_badge_with_infos_document(@resultat_with_biggest_delta.association_user.user, "delta qualif. course", @resultat_with_biggest_delta.qualification.to_i - @resultat_with_biggest_delta.course.to_i ) %>
-              </div>
+            <hr class="text-light">   
+
+            <div class="container w-75 mt-2">
+              <%= user_badge_with_infos_document(@resultat_with_biggest_delta.association_user.user, "delta qualif. course", @resultat_with_biggest_delta.qualification.to_i - @resultat_with_biggest_delta.course.to_i ) %>
             </div>
           </div>
-        </div>
-      
-      <% end %>
-    
+        <% end %>
+
+      </div>
+
+      <%= image_tag("/images/brandlogo.webp", width: 300, class: "px-4") %>
     </div>
-
-  </div>
-
-    <%= image_tag("/images/brandlogo.webp", width: 300, class: "px-2") %>
-
+  
   </body>
 
   <br><br>
