@@ -128,12 +128,10 @@ module UsersHelper
           link_to menu_index_path(ligue: closest_event.division.saison.ligue.id, saison: closest_event.division.saison.id, division: closest_event.division.id, event: closest_event), 
                 class: "btn btn-outline-primary m-0 p-2" do
             concat content_tag(:div, "Ma prochaine course", class: "fst-italic text-light mb-1")
-            concat content_tag(:div, image_tag(closest_event.circuit.drapeau, class: "img-fluid rounded mx-2", width: "25", height: "15") + closest_event.short_name, class: "fw-bold text-light")
+            concat content_tag(:div, image_tag(closest_event.circuit.drapeau, class: "img-fluid rounded mx-2", width: "25", height: "15") + 
+                  truncate(closest_event.short_name, length: 10), class: "fw-bold text-light")
           end
-        end
-        
-
- 
+        end 
 
       end
     end    
