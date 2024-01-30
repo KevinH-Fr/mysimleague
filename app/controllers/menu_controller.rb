@@ -312,9 +312,6 @@ class MenuController < ApplicationController
                                   .select('*, qualification - course AS delta')
                                   .order('delta DESC')
                                   .first
-
-
-
       
     end 
 

@@ -37,11 +37,6 @@ body, div, h2 {
   background-size: cover;
 }
 
-.doc-stats-background{
-  background-image: url('images/bg_grey.webp');
-  background-size: cover;
-}
-
 .col_pos_new {
   /*border: 2px solid rgb(255, 255, 255); */
   margin: 2px;
