@@ -174,11 +174,11 @@ class EventsController < ApplicationController
       @implique_id_counts = @dois.group_by(&:implique_id).transform_values(&:count)
       @most_common_implique_id = @implique_id_counts.max_by { |_, count| count }&.first
 
-
       @resultat_with_biggest_delta = @event.resultats
-                                  .select('*, qualification - course AS delta')
-                                  .order('delta DESC')
-                                  .first
+        .select('*, (COALESCE(CAST(qualification AS SIGNED), 0) - COALESCE(CAST(course AS SIGNED), 0)) AS delta')
+        .order('delta DESC')
+        .first
+    
       
     end 
     
