@@ -83,24 +83,26 @@
       <% end %>
 
       <% if @nb_dotds.present? %>
+        <% if @association_user_with_most_votes.present? %>
 
-        <div class="row px-2 py-1">
-          <div class="col d-flex align-items-center rounded p-2 m-2" style="background-color: rgba(0, 0, 0, 0.6);">
+          <div class="row px-2 py-1">
+            <div class="col d-flex align-items-center rounded p-2 m-2" style="background-color: rgba(0, 0, 0, 0.6);">
 
-            <div class="container text-light text-center">
-              <i class="mx-1 fa fa-2xl fa-star text-warning"></i>
-              <span class="fw-bold fs-2 mx-1">  DOTD </span> 
-              <span class="fs-5"> nb: </span>
-              <span class="fs-5 fw-bold"> <%= @nb_dotds %> </span>
-              <hr>   
+              <div class="container text-light text-center">
+                <i class="mx-1 fa fa-2xl fa-star text-warning"></i>
+                <span class="fw-bold fs-2 mx-1">  DOTD </span> 
+                <span class="fs-5"> nb: </span>
+                <span class="fs-5 fw-bold"> <%= @nb_dotds %> </span>
+                <hr>   
 
-              <div class="container w-75 mt-2">
-                <%= user_badge_with_infos_document(@association_user_with_most_votes.association_user.user, "nb votes", @nb_votes_association_user_dotd.count ) %>
+                <div class="container w-75 mt-2">
+                  <%= user_badge_with_infos_document(@association_user_with_most_votes.association_user.user, "nb votes", @nb_votes_association_user_dotd.count ) %>
+                </div>
               </div>
             </div>
           </div>
-        </div>
-
+        
+        <% end %>
       <% end %>
 
       <% if @dois.present? %>

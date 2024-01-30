@@ -24,22 +24,24 @@
 
   <% end %>
 
-  <% if @nb_dotds.present? %>
+  <% if @nb_dotds > 0 %>
+      <% if @association_user_with_most_votes.present? %>
 
-    <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
-      <i class="mx-1 fa fa-xl fa-star"></i>
+        <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
+          <i class="mx-1 fa fa-xl fa-star"></i>
 
-      <span class="fw-bold mx-1">  DOTD </span>
+          <span class="fw-bold mx-1">  DOTD </span>
 
-      <span>  nb: </span>
-      <span data-controller="counter" data-target-value="<%= @nb_dotds %>"></span>
+          <span>  nb: </span>
+          <span data-controller="counter" data-target-value="<%= @nb_dotds %>"></span>
 
-      <hr class="my-2">
+          <hr class="my-2">
 
-      <%= user_badge_with_infos(@association_user_with_most_votes.association_user.user, "nb votes", @nb_votes_association_user_dotd.count ) %>
+          <%= user_badge_with_infos(@association_user_with_most_votes.association_user.user, "nb votes", @nb_votes_association_user_dotd.count ) %>        
 
-    </div>
+      </div>
 
+      <% end %>
   <% end %>
 
   <% if @dois.present? %>
