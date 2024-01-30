@@ -8,14 +8,14 @@
                     <% if @event %>
                         <%= cl_image_tag(@event.division.saison.ligue.logo.url, 
                             :class => "position-relative rounded m-0 p-0 img-fluid",
-                            :style => "width: 80px; height: auto; display: block;") if @event.division.saison.ligue.logo.present? %>
+                            :style => "width: 50px; height: auto; display: block;") if @event.division.saison.ligue.logo.present? %>
                     <% end %>
                     
                     <%= titre %>
                 </h2>
             </td>
             <td class="text-end">  
-                <h6 class="doc-sous-titre">  
+                <h6 class="mt-5 doc-sous-titre">  
 
                     <% if @event %>
 

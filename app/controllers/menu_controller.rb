@@ -308,10 +308,7 @@ class MenuController < ApplicationController
       @dois = @event.dois
 
       @implique_id_counts = @dois.group_by(&:implique_id).transform_values(&:count)
-      @count_values = @implique_id_counts.values
       @most_common_implique_id = @implique_id_counts.max_by { |_, count| count }&.first
-
-
 
       @resultat_with_biggest_delta = @event.resultats
                                   .select('*, qualification - course AS delta')
