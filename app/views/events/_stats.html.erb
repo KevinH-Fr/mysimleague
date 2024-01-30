@@ -24,7 +24,7 @@
 
   <% end %>
 
-  <% if @dotds.present? %>
+  <% if @nb_dotds.present? %>
 
     <div class="container rounded p-2 text-center mb-2" style="background-color: rgba(255, 255, 255, 0.2);">
       <i class="mx-1 fa fa-xl fa-star"></i>
@@ -50,7 +50,11 @@
       <span class="fw-bold mx-1">  DOI </span>
 
       <span>  nb: </span>
-      <span data-controller="counter" data-target-value="<%= @nb_dois %>"></span>
+      <span data-controller="counter" data-target-value="<%= @dois.count %>"></span>
+
+      <hr class="my-2">
+
+      <%= user_badge_with_infos(AssociationUser.find(@most_common_implique_id).user, "nb DOI", @implique_id_counts[@most_common_implique_id] ) %>
 
     </div>
 
