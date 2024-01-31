@@ -30,6 +30,13 @@
       <%= form.check_box :licence_equipe, class: "form-check-input" %>
     </div>
 
+    <% if division.licence_equipe %>
+      <div class="input-group input-group-sm">
+       <%= form.label :points_initial, "Points départ licence", class: "input-group-text label-colored" %>
+        <%= form.text_field :points_initial, class: "form-control input-colored" %>
+      </div>
+    <% end %>
+
     <%= custom_submit_button("Division") %>
 
   <% end %>

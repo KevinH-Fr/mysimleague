@@ -7,7 +7,7 @@ module SyntheseLicencesEquipeHelper
     if event.present?
       equipes = equipes_division(event.division)
       ligue = event.division.saison.ligue
-      points_initial = ligue.points_initial
+      points_initial = event.division.points_initial
   
       equipes.each do |equipe|
         equipe_licences[equipe.id] ||= { 
@@ -45,7 +45,7 @@ module SyntheseLicencesEquipeHelper
 
 
   def calcul_recup_licence_equipe(event)
-    maximum_solde = event.division.saison.ligue.points_initial
+    maximum_solde = event.division.points_initial
   
     equipes = equipes_division(event.division)
   
