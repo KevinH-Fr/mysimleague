@@ -1,9 +1,4 @@
-#every 1.day, at: 'start of the day', roles: [:app] do
-#  runner 'BonusPariJob.perform_later'
-#end
-
-# config/schedule.rb
-
-every 1.day, at: 'start of the day', roles: [:app] do
-  rake 'my_tasks:enqueue_bonus_pari_job'
+# In your schedule.rb file
+every 1.month, at: 'start of the month', roles: [:app] do
+  runner 'BonusPariJob.perform_now'
 end

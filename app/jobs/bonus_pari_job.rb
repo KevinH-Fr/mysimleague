@@ -11,7 +11,7 @@ class BonusPariJob < ApplicationJob
       # Iterate through each user and give the bonus points based on the article's bonus_paris
       subscribed_users.each do |purchase|
         article = purchase.article
-        BonusPari.create(user_id: purchase.user_id, montant: article.bonus_paris)
+        BonusPari.create(user_id: purchase.user_id, montant: 0) #article.bonus_paris)
       end
     end
   end
