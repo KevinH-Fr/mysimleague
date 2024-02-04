@@ -1,4 +1,3 @@
-# app/jobs/bonus_pari_job.rb
 class BonusPariJob < ApplicationJob
     queue_as :default
   
