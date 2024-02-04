@@ -2,6 +2,9 @@ class BonusPariJob < ApplicationJob
     queue_as :default
   
     def perform
+
+      return unless Date.today.day == 1 # Execute only on the 1st day of the month
+
       # Get all subscribed users
       subscribed_users = Purchase.where(status: "paid")
   
