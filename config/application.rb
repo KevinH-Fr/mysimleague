@@ -25,6 +25,7 @@ module Mysimleague
    # config.middleware.use Rack::Deflater
 
 
+     config.active_job.queue_adapter = :async
 
 
   end

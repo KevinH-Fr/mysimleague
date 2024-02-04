@@ -1,0 +1,16 @@
+# app/jobs/bonus_pari_job.rb
+class BonusPariJob < ApplicationJob
+    queue_as :default
+  
+    def perform
+      # Get all subscribed users
+      subscribed_users = Purchase.where(status: "paid")
+  
+      # Iterate through each user and give the bonus points based on the article's bonus_paris
+      subscribed_users.each do |purchase|
+        article = purchase.article
+        BonusPari.create(user_id: purchase.user_id, montant: article.bonus_paris)
+      end
+    end
+  end
+  

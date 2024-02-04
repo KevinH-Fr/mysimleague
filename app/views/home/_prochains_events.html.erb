@@ -15,7 +15,7 @@
             <strong><%= event.division.nom %> </strong> 
 
             N°<strong> <%= event.numero %> </strong>
-            <strong> <%= truncate(event.circuit.short_name, length: 10) %> </strong>
+            <strong> <%= truncate(event.circuit.short_name, length: 12) %> </strong>
             <%= local_time event.horaire, format: :short %> 
 
         </div>  

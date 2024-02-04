@@ -4,7 +4,7 @@ module FeedsHelper
         # Define the models you want to fetch
         models_to_fetch = 
         [User, AssociationUser, Event, Resultat, Doi, Pari, Dotd, Presence,
-            Ligue, Saison, Division, Circuit, Equipe, Purchase, Setup ]
+            Ligue, Saison, Division, Circuit, Equipe, Purchase, Setup, BonusPari ]
 
         @feeds = []
       
@@ -64,6 +64,9 @@ module FeedsHelper
             
                 content_tag :i, "", class: "fa fa-2x fa-solid fa-crown me-2 fa-fade", style: "color: #{crown_color};"
 
+        when "BonusPari"
+            content_tag :i, "", class: "fa fa-2x fa-solid fa-money-bill-trend-up text-warning me-2"
+    
         else
             content_tag :i, "", class: "fa fa-xl fa-question-circle text-dark me-2"
         end 
@@ -272,6 +275,29 @@ module FeedsHelper
               span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
             end 
 
+        when "BonusPari"
+            span_label = content_tag(:span, "Bonus pari")
+
+            span_content = link_to(user_path(feed.user.id), class: "no-underline") do
+                content_tag(:span, feed.user.short_name, class: "fw-bold me-1")
+            end
+
+            span_image = link_to(user_path(feed.user.id)) do
+                image_tag(feed.user.webp_variant, class: "mini-profile-pic ms-2 me-1", alt: "user picture")
+            end 
+
+            span_icon_parieur = icon_leader_parieur(feed.user.id)
+            span_icon_leader_user = icon_leader_user(feed.user.id)
+            span_icon_leader_pilote = icon_leader_pilote(feed.user.id)
+            span_icon_abonne =  user_paid_purchases_icon(feed.user)
+
+            combined_content = content_tag(:div, class: "d-flex align-items-center") do
+                span_label + span_image + " " + span_content + span_icon_parieur +  span_icon_leader_user + span_icon_leader_pilote + span_icon_abonne
+            end 
+
+
+
+
         else
             span_label = content_tag(:span, "Model")
             span_content = content_tag(:span, feed, class: "fw-bold")
@@ -303,6 +329,10 @@ module FeedsHelper
             circuit_path(feed) 
         when "Purchase"
             abonnements_path() 
+
+        when "BonusPari"
+            abonnements_path() 
+
         when "Setup"
             setup_dashboard_path 
         else

@@ -2,8 +2,13 @@
   
     <h5 class="text-center"> <%= colored_by_niveau(article.niveau, article.titre) %> </h5>
     <small class="mb-2"><%= article.content %>   </small>
-    <div class="text-warning my-2"><%= number_to_currency(article.bonus_paris, precision: 0, unit: "", format: "%n %u") %> points bonus pour parier  </div>
 
+    <% if article.abonnement? %>
+      <div class="text-warning my-2"><%= number_to_currency(article.bonus_paris, precision: 0, unit: "", format: "%n %u") %> points bonus chaque mois pour parier  </div>
+    <% else %>
+      <div class="text-warning my-2"><%= number_to_currency(article.bonus_paris, precision: 0, unit: "", format: "%n %u") %> points bonus pour parier  </div>
+    <% end %>
+    
     <div class="container-fluid text-center my-2">
       <%= image_tag(article.image, width: 100) if article.image.present? %>
     </div>

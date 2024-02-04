@@ -77,3 +77,5 @@ gem 'meta-tags'
 gem 'stripe'
 
 gem 'ransack'
+
+gem 'whenever', require: false
