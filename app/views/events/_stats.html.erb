@@ -16,9 +16,11 @@
           <span data-controller="counter" data-target-value="<%= @sum_paris %>"></span>
 
           <hr class="my-2">
-
-          <% if @pari_with_biggest_solde.user.present? && @pari_with_highest_cote.user.present? %>            
+          
+          <% if @pari_with_biggest_solde %>
             <%= user_badge_with_infos(@pari_with_biggest_solde.user, "meilleur gain", @pari_with_biggest_solde.solde) %>
+          <% end %>
+          <% if @pari_with_highest_cote %>
             <%= user_badge_with_infos(@pari_with_highest_cote.user, "meilleure cote", @pari_with_highest_cote.cote) %>
           <% end %>
 
