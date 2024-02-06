@@ -276,7 +276,7 @@ module FeedsHelper
             end 
 
         when "BonusPari"
-            span_label = content_tag(:span, "Bonus pari")
+            span_label = content_tag(:span, "Bonus")
 
             span_content = link_to(user_path(feed.user.id), class: "no-underline") do
                 content_tag(:span, feed.user.short_name, class: "fw-bold me-1")

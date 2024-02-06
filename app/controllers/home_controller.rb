@@ -68,7 +68,7 @@ class HomeController < ApplicationController
       end
 
       @nb_users = User.all.count
-      @nb_courses = Event.all.count
+      @nb_courses = Event.where('horaire < ?', Time.now).count
       @nb_paris = Pari.all.count
       
       

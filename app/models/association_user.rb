@@ -14,6 +14,8 @@ class AssociationUser < ApplicationRecord
   has_many :pilote2_rivalites, class_name: 'Rivalite',
     foreign_key: 'pilote2_id'
 
+  validates :user_id, presence: true
+  validates :equipe_id, presence: true
 
   before_create :verif_doublon_user
   before_update :verif_doublon_user

@@ -34,4 +34,12 @@ fr:
     successfully_created: "Création réussie."
     successfully_updated: "Mise à jour réussie."
     successfully_destroyed: "Suppression réussie."
-    unauthorized_action: "Tu n'es pas autorisé(e) à effectuer cette action"
+    unauthorized_action: "Tu n'es pas autorisé(e) à effectuer cette action."
+    
+    errors:
+      association_user:
+        user:
+          required: "Le champ utilisateur est obligatoire."
+          blank: "L'utilisateur ne peut pas être vide."
+        equipe_id:
+          blank: "Le champ équipe est obligatoire."
