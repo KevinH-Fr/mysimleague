@@ -65,9 +65,14 @@
               <span class="fs-5 fw-bold"><%= number_to_human(@sum_paris, units: { thousand: 'K', million: 'M', billion: 'B' })  %> </span>
             </div>
             <hr class="text-light">   
+
             <div class="container w-75 mt-2">
-              <%= user_badge_with_infos_document(@pari_with_biggest_solde.user, "meilleur gain", @pari_with_biggest_solde.solde) %>
-              <%= user_badge_with_infos_document(@pari_with_highest_cote.user, "meilleure cote", @pari_with_highest_cote.cote) %>
+              <% if @pari_with_biggest_solde %>
+                <%= user_badge_with_infos_document(@pari_with_biggest_solde.user, "meilleur gain", @pari_with_biggest_solde.solde) %>
+              <% end %>
+              <% if @pari_with_highest_cote %>
+                <%= user_badge_with_infos_document(@pari_with_highest_cote.user, "meilleure cote", @pari_with_highest_cote.cote) %>
+              <% end %>
             </div>
           </div>
 
