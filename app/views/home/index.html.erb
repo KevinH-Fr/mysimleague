@@ -4,7 +4,7 @@
 
 <div class="d-flex flex-wrap justify-content-center align-items-center mt-4 mb-2">
    <%= link_to menu_index_path, class: "btn btn-sm btn-outline-light m-1" do %>
-      <i class="fa fa-solid fa-xl fa-compass"> </i>
+      <i class="fa fa-solid fa-compass"> </i>
       <span class="ms-1 fw-bold"> menu</span>
    <% end %>
 
@@ -18,20 +18,20 @@
 
       <div class="dropdown">
          <button class="btn btn-sm btn-outline-warning dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-solid fa-xl fa-people-group"></i>
+            <i class="fa fa-solid fa-people-group"></i>
             <span class="ms-1 fw-bold">ligue</span>
          </button>
          <ul class="dropdown-menu dropdown-menu-dark">
             <li>
                <%= button_to display_demande_rattachement_home_index_path, class: "dropdown-item text-warning" do %>
                   <i class="fa fa-solid fa-people-group"></i>
-                  <span class="ms-1 fw-bold">Rejoindre ligue</span>
+                  <span class="ms-1 fw-bold">rejoindre ligue</span>
                <% end %>
             </li>
             <li>
                <%= button_to display_creer_ligue_home_index_path, class: "dropdown-item text-primary" do %>
                   <i class="fa fa-solid fa-people-group"></i>
-                  <span class="ms-1 fw-bold">Créer ligue</span>
+                  <span class="ms-1 fw-bold">créer ligue</span>
                <% end %>
             </li>   
          </ul>
@@ -39,7 +39,7 @@
 
       <div class="dropdown">
          <button class="btn btn-sm btn-outline-secondary dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-            <i class="fa fa-solid fa-xl fa-layer-group"></i>
+            <i class="fa fa-solid fa-layer-group"></i>
             <span class="ms-1 fw-bold">mes div.</span>
          </button>
          <ul class="dropdown-menu dropdown-menu-dark">
@@ -53,13 +53,13 @@
             <li>
                <%= button_to display_demande_rattachement_home_index_path, class: "dropdown-item text-warning" do %>
                   <i class="fa fa-solid fa-people-group"></i>
-                  <span class="ms-1 fw-bold">Rejoindre ligue</span>
+                  <span class="ms-1 fw-bold">rejoindre ligue</span>
                <% end %>
             </li>
             <li>
                <%= button_to display_creer_ligue_home_index_path, class: "dropdown-item text-primary" do %>
                   <i class="fa fa-solid fa-people-group"></i>
-                  <span class="ms-1 fw-bold">Créer ligue</span>
+                  <span class="ms-1 fw-bold">créer ligue</span>
                <% end %>
             </li>   
          </ul>
@@ -69,7 +69,7 @@
 
    <div class="dropdown">
       <button class="btn btn-sm btn-outline-light dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
-         <i class="fa fa-solid fa-xl fa-users"></i>
+         <i class="fa fa-solid fa-users"></i>
          <span class="ms-1 fw-bold">users</span>
       </button>
       <ul class="dropdown-menu dropdown-menu-dark">
@@ -96,12 +96,12 @@
 
    <% if current_user %>
       <%= link_to user_path(current_user, anchor: 'partial-container'), class: "btn btn-sm btn-outline-primary m-1" do %>
-         <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
+         <i class="fa fa-solid fa-magnifying-glass-chart"></i>
          <span class="ms-1 fw-bold">stats</span>
       <% end %>
 
-      <%= link_to setup_dashboard_path, class: "btn btn-sm btn-outline-success m-1 fa-fade" do %>
-         <i class="fa fa-solid fa-xl fa-screwdriver-wrench"></i>
+      <%= link_to setup_dashboard_path, class: "btn btn-sm btn-outline-success m-1" do %>
+         <i class="fa fa-solid fa-screwdriver-wrench"></i>
          <span class="ms-1 fw-bold">setup</span>
       <% end %>
 
