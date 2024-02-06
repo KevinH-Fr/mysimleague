@@ -151,9 +151,10 @@ class EventsController < ApplicationController
 
       won_paris = @paris.where(resultat: "true")
 
-      @pari_with_biggest_solde = won_paris.order(solde: :desc).first
-      
-      @pari_with_highest_cote = won_paris.order(cote: :desc).first
+      if @nb_paris > 0
+        @pari_with_biggest_solde = won_paris.order(solde: :desc).first  
+        @pari_with_highest_cote = won_paris.order(cote: :desc).first
+      end 
 
       @nb_dotds = @event.dotds.count
 
