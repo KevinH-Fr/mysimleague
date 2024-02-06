@@ -5,7 +5,7 @@
 <div class="d-flex flex-wrap justify-content-center align-items-center mt-4 mb-2">
    <%= link_to menu_index_path, class: "btn btn-sm btn-outline-light m-1" do %>
       <i class="fa fa-solid fa-xl fa-compass"> </i>
-      <span class="ms-1 fw-bold"> Menu</span>
+      <span class="ms-1 fw-bold"> menu</span>
    <% end %>
 
    <%#= link_to "http://shop.racemeifyoucan.com", class: "btn btn-sm btn-primary m-1" do %>
@@ -19,7 +19,7 @@
       <div class="dropdown">
          <button class="btn btn-sm btn-outline-warning dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-solid fa-xl fa-people-group"></i>
-            <span class="ms-1 fw-bold">Ligue</span>
+            <span class="ms-1 fw-bold">ligue</span>
          </button>
          <ul class="dropdown-menu dropdown-menu-dark">
             <li>
@@ -40,7 +40,7 @@
       <div class="dropdown">
          <button class="btn btn-sm btn-outline-secondary dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
             <i class="fa fa-solid fa-xl fa-layer-group"></i>
-            <span class="ms-1 fw-bold">Mes div.</span>
+            <span class="ms-1 fw-bold">mes div.</span>
          </button>
          <ul class="dropdown-menu dropdown-menu-dark">
             <% divisions_for_current_user.each do |division| %>
@@ -70,25 +70,25 @@
    <div class="dropdown">
       <button class="btn btn-sm btn-outline-light dropdown-toggle m-1" type="button" data-bs-toggle="dropdown" aria-expanded="false">
          <i class="fa fa-solid fa-xl fa-users"></i>
-         <span class="ms-1 fw-bold">Users</span>
+         <span class="ms-1 fw-bold">users</span>
       </button>
       <ul class="dropdown-menu dropdown-menu-dark">
          <li> 
             <%= link_to users_path, class: "dropdown-item text-light m-1" do %>
                <i class="fa fa-solid fa-id-card"></i>
-               <span class="ms-1 fw-bold">Profiles</span>
+               <span class="ms-1 fw-bold">profiles</span>
             <% end %>
          </li>    
          <li> 
             <%= link_to parieurs_path, class: "dropdown-item text-success m-1" do %>
                <i class="fa fa-solid fa-money-bill-wave"></i>
-               <span class="ms-1 fw-bold">Parieurs</span>
+               <span class="ms-1 fw-bold">parieurs</span>
             <% end %>
          </li>
          <li> 
             <%= link_to scoring_path, class: "dropdown-item text-warning m-1" do %>
                <i class="fa fa-solid fa-medal"></i>
-               <span class="ms-1 fw-bold">Scoring</span>
+               <span class="ms-1 fw-bold">scoring</span>
             <% end %>
          </li>        
       </ul>
@@ -97,12 +97,12 @@
    <% if current_user %>
       <%= link_to user_path(current_user, anchor: 'partial-container'), class: "btn btn-sm btn-outline-primary m-1" do %>
          <i class="fa fa-solid fa-xl fa-magnifying-glass-chart"></i>
-         <span class="ms-1 fw-bold">Stats</span>
+         <span class="ms-1 fw-bold">stats</span>
       <% end %>
 
       <%= link_to setup_dashboard_path, class: "btn btn-sm btn-outline-success m-1 fa-fade" do %>
          <i class="fa fa-solid fa-xl fa-screwdriver-wrench"></i>
-         <span class="ms-1 fw-bold">Setup</span>
+         <span class="ms-1 fw-bold">setup</span>
       <% end %>
 
       <%= link_to abonnements_path, data: {turbo: "false"}, class: "btn btn-sm btn-outline-danger m-1" do %>
