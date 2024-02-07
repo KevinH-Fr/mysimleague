@@ -296,14 +296,12 @@ class MenuController < ApplicationController
       @nb_dotds = @event.dotds.count
 
       @association_user_with_most_votes = @event.dotds.joins(:association_user)
-      .group('association_users.id, dotds.id')  # Include the necessary columns in the GROUP BY clause
-      .order('COUNT(dotds.id) DESC')
-      .first
-    
-      @nb_votes_association_user_dotd = @event.dotds.joins(:association_user)
-      .where('association_users.id' => @association_user_with_most_votes)
-      .count
-
+        .group('association_users.id, dotds.id')
+        .order('COUNT(dotds.id) DESC')
+        .first
+      
+      @nb_votes_association_user_dotd = Dotd.where(event_id: @event, association_user_id: @association_user_with_most_votes&.association_user&.id).count
+      
      # @nb_votes_association_user_dotd = @event.dotds.joins(:association_user)
      #   .group('association_users.id')  # Only include the necessary columns in the GROUP BY clause
      #   .order('COUNT(dotds.id) DESC')
