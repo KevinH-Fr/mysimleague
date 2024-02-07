@@ -164,10 +164,10 @@ class EventsController < ApplicationController
           .order('COUNT(dotds.id) DESC')
           .first
       
-        @nb_votes_association_user_dotd = @event.dotds.joins(:association_user)
-          .group('association_users.id')  # Only include the necessary columns in the GROUP BY clause
-          .order('COUNT(dotds.id) DESC')
-          .count(:id)
+          @nb_votes_association_user_dotd = @event.dotds.joins(:association_user)
+          .where('association_users.id' => @association_user_with_most_votes)
+          .count
+          
       end 
 
       @dois = @event.dois
