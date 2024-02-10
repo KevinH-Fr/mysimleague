@@ -38,14 +38,11 @@ class AssociationUsersController < ApplicationController
   end
 
   def create
-
     @division = Division.find(session[:division])
-
     @association_user = AssociationUser.new(association_user_params)
-
+  
     respond_to do |format|
       if @association_user.save
-
         format.turbo_stream do
           render turbo_stream: [
             turbo_stream.update('new_association_user',
@@ -53,32 +50,29 @@ class AssociationUsersController < ApplicationController
                                locals: { association_user: AssociationUser.new }),
   
             turbo_stream.append('association_users',
-                                 partial: "association_users/association_user",
-                                 locals: { association_user: @association_user }),
-
-            turbo_stream.update(
-            'partial-pilotes-division-stats-container', partial: 'divisions/new_pilote_division'
-            ),
+                               partial: "association_users/association_user",
+                               locals: { association_user: @association_user }),
+  
+            turbo_stream.update('partial-pilotes-division-stats-container',
+                               partial: 'divisions/new_pilote_division'),
           ]
         end
-
+  
         format.html { redirect_to association_user_url(@association_user), notice: I18n.t('notices.successfully_created') }
         format.json { render :show, status: :created, location: @association_user }
       else
-
         format.turbo_stream do
-          render turbo_stream.update(
-            'new_association_user',
-            partial: "association_users/form",
-            locals: { association_user: @association_user }
-          )
+          render turbo_stream: turbo_stream.update('new_association_user',
+                                                  partial: "association_users/form",
+                                                  locals: { association_user: @association_user })
         end
-
+  
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @association_user.errors, status: :unprocessable_entity }
       end
     end
   end
+  
   
 
   def update

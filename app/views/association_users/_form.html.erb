@@ -6,7 +6,7 @@
 
     <% if association_user.errors.any? %>
       <div style="color: red">
-        <h2><%= pluralize(association_user.errors.count, "error") %> prohibited this association_user from being saved:</h2>
+        <h2><%= pluralize(association_user.errors.count, "error") %> prohibited this from being saved:</h2>
 
         <ul>
           <% association_user.errors.each do |error| %>

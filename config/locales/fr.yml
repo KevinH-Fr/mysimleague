@@ -1,5 +1,16 @@
 # config/locales/fr.yml
+
 fr:
+  activerecord:
+    errors:
+      models:
+        association_user:
+          attributes:
+            blank: "Certains champs obligatoires n'ont pas été renseignés"
+      messages:
+        required: "Ce champ est obligatoire"
+        blank: "Ce champ ne peut pas être vide"
+  
   time:
     distance_in_words:
       about_x_seconds:
@@ -28,18 +39,11 @@ fr:
       about_x_years:
         one: "1 an"
         other: "%{count} ans"
-
-
+  
   notices:
     successfully_created: "Création réussie."
     successfully_updated: "Mise à jour réussie."
     successfully_destroyed: "Suppression réussie."
     unauthorized_action: "Tu n'es pas autorisé(e) à effectuer cette action."
-    
-    errors:
-      association_user:
-        user:
-          required: "Le champ utilisateur est obligatoire."
-          blank: "L'utilisateur ne peut pas être vide."
-        equipe_id:
-          blank: "Le champ équipe est obligatoire."
+
+
