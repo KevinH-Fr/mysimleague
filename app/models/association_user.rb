@@ -40,7 +40,9 @@ class AssociationUser < ApplicationRecord
   def unique_user_and_division
     existing_association_user = AssociationUser.find_by(
       user_id: self.user_id,
-      division_id: self.division_id
+      division_id: self.division_id,
+      actif: true,
+      valide: true
     )
 
     if existing_association_user && existing_association_user.id != self.id
