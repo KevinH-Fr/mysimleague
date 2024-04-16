@@ -11,9 +11,8 @@ module ClassementEquipesHelper
                              .where("divisions.id = ?", event.division_id)
     
         resultats.each do |resultat|
-          association_user = resultat.association_user
-          equipe = association_user.equipe if association_user.actif? && association_user.valide?
-          next unless equipe # Skip if no active and valid association_user
+          equipe = resultat.association_user.equipe
+          next unless equipe.actif # Skip if equipe is not active
     
           equipe_scores[equipe.id] ||= { score_sum: 0, equipe_nom: equipe.nom }
           equipe_scores[equipe.id][:score_sum] += resultat.score

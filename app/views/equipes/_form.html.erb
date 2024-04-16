@@ -39,6 +39,11 @@
       <%= form.file_field :banniere, accept: "image/jpeg, image/png, image/webp", class: "form-control"%>
     </div>
 
+    <div class="form-check form-switch">
+      <%= form.label :actif, class: "form-check-label" %>
+      <%= form.check_box :actif, class: "form-check-input" %>
+    </div>
+
     <%= custom_submit_button("Equipe") %>
 
   <% end %>

@@ -130,6 +130,6 @@ class EquipesController < ApplicationController
   end
 
   def equipe_params
-    params.require(:equipe).permit(:nom, :couleurs, :logo, :voiture, :banniere)
+    params.require(:equipe).permit(:nom, :couleurs, :logo, :voiture, :banniere, :actif)
   end
 end
