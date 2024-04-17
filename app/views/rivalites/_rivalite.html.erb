@@ -20,8 +20,6 @@
 
 
         <% current_event_score = scores[:scores_by_event].find { |event| event[:event] == @event.numero } %>
-
-        data: <%= scores %>
           
         <div class="text-center">
           gp courant: <%= pluralize(current_event_score[:pilote1], 'point', 'points') %>
