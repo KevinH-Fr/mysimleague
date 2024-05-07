@@ -18,16 +18,16 @@ module PresencesHelper
 
   
     def nb_presences_event(event)
-      Presence.where(event_id: event, status: true).count
+      Presence.joins(:association_user).where(event_id: event, status: true, association_users: { actif: true }).count
     end
 
     def nb_non_presences_event(event)
-      Presence.where(event_id: event, status: false).count
+      Presence.joins(:association_user).where(event_id: event, status: false, association_users: { actif: true }).count
     end
 
     def nb_non_reponses_event(event)
       pilotes_divisions = pilotes_division(Event.find(event).division_id).count
-      reponses = Presence.where(event_id: event).count
+      reponses = Presence.joins(:association_user).where(event_id: event, association_users: { actif: true }).count
       non_reponses = pilotes_divisions - reponses
     end
 

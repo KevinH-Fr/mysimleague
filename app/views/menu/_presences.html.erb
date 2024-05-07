@@ -15,7 +15,7 @@
   <div class="container-fluid">
     <div id="presences">
       <% @presences.each do |presence| %>
-          <%= render presence %>
+          <%= render presence if presence.association_user.actif %>
       <% end %>
     </div>
   </div>
